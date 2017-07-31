@@ -1,0 +1,44 @@
+{% extends 'PSS/base.html' %}
+{% block content %}
+
+<html>
+    <head>
+        <title> EXF Score</title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="">EXF Score</a></h1>
+        </div>
+        <p>
+          EXF.  Read each item and then think about how well it describes you. Use the rating scale to choose the best score.
+            <br>
+            If the item doesn’t describe you at all then you’d circle <br>
+            1, strongly disagree. If it describes you very well then you’d circle 6, strongly agree.br
+            Often, you’ll find that you’re somewhere in between so then you’d circle one of the numbers from 2 to 5 that describes you best.
+            <br>
+            Be as honest as possible—the more honest you are, the more you’ll learn about yourself.
+            <br>
+
+
+        </p>
+        <form action="{% url 'PSS:exf' surveyee_caseNum %}" method="post" class="post-form">{% csrf_token %}
+            {% for name, value in  questions.get_fields %}
+                {%  if value != '1' %}
+                    <p>{{ value }} <br>
+                    {% for choice in choices %}
+                        <input type="radio" name="{{ name }}" value="{{ choice}}">{{ choice }}
+                    {% endfor %}
+                    {% endif %}
+                </p>
+                <br><br>
+            {% endfor %}
+
+
+
+
+            <button type="submit" class="save btn btn-default">Save</button>
+        </form>
+    </body>
+</html>
+
+{% endblock %}

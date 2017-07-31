@@ -1,0 +1,43 @@
+{% extends 'PSS/base.html' %}
+{% block content %}
+
+<html>
+    <head>
+        <title> F Scare</title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="">F Scare</a></h1>
+        </div>
+        <p>
+           F.  In the course of our lives negative things may occur because of our own actions, the actions of others, or circumstances beyond our control.
+            <br>
+            For some time after these events, we may have negative thoughts or feelings about ourselves, others, or the situation.
+            <br>
+            Think about how you typically respond to such negative events. <br>
+            Next to each of the following items write the number (from the 7-point scale below) that best describes how you typically respond to the type of negative situation described.
+            <br>
+            There are no right or wrong answers. Please be as open as possible in your answers.
+
+        </p>
+        <form action="{% url 'PSS:f_scare' surveyee_caseNum %}" method="post" class="post-form">{% csrf_token %}
+            {% for name, value in  questions.get_fields %}
+                {%  if value != '1' %}
+                    <p>{{ value }} <br>
+                    {% for choice in choices %}
+                        <input type="radio" name="{{ name }}" value="{{ choice}}">{{ choice }}
+                    {% endfor %}
+                    {% endif %}
+                </p>
+                <br><br>
+            {% endfor %}
+
+
+
+
+            <button type="submit" class="save btn btn-default">Save</button>
+        </form>
+    </body>
+</html>
+
+{% endblock %}

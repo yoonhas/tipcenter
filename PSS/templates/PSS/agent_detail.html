@@ -1,0 +1,16 @@
+{% extends 'PSS/base.html' %}
+{% block content %}
+
+<h1>PSS Main Page</h1>
+    {% if surveyee_list %}
+        <ul>
+        {% for surveyee in surveyee_list %}
+            <li><a href="{% url 'PSS:surveyTimes' surveyee.caseNum%}">{{ surveyee.caseNum }}</a></li>
+        {% endfor %}
+         </ul>
+    {% else %}
+        <p> No surveyee is available. </p>
+    {% endif %}
+
+
+{% endblock content %}
