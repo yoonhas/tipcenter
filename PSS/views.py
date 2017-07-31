@@ -82,7 +82,7 @@ def Surveytimes_view(request, surveyee_caseNum):
 
 def EB_view(request, surveyee_caseNum):
     questions = EB_Question.objects.get(pk=1)
-    choices = [0, 1, 2, 3, 4, 5]
+    choices = [ 1, 2, 3, 4, 5]
     return render(request, 'PSS/EB_tem1.html', {'surveyee_caseNum':surveyee_caseNum, 'questions':questions,'choices':choices})
 
 
