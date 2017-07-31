@@ -25,7 +25,7 @@ SECRET_KEY = ')+79o)&m8_((j!shfd^&1jlq4!w9*4-dp2$+$@(^ha7sz50=gh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['yoonhas.pythonanywhere.com']
 
 
 # Application definition
