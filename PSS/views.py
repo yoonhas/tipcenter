@@ -110,11 +110,11 @@ def EB_view1(request,surveyee_caseNum):
     else:
         print(eb.caseNum, eb.time, eb.EB1)
         eb.save()
-        return redirect('PSS:ehs_start', surveyee_caseNum, survey)
+        return redirect('PSS:ehs_start', surveyee_caseNum, survey.pk)
 
 def EH_view(request, surveyee_caseNum, survey):
     questions = EH_Question.objects.get(pk=1)
-
+    print("hereeree %s" %survey)
     choices =[0,1,2,3,4,5,6,7,8,9,10]
 
     return render(request, 'PSS/EH_tem.html', {'surveyee_caseNum':surveyee_caseNum, 'questions':questions, 'choices':choices, 'survey':survey})
@@ -122,6 +122,7 @@ def EH_view(request, surveyee_caseNum, survey):
 def EH_view1(request, surveyee_caseNum, survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
     surveyee = Surveyee.objects.get(caseNum=surveyee_caseNum)
+
     try:
         eh = EH(caseNum=surveyee, time=time, surveytime= survey,
                 EH1=request.POST['EH1'],EH2=request.POST['EH2'],EH3=request.POST['EH3'],EH4=request.POST['EH4'],EH5=request.POST['EH5'],
@@ -130,7 +131,7 @@ def EH_view1(request, surveyee_caseNum, survey):
                 EH15=request.POST['EH15'],
                 EH16=request.POST['EH16'], EH17=request.POST['EH17'], EH18=request.POST['EH18'], EH19=request.POST['EH19'],
                 EH20=request.POST['EH20'],
-                EH21=request.POST['EH21'], EH22=request.POST['EH22'], EH23=request.POST['EH23'], EH24=request.POST['EH24'],
+                EH21=request.POST['EH21'], EH22=request.POST['EH22'], EH23=request.POST['EH23'], EH24=request.POST['EH24']
                 )
     except(KeyError, EH.DoesNotExist):
         return render(request, 'PSS/EH_tem.html', {'surveyee_caseNum' :surveyee_caseNum})
