@@ -17,7 +17,7 @@ class IndexView(generic.ListView):
     template_name = 'PSS/index.html'
     context_object_name = 'agent_list'
     def get_queryset(self):
-        return User.objects.all()
+        return User.objects.filter()
 
 
 class CreateUserView(CreateView):
