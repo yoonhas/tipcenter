@@ -110,20 +110,20 @@ def EB_view1(request,surveyee_caseNum):
     else:
         print(eb.caseNum, eb.time, eb.EB1)
         eb.save()
-        return redirect('PSS:ehs_start', surveyee_caseNum)
+        return redirect('PSS:ehs_start', surveyee_caseNum, survey)
 
-def EH_view(request, surveyee_caseNum):
+def EH_view(request, surveyee_caseNum, survey):
     questions = EH_Question.objects.get(pk=1)
 
     choices =[0,1,2,3,4,5,6,7,8,9,10]
 
-    return render(request, 'PSS/EH_tem.html', {'surveyee_caseNum':surveyee_caseNum, 'questions':questions, 'choices':choices})
+    return render(request, 'PSS/EH_tem.html', {'surveyee_caseNum':surveyee_caseNum, 'questions':questions, 'choices':choices, 'survey':survey})
 
-def EH_view1(request, surveyee_caseNum):
+def EH_view1(request, surveyee_caseNum, survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
     surveyee = Surveyee.objects.get(caseNum=surveyee_caseNum)
     try:
-        eh = EH(caseNum=surveyee, time=time,
+        eh = EH(caseNum=surveyee, time=time, surveytime= survey,
                 EH1=request.POST['EH1'],EH2=request.POST['EH2'],EH3=request.POST['EH3'],EH4=request.POST['EH4'],EH5=request.POST['EH5'],
                 EH6=request.POST['EH6'], EH7=request.POST['EH7'], EH8=request.POST['EH8'], EH9=request.POST['EH9'],EH10=request.POST['EH10'],
                 EH11=request.POST['EH11'], EH12=request.POST['EH12'], EH13=request.POST['EH13'], EH14=request.POST['EH14'],
@@ -137,18 +137,18 @@ def EH_view1(request, surveyee_caseNum):
     else:
         print(eh.caseNum, eh.time, eh.EH1)
         eh.save()
-        return redirect('PSS:ess_start', surveyee_caseNum)
+        return redirect('PSS:ess_start', surveyee_caseNum, survey)
 
-def ES_view(request, surveyee_caseNum):
+def ES_view(request, surveyee_caseNum, survey):
     questions = ES_Question.objects.get(pk=1)
     choices = [ 1, 2, 3, 4, 5]
-    return render(request, 'PSS/ES_tem.html', {'surveyee_caseNum':surveyee_caseNum, 'choices':choices, 'questions':questions})
+    return render(request, 'PSS/ES_tem.html', {'surveyee_caseNum':surveyee_caseNum, 'choices':choices, 'questions':questions, 'survey':survey})
 
-def ES_view1(request, surveyee_caseNum):
+def ES_view1(request, surveyee_caseNum, survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
     surveyee = Surveyee.objects.get(caseNum=surveyee_caseNum)
     try:
-        es = ES(caseNum=surveyee, time= time,
+        es = ES(caseNum=surveyee, time= time,surveytime= survey,
                 ES1=request.POST['ES1'], ES2=request.POST['ES2'], ES3=request.POST['ES3'], ES4=request.POST['ES4'],
                 ES5=request.POST['ES5'],
                 ES6=request.POST['ES6'], ES7=request.POST['ES7'], ES8=request.POST['ES8'], ES9=request.POST['ES9'],
@@ -164,18 +164,18 @@ def ES_view1(request, surveyee_caseNum):
     else:
         print(es.caseNum, es.time, es.ES1)
         es.save()
-        return redirect('PSS:tip_start', surveyee_caseNum)
+        return redirect('PSS:tip_start', surveyee_caseNum, survey)
 
-def Tip_view(request, surveyee_caseNum):
+def Tip_view(request, surveyee_caseNum, survey):
     questions = Tip_Question.objects.get(pk=1)
     choices = [ 1, 2, 3, 4, 5, 6, 7]
-    return render(request, 'PSS/Tip_tem.html', {'surveyee_caseNum':surveyee_caseNum, 'choices':choices, 'questions':questions})
+    return render(request, 'PSS/Tip_tem.html', {'surveyee_caseNum':surveyee_caseNum, 'choices':choices, 'questions':questions, 'survey':survey})
 
-def Tip_view1(request, surveyee_caseNum):
+def Tip_view1(request, surveyee_caseNum, survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
     surveyee = Surveyee.objects.get(caseNum=surveyee_caseNum)
     try:
-        tip = Tip(caseNum=surveyee, time= time,
+        tip = Tip(caseNum=surveyee, time= time, surveytime=survey,
                 TIP1=request.POST['TIP1'], TIP2=request.POST['TIP2'], TIP3=request.POST['TIP3'], TIP4=request.POST['TIP4'],
                 TIP5=request.POST['TIP5'],
                 TIP6=request.POST['TIP6'], TIP7=request.POST['TIP7'], TIP8=request.POST['TIP8'], TIP9=request.POST['TIP9'],
@@ -190,18 +190,18 @@ def Tip_view1(request, surveyee_caseNum):
     else:
 
         tip.save()
-        return redirect('PSS:exf_start', surveyee_caseNum)
+        return redirect('PSS:exf_start', surveyee_caseNum, survey)
 
-def EXF_view(request, surveyee_caseNum):
+def EXF_view(request, surveyee_caseNum, survey):
     questions = EXF_Question.objects.get(pk=1)
     choices = [ 1, 2, 3, 4, 5, 6]
-    return render(request, 'PSS/EXF_tem.html', {'surveyee_caseNum':surveyee_caseNum, 'choices':choices, 'questions':questions})
+    return render(request, 'PSS/EXF_tem.html', {'surveyee_caseNum':surveyee_caseNum, 'choices':choices, 'questions':questions, 'survey':survey})
 
-def EXF_view1(request, surveyee_caseNum):
+def EXF_view1(request, surveyee_caseNum, survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
     surveyee = Surveyee.objects.get(caseNum=surveyee_caseNum)
     try:
-        exf = EXF(caseNum=surveyee, time= time,
+        exf = EXF(caseNum=surveyee, time= time, surveytime=survey,
                   A3=request.POST['A3'], B3=request.POST['B3'], C3=request.POST['C3'], D3=request.POST['D3'],
                   E2=request.POST['E2'],
                   F2=request.POST['F2'], G1=request.POST['G1'], H3=request.POST['H3'], I2=request.POST['I2'],
@@ -216,21 +216,21 @@ def EXF_view1(request, surveyee_caseNum):
     else:
 
         exf.save()
-        return redirect('PSS:r_start', surveyee_caseNum)
+        return redirect('PSS:r_start', surveyee_caseNum, survey)
 
 
-def R_view(request, surveyee_caseNum):
+def R_view(request, surveyee_caseNum, survey):
     questions = R_Question.objects.get(pk=1)
     choices = [0, 1, 2, 3, 4]
     return render(request, 'PSS/R_tem.html',
-                  {'surveyee_caseNum': surveyee_caseNum, 'choices': choices, 'questions': questions})
+                  {'surveyee_caseNum': surveyee_caseNum, 'choices': choices, 'questions': questions, 'survey':survey})
 
 
-def R_view1(request, surveyee_caseNum):
+def R_view1(request, surveyee_caseNum, survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
     surveyee = Surveyee.objects.get(caseNum=surveyee_caseNum)
     try:
-        r = R(caseNum=surveyee, time=time,
+        r = R(caseNum=surveyee, time=time, surveytime=survey,
                   R1=request.POST['R1'], R2=request.POST['R2']
                   )
     except (KeyError, R.DoesNotExist):
@@ -239,18 +239,18 @@ def R_view1(request, surveyee_caseNum):
     else:
 
         r.save()
-        return redirect('PSS:sef_start', surveyee_caseNum)
+        return redirect('PSS:sef_start', surveyee_caseNum,survey)
 
-def SEF_view(request, surveyee_caseNum):
+def SEF_view(request, surveyee_caseNum, survey):
     questions = SEF_Question.objects.get(pk=1)
     choices = [ 1, 2, 3, 4, 5]
-    return render(request, 'PSS/SEF_tem.html', {'surveyee_caseNum':surveyee_caseNum, 'choices':choices, 'questions':questions})
+    return render(request, 'PSS/SEF_tem.html', {'surveyee_caseNum':surveyee_caseNum, 'choices':choices, 'questions':questions,'survey':survey})
 
-def SEF_view1(request, surveyee_caseNum):
+def SEF_view1(request, surveyee_caseNum,survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
     surveyee = Surveyee.objects.get(caseNum=surveyee_caseNum)
     try:
-        sef = SEF(caseNum=surveyee, time= time,
+        sef = SEF(caseNum=surveyee, time= time, surveytime=survey,
                   SEF1=request.POST['SEF1'], SEF2=request.POST['SEF2'], SEF3=request.POST['SEF3'], SEF4=request.POST['SEF4'],
                   SEF5=request.POST['SEF5'],
                   SEF6=request.POST['SEF6'], SEF7=request.POST['SEF7'], SEF8=request.POST['SEF8']
@@ -261,21 +261,21 @@ def SEF_view1(request, surveyee_caseNum):
     else:
 
         sef.save()
-        return redirect('PSS:gr_start', surveyee_caseNum)
+        return redirect('PSS:gr_start', surveyee_caseNum,survey)
 
 
-def GR_view(request, surveyee_caseNum):
+def GR_view(request, surveyee_caseNum,survey):
     questions = GR_Question.objects.get(pk=1)
     choices = [1, 2, 3, 4, 5]
     return render(request, 'PSS/GR_tem.html',
-                  {'surveyee_caseNum': surveyee_caseNum, 'choices': choices, 'questions': questions})
+                  {'surveyee_caseNum': surveyee_caseNum, 'choices': choices, 'questions': questions,'survey':survey})
 
 
-def GR_view1(request, surveyee_caseNum):
+def GR_view1(request, surveyee_caseNum, survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
     surveyee = Surveyee.objects.get(caseNum=surveyee_caseNum)
     try:
-        gr = GR(caseNum=surveyee, time=time,
+        gr = GR(caseNum=surveyee, time=time,surveytime=survey,
                 GR1=request.POST['GR1'], GR2=request.POST['GR2'], GR3=request.POST['GR3'],
                 GR4=request.POST['GR4'],
                 GR5=request.POST['GR5'],
@@ -287,20 +287,20 @@ def GR_view1(request, surveyee_caseNum):
     else:
 
         gr.save()
-        return redirect('PSS:spr_start', surveyee_caseNum)
+        return redirect('PSS:spr_start', surveyee_caseNum,survey)
 
-def SPR_view(request, surveyee_caseNum):
+def SPR_view(request, surveyee_caseNum,survey):
     questions = SPR_Question.objects.get(pk=1)
     choices = [0,1, 2, 3, 4, 5, 6, 7, 8, 9,10]
     return render(request, 'PSS/SPR_tem.html',
-                  {'surveyee_caseNum': surveyee_caseNum, 'choices': choices, 'questions': questions})
+                  {'surveyee_caseNum': surveyee_caseNum, 'choices': choices, 'questions': questions,'survey':survey})
 
 
-def SPR_view1(request, surveyee_caseNum):
+def SPR_view1(request, surveyee_caseNum,survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
     surveyee = Surveyee.objects.get(caseNum=surveyee_caseNum)
     try:
-        spr = SPR(caseNum=surveyee, time=time,
+        spr = SPR(caseNum=surveyee, time=time,surveytime=survey,
                   SPR1=request.POST['SPR1'], SPR2=request.POST['SPR2'], SPR3=request.POST['SPR3'],
                   SPR4=request.POST['SPR4'],
                   SPR5=request.POST['SPR5'],
@@ -312,20 +312,20 @@ def SPR_view1(request, surveyee_caseNum):
     else:
 
         spr.save()
-        return redirect('PSS:ssp_start', surveyee_caseNum)
+        return redirect('PSS:ssp_start', surveyee_caseNum, survey)
 
-def SSP_view(request, surveyee_caseNum):
+def SSP_view(request, surveyee_caseNum,survey):
     questions = SSP_Question.objects.get(pk=1)
     choices = [1, 2, 3, 4]
     return render(request, 'PSS/SSP_tem.html',
-                  {'surveyee_caseNum': surveyee_caseNum, 'choices': choices, 'questions': questions})
+                  {'surveyee_caseNum': surveyee_caseNum, 'choices': choices, 'questions': questions,'survey':survey})
 
 
-def SSP_view1(request, surveyee_caseNum):
+def SSP_view1(request, surveyee_caseNum,survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
     surveyee = Surveyee.objects.get(caseNum=surveyee_caseNum)
     try:
-        ssp = SSP(caseNum=surveyee, time=time,
+        ssp = SSP(caseNum=surveyee, time=time,surveytime=survey,
                   SSP1=request.POST['SSP1'], SSP2=request.POST['SSP2'], SSP3=request.POST['SSP3'],
                   SSP4=request.POST['SSP4'],
                   SSP5=request.POST['SSP5'],
@@ -339,20 +339,20 @@ def SSP_view1(request, surveyee_caseNum):
     else:
 
         ssp.save()
-        return redirect('PSS:f_start', surveyee_caseNum)
+        return redirect('PSS:f_start', surveyee_caseNum,survey)
 
-def F_view(request, surveyee_caseNum):
+def F_view(request, surveyee_caseNum,survey):
     questions = F_Question.objects.get(pk=1)
 
     choices =[1,2,3,4,5,6,7]
 
-    return render(request, 'PSS/F_tem.html', {'surveyee_caseNum':surveyee_caseNum, 'questions':questions, 'choices':choices})
+    return render(request, 'PSS/F_tem.html', {'surveyee_caseNum':surveyee_caseNum, 'questions':questions, 'choices':choices,'survey':survey})
 
-def F_view1(request, surveyee_caseNum):
+def F_view1(request, surveyee_caseNum,survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
     surveyee = Surveyee.objects.get(caseNum=surveyee_caseNum)
     try:
-        f = F(caseNum=surveyee, time=time,
+        f = F(caseNum=surveyee, time=time,surveytime=survey,
               F1=request.POST['F1'],F2=request.POST['F2'],F3=request.POST['F3'],F4=request.POST['F4'],F5=request.POST['F5'],
               F6=request.POST['F6'], F7=request.POST['F7'], F8=request.POST['F8'], F9=request.POST['F9'],F10=request.POST['F10'],
               F11=request.POST['F11'], F12=request.POST['F12'], F13=request.POST['F13'], F14=request.POST['F14'],
@@ -364,21 +364,21 @@ def F_view1(request, surveyee_caseNum):
     else:
 
         f.save()
-        return redirect('PSS:gd_start', surveyee_caseNum)
+        return redirect('PSS:gd_start', surveyee_caseNum,survey)
 
 
-def GD_view(request, surveyee_caseNum):
+def GD_view(request, surveyee_caseNum,survey):
     questions = GD_Question.objects.get(pk=1)
     choices = [1, 2, 3, 4, 5, 6, 7]
     return render(request, 'PSS/GD_tem.html',
-                  {'surveyee_caseNum': surveyee_caseNum, 'choices': choices, 'questions': questions})
+                  {'surveyee_caseNum': surveyee_caseNum, 'choices': choices, 'questions': questions,'survey':survey})
 
 
-def GD_view1(request, surveyee_caseNum):
+def GD_view1(request, surveyee_caseNum,survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
     surveyee = Surveyee.objects.get(caseNum=surveyee_caseNum)
     try:
-        gd = GD(caseNum=surveyee, time=time,
+        gd = GD(caseNum=surveyee, time=time,surveytime=survey,
                 GD1=request.POST['GD1'], GD2=request.POST['GD2'], GD3=request.POST['GD3'],
                 GD4=request.POST['GD4'],
                 GD5=request.POST['GD5'],
@@ -390,23 +390,23 @@ def GD_view1(request, surveyee_caseNum):
     else:
 
         gd.save()
-        return redirect('PSS:hm_start', surveyee_caseNum)
+        return redirect('PSS:hm_start', surveyee_caseNum,survey)
 
 
-def HM_view(request, surveyee_caseNum):
+def HM_view(request, surveyee_caseNum,survey):
     questions = HM_Question.objects.get(pk=1)
 
     choices = [1, 2, 3, 4, 5]
 
     return render(request, 'PSS/HM_tem.html',
-                  {'surveyee_caseNum': surveyee_caseNum, 'questions': questions, 'choices': choices})
+                  {'surveyee_caseNum': surveyee_caseNum, 'questions': questions, 'choices': choices,'survey':survey})
 
 
-def HM_view1(request, surveyee_caseNum):
+def HM_view1(request, surveyee_caseNum,survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
     surveyee = Surveyee.objects.get(caseNum=surveyee_caseNum)
     try:
-        hm = HM(caseNum=surveyee, time=time,
+        hm = HM(caseNum=surveyee, time=time,surveytime=survey,
                 HM1=request.POST['HM1'], HM2=request.POST['HM2'], HM3=request.POST['HM3'], HM4=request.POST['HM4'],
                 HM5=request.POST['HM5'],
                 HM6=request.POST['HM6'], HM7=request.POST['HM7'], HM8=request.POST['HM8'], HM9=request.POST['HM9'],
@@ -419,22 +419,22 @@ def HM_view1(request, surveyee_caseNum):
     else:
 
         hm.save()
-        return redirect('PSS:health_start', surveyee_caseNum)
+        return redirect('PSS:health_start', surveyee_caseNum,survey)
 
-def HEALTH_view(request, surveyee_caseNum):
+def HEALTH_view(request, surveyee_caseNum,survey):
     questions = HEALTH_Question.objects.get(pk=1)
 
     choices = [1, 2, 3, 4, 5]
 
     return render(request, 'PSS/HEALTH_tem.html',
-                  {'surveyee_caseNum': surveyee_caseNum, 'questions': questions, 'choices': choices})
+                  {'surveyee_caseNum': surveyee_caseNum, 'questions': questions, 'choices': choices,'survey':survey})
 
 
-def HEALTH_view1(request, surveyee_caseNum):
+def HEALTH_view1(request, surveyee_caseNum,survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
     surveyee = Surveyee.objects.get(caseNum=surveyee_caseNum)
     try:
-        health = HEALTH(caseNum=surveyee, time=time,
+        health = HEALTH(caseNum=surveyee, time=time,surveytime=survey,
                         HEALTH1=request.POST['HEALTH1'], HEALTH2=request.POST['HEALTH2']
               )
     except(KeyError, HEALTH.DoesNotExist):
