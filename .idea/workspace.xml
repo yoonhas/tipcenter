@@ -2,23 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1fa12040-2742-4849-9dbd-2eba2e5beec7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/TipCenter.iml" afterPath="$PROJECT_DIR$/.idea/TipCenter.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/templates/PSS/EH_tem.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/EH_tem.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/templates/PSS/ES_tem.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/ES_tem.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/templates/PSS/EXF_tem.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/EXF_tem.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/templates/PSS/F_tem.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/F_tem.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/templates/PSS/GD_tem.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/GD_tem.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/templates/PSS/GR_tem.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/GR_tem.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/templates/PSS/HEALTH_tem.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/HEALTH_tem.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/templates/PSS/HM_tem.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/HM_tem.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/templates/PSS/R_tem.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/R_tem.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/templates/PSS/SEF_tem.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/SEF_tem.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/templates/PSS/SPR_tem.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/SPR_tem.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/templates/PSS/SSP_tem.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/SSP_tem.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/templates/PSS/Tip_tem.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/Tip_tem.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/views.py" afterPath="$PROJECT_DIR$/PSS/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/urls.py" afterPath="$PROJECT_DIR$/PSS/urls.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -33,21 +18,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GR_tem.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/GR_tem.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="61" lean-forward="false" selection-start-line="18" selection-start-column="61" selection-end-line="18" selection-end-column="61" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PSS/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="565">
-              <caret line="420" column="17" lean-forward="true" selection-start-line="420" selection-start-column="17" selection-end-line="420" selection-end-column="17" />
+            <state relative-caret-position="367">
+              <caret line="111" column="17" lean-forward="true" selection-start-line="111" selection-start-column="17" selection-end-line="111" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -58,6 +33,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
               <caret line="12" column="65" lean-forward="false" selection-start-line="12" selection-start-column="65" selection-end-line="12" selection-end-column="65" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/PSS/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="260">
+              <caret line="25" column="46" lean-forward="true" selection-start-line="25" selection-start-column="46" selection-end-line="25" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -153,7 +138,6 @@
         <option value="$PROJECT_DIR$/PSS/forms.py" />
         <option value="$PROJECT_DIR$/PSS/templates/PSS/EB_tem.html" />
         <option value="$PROJECT_DIR$/PSS/templates/PSS/times.html" />
-        <option value="$PROJECT_DIR$/PSS/urls.py" />
         <option value="$PROJECT_DIR$/PSS/templates/PSS/Thanks.html" />
         <option value="$PROJECT_DIR$/PSS/admin.py" />
         <option value="$PROJECT_DIR$/PSS/templates/PSS/EB_tem1.html" />
@@ -173,6 +157,7 @@
         <option value="$PROJECT_DIR$/PSS/templates/PSS/SPR_tem.html" />
         <option value="$PROJECT_DIR$/PSS/templates/PSS/SSP_tem.html" />
         <option value="$PROJECT_DIR$/PSS/views.py" />
+        <option value="$PROJECT_DIR$/PSS/urls.py" />
       </list>
     </option>
   </component>
@@ -183,8 +168,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="459" />
-    <option name="y" value="23" />
+    <option name="x" value="609" />
+    <option name="y" value="33" />
     <option name="width" value="1942" />
     <option name="height" value="1242" />
   </component>
@@ -532,7 +517,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="459" y="23" width="1942" height="1242" extended-state="0" />
+    <frame x="609" y="33" width="1942" height="1242" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26947367" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -542,7 +528,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3291815" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3291815" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -603,14 +589,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="8" column="43" lean-forward="false" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PSS/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="27" column="81" lean-forward="false" selection-start-line="27" selection-start-column="81" selection-end-line="27" selection-end-column="81" />
           <folding />
         </state>
       </provider>
@@ -753,8 +731,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PSS/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="565">
-          <caret line="420" column="17" lean-forward="true" selection-start-line="420" selection-start-column="17" selection-end-line="420" selection-end-column="17" />
+        <state relative-caret-position="367">
+          <caret line="111" column="17" lean-forward="true" selection-start-line="111" selection-start-column="17" selection-end-line="111" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PSS/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="25" column="46" lean-forward="true" selection-start-line="25" selection-start-column="46" selection-end-line="25" selection-end-column="46" />
           <folding />
         </state>
       </provider>
