@@ -635,3 +635,97 @@ class R_Question(models.Model):
 
     def __str__(self):
         return str(self.pk)
+
+class DM(models.Model):
+    choices = ((1, 'YES'), (0, 'NO'))
+    caseNum = models.ForeignKey('Surveyee', on_delete=models.CASCADE)
+    time = models.IntegerField()
+    surveytime = models.IntegerField()
+
+    DM1 = models.IntegerField(default=None, choices=choices)
+    DM1_1_year = models.IntegerField(default=0)
+    DM1_1_month = models.IntegerField(default=0)
+    DM1_1_days =  models.IntegerField(default=0)
+    DM1_2=  models.IntegerField(default=0)
+    DM1_3 = models.IntegerField(default=0, choices=choices)
+    DM1_4 = models.IntegerField(default=0, choices=choices)
+    DM2 =  models.IntegerField(default=0, choices=choices)
+    DM3 =models.IntegerField(default=0)
+    DM4 =models.IntegerField(default=0)
+    DM5 =models.IntegerField(default=0)
+    DM6 =models.IntegerField(default=0)
+    DM7 =models.IntegerField(default=0)
+    choices8 = ((0, 'Married, spouse present'), (1, 'Married, spouse absent'), (2, 'Never married'), (3, 'Sperated'), (4, 'Divorced'), (5, 'Widowed'))
+    DM8 =models.IntegerField(choices=choices8)
+    choices9 = ((0, 'Rental'), (1, 'Own home'), (2, 'Homeless'), (3, 'Public Housing'),
+                (4, 'Other'), (5, 'Living with family or friend'))
+    DM9= models.IntegerField(choices=choices9)
+    DM9_1 = models.CharField(max_length=200, default="")
+    DM10 = models.IntegerField(choices=choices)
+    choices11 = ((0, 'Worse'), (1, 'Same'), (2, 'Better'), (3, 'Do Not Know'))
+    DM11_1 = models.IntegerField(choices=choices11)
+    DM11_2 = models.IntegerField(choices=choices11)
+    DM11_3 = models.IntegerField(choices=choices11)
+    DM11_4 = models.IntegerField(choices=choices11)
+    DM12_1 = models.IntegerField()
+    DM12_3 = models.IntegerField()
+    DM13 = models.IntegerField(choices=choices)
+    choices14 = ((0, 'Native American or Alaska Native'), (1, 'Asian or Pacific Islande'), (2, 'Black or African American'), (3, 'White or European American'),
+                (4, 'Non-White Hispanic'), (5, 'Bi- / multi-racial'),(6, 'Other'))
+    DM14 = models.IntegerField(choices=choices14)
+    DM14_1 = models.CharField(max_length=200, default="")
+    DM15 = models.IntegerField()
+    choices16 = (
+    (0, 'Less than High School'), (1, 'High-School / GED'), (2, 'Some College but no degree'),
+    (3, 'Diploma or certificate from vocational, technical or trade school'),
+    (4, 'Associates Degree'), (5, 'Bachelors Degree'), (6, 'Masters Degree'), (7, ' Professional School Degree'), (8, 'Doctorate'))
+    DM16 = models.IntegerField(choices=choices16)
+    DM17 = models.IntegerField()
+    DM18 = models.IntegerField()
+    DM19 = models.IntegerField()
+
+    def __str__(self):
+        return 'DM'+str(self.caseNum)+ '_' + str(self.time)
+
+
+class DM_Question(models.Model):
+    DM1 = models.CharField(max_length=200)
+    DM1_1_year = models.CharField(max_length=200)
+    DM1_1_month =models.CharField(max_length=200)
+    DM1_1_days = models.CharField(max_length=200)
+    DM1_2 = models.CharField(max_length=200)
+    DM1_3 =models.CharField(max_length=200)
+    DM1_4 =models.CharField(max_length=200)
+    DM2 = models.CharField(max_length=200)
+    DM3 = models.CharField(max_length=200)
+    DM4 = models.CharField(max_length=200)
+    DM5 = models.CharField(max_length=200)
+    DM6 = models.CharField(max_length=200)
+    DM7 = models.CharField(max_length=200)
+    DM8 = models.CharField(max_length=200)
+    DM9 = models.CharField(max_length=200)
+    DM9_1 = models.CharField(max_length=200)
+    DM10 = models.CharField(max_length=200)
+    DM11 = models.CharField(max_length=200)
+    DM11_1 =  models.CharField(max_length=200)
+    DM11_2 =  models.CharField(max_length=200)
+    DM11_3 =  models.CharField(max_length=200)
+    DM11_4 =  models.CharField(max_length=200)
+    DM12 = models.CharField(max_length=200)
+    DM12_1 = models.CharField(max_length=200)
+    DM13 = models.CharField(max_length=200)
+    DM14 = models.CharField(max_length=200)
+    DM14_1 = models.CharField(max_length=200)
+    DM15 = models.CharField(max_length=200)
+    DM16 = models.CharField(max_length=200)
+    DM17 = models.CharField(max_length=200)
+    DM18 = models.CharField(max_length=200)
+    DM19 = models.CharField(max_length=200)
+
+
+
+    def get_fields(self):
+        return [(field.name, field.value_to_string(self)) for field in DM_Question._meta.fields]
+
+    def __str__(self):
+        return str(self.pk)

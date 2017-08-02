@@ -51,6 +51,8 @@ urlpatterns = [
     url(r'^(?P<surveyee_caseNum>[0-9]+)/hm/(?P<survey>[0-9]+)/$', views.HM_view1, name="hm"),
     url(r'^(?P<surveyee_caseNum>[0-9]+)/(?P<survey>[0-9]+)/health/start$', views.HEALTH_view, name="health_start"),
     url(r'^(?P<surveyee_caseNum>[0-9]+)/health/(?P<survey>[0-9]+)/$', views.HEALTH_view1, name="health"),
+    url(r'^(?P<surveyee_caseNum>[0-9]+)/(?P<survey>[0-9]+)/dm/start$', views.DM_view, name="dm_start"),
+    url(r'^(?P<surveyee_caseNum>[0-9]+)/dm/(?P<survey>[0-9]+)/$', views.DM_view1, name="dm"),
     url(r'^thankyou/$', views.Thanks, name="thanks"),
 
 

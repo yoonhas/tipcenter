@@ -9,7 +9,7 @@ from .forms import CreateUserForm,EB_Form, EH_Form
 from django.contrib.auth.models import User
 from .models import Surveyee, SurveyTimes,EB, EH, EH_Question, ES_Question, ES, Tip_Question, Tip, EB_Question
 from .models import EXF_Question,EXF, R, R_Question, SEF, SEF_Question, GR, GR_Question, SPR, SPR_Question
-from .models import SSP_Question, SSP, F, F_Question, GD, GD_Question, HM_Question, HM, HEALTH_Question, HEALTH
+from .models import SSP_Question, SSP, F, F_Question, GD, GD_Question, HM_Question, HM, HEALTH_Question, HEALTH, DM, DM_Question
 from django.utils import timezone
 
 # Create your views here.
@@ -443,7 +443,39 @@ def HEALTH_view1(request, surveyee_caseNum,survey):
     else:
 
         health.save()
+        return redirect('PSS:dm_start',surveyee_caseNum,survey)
+
+def DM_view(request, surveyee_caseNum,survey):
+    questions = DM_Question.objects.get(pk=1)
+
+    choices = [1, 2, 3, 4, 5]
+
+    return render(request, 'PSS/DM_tem.html',
+                  {'surveyee_caseNum': surveyee_caseNum, 'questions': questions, 'choices': choices,'survey':survey})
+
+def DM_view1(request, surveyee_caseNum,survey):
+    time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
+    surveyee = Surveyee.objects.get(caseNum=surveyee_caseNum)
+    try:
+        dm = DM(caseNum=surveyee, time=time,surveytime=survey,
+                DM1=request.POST['DM1'],DM1_1_year=request.POST['DM1_1_year'],DM1_1_month=request.POST['DM1_1_month'],DM1_1_days=request.POST['DM1_1_days'],
+                DM1_2=request.POST['DM1_2'], DM1_3=request.POST['DM1_3'], DM1_4=request.POST['DM1_4'],
+                DM2=request.POST['DM2'], DM3=request.POST['DM3'], DM4=request.POST['DM4'],
+                DM5=request.POST['DM5'],
+                DM6=request.POST['DM6'], DM7=request.POST['DM7'], DM8=request.POST['DM8'], DM9=request.POST['DM9'], DM9_1=request.POST['DM9_1'],
+                DM10=request.POST['DM10'],
+                 DM11_1=request.POST['DM11_1'],DM11_2=request.POST['DM11_2'],DM11_3=request.POST['DM11_4'],DM11_4=request.POST['DM11_4'],
+                DM12=request.POST['DM12'],DM12_1=request.POST['DM12'], DM13=request.POST['DM13'],
+                DM14=request.POST['DM14'],DM14_1=request.POST['DM14_1'],
+                DM15=request.POST['DM15'],DM16=request.POST['DM16'],DM17=request.POST['DM17'],DM18=request.POST['DM18'],DM19=request.POST['DM19']
+              )
+    except(KeyError, HEALTH.DoesNotExist):
+        return render(request, 'PSS/DM_tem.html', {'surveyee_caseNum': surveyee_caseNum})
+    else:
+
+        dm.save()
         return redirect('PSS:thanks')
+
 
 
 def Thanks(request):
