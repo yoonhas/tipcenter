@@ -14,7 +14,7 @@
             <br>1=Not a barrier and 5=Strong barrier.
 
         </p>
-        <form action="{% url 'PSS:peb' surveyee_caseNum %}" method="post" class="post-form">{% csrf_token %}
+        <form action="{% url 'PSS:peb' surveyee_caseNum survey%}" method="post" class="post-form">{% csrf_token %}
               {% for name, value in  questions.get_fields %}
                 {%  if value != '1' %}
                     <p>{{ value }} <br>

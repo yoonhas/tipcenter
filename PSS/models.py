@@ -29,7 +29,7 @@ class SurveyTimes(models.Model):
 
 class EB(models.Model):
     choices = ((1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5'))
-    surveytime = models.ForeignKey('SurveyTimes', on_delete=models.CASCADE)
+    surveytime = models.IntegerField()
     caseNum = models.ForeignKey('Surveyee', on_delete=models.CASCADE)
     time = models.IntegerField()
     EB1 = models.IntegerField(default=1, choices=choices)
@@ -637,12 +637,12 @@ class R_Question(models.Model):
         return str(self.pk)
 
 class DM(models.Model):
-    choices = ((1, 'YES'), (0, 'NO'))
+    choices = (( 1,'YES'), (0,'NO'))
     caseNum = models.ForeignKey('Surveyee', on_delete=models.CASCADE)
     time = models.IntegerField()
     surveytime = models.IntegerField()
 
-    DM1 = models.IntegerField(default=None, choices=choices)
+    DM1 = models.IntegerField(null=False,default=None, choices=choices)
     DM1_1_year = models.IntegerField(default=0)
     DM1_1_month = models.IntegerField(default=0)
     DM1_1_days =  models.IntegerField(default=0)

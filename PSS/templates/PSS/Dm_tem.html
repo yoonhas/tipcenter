@@ -14,143 +14,157 @@
 
 
         </p>
-        <form action="{% url 'PSS:dm' surveyee_caseNum survey%}" method="post" class="post-form">{% csrf_token %}
+        <form action="{% url 'PSS:dm' surveyee_caseNum survey %}" method="post" class="post-form">{% csrf_token %}
             {{ questions.DM1 }} <br>
-            <span style="margin-left:1em">
-            <input type="radio" name="{{ DM1 }}" value=0>No
-            <input type="radio" name="{{ DM1 }}" value=1>Yes
-            </span><br>
+            <p><span style="margin-left:1em">
+            <input type="radio" name="DM1" value="{{ choices.0 }}"></span>No
+            <input type="radio" name="DM1" value="{{ choices.1 }}">Yes
+            <br>
             <span style="margin-left:2em">{{ questions.DM1_1_year }}</span>
-            <input type="number" name="{{ DM1_1_year }}" value=0>
+            <input type="number" name="DM1_1_year" value=0>
             <br>
             <span style="margin-left:25em">{{ questions.DM1_1_month }}</span>
-            <input type="number" name="{{ DM1_1_month }}" value=0>
+            <input type="number" name="DM1_1_month" value=0>
             <br>
             <span style="margin-left:25em">{{ questions.DM1_1_days }}</span>
-            <input type="number" name="{{ DM1_1_days }}" value=0>
+            <input type="number" name="DM1_1_days" value=0>
             <br>
             <br>
+                <span style="margin-left:2em">{{ questions.DM1_2 }}</span><br>
+                <span style="margin-left:2em"><input type="number" name="DM1_2" value=0></span>
+            <br><br>
+            <span style="margin-left:2em">{{ questions.DM1_3 }}</span><br>
+                    <p><span style="margin-left:4em">
+            <input type="radio" name="DM1_3" value="{{ choices.0 }}"></span>No
+            <input type="radio" name="DM1_3" value="{{ choices.1 }}">Yes
+            <br>
+            <span style="margin-left:2em">{{ questions.DM1_4 }}</span><br>
+                    <p><span style="margin-left:4em">
+            <input type="radio" name="DM1_4" value="{{ choices.0 }}"></span>No
+            <input type="radio" name="DM1_4" value="{{ choices.1 }}">Yes
+            <br>
+
             {{ questions.DM2 }} <br>
             <span style="margin-left:1em">
-                <input type="radio" name="{{ DM2 }}" value=0>No
-            <input type="radio" name="{{ DM2 }}" value=1>Yes
+                <input type="radio" name="DM2" value=0>No
+            <input type="radio" name="DM2" value=1>Yes
             </span><br>
             <br>
             {{ questions.DM3 }}
-            <span style="margin-left:1em"><input type="number" name="{{ DM3}}" value=0></span>
+            <span style="margin-left:1em"><input type="number" name="DM3" value=0></span>
             <br><br>
              {{ questions.DM4 }}
-            <span style="margin-left:1em"><input type="number" name="{{ DM4}}" value=0></span>
+            <span style="margin-left:1em"><input type="number" name="DM4" value=0></span>
             <br><br>
              {{ questions.DM5 }}
-            <span style="margin-left:1em"><input type="number" name="{{ DM5}}" value=0></span>
+            <span style="margin-left:1em"><input type="number" name="DM5" value=0></span>
             <br><br>
              {{ questions.DM6 }}
-            <span style="margin-left:1em"><input type="number" name="{{ DM6}}" value=0></span>
+            <span style="margin-left:1em"><input type="number" name="DM6" value=0></span>
             <br><br>
             {{ questions.DM7 }} <br>
             <span style="margin-left:1em">
-            <input type="radio" name="{{ DM7 }}" value=0>No
-            <input type="radio" name="{{ DM7 }}" value=1>Yes</span>
+            <input type="radio" name="DM7" value=0>No
+            <input type="radio" name="DM7" value=1>Yes</span>
             <br><br>
             {{ questions.DM8 }} <br>
             <span style="margin-left:1em">
-            <input type="radio" name="{{ DM8 }}" value=0>Married, spouse present
-            <input type="radio" name="{{ DM8 }}" value=1>Married, spouse absent
-            <input type="radio" name="{{ DM8 }}" value=2>Never Married
-            <input type="radio" name="{{ DM8 }}" value=3>Separated
-            <input type="radio" name="{{ DM8 }}" value=4>Divorced
-            <input type="radio" name="{{ DM8 }}" value=5>Widowed</span>
+            <input type="radio" name="DM8" value=0>Married, spouse present
+            <input type="radio" name="DM8" value=1>Married, spouse absent
+            <input type="radio" name="DM8" value=2>Never Married
+            <input type="radio" name="DM8" value=3>Separated
+            <input type="radio" name="DM8" value=4>Divorced
+            <input type="radio" name="DM8" value=5>Widowed</span>
             <br><br>
             {{ questions.DM9 }} <br>
             <span style="margin-left:1em">
-            <input type="radio" name="{{ DM9 }}" value=0>Rental
-            <input type="radio" name="{{ DM9 }}" value=1>Own Home
-            <input type="radio" name="{{ DM9 }}" value=2>Homeless
-            <input type="radio" name="{{ DM9 }}" value=3>Public housing
-            <input type="radio" name="{{ DM9 }}" value=4>Other
-            <input type="radio" name="{{ DM9 }}" value=5>Living with family or friend</span>
+            <input type="radio" name="DM9" value=0>Rental
+            <input type="radio" name="DM9" value=1>Own Home
+            <input type="radio" name="DM9" value=2>Homeless
+            <input type="radio" name="DM9" value=3>Public housing
+            <input type="radio" name="DM9" value=4>Other
+            <input type="radio" name="DM9" value=5>Living with family or friend</span>
             <br>
              <span style="margin-left:2em"> {{ questions.DM9_1 }}</span>
 
-            <input type="text" name="{{ DM9_1}}" value=" ">
+            <input type="text" name="DM9_1" value=" ">
             <br><br>
               {{ questions.DM10 }} <br>
             <span style="margin-left:1em">
-            <input type="radio" name="{{ DM10 }}" value=0>No
-            <input type="radio" name="{{ DM10 }}" value=1>Yes</span>
+            <input type="radio" name="DM10" value=0>No
+            <input type="radio" name="DM10" value=1>Yes</span>
             <br><br>
             {{ questions.DM11 }} <br>
             <span style="margin-left:1em">{{ questions.DM11_1 }} </span><br>
-            <span style="margin-left:2em"><input type="radio" name="{{ DM11_1 }}" value=0>Worse
-            <input type="radio" name="{{ DM11_1 }}" value=1>Same
-            <input type="radio" name="{{ DM11_1 }}" value=2>Better
-            <input type="radio" name="{{ DM11_1 }}" value=3>Don't know
+            <span style="margin-left:2em"><input type="radio" name="DM11_1" value=0>Worse
+            <input type="radio" name="DM11_1" value=1>Same
+            <input type="radio" name="DM11_1" value=2>Better
+            <input type="radio" name="DM11_1" value=3>Don't know
             </span><br>
               <span style="margin-left:1em">{{ questions.DM11_2 }}</span> <br>
-            <span style="margin-left:2em"><input type="radio" name="{{ DM11_2 }}" value=0>Worse
-            <input type="radio" name="{{ DM11_2 }}" value=1>Same
-            <input type="radio" name="{{ DM11_2 }}" value=2>Better
-            <input type="radio" name="{{ DM11_2 }}" value=3>Don't know
+            <span style="margin-left:2em"><input type="radio" name="DM11_2" value=0>Worse
+            <input type="radio" name="DM11_2" value=1>Same
+            <input type="radio" name="DM11_2" value=2>Better
+            <input type="radio" name="DM11_2" value=3>Don't know
             </span><br>
               <span style="margin-left:1em">{{ questions.DM11_3 }}</span> <br>
-            <span style="margin-left:2em"><input type="radio" name="{{ DM11_3 }}" value=0>Worse
-            <input type="radio" name="{{ DM11_3 }}" value=1>Same
-            <input type="radio" name="{{ DM11_3 }}" value=2>Better
-            <input type="radio" name="{{ DM11_3 }}" value=3>Don't know
+            <span style="margin-left:2em"><input type="radio" name="DM11_3" value=0>Worse
+            <input type="radio" name="DM11_3" value=1>Same
+            <input type="radio" name="DM11_3" value=2>Better
+            <input type="radio" name="DM11_3" value=3>Don't know
             </span><br>
               <span style="margin-left:1em">{{ questions.DM11_4 }}</span> <br>
-            <span style="margin-left:2em"><input type="radio" name="{{ DM11_4 }}" value=0>Worse
-            <input type="radio" name="{{ DM11_4 }}" value=1>Same
-            <input type="radio" name="{{ DM11_4 }}" value=2>Better
-            <input type="radio" name="{{ DM11_4 }}" value=3>Don't know
+            <span style="margin-left:2em"><input type="radio" name="DM11_4" value=0>Worse
+            <input type="radio" name="DM11_4" value=1>Same
+            <input type="radio" name="DM11_4" value=2>Better
+            <input type="radio" name="DM11_4" value=3>Don't know
             </span><br><br>
              {{ questions.DM12 }}
-            <span style="margin-left:1em"><input type="number" name="{{ DM12}}" value=0>
+            <span style="margin-left:1em"><input type="number" name="DM12_1" value=0>
             </span><br>
             <span style="margin-left:2em"> {{ questions.DM12_1 }}
-            <input type="number" name="{{ DM12_1}}" value=0>
+            <input type="number" name="DM12_3" value=0>
             </span><br><br>
                {{ questions.DM13 }} <br>
-            <span style="margin-left:1em"><input type="radio" name="{{ DM10 }}" value=0>Male
-            <input type="radio" name="{{ DM10 }}" value=1>Female
+            <span style="margin-left:1em"><input type="radio" name="DM13" value=0>Male
+            <input type="radio" name="DM13" value=1>Female
             </span><br><br>
                 {{ questions.DM14 }} <br>
-            <span style="margin-left:1em"><input type="radio" name="{{ DM14 }}" value=0>Native American or Alaska Native
-            <input type="radio" name="{{ DM14 }}" value=1>Asian or Pacific Islander
-            <input type="radio" name="{{ DM14 }}" value=2>Black or African American
-            <input type="radio" name="{{ DM14 }}" value=3>White or European American
-            <input type="radio" name="{{ DM14 }}" value=4>Non-White Hispanic
-            <input type="radio" name="{{ DM14 }}" value=5>Bi- / multi-racial
-            <input type="radio" name="{{ DM14 }}" value=6>Other
+            <span style="margin-left:1em"><input type="radio" name="DM14" value=0>Native American or Alaska Native
+            <input type="radio" name="DM14" value=1>Asian or Pacific Islander
+            <input type="radio" name="DM14" value=2>Black or African American
+            <input type="radio" name="DM14" value=3>White or European American
+            <input type="radio" name="DM14" value=4>Non-White Hispanic
+            <input type="radio" name="DM14" value=5>Bi- / multi-racial
+            <input type="radio" name="DM14" value=6>Other
             </span><br>
              <span style="margin-left:1em"> {{ questions.DM14_1 }}
-            <input type="text" name="{{ DM14_1}}" value=" ">
+            <input type="text" name="DM14_1" value=" ">
             </span><br><br>
              {{ questions.DM15 }}
-            <span style="margin-left:1em"><input type="number" name="{{ DM15}}" value=0>
+            <span style="margin-left:1em"><input type="number" name="DM15" value=0>
             </span><br><br>
                {{ questions.DM16 }} <br>
-            <span style="margin-left:1em"><input type="radio" name="{{ DM16 }}" value=0>Less than High School
-            <input type="radio" name="{{ DM16 }}" value=1>High-School / GED
-            <input type="radio" name="{{ DM16 }}" value=2>Some College but no degree
-            <input type="radio" name="{{ DM16 }}" value=3>Diploma or certificate from vocational, technical or trade school
-            <input type="radio" name="{{ DM16 }}" value=4>Associates Degree
-            <input type="radio" name="{{ DM16 }}" value=5>Bachelors Degree
-            <input type="radio" name="{{ DM16 }}" value=6>Masters Degree
-            <input type="radio" name="{{ DM16 }}" value=7>Professional School Degree
-            <input type="radio" name="{{ DM16 }}" value=8>Doctorate
+            <span style="margin-left:1em"><input type="radio" name="DM16" value=0>Less than High School
+            <input type="radio" name="DM16" value=1>High-School / GED
+            <input type="radio" name="DM16" value=2>Some College but no degree
+            <input type="radio" name="DM16" value=3>Diploma or certificate from vocational, technical or trade school
+            <input type="radio" name="DM16" value=4>Associates Degree
+            <input type="radio" name="DM16" value=5>Bachelors Degree
+            <input type="radio" name="DM16" value=6>Masters Degree
+            <input type="radio" name="DM16" value=7>Professional School Degree
+            <input type="radio" name="DM16" value=8>Doctorate
             </span><br><br>
               {{ questions.DM17 }}
-            <span style="margin-left:1em"><input type="number" name="{{ DM17}}" value=0>
+            <span style="margin-left:1em"><input type="number" name="DM17" value=0>
             </span><br><br>
               {{ questions.DM18 }}
-            <span style="margin-left:1em"><input type="number" name="{{ DM18}}" value=0>
+            <span style="margin-left:1em"><input type="number" name="DM18" value=0>
             </span><br><br>
               {{ questions.DM19 }}
-            <span style="margin-left:1em"><input type="number" name="{{ DM19}}" value=0>
+            <span style="margin-left:1em"><input type="number" name="DM19" value=0>
             </span><br><br>
-
+    </p>
             <button type="submit" class="save btn btn-default">Save</button>
         </form>
     </body>

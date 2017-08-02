@@ -23,8 +23,8 @@ urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='index'),
     url(r'^(?P<agent_id>[0-9]+)/detail$', views.Surveyee_detail_view, name="agent_detail"),
     url(r'^(?P<surveyee_caseNum>[0-9]+)/times/$', views.Surveytimes_view, name='surveyTimes'),
-    url(r'^(?P<surveyee_caseNum>[0-9]+)/peb/start/$',views.EB_view, name='start'),
-    url(r'^(?P<surveyee_caseNum>[0-9]+)/peb/$', views.EB_view1, name = "peb"),
+    url(r'^(?P<surveyee_caseNum>[0-9]+)/(?P<survey>[0-9]+)/peb/start/$',views.EB_view, name='start'),
+    url(r'^(?P<surveyee_caseNum>[0-9]+)/(?P<survey>[0-9]+)/peb/$', views.EB_view1, name = "peb"),
     url(r'^(?P<surveyee_caseNum>[0-9]+)/(?P<survey>[0-9]+)/ehs/start$', views.EH_view, name = "ehs_start"),
     url(r'^(?P<surveyee_caseNum>[0-9]+)/ehs/(?P<survey>[0-9]+)/$', views.EH_view1, name = "ehs"),
     url(r'^(?P<surveyee_caseNum>[0-9]+)/(?P<survey>[0-9]+)/ess/start$', views.ES_view, name = "ess_start"),
@@ -53,6 +53,8 @@ urlpatterns = [
     url(r'^(?P<surveyee_caseNum>[0-9]+)/health/(?P<survey>[0-9]+)/$', views.HEALTH_view1, name="health"),
     url(r'^(?P<surveyee_caseNum>[0-9]+)/(?P<survey>[0-9]+)/dm/start$', views.DM_view, name="dm_start"),
     url(r'^(?P<surveyee_caseNum>[0-9]+)/dm/(?P<survey>[0-9]+)/$', views.DM_view1, name="dm"),
+    url(r'^(?P<surveyee_caseNum>[0-9]+)/(?P<survey>[0-9]+)/rsefgr/start$', views.R_SEF_GR_view, name="r_sef_gr_start"),
+    url(r'^(?P<surveyee_caseNum>[0-9]+)/rsefgr/(?P<survey>[0-9]+)/$', views.R_SEF_GR_view, name="r_sef_gr"),
     url(r'^thankyou/$', views.Thanks, name="thanks"),
 
 

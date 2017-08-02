@@ -2,17 +2,23 @@
 {% block content %}
 
 <h1>Check Survey Times</h1>
-    <form action="{% url 'PSS:start' surveyee_caseNum %}" method="POST" class="post-form">{% csrf_token %}
+    <form action="{% url 'PSS:start' surveyee_caseNum survey%}" method="POST" class="post-form">{% csrf_token %}
     {% if error_message %}<p> <strong>{{ error_message }}</strong></p>
     {% else %}
         <ol>
-        {% for times in survey_time_list %}
-            <li>Done ({{ times.pub_Date }})</li>
+        {% for time in survey_time_list %}
+
+            <li>Survey({{ time.pub_Date }})</li>
+
         {% endfor %}
          </ol>
-        <p>Let's start the next Survey</p>
-    {% endif %}
 
+    {% endif %}
+        {% if count < 4 %}
+            <p>Let's start the Survey</p>
         <input type="submit" value="START">
+            {% else %}
+            <p>This participant has been done all 4 surveys</p>
+        {% endif %}
     </form>
 {% endblock %}
