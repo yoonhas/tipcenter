@@ -557,7 +557,7 @@ def DM_view(request, surveyee_caseNum,survey):
 
     choices = [0,1]
 
-    return render(request, 'PSS/DM_tem.html',
+    return render(request, 'PSS/Dm_tem.html',
                   {'surveyee_caseNum': surveyee_caseNum, 'questions': questions, 'choices': choices,'survey':survey})
 
 def DM_view1(request, surveyee_caseNum,survey):
@@ -581,7 +581,7 @@ def DM_view1(request, surveyee_caseNum,survey):
                     DM15=request.POST['DM15'],DM16=request.POST['DM16'],DM17=request.POST['DM17'],DM18=request.POST['DM18'],DM19=request.POST['DM19']
                   )
     except(KeyError, HEALTH.DoesNotExist):
-        return render(request, 'PSS/DM_tem.html', {'surveyee_caseNum': surveyee_caseNum})
+        return render(request, 'PSS/Dm_tem.html', {'surveyee_caseNum': surveyee_caseNum})
     else:
 
         dm.save()
