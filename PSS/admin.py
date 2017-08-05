@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Surveyee, SurveyTimes,EB,EH_Question,EH, ES_Question, Tip,Tip_Question,EXF_Question
 from .models import F_Question, GD_Question, GR_Question, HEALTH_Question, R_Question, SEF_Question, SPR_Question, SSP_Question, HM_Question
-from .models import EXF, F, GD, GR, HEALTH, R, SEF, SPR, SSP, HM, EB_Question, DM, DM_Question
+from .models import EXF, F, GD, GR, HEALTH, R, SEF, SPR, SSP, HM, EB_Question, DM, DM_Question,Total_for_Admin
 
 # Register your models here.
 admin.site.register(Surveyee)
@@ -35,3 +35,4 @@ admin.site.register(EB_Question)
 admin.site.register(DM)
 admin.site.register(DM_Question)
 admin.site.register(Tip)
+admin.site.register(Total_for_Admin)

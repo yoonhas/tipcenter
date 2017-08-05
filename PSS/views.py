@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse_lazy
 from .forms import CreateUserForm,EB_Form, EH_Form
 from django.contrib.auth.models import User
 from .models import Surveyee, SurveyTimes,EB, EH, EH_Question, ES_Question, ES, Tip_Question, Tip, EB_Question
-from .models import EXF_Question,EXF, R, R_Question, SEF, SEF_Question, GR, GR_Question, SPR, SPR_Question
+from .models import EXF_Question,EXF, R, R_Question, SEF, SEF_Question, GR, GR_Question, SPR, SPR_Question,Total_for_Admin
 from .models import SSP_Question, SSP, F, F_Question, GD, GD_Question, HM_Question, HM, HEALTH_Question, HEALTH, DM, DM_Question
 from django.utils import timezone
 
@@ -565,6 +565,7 @@ def DM_view1(request, surveyee_caseNum,survey):
     surveyee = Surveyee.objects.get(caseNum=surveyee_caseNum)
     try:
         if (DM.objects.filter(caseNum=surveyee, surveytime=survey).exists()):
+            total_for_admin(surveyee_caseNum, survey, time)
             return redirect('PSS:thanks')
 
         else:
@@ -585,7 +586,82 @@ def DM_view1(request, surveyee_caseNum,survey):
     else:
 
         dm.save()
+        total_for_admin(surveyee_caseNum, survey, time)
         return redirect('PSS:thanks')
+
+
+def total_for_admin(surveyee_caseNum, survey, time ):
+    surveyee = Surveyee.objects.get(caseNum=surveyee_caseNum)
+    surveyTime = SurveyTimes.objects.get(caseNum=surveyee_caseNum, time=time)
+    eb = EB.objects.get(caseNum=surveyee_caseNum, time=time, surveytime=survey)
+    eh = EH.objects.get(caseNum=surveyee_caseNum, time=time, surveytime=survey)
+    es = ES.objects.get(caseNum=surveyee_caseNum, time=time, surveytime=survey)
+    exf = EXF.objects.get(caseNum=surveyee_caseNum, time=time, surveytime=survey)
+    f = F.objects.get(caseNum=surveyee_caseNum, time=time, surveytime=survey)
+    gd = GD.objects.get(caseNum=surveyee_caseNum, time=time, surveytime=survey)
+    gr = GR.objects.get(caseNum=surveyee_caseNum, time=time, surveytime=survey)
+    health = HEALTH.objects.get(caseNum=surveyee_caseNum, time=time, surveytime=survey)
+    r = R.objects.get(caseNum=surveyee_caseNum, time=time, surveytime=survey)
+    sef = SEF.objects.get(caseNum=surveyee_caseNum, time=time, surveytime=survey)
+    spr = SPR.objects.get(caseNum=surveyee_caseNum, time=time, surveytime=survey)
+    ssp = SSP.objects.get(caseNum=surveyee_caseNum, time=time, surveytime=survey)
+    tip = Tip.objects.get(caseNum=surveyee_caseNum, time=time, surveytime=survey)
+    dm = DM.objects.get(caseNum=surveyee_caseNum, time=time, surveytime=survey)
+
+    health = round(float((eb.EB10 + eb.EB11+eb.EB12+eb.EB13)/4),6)
+    community =  round(float((eb.EB15+eb.EB16+eb.EB17)/3),6)
+    childcare = round(float((eb.EB6+eb.EB19+eb.EB18)/3),6)
+    jobskills = round(float((eb.EB1+eb.EB2+eb.EB3+eb.EB4+eb.EB8)/5),6)
+    softskill = round(float((eb.EB22+eb.EB23+eb.EB24+eb.EB25+eb.EB26)/5),6)
+    peb_all = round(float((eb.EB10 + eb.EB11+eb.EB12+eb.EB13+eb.EB15+eb.EB16+eb.EB17+eb.EB6+eb.EB19+eb.EB18+
+                           eb.EB1 + eb.EB2 + eb.EB3 + eb.EB4 + eb.EB8+eb.EB22+eb.EB23+eb.EB24+eb.EB25+eb.EB26)/20),6)
+
+    empowerment =round(float((eh.EH3 + eh.EH4+eh.EH5+eh.EH6)/4),6)
+    selfmotivation = round(float((eh.EH11 + eh.EH15) / 2), 6)
+    skillresources = round(float((eh.EH17 + eh.EH18 + eh.EH19 + eh.EH20) / 4), 6)
+    goalorientation = round(float((eh.EH21 + eh.EH22 + eh.EH23 + eh.EH24) / 4), 6)
+    ehs_all = round(float((eh.EH3 + eh.EH4 + eh.EH5 + eh.EH6+eh.EH11 + eh.EH15+eh.EH17 + eh.EH18 + eh.EH19 + eh.EH20
+                            +eh.EH21 + eh.EH22 + eh.EH23 + eh.EH24) / 14), 6)
+
+    ess1 = round(float((es.ES2+es.ES8+es.ES9+es.ES10+es.ES12)/5),6)
+    ess2 = round(float((es.ES1 + es.ES4 + es.ES13 + es.ES14) / 4), 6)
+    ess3 = round(float((es.ES11 + es.ES7) / 2), 6)
+    ess4 = round(float((es.ES3 + es.ES5 + es.ES6 ) / 3), 6)
+    ess_all = round(float((es.ES2 + es.ES8 + es.ES9 + es.ES10 + es.ES12+es.ES1 + es.ES4 + es.ES13 + es.ES14
+                           +es.ES11 + es.ES7+es.ES3 + es.ES5 + es.ES6 ) / 14), 6)
+    pss = peb_all-ess_all
+
+    resilience =round(float((r.R1+r.R2)/2),6)
+    self_efficacy = round(float((sef.SEF1+sef.SEF2+sef.SEF3+sef.SEF4+sef.SEF5+sef.SEF6+sef.SEF7+sef.SEF8)/8),6)
+    gr_map={1:5, 2:4, 3:3,4:2, 5:1}
+    gr_con = round(float((gr_map[gr.GR1]+gr_map[gr.GR3]+gr_map[gr.GR5]+gr_map[gr.GR6])/4),6)
+    gr_per = round(float((gr.GR2+ gr.GR8+gr.GR4+ gr.GR7)/4),6)
+    gr_all =round(float((gr_map[gr.GR1]+gr_map[gr.GR3]+gr_map[gr.GR5]+gr_map[gr.GR6]+gr.GR2+ gr.GR8+gr.GR4+ gr.GR7)/8),6)
+
+    spr_map={0:10, 1:9, 2:8, 3:7,4:6, 5:5, 6:4, 7:3, 8:2, 9:1, 10:0}
+    sprituallity = round(float((spr_map[spr.SPR2]+spr_map[spr.SPR5]+spr_map[spr.SPR6]+spr.SPR1+spr.SPR3+spr.SPR5)/6),6)
+
+    f_map = { 1: 7, 2: 6, 3: 5, 4: 4, 5: 3, 6: 2, 7: 1}
+    f_self = round(float((f.F1 + f_map[f.F2]+f.F3+f_map[f.F4]+f.F5+f_map[f.F6])/6),6)
+    f_other = round(float((f.F8 + f_map[f.F7] + f.F10 + f_map[f.F9] + f.F12 + f_map[f.F11]) / 6), 6)
+    f_situation = round(float((f.F14 + f_map[f.F13] + f.F16 + f_map[f.F15] + f.F18 + f_map[f.F17]) / 6), 6)
+    f_all = round(float((f.F1 + f_map[f.F2]+f.F3+f_map[f.F4]+f.F5+f_map[f.F6]+f.F8 + f_map[f.F7] + f.F10
+                         + f_map[f.F9] + f.F12 + f_map[f.F11]
+                        +f.F14 + f_map[f.F13] + f.F16 + f_map[f.F15] + f.F18 + f_map[f.F17]) / 18), 6)
+
+
+    total = Total_for_Admin(caseNum=surveyee, Agent=surveyee.agent_name, Time=time, Date=surveyTime.pub_Date,
+                            Health=health, Community=community, Childcare=childcare, Jobskills=jobskills,
+                            SoftSkill=softskill, Peb_all=peb_all,
+                            Empowerment=empowerment,Selfmotivation=selfmotivation, SkilResources=skillresources,
+                            GaolOrientation=goalorientation,Ehs_all=ehs_all,
+                            Ess1=ess1, Ess2=ess2, Ess3=ess3, Ess4= ess4, Ess_all= ess_all,
+                            PSS=pss, Resilience=resilience, Self_Efficacy=self_efficacy,
+                            GR_Con=gr_con, GR_Per=gr_per, GR_all=gr_all, SPR_all=sprituallity,
+                            F_self=f_self, F_other=f_other,F_situation=f_situation, F_all=f_all
+                            )
+    total.save()
+
 
 
 

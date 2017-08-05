@@ -729,3 +729,43 @@ class DM_Question(models.Model):
 
     def __str__(self):
         return str(self.pk)
+
+class Total_for_Admin(models.Model):
+
+    caseNum= models.ForeignKey('Surveyee')
+    Agent = models.ForeignKey(User)
+    Time=models.IntegerField(null=False)
+    Date = models.DateField()
+    Health =models.FloatField(null=False)
+    Community=models.FloatField(null=False)
+    Childcare =models.FloatField(null=False)
+    Jobskills =models.FloatField(null=False)
+    SoftSkill =models.FloatField(null=False)
+    Peb_all =models.FloatField(null=False)
+    Empowerment =models.FloatField(null=False)
+    Selfmotivation =models.FloatField(null=False)
+    SkilResources =models.FloatField(null=False)
+    GaolOrientation=models.FloatField(null=False)
+    Ehs_all =models.FloatField(null=False)
+    Ess1=models.FloatField(null=False)
+    Ess2=models.FloatField(null=False)
+    Ess3=models.FloatField(null=False)
+    Ess4=models.FloatField(null=False)
+    Ess_all=models.FloatField(null=False)
+    PSS =models.FloatField(null=False)
+    Resilience=models.FloatField(null=False)
+    Self_Efficacy =models.FloatField(null=False)
+    GR_Con =models.FloatField(null=False)
+    GR_Per=models.FloatField(null=False)
+    GR_all=models.FloatField(null=False)
+    SPR_all=models.FloatField(null=False)
+    F_self=models.FloatField(null=False)
+    F_other=models.FloatField(null=False)
+    F_situation=models.FloatField(null=False)
+    F_all=models.FloatField(null=False)
+
+    def __str__(self):
+        return str(self.caseNum)+"_"+str(self.Time)
+
+
+
