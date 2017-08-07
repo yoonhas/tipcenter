@@ -55,6 +55,8 @@ urlpatterns = [
     url(r'^(?P<surveyee_caseNum>[0-9]+)/dm/(?P<survey>[0-9]+)/$', views.DM_view1, name="dm"),
     url(r'^(?P<surveyee_caseNum>[0-9]+)/(?P<survey>[0-9]+)/rsefgr/start$', views.R_SEF_GR_view, name="r_sef_gr_start"),
     url(r'^(?P<surveyee_caseNum>[0-9]+)/rsefgr/(?P<survey>[0-9]+)/$', views.R_SEF_GR_view, name="r_sef_gr"),
+    url(r'^upload/csv/$', views.upload_csv, name= 'upload_csv'),
+    url(r'^upload/csv/start/$', views.upload_csv, name= 'upload_csv_start'),
     url(r'^thankyou/$', views.Thanks, name="thanks"),
 
 
