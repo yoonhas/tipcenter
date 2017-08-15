@@ -16,6 +16,7 @@ from django.utils import timezone
 from .readFile import readFile
 import pandas as pd
 import logging
+from django_pandas.io import read_frame
 
 
 # Create your views here.
@@ -639,12 +640,17 @@ def total_for_admin(surveyee_caseNum, survey, time ):
     ess4 = round(float((es.ES3 + es.ES5 + es.ES6 ) / 3), 6)
     ess_all = round(float((es.ES2 + es.ES8 + es.ES9 + es.ES10 + es.ES12+es.ES1 + es.ES4 + es.ES13 + es.ES14
                            +es.ES11 + es.ES7+es.ES3 + es.ES5 + es.ES6 ) / 14), 6)
-    pss = peb_all-ess_all
+    pss = ehs_all-peb_all
 
     resilience =round(float((r.R1+r.R2)/2),6)
     self_efficacy = round(float((sef.SEF1+sef.SEF2+sef.SEF3+sef.SEF4+sef.SEF5+sef.SEF6+sef.SEF7+sef.SEF8)/8),6)
     gr_map={1:5, 2:4, 3:3,4:2, 5:1}
+    print(gr.GR1, gr.GR3, gr.GR5, gr.GR6)
+    print(gr_map[gr.GR1], gr_map[gr.GR3],gr_map[gr.GR5],gr_map[gr.GR6])
+
     gr_con = round(float((gr_map[gr.GR1]+gr_map[gr.GR3]+gr_map[gr.GR5]+gr_map[gr.GR6])/4),6)
+
+
     gr_per = round(float((gr.GR2+ gr.GR8+gr.GR4+ gr.GR7)/4),6)
     gr_all =round(float((gr_map[gr.GR1]+gr_map[gr.GR3]+gr_map[gr.GR5]+gr_map[gr.GR6]+gr.GR2+ gr.GR8+gr.GR4+ gr.GR7)/8),6)
 
@@ -853,6 +859,19 @@ def inputFromPanda(df):
 
         dm.save()
 
+        total = Total_for_Admin(caseNum= surveyee, Agent=agent, Time=Time, Date= df.ix[i]['cDATE'],
+                                Health=df.ix[i]['Health'], Community=df.ix[i]['Community'],Childcare=df.ix[i]['ChildCare'],
+                                Jobskills=df.ix[i]['JobSkills'], SoftSkill=df.ix[i]['SoftSkill'], Peb_all=df.ix[i]['PEBS_all'],
+                                Empowerment=df.ix[i]['Empowerment'], Selfmotivation=df.ix[i]['SelfMotivation'],SkilResources=df.ix[i]['SkillResources'],
+                                GaolOrientation=df.ix[i]['GoalOrientation'], Ehs_all=df.ix[i]['EHS_all'], Ess1=df.ix[i]['ESS1'], Ess2= df.ix[i]['ESS2'],
+                                Ess3=df.ix[i]['ESS3'], Ess4=df.ix[i]['ESS4'], Ess_all=df.ix[i]['ESS_all'], PSS=df.ix[i]['EHS_all']-df.ix[i]['PEBS_all'],
+                                Resilience=df.ix[i]['R_all'], Self_Efficacy=df.ix[i]['SEF_all'],GR_Con=df.ix[i]['GR_con'], GR_Per=df.ix[i]['GR_per'],
+                                GR_all=df.ix[i]['GR_all'], SPR_all=df.ix[i]['SPR_all'], F_self=df.ix[i]['F_self'], F_other=df.ix[i]['F_other'],
+                                F_situation=df.ix[i]['F_situation'], F_all=df.ix[i]['F_all'])
+        total.save()
+
+
+
 
 def upload_view(request):
     return render(request, 'PSS/upload.html' )
@@ -887,3 +906,67 @@ def upload_csv(request):
 
 def Thanks(request):
     return HttpResponse('Thank you')
+
+
+'''Health =models.FloatField(null=False)
+    Community=models.FloatField(null=False)
+    Childcare =models.FloatField(null=False)
+    Jobskills =models.FloatField(null=False)
+    SoftSkill =models.FloatField(null=False)
+    Peb_all =models.FloatField(null=False)
+    Empowerment =models.FloatField(null=False)
+    Selfmotivation =models.FloatField(null=False)
+    SkilResources =models.FloatField(null=False)
+    GaolOrientation=models.FloatField(null=False)
+    Ehs_all =models.FloatField(null=False)
+    Ess1=models.FloatField(null=False)
+    Ess2=models.FloatField(null=False)
+    Ess3=models.FloatField(null=False)
+    Ess4=models.FloatField(null=False)
+    Ess_all=models.FloatField(null=False)
+    PSS =models.FloatField(null=False)
+    Resilience=models.FloatField(null=False)
+    Self_Efficacy =models.FloatField(null=False)
+    GR_Con =models.FloatField(null=False)
+    GR_Per=models.FloatField(null=False)
+    GR_all=models.FloatField(null=False)
+    SPR_all=models.FloatField(null=False)
+    F_self=models.FloatField(null=False)
+    F_other=models.FloatField(null=False)
+    F_situation=models.FloatField(null=False)
+    F_all=models.FloatField(null=False)'''
+
+def summary(request, agent_id):
+
+    def describe(df):
+        data ={}
+        fact_list=['Peb_all', 'Ehs_all','Ess_all', 'PSS' ]
+        for i  in fact_list:
+            data[i]=helper(df,i)
+        return data
+
+
+    def helper(df, str):
+        pd.set_option('precision', 6 )
+        mean = df[str].mean()
+        count = df[str].count()
+        min = df[str].min()
+        max = df[str].max()
+        std = df[str].std()
+        desc ={'mean':mean, 'count':count, 'min':min, 'max':max, 'std':std}
+        return desc
+
+    all = Total_for_Admin.objects.all()
+    df = read_frame(all)
+    total = describe(df)
+
+    users = User.objects.filter()
+    list1=[]
+    for i in users:
+        if i.get_username() != 'yoonhas':
+            agent = read_frame(Total_for_Admin.objects.filter(Agent=i.pk))
+            p=(i.get_username(), describe(agent))
+            list1.append(p)
+
+
+    return render(request, "PSS/summary.html", {'agent_id':User.objects.get(id=agent_id).get_username(), 'total':total, 'indi':list1})

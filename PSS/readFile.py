@@ -101,9 +101,6 @@ def checkGR(val):
         col = 0
         count=1
         for i in val:
-
-
-
             if i > 5 or i <0:
                 sum += 0
                 col += 0
@@ -120,8 +117,6 @@ def checkGR(val):
         col = 0
         count = 1
         for i in val:
-
-
             if i > 5 or i <0:
                 sum += 0
                 col += 0
@@ -135,14 +130,12 @@ def checkGR(val):
         sum=0
         count=1
         for i in val:
-
-
-            if i > 5 or i < 0:
+             if i > 5 or i < 0:
                 sum += 0
-            else:
+             else:
                 i = dmap[i]
                 sum += i
-            count += 1
+             count += 1
         return (sum, len(val))
 
 
@@ -300,12 +293,12 @@ def parsing(row):
     if f_self_sum + f_other_sum + f_situation_sum == 0:
         f_all = 0.0
     else:
-        f_all = round(float(f_self_sum + f_other_sum + f_situation / f_self_col + f_other_col + f_situation_col),6)
+        f_all = round(float((f_self_sum + f_other_sum + f_situation )/ (f_self_col + f_other_col + f_situation_col)),6)
 
     if gr_per_sum + gr_con_sum == 0:
         gr_all = 0.0
     else:
-        gr_all = round(float(gr_per_sum + gr_con_sum  / gr_per_col + gr_con_col),6)
+        gr_all = round(float((gr_per_sum + gr_con_sum)  / (gr_per_col + gr_con_col)),6)
 
 
     if Empowerment_sum == 0:Empowerment = 0.0

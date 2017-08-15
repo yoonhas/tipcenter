@@ -1,0 +1,164 @@
+{% extends 'PSS/base.html' %}
+{% block content %}
+
+<h1>Summary</h1>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th{
+
+            background-color: black;
+            color: white;
+         }
+            th, td {
+            padding: 15px;
+        }
+
+    </style>
+
+    <form action="" method="POST" class="post-form">{% csrf_token %}
+        <ol>
+            Total <br>
+
+            <table style="width:100%">
+                <tr>
+                    <th id="score">PSS TOTAL</th>
+                    <th id="mean">Mean</th>
+                    <th id="count">Count</th>
+                    <th id="min">Min</th>
+                    <th id="max">Max</th>
+                    <th id="std">Std</th>
+                </tr>
+                <tr>
+                    <td headers="name">PEB Score</td>
+                    <td headers="mean">{{total.Peb_all.mean }}</td>
+                    <td headers="count">{{ total.Peb_all.count }}</td>
+                    <td headers="min">{{ total.Peb_all.min }}</td>
+                    <td headers="max">{{ total.Peb_all.max }}</td>
+                    <td headers="std">{{ total.Peb_all.std }}</td>
+
+                </tr>
+
+                  <tr>
+                    <td headers="name">EHS Score</td>
+                    <td headers="mean">{{total.Ehs_all.mean }}</td>
+                    <td headers="count">{{ total.Ehs_all.count }}</td>
+                    <td headers="min">{{ total.Ehs_all.min }}</td>
+                    <td headers="max">{{ total.Ehs_all.max }}</td>
+                    <td headers="std">{{ total.Ehs_all.std }}</td>
+
+                </tr>
+                <tr>
+                    <td headers="name">ESS Score</td>
+                    <td headers="mean">{{total.Ess_all.mean }}</td>
+                    <td headers="count">{{ total.Ess_all.count }}</td>
+                    <td headers="min">{{ total.Ess_all.min }}</td>
+                    <td headers="max">{{ total.Ess_all.max }}</td>
+                    <td headers="std">{{ total.Ess_all.std }}</td>
+
+                </tr>
+                <tr>
+                    <td headers="name">PSS Score</td>
+                    <td headers="mean">{{total.PSS.mean }}</td>
+                    <td headers="count">{{ total.PSS.count }}</td>
+                    <td headers="min">{{ total.PSS.min }}</td>
+                    <td headers="max">{{ total.PSS.max }}</td>
+                    <td headers="std">{{ total.PSS.std }}</td>
+
+                </tr>
+                    {% if agent_id == 'yoonhas' %}
+                        {% for name, agent in indi %}
+                            {% if agent.Peb_all.count != 0 %}
+                                <tr>
+                                    <td headers="name" style=" background-color: darkred; color: white;"> {{ name }}</td>
+                                </tr>
+                                <tr>
+                                    <td headers="name">PEB Score</td>
+                                    <td headers="mean">{{agent.Peb_all.mean  }}</td>
+                                    <td headers="count">{{ agent.Peb_all.count }}</td>
+                                    <td headers="min">{{  agent.Peb_all.min }}</td>
+                                    <td headers="max">{{ agent.Peb_all.max }}</td>
+                                    <td headers="std">{{ agent.Peb_all.std}}</td>
+                                </tr>
+                                <tr>
+                                    <td headers="name">EHS Score</td>
+                                    <td headers="mean">{{agent.Ehs_all.mean  }}</td>
+                                    <td headers="count">{{ agent.Ehs_all.count }}</td>
+                                    <td headers="min">{{  agent.Ehs_all.min }}</td>
+                                    <td headers="max">{{ agent.Ehs_all.max }}</td>
+                                    <td headers="std">{{ agent.Ehs_all.std}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td headers="name">ESS Score</td>
+                                    <td headers="mean">{{agent.Ess_all.mean  }}</td>
+                                    <td headers="count">{{ agent.Ess_all.count }}</td>
+                                    <td headers="min">{{  agent.Ess_all.min }}</td>
+                                    <td headers="max">{{ agent.Ess_all.max }}</td>
+                                    <td headers="std">{{ agent.Ess_all.std}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td headers="name">PSS Score</td>
+                                    <td headers="mean">{{agent.PSS.mean  }}</td>
+                                    <td headers="count">{{ agent.PSS.count }}</td>
+                                    <td headers="min">{{  agent.PSS.min }}</td>
+                                    <td headers="max">{{ agent.PSS.max }}</td>
+                                    <td headers="std">{{ agent.PSS.std}}</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        {% for name, agent in indi %}
+                                {% if agent.Peb_all.count != 0 and agent_id == name %}
+                                    <tr>
+                                        <td headers="name" style=" background-color: darkred; color: white;"> {{ name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td headers="name">PEB Score</td>
+                                        <td headers="mean">{{agent.Peb_all.mean  }}</td>
+                                        <td headers="count">{{ agent.Peb_all.count }}</td>
+                                        <td headers="min">{{  agent.Peb_all.min }}</td>
+                                        <td headers="max">{{ agent.Peb_all.max }}</td>
+                                        <td headers="std">{{ agent.Peb_all.std}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td headers="name">EHS Score</td>
+                                        <td headers="mean">{{agent.Ehs_all.mean  }}</td>
+                                        <td headers="count">{{ agent.Ehs_all.count }}</td>
+                                        <td headers="min">{{  agent.Ehs_all.min }}</td>
+                                        <td headers="max">{{ agent.Ehs_all.max }}</td>
+                                        <td headers="std">{{ agent.Ehs_all.std}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td headers="name">ESS Score</td>
+                                        <td headers="mean">{{agent.Ess_all.mean  }}</td>
+                                        <td headers="count">{{ agent.Ess_all.count }}</td>
+                                        <td headers="min">{{  agent.Ess_all.min }}</td>
+                                        <td headers="max">{{ agent.Ess_all.max }}</td>
+                                        <td headers="std">{{ agent.Ess_all.std}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td headers="name">PSS Score</td>
+                                        <td headers="mean">{{agent.PSS.mean  }}</td>
+                                        <td headers="count">{{ agent.PSS.count }}</td>
+                                        <td headers="min">{{  agent.PSS.min }}</td>
+                                        <td headers="max">{{ agent.PSS.max }}</td>
+                                        <td headers="std">{{ agent.PSS.std}}</td>
+                                    </tr>
+
+
+
+                                {% endif %}
+                        {% endfor %}
+                    {% endif %}
+
+            </table>
+
+         </ol>
+
+    {% endblock %}
