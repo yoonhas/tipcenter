@@ -59,6 +59,7 @@ urlpatterns = [
     url(r'^upload/csv/start/$', views.upload_csv, name= 'upload_csv_start'),
     url(r'^thankyou/$', views.Thanks, name="thanks"),
     url(r'^(?P<agent_id>[0-9]+)/summary/$', views.summary, name="summary"),
+    url(r'^(?P<agent_id>[0-9]+)/score/detail/$', views.score_detail, name="score_detail"),
 
 
 ]

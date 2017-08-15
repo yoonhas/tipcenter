@@ -18,7 +18,7 @@ import pandas as pd
 import logging
 from django_pandas.io import read_frame
 
-
+pd.set_option('precision', 6)
 # Create your views here.
 class IndexView(generic.ListView):
     template_name = 'PSS/index.html'
@@ -908,33 +908,7 @@ def Thanks(request):
     return HttpResponse('Thank you')
 
 
-'''Health =models.FloatField(null=False)
-    Community=models.FloatField(null=False)
-    Childcare =models.FloatField(null=False)
-    Jobskills =models.FloatField(null=False)
-    SoftSkill =models.FloatField(null=False)
-    Peb_all =models.FloatField(null=False)
-    Empowerment =models.FloatField(null=False)
-    Selfmotivation =models.FloatField(null=False)
-    SkilResources =models.FloatField(null=False)
-    GaolOrientation=models.FloatField(null=False)
-    Ehs_all =models.FloatField(null=False)
-    Ess1=models.FloatField(null=False)
-    Ess2=models.FloatField(null=False)
-    Ess3=models.FloatField(null=False)
-    Ess4=models.FloatField(null=False)
-    Ess_all=models.FloatField(null=False)
-    PSS =models.FloatField(null=False)
-    Resilience=models.FloatField(null=False)
-    Self_Efficacy =models.FloatField(null=False)
-    GR_Con =models.FloatField(null=False)
-    GR_Per=models.FloatField(null=False)
-    GR_all=models.FloatField(null=False)
-    SPR_all=models.FloatField(null=False)
-    F_self=models.FloatField(null=False)
-    F_other=models.FloatField(null=False)
-    F_situation=models.FloatField(null=False)
-    F_all=models.FloatField(null=False)'''
+
 
 def summary(request, agent_id):
 
@@ -965,8 +939,87 @@ def summary(request, agent_id):
     for i in users:
         if i.get_username() != 'yoonhas':
             agent = read_frame(Total_for_Admin.objects.filter(Agent=i.pk))
-            p=(i.get_username(), describe(agent))
+            p=(i.get_username(),i.id, describe(agent))
             list1.append(p)
 
 
     return render(request, "PSS/summary.html", {'agent_id':User.objects.get(id=agent_id).get_username(), 'total':total, 'indi':list1})
+
+
+'''Health =models.FloatField(null=False)
+    Community=models.FloatField(null=False)
+    Childcare =models.FloatField(null=False)
+    Jobskills =models.FloatField(null=False)
+    SoftSkill =models.FloatField(null=False)
+    Peb_all =models.FloatField(null=False)
+    Empowerment =models.FloatField(null=False)
+    Selfmotivation =models.FloatField(null=False)
+    SkilResources =models.FloatField(null=False)
+    GaolOrientation=models.FloatField(null=False)
+    Ehs_all =models.FloatField(null=False)
+    Ess1=models.FloatField(null=False)
+    Ess2=models.FloatField(null=False)
+    Ess3=models.FloatField(null=False)
+    Ess4=models.FloatField(null=False)
+    Ess_all=models.FloatField(null=False)
+    PSS =models.FloatField(null=False)
+    Resilience=models.FloatField(null=False)
+    Self_Efficacy =models.FloatField(null=False)
+    GR_Con =models.FloatField(null=False)
+    GR_Per=models.FloatField(null=False)
+    GR_all=models.FloatField(null=False)
+    SPR_all=models.FloatField(null=False)
+    F_self=models.FloatField(null=False)
+    F_other=models.FloatField(null=False)
+    F_situation=models.FloatField(null=False)
+    F_all=models.FloatField(null=False)'''
+
+def score_detail(request, agent_id):
+    pd.set_option('precision', 6)
+    def describe(df):
+        pd.set_option('precision', 6)
+        data ={}
+        fact_list=['Health', 'Community','Childcare', 'Jobskills', 'SoftSkill', 'Peb_all',
+                   'Empowerment', 'Selfmotivation', 'SkilResources', 'GaolOrientation','Ehs_all',
+                   'Ess1','Ess2','Ess3','Ess4', 'Ess_all', 'PSS']
+        for i  in fact_list:
+            data[i]=helper(df,i)
+        return data
+
+    def helper(df, str):
+        pd.set_option('precision', 6)
+        mean =df[str].mean().round(6)
+        count = df[str].count()
+        min = df[str].min()
+        max = df[str].max()
+        std = df[str].std().round(6)
+        desc ={'mean':mean, 'count':count, 'min':min, 'max':max, 'std':std}
+        return desc
+
+    agent = User.objects.get(id=agent_id)
+    i = 1
+    list1=[]
+    print(agent_id)
+    if agent_id == '1':
+        print("hwereer 1")
+        while i != 5:
+            pd.set_option('precision', 6)
+            time = Total_for_Admin.objects.filter(Time=i)
+            list1.append((i, describe(read_frame(time))))
+            i += 1
+    else:
+        print("else 222")
+        while i != 5:
+            pd.set_option('precision', 6)
+            time = Total_for_Admin.objects.filter(Time=i, Agent=agent)
+            list1.append((i, describe(read_frame(time))))
+            i += 1
+
+    return render(request, "PSS/score_detail.html", { 'agent':agent.get_username(), 'detail_list':list1})
+
+
+
+
+
+
+

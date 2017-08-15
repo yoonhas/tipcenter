@@ -20,16 +20,19 @@
 
     <form action="" method="POST" class="post-form">{% csrf_token %}
         <ol>
-            Total <br>
+
 
             <table style="width:100%">
                 <tr>
-                    <th id="score">PSS TOTAL</th>
+                    <th id="name">PSS TOTAL</th>
                     <th id="mean">Mean</th>
                     <th id="count">Count</th>
                     <th id="min">Min</th>
                     <th id="max">Max</th>
                     <th id="std">Std</th>
+                </tr>
+                <tr>
+                     <td headers="name" style=" background-color: darkred; color: white;"><a href="{% url 'PSS:score_detail' 1 %}"> TOTAL (click for detail)</a></td>
                 </tr>
                 <tr>
                     <td headers="name">PEB Score</td>
@@ -69,10 +72,10 @@
 
                 </tr>
                     {% if agent_id == 'yoonhas' %}
-                        {% for name, agent in indi %}
+                        {% for name,a_id, agent in indi %}
                             {% if agent.Peb_all.count != 0 %}
                                 <tr>
-                                    <td headers="name" style=" background-color: darkred; color: white;"> {{ name }}</td>
+                                    <td headers="name" style=" background-color: darkred; color: white;"><a href="{% url 'PSS:score_detail' a_id %}"> {{ name }} (click for detail)</a></td>
                                 </tr>
                                 <tr>
                                     <td headers="name">PEB Score</td>
@@ -111,10 +114,10 @@
                             {% endif %}
                         {% endfor %}
                     {% else %}
-                        {% for name, agent in indi %}
+                        {% for name,a_id, agent in indi %}
                                 {% if agent.Peb_all.count != 0 and agent_id == name %}
                                     <tr>
-                                        <td headers="name" style=" background-color: darkred; color: white;"> {{ name }}</td>
+                                         <td headers="name" style=" background-color: darkred; color: white;"><a href="{% url 'PSS:score_detail' a_id %}"> {{ name }} (click for detail)</a></td>
                                     </tr>
                                     <tr>
                                         <td headers="name">PEB Score</td>
