@@ -20,7 +20,7 @@
 
     <form action="" method="POST" class="post-form">{% csrf_token %}
         <ol>
-             <br>
+             <a href="{% url 'PSS:compare_view' %}">Compare (click for compare)</a><br>
 
             <table style="width:80%">
                 <tr>
@@ -33,7 +33,8 @@
                     <th id="SoftSkill">SoftSkill</th>
                     <th id="Peb_all">Peb_all</th>
                 </tr>
-                <strong>PEB</strong>
+                <strong><a href="{% url 'PSS:compare_view' %}">PEB (click for graph)</a></strong>
+            {{ html_fig|safe }}
                 {% for name, each in detail_list %}
 
                 <tr>
@@ -243,6 +244,8 @@
 
             </table>
 
+
+
          </ol>
 
-    {% endblock %}
+{% endblock %}

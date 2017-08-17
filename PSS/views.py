@@ -4,10 +4,9 @@ from  django.views.generic.edit import CreateView
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
 from  django.contrib import messages
-from django.views.generic.detail import DetailView
 from django.core.urlresolvers import reverse_lazy
-from .forms import CreateUserForm,EB_Form, EH_Form
-from django.contrib.auth.models import User, Permission
+from .forms import CreateUserForm
+from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from .models import Surveyee, SurveyTimes,EB, EH, EH_Question, ES_Question, ES, Tip_Question, Tip, EB_Question
 from .models import EXF_Question,EXF, R, R_Question, SEF, SEF_Question, GR, GR_Question, SPR, SPR_Question,Total_for_Admin
@@ -17,6 +16,10 @@ from .readFile import readFile
 import pandas as pd
 import logging
 from django_pandas.io import read_frame
+import mpld3
+from mpld3 import plugins
+import matplotlib.pyplot as plt
+import numpy as np
 
 pd.set_option('precision', 6)
 # Create your views here.
@@ -576,7 +579,6 @@ def DM_view1(request, surveyee_caseNum,survey):
     surveyee = Surveyee.objects.get(caseNum=surveyee_caseNum)
     try:
         if (DM.objects.filter(caseNum=surveyee, surveytime=survey).exists()):
-            total_for_admin(surveyee_caseNum, survey, time)
             return redirect('PSS:thanks')
 
         else:
@@ -597,11 +599,12 @@ def DM_view1(request, surveyee_caseNum,survey):
     else:
 
         dm.save()
-        total_for_admin(surveyee_caseNum, survey, time)
+        total_for_admin(surveyee_caseNum, survey, time, dm.id)
         return redirect('PSS:thanks')
 
 
-def total_for_admin(surveyee_caseNum, survey, time ):
+def total_for_admin(surveyee_caseNum, survey, time, dm_id ):
+    dm = DM.objects.get(id =dm_id)
     surveyee = Surveyee.objects.get(caseNum=surveyee_caseNum)
     surveyTime = SurveyTimes.objects.get(caseNum=surveyee_caseNum, time=time)
     eb = EB.objects.get(caseNum=surveyee_caseNum, time=time, surveytime=survey)
@@ -674,8 +677,23 @@ def total_for_admin(surveyee_caseNum, survey, time ):
                             Ess1=ess1, Ess2=ess2, Ess3=ess3, Ess4= ess4, Ess_all= ess_all,
                             PSS=pss, Resilience=resilience, Self_Efficacy=self_efficacy,
                             GR_Con=gr_con, GR_Per=gr_per, GR_all=gr_all, SPR_all=sprituallity,
-                            F_self=f_self, F_other=f_other,F_situation=f_situation, F_all=f_all
-                            )
+                            F_self=f_self, F_other=f_other,F_situation=f_situation, F_all=f_all,
+                            DM1=dm.DM1, DM1_1_year=dm.DM1_1_year,
+                            DM1_1_month=dm.DM1_1_month,
+                            DM1_1_days=dm.DM1_1_days,
+                            DM1_2=dm.DM1_2, DM1_3=dm.DM1_3, DM1_4=dm.DM1_4,
+                            DM2=dm.DM2, DM3=dm.DM3, DM4=dm.DM4,
+                            DM5=dm.DM5,
+                            DM6=dm.DM6, DM7=dm.DM7, DM8=dm.DM8, DM9=dm.DM9,
+                            DM9_1=dm.DM9_1,
+                            DM10=dm.DM10,
+                            DM11_1=dm.DM11_1, DM11_2=dm.DM11_2, DM11_3=dm.DM11_3,
+                            DM11_4=dm.DM11_4,
+                            DM12_1=dm.DM12_1, DM12_3=dm.DM12_3, DM13=dm.DM13,
+                            DM14=dm.DM14, DM14_1=dm.DM14_1,
+                            DM15=dm.DM15, DM16=dm.DM16, DM17=dm.DM17, DM18=dm.DM18,
+                            DM19=dm.DM19)
+
     total.save()
 
 
@@ -867,7 +885,20 @@ def inputFromPanda(df):
                                 Ess3=df.ix[i]['ESS3'], Ess4=df.ix[i]['ESS4'], Ess_all=df.ix[i]['ESS_all'], PSS=df.ix[i]['EHS_all']-df.ix[i]['PEBS_all'],
                                 Resilience=df.ix[i]['R_all'], Self_Efficacy=df.ix[i]['SEF_all'],GR_Con=df.ix[i]['GR_con'], GR_Per=df.ix[i]['GR_per'],
                                 GR_all=df.ix[i]['GR_all'], SPR_all=df.ix[i]['SPR_all'], F_self=df.ix[i]['F_self'], F_other=df.ix[i]['F_other'],
-                                F_situation=df.ix[i]['F_situation'], F_all=df.ix[i]['F_all'])
+                                F_situation=df.ix[i]['F_situation'], F_all=df.ix[i]['F_all'], DM1=df.ix[i]['Employed'], DM1_1_year=df.ix[i]['YearsEmployed'], DM1_1_month=df.ix[i]['MonthsEmployed'],
+                                DM1_1_days=df.ix[i]['DaysEmployed'],
+                                DM1_2=0, DM1_3=0, DM1_4=0,
+                                DM2=0, DM3=0, DM4=0,
+                                DM5=0,
+                                DM6=0, DM7=0, DM8=2, DM9=1,
+                                DM9_1='',
+                                DM10=1,
+                                DM11_1=1, DM11_2=1, DM11_3=1,
+                                DM11_4=1,
+                                DM12_1=1, DM12_3=1, DM13=df.ix[i]['Gender'],
+                                DM14=df.ix[i]['Race'], DM14_1=' ',
+                                DM15=1, DM16=df.ix[i]['EDULevel'], DM17=1, DM18=1,
+                                DM19=1)
         total.save()
 
 
@@ -974,6 +1005,43 @@ def summary(request, agent_id):
     F_situation=models.FloatField(null=False)
     F_all=models.FloatField(null=False)'''
 
+def draw_graph(box):
+    peb =pd.DataFrame(columns=['Health', 'Community','Childcare', 'Jobskills', 'SoftSkill', 'Peb_all'])
+    ehs =pd.DataFrame(columns=['Empowerment', 'Selfmotivation', 'SkilResources', 'GaolOrientation','Ehs_all'])
+    ess =pd.DataFrame(columns=['Ess1','Ess2','Ess3','Ess4', 'Ess_all', 'PSS'])
+
+    for i in range(4):
+        _, diction = box[i]
+        peb.loc[i] = [diction['Health']['mean'],diction['Community']['mean'],diction['Childcare']['mean']
+            ,diction['Jobskills']['mean'],diction['SoftSkill']['mean'],diction['Peb_all']['mean']]
+        ehs.loc[i] = [diction['Empowerment']['mean'],diction['Selfmotivation']['mean'],diction['SkilResources']['mean']
+            ,diction['GaolOrientation']['mean'],diction['Ehs_all']['mean'] ]
+        ess.loc[i] = [diction['Ess1']['mean'],diction['Ess2']['mean'],diction['Ess3']['mean']
+            ,diction['Ess4']['mean'],diction['Ess_all']['mean'],diction['PSS']['mean'] ]
+
+    fig, ax = plt.subplots()
+    ax.grid(True, alpha=0.3)
+
+    for key, val in peb.iteritems():
+        l, = ax.plot(val.index+1, val.values, label=key)
+        #ax.fill_between(val.index, val.values*.5, val.values*1.5, color =l.get_color(), alpha=.4 )
+
+    handles, labels = ax.get_legend_handles_labels()  # return lines and labels
+    interactive_legend = plugins.InteractiveLegendPlugin(zip(handles,
+                                                             ax.collections),
+                                                         labels,
+                                                         alpha_unsel=0.5,
+                                                         alpha_over=1.5,
+                                                         start_visible=True)
+
+    ax.set_xlabel('Times')
+    ax.set_ylabel('Mean')
+    ax.set_title('PEB', size=20)
+    html_fig = mpld3.fig_to_html(fig)
+    plt.close(fig)
+    return html_fig
+
+
 def score_detail(request, agent_id):
     pd.set_option('precision', 6)
     def describe(df):
@@ -999,23 +1067,118 @@ def score_detail(request, agent_id):
     agent = User.objects.get(id=agent_id)
     i = 1
     list1=[]
-    print(agent_id)
     if agent_id == '1':
-        print("hwereer 1")
         while i != 5:
             pd.set_option('precision', 6)
             time = Total_for_Admin.objects.filter(Time=i)
             list1.append((i, describe(read_frame(time))))
             i += 1
     else:
-        print("else 222")
         while i != 5:
             pd.set_option('precision', 6)
             time = Total_for_Admin.objects.filter(Time=i, Agent=agent)
             list1.append((i, describe(read_frame(time))))
             i += 1
 
-    return render(request, "PSS/score_detail.html", { 'agent':agent.get_username(), 'detail_list':list1})
+    html_fig = draw_graph(list1)
+    return render(request, "PSS/score_detail.html", { 'agent':agent.get_username(), 'detail_list':list1, 'html_fig':html_fig})
+
+def compare_view(request):
+    agents = User.objects.all()
+    return render(request, 'PSS/compare.html', {'agents':agents})
+
+def compare_detail(request):
+
+    def describe(df):
+        pd.set_option('precision', 6)
+        data = {}
+        fact_list = ['Health', 'Community', 'Childcare', 'Jobskills', 'SoftSkill', 'Peb_all',
+                     'Empowerment', 'Selfmotivation', 'SkilResources', 'GaolOrientation', 'Ehs_all',
+                     'Ess1', 'Ess2', 'Ess3', 'Ess4', 'Ess_all', 'PSS']
+        for i in fact_list:
+            data[i] = helper(df, i)
+        return data
+
+    def helper(df, str):
+        pd.set_option('precision', 6)
+        mean = df[str].mean().round(6)
+        count = df[str].count()
+        min = df[str].min()
+        max = df[str].max()
+        std = df[str].std().round(6)
+        desc = {'mean': mean, 'count': count, 'min': min, 'max': max, 'std': std}
+        return desc
+
+    raw_data = read_frame(Total_for_Admin.objects.all())
+    races = request.POST['race']
+
+    age = request.POST['age']
+    if '-' in age:
+        ages = list(age.split('-'))
+    else:
+        ages=age
+
+    year = request.POST['year']
+    if '-' in year:
+        years = list(year.split('-'))
+    else:
+        years=year
+    status = request.POST['status']
+    date = request.POST['date']
+    if '-' in date:
+        dates = list(date.split('-'))
+    else:
+        dates = date
+
+    begin = pd.to_datetime(dates[0], format='%Y-%m-%d' )
+    end = pd.to_datetime(dates[1], format='%Y-%m-%d' )
+
+    housing = request.POST['Housing']
+    compare = request.POST.getlist('compare')
+
+    print(ages)
+    print(years)
+    print(status)
+    print(dates)
+    print(begin, end)
+    print(housing)
+    print(compare)
+
+    agent_list= {}
+    for i in compare:
+        if i == 1:
+            if races != 77:
+                raceMask = (raw_data['DM14']==races)
+
+
+
+    return render(request, 'PSS/compare.html')
+
+
+def show_graph(request):
+    return
+
+def deleteAll():
+    DM.objects.all().delete()
+    EB.objects.all().delete()
+    EH.objects.all().delete()
+    ES.objects.all().delete()
+    EXF.objects.all().delete()
+    F.objects.all().delete()
+    GD.objects.all().delete()
+    GR.objects.all().delete()
+    HEALTH.objects.all().delete()
+    HM.objects.all().delete()
+    R.objects.all().delete()
+    SEF.objects.all().delete()
+    SPR.objects.all().delete()
+    SSP.objects.all().delete()
+    Tip.objects.all().delete()
+    SurveyTimes.objects.all().delete()
+    Surveyee.objects.all().delete()
+    print("good to go")
+
+
 
 
 

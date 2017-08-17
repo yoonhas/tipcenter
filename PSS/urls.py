@@ -60,6 +60,8 @@ urlpatterns = [
     url(r'^thankyou/$', views.Thanks, name="thanks"),
     url(r'^(?P<agent_id>[0-9]+)/summary/$', views.summary, name="summary"),
     url(r'^(?P<agent_id>[0-9]+)/score/detail/$', views.score_detail, name="score_detail"),
-
+    url(r'^compare/$', views.compare_view, name= 'compare_view'),
+    url(r'^compare/detail/$', views.compare_detail, name= 'compare_detail'),
+    url(r'^showgraph$', views.show_graph, name='show_graph'),
 
 ]

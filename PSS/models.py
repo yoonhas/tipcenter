@@ -731,7 +731,7 @@ class DM_Question(models.Model):
         return str(self.pk)
 
 class Total_for_Admin(models.Model):
-
+    choices = ((1, 'YES'), (0, 'NO'))
     caseNum= models.ForeignKey('Surveyee')
     Agent = models.ForeignKey(User)
     Time=models.IntegerField(null=False)
@@ -763,6 +763,52 @@ class Total_for_Admin(models.Model):
     F_other=models.FloatField(null=False)
     F_situation=models.FloatField(null=False)
     F_all=models.FloatField(null=False)
+    DM1 = models.IntegerField(null=False, default=None, choices=choices)
+    DM1_1_year = models.IntegerField(default=0)
+    DM1_1_month = models.IntegerField(default=0)
+    DM1_1_days = models.IntegerField(default=0)
+    DM1_2 = models.IntegerField(default=0)
+    DM1_3 = models.IntegerField(default=0, choices=choices)
+    DM1_4 = models.IntegerField(default=0, choices=choices)
+    DM2 = models.IntegerField(default=0, choices=choices)
+    DM3 = models.IntegerField(default=0)
+    DM4 = models.IntegerField(default=0)
+    DM5 = models.IntegerField(default=0)
+    DM6 = models.IntegerField(default=0)
+    DM7 = models.IntegerField(default=0)
+    choices8 = ((0, 'Married, spouse present'), (1, 'Married, spouse absent'), (2, 'Never married'), (3, 'Sperated'),
+                (4, 'Divorced'), (5, 'Widowed'))
+    DM8 = models.IntegerField(choices=choices8)
+    choices9 = ((0, 'Rental'), (1, 'Own home'), (2, 'Homeless'), (3, 'Public Housing'),
+                (4, 'Other'), (5, 'Living with family or friend'))
+    DM9 = models.IntegerField(choices=choices9)
+    DM9_1 = models.CharField(max_length=200, default="")
+    DM10 = models.IntegerField(choices=choices)
+    choices11 = ((0, 'Worse'), (1, 'Same'), (2, 'Better'), (3, 'Do Not Know'))
+    DM11_1 = models.IntegerField(choices=choices11)
+    DM11_2 = models.IntegerField(choices=choices11)
+    DM11_3 = models.IntegerField(choices=choices11)
+    DM11_4 = models.IntegerField(choices=choices11)
+    DM12_1 = models.IntegerField()
+    DM12_3 = models.IntegerField()
+    DM13 = models.IntegerField(choices=choices)
+    choices14 = (
+    (0, 'Native American or Alaska Native'), (1, 'Asian or Pacific Islande'), (2, 'Black or African American'),
+    (3, 'White or European American'),
+    (4, 'Non-White Hispanic'), (5, 'Bi- / multi-racial'), (6, 'Other'))
+    DM14 = models.IntegerField(choices=choices14)
+    DM14_1 = models.CharField(max_length=200, default="")
+    DM15 = models.IntegerField()
+    choices16 = (
+        (0, 'Less than High School'), (1, 'High-School / GED'), (2, 'Some College but no degree'),
+        (3, 'Diploma or certificate from vocational, technical or trade school'),
+        (4, 'Associates Degree'), (5, 'Bachelors Degree'), (6, 'Masters Degree'), (7, ' Professional School Degree'),
+        (8, 'Doctorate'))
+    DM16 = models.IntegerField(choices=choices16)
+    DM17 = models.IntegerField()
+    DM18 = models.IntegerField()
+    DM19 = models.IntegerField()
+
 
     def __str__(self):
         return str(self.caseNum)+"_"+str(self.Time)
