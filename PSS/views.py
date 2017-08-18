@@ -16,6 +16,8 @@ from .readFile import readFile
 import pandas as pd
 import logging
 from django_pandas.io import read_frame
+import matplotlib
+matplotlib.use("Agg")
 import mpld3
 from mpld3 import plugins
 import matplotlib.pyplot as plt
