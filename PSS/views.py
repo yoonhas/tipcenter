@@ -22,6 +22,7 @@ import mpld3
 from mpld3 import plugins
 import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib.ticker import FormatStrFormatter
 
 pd.set_option('precision', 6)
 # Create your views here.
@@ -1008,39 +1009,43 @@ def summary(request, agent_id):
     F_all=models.FloatField(null=False)'''
 
 def draw_graph(box):
-    peb =pd.DataFrame(columns=['Health', 'Community','Childcare', 'Jobskills', 'SoftSkill', 'Peb_all'])
-    ehs =pd.DataFrame(columns=['Empowerment', 'Selfmotivation', 'SkilResources', 'GaolOrientation','Ehs_all'])
-    ess =pd.DataFrame(columns=['Ess1','Ess2','Ess3','Ess4', 'Ess_all', 'PSS'])
+    PSS =pd.DataFrame(columns=['Health', 'Community','Childcare', 'Jobskills', 'SoftSkill', 'Peb_all',
+                               'Empowerment', 'Selfmotivation', 'SkilResources', 'GaolOrientation','Ehs_all',
+                               'Ess1', 'Ess2', 'Ess3', 'Ess4', 'Ess_all', 'PSS'])
 
     for i in range(4):
         _, diction = box[i]
-        peb.loc[i] = [diction['Health']['mean'],diction['Community']['mean'],diction['Childcare']['mean']
-            ,diction['Jobskills']['mean'],diction['SoftSkill']['mean'],diction['Peb_all']['mean']]
-        ehs.loc[i] = [diction['Empowerment']['mean'],diction['Selfmotivation']['mean'],diction['SkilResources']['mean']
-            ,diction['GaolOrientation']['mean'],diction['Ehs_all']['mean'] ]
-        ess.loc[i] = [diction['Ess1']['mean'],diction['Ess2']['mean'],diction['Ess3']['mean']
-            ,diction['Ess4']['mean'],diction['Ess_all']['mean'],diction['PSS']['mean'] ]
+        PSS.loc[i] = [diction['Health']['mean'],diction['Community']['mean'],diction['Childcare']['mean']
+            ,diction['Jobskills']['mean'],diction['SoftSkill']['mean'],diction['Peb_all']['mean'],
+                      diction['Empowerment']['mean'], diction['Selfmotivation']['mean'],
+                      diction['SkilResources']['mean']
+            , diction['GaolOrientation']['mean'], diction['Ehs_all']['mean'],
+                      diction['Ess1']['mean'], diction['Ess2']['mean'], diction['Ess3']['mean']
+            , diction['Ess4']['mean'], diction['Ess_all']['mean'], diction['PSS']['mean'] ]
 
     fig, ax = plt.subplots()
+    line_collection= []
+    x =['1st', '2nd', '3rd', '4th']
     ax.grid(True, alpha=0.3)
+    for key, val in PSS.iteritems():
 
-    for key, val in peb.iteritems():
-        l, = ax.plot(val.index+1, val.values, label=key)
-        #ax.fill_between(val.index, val.values*.5, val.values*1.5, color =l.get_color(), alpha=.4 )
+        l = ax.plot((val.index +1), val.values, label=key)
+        line_collection.append(l)
+
 
     handles, labels = ax.get_legend_handles_labels()  # return lines and labels
-    interactive_legend = plugins.InteractiveLegendPlugin(zip(handles,
-                                                             ax.collections),
-                                                         labels,
-                                                         alpha_unsel=0.5,
-                                                         alpha_over=1.5,
-                                                         start_visible=True)
+    plt.xticks(val.index+1, x)
 
+    interactive_legend = plugins.InteractiveLegendPlugin(line_collection,labels)
+    plugins.connect(fig, interactive_legend)
+    fig.subplots_adjust(right=0.7)
     ax.set_xlabel('Times')
     ax.set_ylabel('Mean')
-    ax.set_title('PEB', size=20)
+    ax.set_title('PSS', size=20)
     html_fig = mpld3.fig_to_html(fig)
+
     plt.close(fig)
+
     return html_fig
 
 
@@ -1051,20 +1056,48 @@ def score_detail(request, agent_id):
         data ={}
         fact_list=['Health', 'Community','Childcare', 'Jobskills', 'SoftSkill', 'Peb_all',
                    'Empowerment', 'Selfmotivation', 'SkilResources', 'GaolOrientation','Ehs_all',
-                   'Ess1','Ess2','Ess3','Ess4', 'Ess_all', 'PSS']
+                   'Ess1','Ess2','Ess3','Ess4', 'Ess_all', 'PSS', 'Health_Z', 'Community_Z','Childcare_Z', 'Jobskills_Z', 'SoftSkill_Z', 'Peb_all_Z',
+                   'Empowerment_Z', 'Selfmotivation_Z', 'SkilResources_Z', 'GaolOrientation_Z','Ehs_all_Z',
+                   'Ess1_Z','Ess2_Z','Ess3_Z','Ess4_Z', 'Ess_all_Z', 'PSS_Z']
         for i  in fact_list:
             data[i]=helper(df,i)
+
+        print (data)
         return data
 
     def helper(df, str):
         pd.set_option('precision', 6)
-        mean =df[str].mean().round(6)
+        mean =df[str].mean().round(10)
         count = df[str].count()
         min = df[str].min()
         max = df[str].max()
         std = df[str].std().round(6)
         desc ={'mean':mean, 'count':count, 'min':min, 'max':max, 'std':std}
         return desc
+
+    def z_score(df):
+        df['Health_Z']= (df.Health - df.Health.mean()) / df.Health.std(ddof=0)
+        df['Community_Z'] = (df.Community - df.Community.mean()) / df.Community.std(ddof=0)
+        df['Childcare_Z'] = (df.Childcare - df.Childcare.mean()) / df.Childcare.std(ddof=0)
+        df['Jobskills_Z'] = (df.Jobskills - df.Jobskills.mean()) / df.Jobskills.std(ddof=0)
+        df['SoftSkill_Z'] = (df.SoftSkill - df.SoftSkill.mean()) / df.SoftSkill.std(ddof=0)
+        df['Peb_all_Z'] = (df.Peb_all - df.Peb_all.mean()) / df.Peb_all.std(ddof=0)
+
+        df['Empowerment_Z'] = (df.Empowerment - df.Empowerment.mean()) / df.Empowerment.std(ddof=0)
+        df['Selfmotivation_Z'] = (df.Selfmotivation - df.Selfmotivation.mean()) / df.Selfmotivation.std(ddof=0)
+        df['SkilResources_Z'] = (df.SkilResources - df.SkilResources.mean()) / df.SkilResources.std(ddof=0)
+        df['GaolOrientation_Z'] = (df.GaolOrientation - df.GaolOrientation.mean()) / df.GaolOrientation.std(ddof=0)
+        df['Ehs_all_Z'] = (df.Ehs_all - df.Ehs_all.mean()) / df.Ehs_all.std(ddof=0)
+
+        df['Ess1_Z'] = (df.Ess1 - df.Ess1.mean()) / df.Ess1.std(ddof=0)
+        df['Ess2_Z'] = (df.Ess2 - df.Ess2.mean()) / df.Ess2.std(ddof=0)
+        df['Ess3_Z'] = (df.Ess3 - df.Ess3.mean()) / df.Ess3.std(ddof=0)
+        df['Ess4_Z'] = (df.Ess4 - df.Ess4.mean()) / df.Ess4.std(ddof=0)
+        df['Ess_all_Z'] = (df.Ess_all - df.Ess_all.mean()) / df.Ess_all.std(ddof=0)
+        df['PSS_Z'] = (df.PSS - df.PSS.mean()) / df.PSS.std(ddof=0)
+
+        return df
+
 
     agent = User.objects.get(id=agent_id)
     i = 1
@@ -1073,13 +1106,15 @@ def score_detail(request, agent_id):
         while i != 5:
             pd.set_option('precision', 6)
             time = Total_for_Admin.objects.filter(Time=i)
-            list1.append((i, describe(read_frame(time))))
+            df = z_score(read_frame(time))
+            list1.append((i, describe(df)))
             i += 1
     else:
         while i != 5:
             pd.set_option('precision', 6)
             time = Total_for_Admin.objects.filter(Time=i, Agent=agent)
-            list1.append((i, describe(read_frame(time))))
+            df=z_score(read_frame(time))
+            list1.append((i, describe(df)))
             i += 1
 
     html_fig = draw_graph(list1)

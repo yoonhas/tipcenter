@@ -1,6 +1,18 @@
 {% extends 'PSS/base.html' %}
 {% block content %}
-
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#hide").click(function(){
+        $("p").hide(1000);
+    });
+    $("#show").click(function(){
+        $("p").show();
+    });
+});
+</script>
+</head>
 <h1> {{ agent }} Score Detail</h1>
     <style>
         table, th, td {
@@ -33,8 +45,9 @@
                     <th id="SoftSkill">SoftSkill</th>
                     <th id="Peb_all">Peb_all</th>
                 </tr>
-                <strong><a href="{% url 'PSS:compare_view' %}">PEB (click for graph)</a></strong>
-            {{ html_fig|safe }}
+                 <p> {{ html_fig|safe }}</p>
+                <strong>PEB</strong> <button id="show">Show Graph</button> <button id="hide">Hide Graph</button>
+
                 {% for name, each in detail_list %}
 
                 <tr>
