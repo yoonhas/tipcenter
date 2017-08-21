@@ -14,6 +14,7 @@
                     {% else %}
                         <li><a href="{% url 'PSS:agent_detail' agent.id%}">{{ agent.get_username }}</a></li>
                         <li><a href="{% url 'PSS:summary'  agent.id %}">{{ agent.get_username }} Summary</a></li>
+                         <li><a href="{% url 'PSS:add_new_participant'  agent.id %}">Add New Participant</a></li>
                     {% endif %}
                 {% endif %}
             {% endfor %}

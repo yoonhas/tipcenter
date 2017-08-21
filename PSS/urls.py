@@ -21,6 +21,7 @@ app_name = 'PSS'
 
 urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'^(?P<agent_id>[0-9]+)/add/participant', views.add_surveyee, name="add_new_participant"),
     url(r'^(?P<agent_id>[0-9]+)/detail$', views.Surveyee_detail_view, name="agent_detail"),
     url(r'^(?P<surveyee_caseNum>[0-9]+)/times/$', views.Surveytimes_view, name='surveyTimes'),
     url(r'^(?P<surveyee_caseNum>[0-9]+)/(?P<survey>[0-9]+)/peb/start/$',views.EB_view, name='start'),

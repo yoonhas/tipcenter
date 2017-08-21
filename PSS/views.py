@@ -32,15 +32,27 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         return User.objects.filter()
 
-
 class CreateUserView(CreateView):
     template_name = 'registration/signup.html'
     form_class = CreateUserForm
     success_url = reverse_lazy('create_user_done')
 
-
 class RegisteredView(TemplateView):
     template_name = 'registration/signup_done.html'
+
+def add_surveyee(request, agent_id):
+    users = get_user_model()
+    agent = users.objects.get(id= agent_id)
+    numbers= Surveyee.objects.filter(agent_name_id = agent.id).count()
+    new_id = str(agent_id) + '000'+str(numbers)
+    new_surveyee = Surveyee(caseNum=int(new_id), agent_name=agent)
+    new_surveyee.save()
+    all_surveyee = Surveyee.objects.filter(agent_name_id=agent_id)
+
+    return render(request, 'PSS/agent_detail.html', {'surveyee_list':all_surveyee})
+
+
+
 
 def Surveyee_detail_view(request, agent_id):
     agent= get_object_or_404(User,pk=agent_id)
@@ -75,13 +87,10 @@ def checking_Survey_Status(surveyee_caseNum, time):
                     i.delete()
                 return
 
-
-
 def Surveytimes_view(request, surveyee_caseNum):
 
     try:
         survey_list = SurveyTimes.objects.filter(caseNum = surveyee_caseNum)
-
 
         for i in range(len(survey_list)):
             checking_Survey_Status(surveyee_caseNum, i+1)
@@ -109,7 +118,6 @@ def EB_view(request, surveyee_caseNum, survey):
     questions = EB_Question.objects.get(pk=1)
     choices = [ 1, 2, 3, 4, 5]
     return render(request, 'PSS/EB_tem1.html', {'surveyee_caseNum':surveyee_caseNum, 'questions':questions,'choices':choices, "survey":survey})
-
 
 def EB_view1(request,surveyee_caseNum, survey):
     surveyee = Surveyee.objects.get(caseNum=surveyee_caseNum)
@@ -189,7 +197,6 @@ def ES_view1(request, surveyee_caseNum, survey):
                     ES15=request.POST['ES15']
                     )
     except (KeyError, ES.DoesNotExist):
-        print(KeyError)
         return render(request, 'PSS/ES_tem.html', {'surveyee_caseNum' :surveyee_caseNum})
 
     else:
@@ -305,13 +312,11 @@ def R_SEF_GR_view1(request, surveyee_caseNum, survey):
         gr.save()
         return redirect('PSS:spr_start', surveyee_caseNum,survey)
 
-
 def R_view(request, surveyee_caseNum, survey):
     questions = R_Question.objects.get(pk=1)
     choices = [0, 1, 2, 3, 4]
     return render(request, 'PSS/R_tem.html',
                   {'surveyee_caseNum': surveyee_caseNum, 'choices': choices, 'questions': questions, 'survey':survey})
-
 
 def R_view1(request, surveyee_caseNum, survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
@@ -360,13 +365,11 @@ def SEF_view1(request, surveyee_caseNum,survey):
         sef.save()
         return redirect('PSS:gr_start', surveyee_caseNum,survey)
 
-
 def GR_view(request, surveyee_caseNum,survey):
     questions = GR_Question.objects.get(pk=1)
     choices = [1, 2, 3, 4, 5]
     return render(request, 'PSS/GR_tem.html',
                   {'surveyee_caseNum': surveyee_caseNum, 'choices': choices, 'questions': questions,'survey':survey})
-
 
 def GR_view1(request, surveyee_caseNum, survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
@@ -396,7 +399,6 @@ def SPR_view(request, surveyee_caseNum,survey):
     return render(request, 'PSS/SPR_tem.html',
                   {'surveyee_caseNum': surveyee_caseNum, 'choices': choices, 'questions': questions,'survey':survey})
 
-
 def SPR_view1(request, surveyee_caseNum,survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
     surveyee = Surveyee.objects.get(caseNum=surveyee_caseNum)
@@ -424,7 +426,6 @@ def SSP_view(request, surveyee_caseNum,survey):
     choices = [1, 2, 3, 4]
     return render(request, 'PSS/SSP_tem.html',
                   {'surveyee_caseNum': surveyee_caseNum, 'choices': choices, 'questions': questions,'survey':survey})
-
 
 def SSP_view1(request, surveyee_caseNum,survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
@@ -479,13 +480,11 @@ def F_view1(request, surveyee_caseNum,survey):
         f.save()
         return redirect('PSS:gd_start', surveyee_caseNum,survey)
 
-
 def GD_view(request, surveyee_caseNum,survey):
     questions = GD_Question.objects.get(pk=1)
     choices = [1, 2, 3, 4, 5, 6, 7]
     return render(request, 'PSS/GD_tem.html',
                   {'surveyee_caseNum': surveyee_caseNum, 'choices': choices, 'questions': questions,'survey':survey})
-
 
 def GD_view1(request, surveyee_caseNum,survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
@@ -509,7 +508,6 @@ def GD_view1(request, surveyee_caseNum,survey):
         gd.save()
         return redirect('PSS:hm_start', surveyee_caseNum,survey)
 
-
 def HM_view(request, surveyee_caseNum,survey):
     questions = HM_Question.objects.get(pk=1)
 
@@ -517,7 +515,6 @@ def HM_view(request, surveyee_caseNum,survey):
 
     return render(request, 'PSS/HM_tem.html',
                   {'surveyee_caseNum': surveyee_caseNum, 'questions': questions, 'choices': choices,'survey':survey})
-
 
 def HM_view1(request, surveyee_caseNum,survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
@@ -549,7 +546,6 @@ def HEALTH_view(request, surveyee_caseNum,survey):
 
     return render(request, 'PSS/HEALTH_tem.html',
                   {'surveyee_caseNum': surveyee_caseNum, 'questions': questions, 'choices': choices,'survey':survey})
-
 
 def HEALTH_view1(request, surveyee_caseNum,survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
@@ -605,7 +601,6 @@ def DM_view1(request, surveyee_caseNum,survey):
         total_for_admin(surveyee_caseNum, survey, time, dm.id)
         return redirect('PSS:thanks')
 
-
 def total_for_admin(surveyee_caseNum, survey, time, dm_id ):
     dm = DM.objects.get(id =dm_id)
     surveyee = Surveyee.objects.get(caseNum=surveyee_caseNum)
@@ -651,9 +646,6 @@ def total_for_admin(surveyee_caseNum, survey, time, dm_id ):
     resilience =round(float((r.R1+r.R2)/2),6)
     self_efficacy = round(float((sef.SEF1+sef.SEF2+sef.SEF3+sef.SEF4+sef.SEF5+sef.SEF6+sef.SEF7+sef.SEF8)/8),6)
     gr_map={1:5, 2:4, 3:3,4:2, 5:1}
-    print(gr.GR1, gr.GR3, gr.GR5, gr.GR6)
-    print(gr_map[gr.GR1], gr_map[gr.GR3],gr_map[gr.GR5],gr_map[gr.GR6])
-
     gr_con = round(float((gr_map[gr.GR1]+gr_map[gr.GR3]+gr_map[gr.GR5]+gr_map[gr.GR6])/4),6)
 
 
@@ -706,7 +698,6 @@ def inputFromPanda(df):
     for i in range(len(df)):
 
         users = get_user_model()
-        print(agent_map[df.ix[i]['PROGRAM']])
         agent = users.objects.get(username= agent_map[df.ix[i]['PROGRAM']])
 
 
@@ -904,9 +895,6 @@ def inputFromPanda(df):
                                 DM19=1)
         total.save()
 
-
-
-
 def upload_view(request):
     return render(request, 'PSS/upload.html' )
 
@@ -935,13 +923,8 @@ def upload_csv(request):
 
     return HttpResponseRedirect(reverse('PSS:upload_csv'))
 
-
-
-
 def Thanks(request):
     return HttpResponse('Thank you')
-
-
 
 
 def summary(request, agent_id):
@@ -978,35 +961,6 @@ def summary(request, agent_id):
 
 
     return render(request, "PSS/summary.html", {'agent_id':User.objects.get(id=agent_id).get_username(), 'total':total, 'indi':list1})
-
-
-'''Health =models.FloatField(null=False)
-    Community=models.FloatField(null=False)
-    Childcare =models.FloatField(null=False)
-    Jobskills =models.FloatField(null=False)
-    SoftSkill =models.FloatField(null=False)
-    Peb_all =models.FloatField(null=False)
-    Empowerment =models.FloatField(null=False)
-    Selfmotivation =models.FloatField(null=False)
-    SkilResources =models.FloatField(null=False)
-    GaolOrientation=models.FloatField(null=False)
-    Ehs_all =models.FloatField(null=False)
-    Ess1=models.FloatField(null=False)
-    Ess2=models.FloatField(null=False)
-    Ess3=models.FloatField(null=False)
-    Ess4=models.FloatField(null=False)
-    Ess_all=models.FloatField(null=False)
-    PSS =models.FloatField(null=False)
-    Resilience=models.FloatField(null=False)
-    Self_Efficacy =models.FloatField(null=False)
-    GR_Con =models.FloatField(null=False)
-    GR_Per=models.FloatField(null=False)
-    GR_all=models.FloatField(null=False)
-    SPR_all=models.FloatField(null=False)
-    F_self=models.FloatField(null=False)
-    F_other=models.FloatField(null=False)
-    F_situation=models.FloatField(null=False)
-    F_all=models.FloatField(null=False)'''
 
 def draw_graph(box):
     PSS =pd.DataFrame(columns=['Health', 'Community','Childcare', 'Jobskills', 'SoftSkill', 'Peb_all',
@@ -1047,7 +1001,6 @@ def draw_graph(box):
     plt.close(fig)
 
     return html_fig
-
 
 def score_detail(request, agent_id):
     pd.set_option('precision', 6)
@@ -1152,14 +1105,19 @@ def compare_detail(request):
     age = request.POST['age']
     if '-' in age:
         ages = list(age.split('-'))
+        ageMask = (raw_data['DM12']>=ages[0])&(raw_data['DM12']<=ages[1])
     else:
         ages=age
+        ageMask =(raw_data['DM12']==ages[0])
+
 
     year = request.POST['year']
     if '-' in year:
         years = list(year.split('-'))
+        yearMask = (raw_data['DM12'] >= ages[0]) & (raw_data['DM12'] <= ages[1])
     else:
         years=year
+
     status = request.POST['status']
     date = request.POST['date']
     if '-' in date:
