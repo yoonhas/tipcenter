@@ -52,8 +52,6 @@ def add_surveyee(request, agent_id):
     return render(request, 'PSS/agent_detail.html', {'surveyee_list':all_surveyee})
 
 
-
-
 def Surveyee_detail_view(request, agent_id):
     agent= get_object_or_404(User,pk=agent_id)
     all_surveyee = Surveyee.objects.filter(agent_name_id= agent_id)
@@ -114,10 +112,6 @@ def Surveytimes_view(request, surveyee_caseNum):
     return render(request, 'PSS/times.html', {'surveyee_caseNum':surveyee_caseNum,
                                               'survey_time_list': survey_time_list, 'survey':survey.pk, 'count':count})
 
-def EB_view(request, surveyee_caseNum, survey):
-    questions = EB_Question.objects.get(pk=1)
-    choices = [ 1, 2, 3, 4, 5]
-    return render(request, 'PSS/EB_tem1.html', {'surveyee_caseNum':surveyee_caseNum, 'questions':questions,'choices':choices, "survey":survey})
 
 def EB_view1(request,surveyee_caseNum, survey):
     surveyee = Surveyee.objects.get(caseNum=surveyee_caseNum)
@@ -144,11 +138,6 @@ def EB_view1(request,surveyee_caseNum, survey):
         eb.save()
         return redirect('PSS:ehs_start', surveyee_caseNum, survey)
 
-def EH_view(request, surveyee_caseNum, survey):
-    questions = EH_Question.objects.get(pk=1)
-    choices =[0,1,2,3,4,5,6,7,8,9,10]
-
-    return render(request, 'PSS/EH_tem.html', {'surveyee_caseNum':surveyee_caseNum, 'questions':questions, 'choices':choices, 'survey':survey})
 
 def EH_view1(request, surveyee_caseNum, survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
@@ -174,10 +163,7 @@ def EH_view1(request, surveyee_caseNum, survey):
         eh.save()
         return redirect('PSS:ess_start', surveyee_caseNum, survey)
 
-def ES_view(request, surveyee_caseNum, survey):
-    questions = ES_Question.objects.get(pk=1)
-    choices = [ 1, 2, 3, 4, 5]
-    return render(request, 'PSS/ES_tem.html', {'surveyee_caseNum':surveyee_caseNum, 'choices':choices, 'questions':questions, 'survey':survey})
+
 
 def ES_view1(request, surveyee_caseNum, survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
@@ -204,10 +190,6 @@ def ES_view1(request, surveyee_caseNum, survey):
         es.save()
         return redirect('PSS:tip_start', surveyee_caseNum, survey)
 
-def Tip_view(request, surveyee_caseNum, survey):
-    questions = Tip_Question.objects.get(pk=1)
-    choices = [ 1, 2, 3, 4, 5, 6, 7]
-    return render(request, 'PSS/Tip_tem.html', {'surveyee_caseNum':surveyee_caseNum, 'choices':choices, 'questions':questions, 'survey':survey})
 
 def Tip_view1(request, surveyee_caseNum, survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
@@ -234,10 +216,7 @@ def Tip_view1(request, surveyee_caseNum, survey):
         tip.save()
         return redirect('PSS:exf_start', surveyee_caseNum, survey)
 
-def EXF_view(request, surveyee_caseNum, survey):
-    questions = EXF_Question.objects.get(pk=1)
-    choices = [ 1, 2, 3, 4, 5, 6]
-    return render(request, 'PSS/EXF_tem.html', {'surveyee_caseNum':surveyee_caseNum, 'choices':choices, 'questions':questions, 'survey':survey})
+
 
 def EXF_view1(request, surveyee_caseNum, survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
@@ -264,19 +243,7 @@ def EXF_view1(request, surveyee_caseNum, survey):
         exf.save()
         return redirect('PSS:r_start', surveyee_caseNum, survey)
 
-def R_SEF_GR_view(request, surveyee_caseNum, survey):
-    R_questions = R_Question.objects.get(pk=1)
-    R_choices = [0, 1, 2, 3, 4]
 
-    SEF_questions = SEF_Question.objects.get(pk=1)
-    SEF_choices = [ 1, 2, 3, 4, 5]
-
-    GR_questions = GR_Question.objects.get(pk=1)
-    GR_choices = [1, 2, 3, 4, 5]
-    return render(request, 'PSS/R_SEF_GR_tem.html',
-                  {'surveyee_caseNum': surveyee_caseNum, 'R_choices': R_choices, 'R_questions': R_questions,
-                   'SEF_choices': SEF_choices, 'SEF_questions': SEF_questions,
-                   'GR_choices': GR_choices, 'GR_questions': GR_questions,'survey': survey})
 
 def R_SEF_GR_view1(request, surveyee_caseNum, survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
@@ -312,11 +279,7 @@ def R_SEF_GR_view1(request, surveyee_caseNum, survey):
         gr.save()
         return redirect('PSS:spr_start', surveyee_caseNum,survey)
 
-def R_view(request, surveyee_caseNum, survey):
-    questions = R_Question.objects.get(pk=1)
-    choices = [0, 1, 2, 3, 4]
-    return render(request, 'PSS/R_tem.html',
-                  {'surveyee_caseNum': surveyee_caseNum, 'choices': choices, 'questions': questions, 'survey':survey})
+
 
 def R_view1(request, surveyee_caseNum, survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
@@ -339,10 +302,7 @@ def R_view1(request, surveyee_caseNum, survey):
 
         return redirect('PSS:sef_start', surveyee_caseNum,survey)
 
-def SEF_view(request, surveyee_caseNum, survey):
-    questions = SEF_Question.objects.get(pk=1)
-    choices = [ 1, 2, 3, 4, 5]
-    return render(request, 'PSS/SEF_tem.html', {'surveyee_caseNum':surveyee_caseNum, 'choices':choices, 'questions':questions,'survey':survey})
+
 
 def SEF_view1(request, surveyee_caseNum,survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
@@ -365,11 +325,7 @@ def SEF_view1(request, surveyee_caseNum,survey):
         sef.save()
         return redirect('PSS:gr_start', surveyee_caseNum,survey)
 
-def GR_view(request, surveyee_caseNum,survey):
-    questions = GR_Question.objects.get(pk=1)
-    choices = [1, 2, 3, 4, 5]
-    return render(request, 'PSS/GR_tem.html',
-                  {'surveyee_caseNum': surveyee_caseNum, 'choices': choices, 'questions': questions,'survey':survey})
+
 
 def GR_view1(request, surveyee_caseNum, survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
@@ -393,11 +349,6 @@ def GR_view1(request, surveyee_caseNum, survey):
         gr.save()
         return redirect('PSS:spr_start', surveyee_caseNum,survey)
 
-def SPR_view(request, surveyee_caseNum,survey):
-    questions = SPR_Question.objects.get(pk=1)
-    choices = [0,1, 2, 3, 4, 5, 6, 7, 8, 9,10]
-    return render(request, 'PSS/SPR_tem.html',
-                  {'surveyee_caseNum': surveyee_caseNum, 'choices': choices, 'questions': questions,'survey':survey})
 
 def SPR_view1(request, surveyee_caseNum,survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
@@ -421,11 +372,7 @@ def SPR_view1(request, surveyee_caseNum,survey):
         spr.save()
         return redirect('PSS:ssp_start', surveyee_caseNum, survey)
 
-def SSP_view(request, surveyee_caseNum,survey):
-    questions = SSP_Question.objects.get(pk=1)
-    choices = [1, 2, 3, 4]
-    return render(request, 'PSS/SSP_tem.html',
-                  {'surveyee_caseNum': surveyee_caseNum, 'choices': choices, 'questions': questions,'survey':survey})
+
 
 def SSP_view1(request, surveyee_caseNum,survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
@@ -451,12 +398,6 @@ def SSP_view1(request, surveyee_caseNum,survey):
         ssp.save()
         return redirect('PSS:f_start', surveyee_caseNum,survey)
 
-def F_view(request, surveyee_caseNum,survey):
-    questions = F_Question.objects.get(pk=1)
-
-    choices =[1,2,3,4,5,6,7]
-
-    return render(request, 'PSS/F_tem.html', {'surveyee_caseNum':surveyee_caseNum, 'questions':questions, 'choices':choices,'survey':survey})
 
 def F_view1(request, surveyee_caseNum,survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
@@ -480,11 +421,7 @@ def F_view1(request, surveyee_caseNum,survey):
         f.save()
         return redirect('PSS:gd_start', surveyee_caseNum,survey)
 
-def GD_view(request, surveyee_caseNum,survey):
-    questions = GD_Question.objects.get(pk=1)
-    choices = [1, 2, 3, 4, 5, 6, 7]
-    return render(request, 'PSS/GD_tem.html',
-                  {'surveyee_caseNum': surveyee_caseNum, 'choices': choices, 'questions': questions,'survey':survey})
+
 
 def GD_view1(request, surveyee_caseNum,survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
@@ -508,13 +445,6 @@ def GD_view1(request, surveyee_caseNum,survey):
         gd.save()
         return redirect('PSS:hm_start', surveyee_caseNum,survey)
 
-def HM_view(request, surveyee_caseNum,survey):
-    questions = HM_Question.objects.get(pk=1)
-
-    choices = [1, 2, 3, 4, 5]
-
-    return render(request, 'PSS/HM_tem.html',
-                  {'surveyee_caseNum': surveyee_caseNum, 'questions': questions, 'choices': choices,'survey':survey})
 
 def HM_view1(request, surveyee_caseNum,survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
@@ -539,13 +469,7 @@ def HM_view1(request, surveyee_caseNum,survey):
         hm.save()
         return redirect('PSS:health_start', surveyee_caseNum,survey)
 
-def HEALTH_view(request, surveyee_caseNum,survey):
-    questions = HEALTH_Question.objects.get(pk=1)
 
-    choices = [1, 2, 3, 4, 5]
-
-    return render(request, 'PSS/HEALTH_tem.html',
-                  {'surveyee_caseNum': surveyee_caseNum, 'questions': questions, 'choices': choices,'survey':survey})
 
 def HEALTH_view1(request, surveyee_caseNum,survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
@@ -565,13 +489,7 @@ def HEALTH_view1(request, surveyee_caseNum,survey):
         health.save()
         return redirect('PSS:dm_start',surveyee_caseNum,survey)
 
-def DM_view(request, surveyee_caseNum,survey):
-    questions = DM_Question.objects.get(pk=1)
 
-    choices = [0,1]
-
-    return render(request, 'PSS/Dm_tem.html',
-                  {'surveyee_caseNum': surveyee_caseNum, 'questions': questions, 'choices': choices,'survey':survey})
 
 def DM_view1(request, surveyee_caseNum,survey):
     time = SurveyTimes.objects.filter(caseNum=surveyee_caseNum).count()
