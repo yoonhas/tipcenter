@@ -30,7 +30,7 @@ class SurveyTimes(models.Model):
     def __str__(self):
         return str(self.pk)
 
-
+#yollo
 class EB(models.Model):
     choices = ((1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5'))
     surveytime = models.IntegerField()
