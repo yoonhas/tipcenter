@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1fa12040-2742-4849-9dbd-2eba2e5beec7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/models.py" afterPath="$PROJECT_DIR$/PSS/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/urls.py" afterPath="$PROJECT_DIR$/PSS/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/views.py" afterPath="$PROJECT_DIR$/PSS/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,27 +25,45 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PSS/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
-              <caret line="139" column="0" lean-forward="false" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
+            <state relative-caret-position="630">
+              <caret line="101" column="49" lean-forward="true" selection-start-line="100" selection-start-column="0" selection-end-line="101" selection-end-column="49" />
               <folding>
                 <element signature="e#0#73#0" expanded="true" />
                 <element signature="e#1257#1393#0" expanded="false" />
                 <element signature="e#1433#1558#0" expanded="false" />
                 <element signature="e#1600#1647#0" expanded="false" />
                 <element signature="e#1690#2120#0" expanded="false" />
-                <element signature="e#2172#2366#0" expanded="false" />
-                <element signature="e#2425#4217#0" expanded="false" />
-                <element signature="e#4273#5424#0" expanded="false" />
-                <element signature="e#5479#6958#0" expanded="false" />
-                <element signature="e#7014#8396#0" expanded="false" />
-                <element signature="e#8453#9599#0" expanded="false" />
-                <element signature="e#9656#10845#0" expanded="false" />
-                <element signature="e#10903#12045#0" expanded="false" />
-                <element signature="e#12108#13793#0" expanded="false" />
-                <element signature="e#13849#14534#0" expanded="false" />
-                <element signature="e#14591#15495#0" expanded="false" />
-                <element signature="e#15552#16450#0" expanded="false" />
+                <element signature="e#2460#4252#0" expanded="false" />
+                <element signature="e#5514#6993#0" expanded="false" />
+                <element signature="e#7049#8431#0" expanded="false" />
+                <element signature="e#8488#9634#0" expanded="false" />
+                <element signature="e#9691#10880#0" expanded="false" />
+                <element signature="e#10938#12080#0" expanded="false" />
+                <element signature="e#12143#13828#0" expanded="false" />
+                <element signature="e#13884#14569#0" expanded="false" />
+                <element signature="e#14626#15530#0" expanded="false" />
+                <element signature="e#15587#16485#0" expanded="false" />
+                <element signature="e#16541#17416#0" expanded="false" />
+                <element signature="e#17473#18555#0" expanded="false" />
+                <element signature="e#18609#19732#0" expanded="false" />
+                <element signature="e#19788#20634#0" expanded="false" />
+                <element signature="e#20689#21814#0" expanded="false" />
+                <element signature="e#21874#22601#0" expanded="false" />
+                <element signature="e#22657#24361#0" expanded="false" />
+                <element signature="e#24428#30311#0" expanded="false" />
+                <element signature="e#30342#39603#0" expanded="false" />
+                <element signature="e#39708#40538#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TipCenter/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="22" column="28" lean-forward="false" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="28" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -51,7 +71,7 @@
       <file leaf-file-name="questions_view.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PSS/questions_view.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
+            <state relative-caret-position="360">
               <caret line="24" column="48" lean-forward="false" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
               <folding>
                 <element signature="e#0#73#0" expanded="true" />
@@ -76,14 +96,46 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="score_detail.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/score_detail.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="38" column="44" lean-forward="true" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PSS/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="24" column="70" lean-forward="false" selection-start-line="24" selection-start-column="70" selection-end-line="24" selection-end-column="70" />
+            <state relative-caret-position="877">
+              <caret line="68" column="0" lean-forward="true" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
               <folding>
                 <element signature="e#640#672#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="analysis_view.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PSS/analysis_view.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="246">
+              <caret line="189" column="41" lean-forward="false" selection-start-line="189" selection-start-column="41" selection-end-line="189" selection-end-column="41" />
+              <folding>
+                <element signature="e#0#73#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="summary.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/summary.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1644">
+              <caret line="123" column="83" lean-forward="false" selection-start-line="123" selection-start-column="83" selection-end-line="123" selection-end-column="83" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -108,11 +160,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PSS/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="70" column="42" lean-forward="true" selection-start-line="70" selection-start-column="42" selection-end-line="70" selection-end-column="42" />
+            <state relative-caret-position="630">
+              <caret line="78" column="43" lean-forward="true" selection-start-line="78" selection-start-column="43" selection-end-line="78" selection-end-column="43" />
               <folding>
                 <marker date="1503707077000" expanded="false" signature="940:2815" ph="..." />
                 <marker date="1503707077000" expanded="false" signature="4231:6350" ph="..." />
@@ -144,40 +196,6 @@
                 <marker date="1503707077000" expanded="false" signature="28477:31147" ph="..." />
                 <marker date="1503707077000" expanded="false" signature="31182:32795" ph="..." />
                 <marker date="1503707077000" expanded="false" signature="32833:36713" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PSS/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wsgi.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TipCenter/wsgi.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-              <folding>
-                <element signature="e#226#235#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="readFile.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PSS/readFile.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6210">
-              <caret line="418" column="43" lean-forward="false" selection-start-line="418" selection-start-column="43" selection-end-line="419" selection-end-column="51" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -245,10 +263,11 @@
         <option value="$PROJECT_DIR$/PSS/templates/PSS/show_graph.html" />
         <option value="$PROJECT_DIR$/PSS/templates/PSS/score_detail.html" />
         <option value="$PROJECT_DIR$/PSS/templates/PSS/index.html" />
-        <option value="$PROJECT_DIR$/PSS/views.py" />
         <option value="$PROJECT_DIR$/PSS/questions_view.py" />
-        <option value="$PROJECT_DIR$/PSS/urls.py" />
         <option value="$PROJECT_DIR$/PSS/models.py" />
+        <option value="$PROJECT_DIR$/PSS/views.py" />
+        <option value="$PROJECT_DIR$/PSS/urls.py" />
+        <option value="$PROJECT_DIR$/PSS/analysis_view.py" />
       </list>
     </option>
   </component>
@@ -259,7 +278,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="510" />
+    <option name="x" value="141" />
     <option name="y" value="23" />
     <option name="width" value="1942" />
     <option name="height" value="1164" />
@@ -302,7 +321,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="TipCenter" />
+              <option name="myItemId" value="PSS" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -313,6 +332,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="github" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PSS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="github" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="github" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PSS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -608,7 +653,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="510" y="23" width="1942" height="1164" extended-state="0" />
+    <frame x="141" y="23" width="1942" height="1164" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3163158" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -619,7 +664,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3288719" sideWeight="0.49789473" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3288719" sideWeight="0.49789473" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -691,8 +736,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/PSS/urls.py" />
-    <entry file="file://$PROJECT_DIR$/PSS/views.py" />
     <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/EH_tem.html" />
     <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/EB_tem.html" />
     <entry file="file://$PROJECT_DIR$/PSS/models.py" />
@@ -711,7 +754,7 @@
         <state relative-caret-position="60">
           <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding>
-            <element signature="e#226#235#0" expanded="true" />
+            <element signature="e#226#235#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -864,13 +907,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TipCenter/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="22" column="28" lean-forward="false" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/SSP_tem.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -882,13 +918,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/summary.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1845">
-          <caret line="123" column="83" lean-forward="false" selection-start-line="123" selection-start-column="83" selection-end-line="123" selection-end-column="83" />
         </state>
       </provider>
     </entry>
@@ -910,13 +939,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="7" lean-forward="false" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/score_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="72" column="75" lean-forward="false" selection-start-line="72" selection-start-column="75" selection-end-line="72" selection-end-column="75" />
         </state>
       </provider>
     </entry>
@@ -946,7 +968,7 @@
         <state relative-caret-position="6210">
           <caret line="418" column="43" lean-forward="false" selection-start-line="418" selection-start-column="43" selection-end-line="419" selection-end-column="51" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#0#19#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -962,42 +984,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="31" lean-forward="false" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PSS/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="139" column="0" lean-forward="false" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#73#0" expanded="true" />
-            <element signature="e#1257#1393#0" expanded="false" />
-            <element signature="e#1433#1558#0" expanded="false" />
-            <element signature="e#1600#1647#0" expanded="false" />
-            <element signature="e#1690#2120#0" expanded="false" />
-            <element signature="e#2172#2366#0" expanded="false" />
-            <element signature="e#2425#4217#0" expanded="false" />
-            <element signature="e#4273#5424#0" expanded="false" />
-            <element signature="e#5479#6958#0" expanded="false" />
-            <element signature="e#7014#8396#0" expanded="false" />
-            <element signature="e#8453#9599#0" expanded="false" />
-            <element signature="e#9656#10845#0" expanded="false" />
-            <element signature="e#10903#12045#0" expanded="false" />
-            <element signature="e#12108#13793#0" expanded="false" />
-            <element signature="e#13849#14534#0" expanded="false" />
-            <element signature="e#14591#15495#0" expanded="false" />
-            <element signature="e#15552#16450#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PSS/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="24" column="70" lean-forward="false" selection-start-line="24" selection-start-column="70" selection-end-line="24" selection-end-column="70" />
-          <folding>
-            <element signature="e#640#672#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1017,36 +1003,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PSS/questions_view.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="24" column="48" lean-forward="false" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#73#0" expanded="true" />
-            <element signature="e#1215#1431#0" expanded="false" />
-            <element signature="e#1484#1708#0" expanded="false" />
-            <element signature="e#1761#1977#0" expanded="false" />
-            <element signature="e#2031#2255#0" expanded="false" />
-            <element signature="e#2309#2530#0" expanded="false" />
-            <element signature="e#2589#3166#0" expanded="false" />
-            <element signature="e#3218#3452#0" expanded="false" />
-            <element signature="e#3506#3723#0" expanded="false" />
-            <element signature="e#3775#4010#0" expanded="false" />
-            <element signature="e#4063#4317#0" expanded="false" />
-            <element signature="e#4370#4604#0" expanded="false" />
-            <element signature="e#4655#4868#0" expanded="false" />
-            <element signature="e#4920#5161#0" expanded="false" />
-            <element signature="e#5213#5450#0" expanded="false" />
-            <element signature="e#5506#5751#0" expanded="false" />
-            <element signature="e#5803#6030#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PSS/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="70" column="42" lean-forward="true" selection-start-line="70" selection-start-column="42" selection-end-line="70" selection-end-column="42" />
+        <state relative-caret-position="630">
+          <caret line="78" column="43" lean-forward="true" selection-start-line="78" selection-start-column="43" selection-end-line="78" selection-end-column="43" />
           <folding>
             <marker date="1503707077000" expanded="false" signature="940:2815" ph="..." />
             <marker date="1503707077000" expanded="false" signature="4231:6350" ph="..." />
@@ -1079,6 +1039,118 @@
             <marker date="1503707077000" expanded="false" signature="31182:32795" ph="..." />
             <marker date="1503707077000" expanded="false" signature="32833:36713" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TipCenter/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="22" column="28" lean-forward="false" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PSS/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PSS/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="877">
+          <caret line="68" column="0" lean-forward="true" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+          <folding>
+            <element signature="e#640#672#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PSS/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="101" column="49" lean-forward="true" selection-start-line="100" selection-start-column="0" selection-end-line="101" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#73#0" expanded="true" />
+            <element signature="e#1257#1393#0" expanded="false" />
+            <element signature="e#1433#1558#0" expanded="false" />
+            <element signature="e#1600#1647#0" expanded="false" />
+            <element signature="e#1690#2120#0" expanded="false" />
+            <element signature="e#2460#4252#0" expanded="false" />
+            <element signature="e#5514#6993#0" expanded="false" />
+            <element signature="e#7049#8431#0" expanded="false" />
+            <element signature="e#8488#9634#0" expanded="false" />
+            <element signature="e#9691#10880#0" expanded="false" />
+            <element signature="e#10938#12080#0" expanded="false" />
+            <element signature="e#12143#13828#0" expanded="false" />
+            <element signature="e#13884#14569#0" expanded="false" />
+            <element signature="e#14626#15530#0" expanded="false" />
+            <element signature="e#15587#16485#0" expanded="false" />
+            <element signature="e#16541#17416#0" expanded="false" />
+            <element signature="e#17473#18555#0" expanded="false" />
+            <element signature="e#18609#19732#0" expanded="false" />
+            <element signature="e#19788#20634#0" expanded="false" />
+            <element signature="e#20689#21814#0" expanded="false" />
+            <element signature="e#21874#22601#0" expanded="false" />
+            <element signature="e#22657#24361#0" expanded="false" />
+            <element signature="e#24428#30311#0" expanded="false" />
+            <element signature="e#30342#39603#0" expanded="false" />
+            <element signature="e#39708#40538#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/summary.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1644">
+          <caret line="123" column="83" lean-forward="false" selection-start-line="123" selection-start-column="83" selection-end-line="123" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PSS/questions_view.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="48" lean-forward="false" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#73#0" expanded="true" />
+            <element signature="e#1215#1431#0" expanded="false" />
+            <element signature="e#1484#1708#0" expanded="false" />
+            <element signature="e#1761#1977#0" expanded="false" />
+            <element signature="e#2031#2255#0" expanded="false" />
+            <element signature="e#2309#2530#0" expanded="false" />
+            <element signature="e#2589#3166#0" expanded="false" />
+            <element signature="e#3218#3452#0" expanded="false" />
+            <element signature="e#3506#3723#0" expanded="false" />
+            <element signature="e#3775#4010#0" expanded="false" />
+            <element signature="e#4063#4317#0" expanded="false" />
+            <element signature="e#4370#4604#0" expanded="false" />
+            <element signature="e#4655#4868#0" expanded="false" />
+            <element signature="e#4920#5161#0" expanded="false" />
+            <element signature="e#5213#5450#0" expanded="false" />
+            <element signature="e#5506#5751#0" expanded="false" />
+            <element signature="e#5803#6030#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PSS/analysis_view.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="189" column="41" lean-forward="false" selection-start-line="189" selection-start-column="41" selection-end-line="189" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#73#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/score_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="38" column="44" lean-forward="true" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>

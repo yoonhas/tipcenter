@@ -17,6 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from . import views
 from . import questions_view
+from . import analysis_view
 
 app_name = 'PSS'
 
@@ -60,10 +61,10 @@ urlpatterns = [
     url(r'^upload/csv/$', views.upload_csv, name= 'upload_csv'),
     url(r'^upload/csv/start/$', views.upload_csv, name= 'upload_csv_start'),
     url(r'^thankyou/$', views.Thanks, name="thanks"),
-    url(r'^(?P<agent_id>[0-9]+)/summary/$', views.summary, name="summary"),
-    url(r'^(?P<agent_id>[0-9]+)/score/detail/$', views.score_detail, name="score_detail"),
-    url(r'^compare/$', views.compare_view, name= 'compare_view'),
-    url(r'^compare/detail/$', views.compare_detail, name= 'compare_detail'),
-    url(r'^showgraph$', views.show_graph, name='show_graph'),
+    url(r'^(?P<agent_id>[0-9]+)/summary/$', analysis_view.summary, name="summary"),
+    url(r'^(?P<agent_id>[0-9]+)/score/detail/$', analysis_view.score_detail, name="score_detail"),
+    url(r'^compare/$', analysis_view.compare_view, name= 'compare_view'),
+    url(r'^compare/detail/$', analysis_view.compare_detail, name= 'compare_detail'),
+    url(r'^showgraph$', analysis_view.show_graph, name='show_graph'),
 
 ]
