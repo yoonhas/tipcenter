@@ -16,7 +16,7 @@ class Surveyee(models.Model):
     def __str__(self):
         return str(self.caseNum)
 
-
+#yoonha
 class SurveyTimes(models.Model):
     choices = ((1, '1'), (2, '2'), (3, '3'), (4, '4'))
     caseNum = models.ForeignKey('Surveyee', on_delete=models.CASCADE)
