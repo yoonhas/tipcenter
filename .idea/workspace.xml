@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="1fa12040-2742-4849-9dbd-2eba2e5beec7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/urls.py" afterPath="$PROJECT_DIR$/PSS/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/views.py" afterPath="$PROJECT_DIR$/PSS/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/analysis_view.py" afterPath="$PROJECT_DIR$/PSS/analysis_view.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/templates/PSS/index.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/templates/PSS/summary.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/summary.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,35 +27,45 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PSS/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="101" column="49" lean-forward="true" selection-start-line="100" selection-start-column="0" selection-end-line="101" selection-end-column="49" />
+            <state relative-caret-position="-315">
+              <caret line="101" column="49" lean-forward="false" selection-start-line="101" selection-start-column="49" selection-end-line="101" selection-end-column="49" />
               <folding>
                 <element signature="e#0#73#0" expanded="true" />
                 <element signature="e#1257#1393#0" expanded="false" />
                 <element signature="e#1433#1558#0" expanded="false" />
                 <element signature="e#1600#1647#0" expanded="false" />
                 <element signature="e#1690#2120#0" expanded="false" />
-                <element signature="e#2460#4252#0" expanded="false" />
-                <element signature="e#5514#6993#0" expanded="false" />
-                <element signature="e#7049#8431#0" expanded="false" />
-                <element signature="e#8488#9634#0" expanded="false" />
-                <element signature="e#9691#10880#0" expanded="false" />
-                <element signature="e#10938#12080#0" expanded="false" />
-                <element signature="e#12143#13828#0" expanded="false" />
-                <element signature="e#13884#14569#0" expanded="false" />
-                <element signature="e#14626#15530#0" expanded="false" />
-                <element signature="e#15587#16485#0" expanded="false" />
-                <element signature="e#16541#17416#0" expanded="false" />
-                <element signature="e#17473#18555#0" expanded="false" />
-                <element signature="e#18609#19732#0" expanded="false" />
-                <element signature="e#19788#20634#0" expanded="false" />
-                <element signature="e#20689#21814#0" expanded="false" />
-                <element signature="e#21874#22601#0" expanded="false" />
-                <element signature="e#22657#24361#0" expanded="false" />
-                <element signature="e#24428#30311#0" expanded="false" />
-                <element signature="e#30342#39603#0" expanded="false" />
-                <element signature="e#39708#40538#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="112" lean-forward="false" selection-start-line="12" selection-start-column="112" selection-end-line="12" selection-end-column="112" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="analysis_view.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/PSS/analysis_view.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="592">
+              <caret line="239" column="18" lean-forward="true" selection-start-line="239" selection-start-column="18" selection-end-line="239" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="compare.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/compare.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" column="74" lean-forward="true" selection-start-line="15" selection-start-column="74" selection-end-line="15" selection-end-column="74" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -71,7 +83,7 @@
       <file leaf-file-name="questions_view.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PSS/questions_view.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
+            <state relative-caret-position="90">
               <caret line="24" column="48" lean-forward="false" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
               <folding>
                 <element signature="e#0#73#0" expanded="true" />
@@ -96,11 +108,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="score_detail.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="score_detail.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/score_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="38" column="44" lean-forward="true" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
+            <state relative-caret-position="435">
+              <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -109,23 +121,9 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PSS/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="877">
-              <caret line="68" column="0" lean-forward="true" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-              <folding>
-                <element signature="e#640#672#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="analysis_view.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PSS/analysis_view.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="189" column="41" lean-forward="false" selection-start-line="189" selection-start-column="41" selection-end-line="189" selection-end-column="41" />
-              <folding>
-                <element signature="e#0#73#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="960">
+              <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -133,28 +131,8 @@
       <file leaf-file-name="summary.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/summary.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1644">
-              <caret line="123" column="83" lean-forward="false" selection-start-line="123" selection-start-column="83" selection-end-line="123" selection-end-column="83" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tests.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PSS/tests.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Sample_dataset1.csv" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PSS/Sample_dataset1.csv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="1200">
+              <caret line="80" column="69" lean-forward="false" selection-start-line="80" selection-start-column="69" selection-end-line="80" selection-end-column="69" />
               <folding />
             </state>
           </provider>
@@ -163,39 +141,39 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PSS/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="78" column="43" lean-forward="true" selection-start-line="78" selection-start-column="43" selection-end-line="78" selection-end-column="43" />
+            <state relative-caret-position="660">
+              <caret line="80" column="43" lean-forward="false" selection-start-line="80" selection-start-column="43" selection-end-line="80" selection-end-column="43" />
               <folding>
-                <marker date="1503707077000" expanded="false" signature="940:2815" ph="..." />
-                <marker date="1503707077000" expanded="false" signature="4231:6350" ph="..." />
-                <marker date="1503707077000" expanded="false" signature="6385:7609" ph="..." />
-                <marker date="1503707077000" expanded="false" signature="7634:9026" ph="..." />
-                <marker date="1503707077000" expanded="false" signature="9060:9887" ph="..." />
-                <marker date="1503707077000" expanded="false" signature="9913:11341" ph="..." />
-                <marker date="1503707077000" expanded="false" signature="11376:12219" ph="..." />
-                <marker date="1503707077000" expanded="false" signature="12245:13699" ph="..." />
-                <marker date="1503707077000" expanded="false" signature="13734:14584" ph="..." />
-                <marker date="1503707077000" expanded="false" signature="14610:15783" ph="..." />
-                <marker date="1503707077000" expanded="false" signature="15818:16527" ph="..." />
-                <marker date="1503707077000" expanded="false" signature="16552:18167" ph="..." />
-                <marker date="1503707077000" expanded="false" signature="18200:19140" ph="..." />
-                <marker date="1503707077000" expanded="false" signature="19165:19915" ph="..." />
-                <marker date="1503707077000" expanded="false" signature="19949:20384" ph="..." />
-                <marker date="1503707077000" expanded="false" signature="20409:21801" ph="..." />
-                <marker date="1503707077000" expanded="false" signature="21835:22663" ph="..." />
-                <marker date="1503707077000" expanded="false" signature="22692:23142" ph="..." />
-                <marker date="1503707077000" expanded="false" signature="23180:23456" ph="..." />
-                <marker date="1503707077000" expanded="false" signature="23482:24367" ph="..." />
-                <marker date="1503707077000" expanded="false" signature="24402:24933" ph="..." />
-                <marker date="1503707077000" expanded="false" signature="24959:25837" ph="..." />
-                <marker date="1503707077000" expanded="false" signature="25872:26392" ph="..." />
-                <marker date="1503707077000" expanded="false" signature="26418:27220" ph="..." />
-                <marker date="1503707077000" expanded="false" signature="27256:27698" ph="..." />
-                <marker date="1503707077000" expanded="false" signature="27722:28158" ph="..." />
-                <marker date="1503707077000" expanded="false" signature="28191:28452" ph="..." />
-                <marker date="1503707077000" expanded="false" signature="28477:31147" ph="..." />
-                <marker date="1503707077000" expanded="false" signature="31182:32795" ph="..." />
-                <marker date="1503707077000" expanded="false" signature="32833:36713" ph="..." />
+                <element signature="e#951#2821#0" expanded="false" />
+                <element signature="e#4242#6356#0" expanded="false" />
+                <element signature="e#6396#7615#0" expanded="false" />
+                <element signature="e#7645#9032#0" expanded="false" />
+                <element signature="e#9071#9893#0" expanded="false" />
+                <element signature="e#9924#11347#0" expanded="false" />
+                <element signature="e#11387#12225#0" expanded="false" />
+                <element signature="e#12256#13705#0" expanded="false" />
+                <element signature="e#13745#14590#0" expanded="false" />
+                <element signature="e#14621#15789#0" expanded="false" />
+                <element signature="e#15829#16533#0" expanded="false" />
+                <element signature="e#16563#18173#0" expanded="false" />
+                <element signature="e#18211#19146#0" expanded="false" />
+                <element signature="e#19176#19921#0" expanded="false" />
+                <element signature="e#19960#20390#0" expanded="false" />
+                <element signature="e#20420#21807#0" expanded="false" />
+                <element signature="e#21846#22669#0" expanded="false" />
+                <element signature="e#22703#23148#0" expanded="false" />
+                <element signature="e#23191#23462#0" expanded="false" />
+                <element signature="e#23493#24373#0" expanded="false" />
+                <element signature="e#24413#24939#0" expanded="false" />
+                <element signature="e#24970#25843#0" expanded="false" />
+                <element signature="e#25883#26398#0" expanded="false" />
+                <element signature="e#26429#27226#0" expanded="false" />
+                <element signature="e#27267#27704#0" expanded="false" />
+                <element signature="e#27733#28164#0" expanded="false" />
+                <element signature="e#28202#28458#0" expanded="false" />
+                <element signature="e#28488#31153#0" expanded="false" />
+                <element signature="e#31193#32801#0" expanded="false" />
+                <element signature="e#32844#36719#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -258,15 +236,15 @@
         <option value="$PROJECT_DIR$/PSS/templates/PSS/times.html" />
         <option value="$PROJECT_DIR$/PSS/templates/PSS/EB_tem1.html" />
         <option value="$PROJECT_DIR$/PSS/readFile.py" />
-        <option value="$PROJECT_DIR$/PSS/templates/PSS/summary.html" />
         <option value="$PROJECT_DIR$/PSS/templates/PSS/compare.html" />
         <option value="$PROJECT_DIR$/PSS/templates/PSS/show_graph.html" />
         <option value="$PROJECT_DIR$/PSS/templates/PSS/score_detail.html" />
-        <option value="$PROJECT_DIR$/PSS/templates/PSS/index.html" />
         <option value="$PROJECT_DIR$/PSS/questions_view.py" />
         <option value="$PROJECT_DIR$/PSS/models.py" />
         <option value="$PROJECT_DIR$/PSS/views.py" />
         <option value="$PROJECT_DIR$/PSS/urls.py" />
+        <option value="$PROJECT_DIR$/PSS/templates/PSS/index.html" />
+        <option value="$PROJECT_DIR$/PSS/templates/PSS/summary.html" />
         <option value="$PROJECT_DIR$/PSS/analysis_view.py" />
       </list>
     </option>
@@ -278,8 +256,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="141" />
-    <option name="y" value="23" />
+    <option name="x" value="554" />
+    <option name="y" value="53" />
     <option name="width" value="1942" />
     <option name="height" value="1164" />
   </component>
@@ -298,7 +276,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -367,7 +345,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -652,42 +630,39 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="141" y="23" width="1942" height="1164" extended-state="0" />
+    <frame x="554" y="53" width="1942" height="1164" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3163158" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298279" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291815" sideWeight="0.50210524" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3288719" sideWeight="0.49789473" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298279" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3288719" sideWeight="0.49789473" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291815" sideWeight="0.50210524" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3288719" sideWeight="0.49789473" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291815" sideWeight="0.49789473" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Concurrent Activities Diagram" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291815" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -753,9 +728,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <element signature="e#226#235#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -928,13 +900,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/compare.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1035">
-          <caret line="69" column="20" lean-forward="false" selection-start-line="69" selection-start-column="20" selection-end-line="69" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/show_graph.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -980,18 +945,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="31" lean-forward="false" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PSS/tests.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1005,39 +962,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PSS/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="78" column="43" lean-forward="true" selection-start-line="78" selection-start-column="43" selection-end-line="78" selection-end-column="43" />
+        <state relative-caret-position="660">
+          <caret line="80" column="43" lean-forward="false" selection-start-line="80" selection-start-column="43" selection-end-line="80" selection-end-column="43" />
           <folding>
-            <marker date="1503707077000" expanded="false" signature="940:2815" ph="..." />
-            <marker date="1503707077000" expanded="false" signature="4231:6350" ph="..." />
-            <marker date="1503707077000" expanded="false" signature="6385:7609" ph="..." />
-            <marker date="1503707077000" expanded="false" signature="7634:9026" ph="..." />
-            <marker date="1503707077000" expanded="false" signature="9060:9887" ph="..." />
-            <marker date="1503707077000" expanded="false" signature="9913:11341" ph="..." />
-            <marker date="1503707077000" expanded="false" signature="11376:12219" ph="..." />
-            <marker date="1503707077000" expanded="false" signature="12245:13699" ph="..." />
-            <marker date="1503707077000" expanded="false" signature="13734:14584" ph="..." />
-            <marker date="1503707077000" expanded="false" signature="14610:15783" ph="..." />
-            <marker date="1503707077000" expanded="false" signature="15818:16527" ph="..." />
-            <marker date="1503707077000" expanded="false" signature="16552:18167" ph="..." />
-            <marker date="1503707077000" expanded="false" signature="18200:19140" ph="..." />
-            <marker date="1503707077000" expanded="false" signature="19165:19915" ph="..." />
-            <marker date="1503707077000" expanded="false" signature="19949:20384" ph="..." />
-            <marker date="1503707077000" expanded="false" signature="20409:21801" ph="..." />
-            <marker date="1503707077000" expanded="false" signature="21835:22663" ph="..." />
-            <marker date="1503707077000" expanded="false" signature="22692:23142" ph="..." />
-            <marker date="1503707077000" expanded="false" signature="23180:23456" ph="..." />
-            <marker date="1503707077000" expanded="false" signature="23482:24367" ph="..." />
-            <marker date="1503707077000" expanded="false" signature="24402:24933" ph="..." />
-            <marker date="1503707077000" expanded="false" signature="24959:25837" ph="..." />
-            <marker date="1503707077000" expanded="false" signature="25872:26392" ph="..." />
-            <marker date="1503707077000" expanded="false" signature="26418:27220" ph="..." />
-            <marker date="1503707077000" expanded="false" signature="27256:27698" ph="..." />
-            <marker date="1503707077000" expanded="false" signature="27722:28158" ph="..." />
-            <marker date="1503707077000" expanded="false" signature="28191:28452" ph="..." />
-            <marker date="1503707077000" expanded="false" signature="28477:31147" ph="..." />
-            <marker date="1503707077000" expanded="false" signature="31182:32795" ph="..." />
-            <marker date="1503707077000" expanded="false" signature="32833:36713" ph="..." />
+            <element signature="e#951#2821#0" expanded="false" />
+            <element signature="e#4242#6356#0" expanded="false" />
+            <element signature="e#6396#7615#0" expanded="false" />
+            <element signature="e#7645#9032#0" expanded="false" />
+            <element signature="e#9071#9893#0" expanded="false" />
+            <element signature="e#9924#11347#0" expanded="false" />
+            <element signature="e#11387#12225#0" expanded="false" />
+            <element signature="e#12256#13705#0" expanded="false" />
+            <element signature="e#13745#14590#0" expanded="false" />
+            <element signature="e#14621#15789#0" expanded="false" />
+            <element signature="e#15829#16533#0" expanded="false" />
+            <element signature="e#16563#18173#0" expanded="false" />
+            <element signature="e#18211#19146#0" expanded="false" />
+            <element signature="e#19176#19921#0" expanded="false" />
+            <element signature="e#19960#20390#0" expanded="false" />
+            <element signature="e#20420#21807#0" expanded="false" />
+            <element signature="e#21846#22669#0" expanded="false" />
+            <element signature="e#22703#23148#0" expanded="false" />
+            <element signature="e#23191#23462#0" expanded="false" />
+            <element signature="e#23493#24373#0" expanded="false" />
+            <element signature="e#24413#24939#0" expanded="false" />
+            <element signature="e#24970#25843#0" expanded="false" />
+            <element signature="e#25883#26398#0" expanded="false" />
+            <element signature="e#26429#27226#0" expanded="false" />
+            <element signature="e#27267#27704#0" expanded="false" />
+            <element signature="e#27733#28164#0" expanded="false" />
+            <element signature="e#28202#28458#0" expanded="false" />
+            <element signature="e#28488#31153#0" expanded="false" />
+            <element signature="e#31193#32801#0" expanded="false" />
+            <element signature="e#32844#36719#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1058,61 +1015,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PSS/urls.py">
+    <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/score_detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="877">
-          <caret line="68" column="0" lean-forward="true" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-          <folding>
-            <element signature="e#640#672#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PSS/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="101" column="49" lean-forward="true" selection-start-line="100" selection-start-column="0" selection-end-line="101" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#73#0" expanded="true" />
-            <element signature="e#1257#1393#0" expanded="false" />
-            <element signature="e#1433#1558#0" expanded="false" />
-            <element signature="e#1600#1647#0" expanded="false" />
-            <element signature="e#1690#2120#0" expanded="false" />
-            <element signature="e#2460#4252#0" expanded="false" />
-            <element signature="e#5514#6993#0" expanded="false" />
-            <element signature="e#7049#8431#0" expanded="false" />
-            <element signature="e#8488#9634#0" expanded="false" />
-            <element signature="e#9691#10880#0" expanded="false" />
-            <element signature="e#10938#12080#0" expanded="false" />
-            <element signature="e#12143#13828#0" expanded="false" />
-            <element signature="e#13884#14569#0" expanded="false" />
-            <element signature="e#14626#15530#0" expanded="false" />
-            <element signature="e#15587#16485#0" expanded="false" />
-            <element signature="e#16541#17416#0" expanded="false" />
-            <element signature="e#17473#18555#0" expanded="false" />
-            <element signature="e#18609#19732#0" expanded="false" />
-            <element signature="e#19788#20634#0" expanded="false" />
-            <element signature="e#20689#21814#0" expanded="false" />
-            <element signature="e#21874#22601#0" expanded="false" />
-            <element signature="e#22657#24361#0" expanded="false" />
-            <element signature="e#24428#30311#0" expanded="false" />
-            <element signature="e#30342#39603#0" expanded="false" />
-            <element signature="e#39708#40538#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/summary.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1644">
-          <caret line="123" column="83" lean-forward="false" selection-start-line="123" selection-start-column="83" selection-end-line="123" selection-end-column="83" />
+        <state relative-caret-position="435">
+          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PSS/questions_view.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
+        <state relative-caret-position="90">
           <caret line="24" column="48" lean-forward="false" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
           <folding>
             <element signature="e#0#73#0" expanded="true" />
@@ -1136,20 +1049,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PSS/analysis_view.py">
+    <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="189" column="41" lean-forward="false" selection-start-line="189" selection-start-column="41" selection-end-line="189" selection-end-column="41" />
+        <state relative-caret-position="180">
+          <caret line="12" column="112" lean-forward="false" selection-start-line="12" selection-start-column="112" selection-end-line="12" selection-end-column="112" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PSS/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="960">
+          <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/summary.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1200">
+          <caret line="80" column="69" lean-forward="false" selection-start-line="80" selection-start-column="69" selection-end-line="80" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/compare.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="74" lean-forward="true" selection-start-line="15" selection-start-column="74" selection-end-line="15" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PSS/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-315">
+          <caret line="101" column="49" lean-forward="false" selection-start-line="101" selection-start-column="49" selection-end-line="101" selection-end-column="49" />
           <folding>
             <element signature="e#0#73#0" expanded="true" />
+            <element signature="e#1257#1393#0" expanded="false" />
+            <element signature="e#1433#1558#0" expanded="false" />
+            <element signature="e#1600#1647#0" expanded="false" />
+            <element signature="e#1690#2120#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/score_detail.html">
+    <entry file="file://$PROJECT_DIR$/PSS/analysis_view.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="38" column="44" lean-forward="true" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
+        <state relative-caret-position="592">
+          <caret line="239" column="18" lean-forward="true" selection-start-line="239" selection-start-column="18" selection-end-line="239" selection-end-column="18" />
           <folding />
         </state>
       </provider>

@@ -75,7 +75,7 @@
                         {% for name,a_id, agent in indi %}
                             {% if agent.Peb_all.count != 0 %}
                                 <tr>
-                                    <td headers="name" style=" background-color: darkred; color: white;"><a href="{% url 'PSS:score_detail' a_id %}"> {{ name }} (click for detail)</a></td>
+                                    <td headers="name" style=" background-color: darkred; color: white;"><a href="{% url 'PSS:score_detail' a_id %}">{{ a_id }} {{ name }} (click for detail)</a></td>
                                 </tr>
                                 <tr>
                                     <td headers="name">PEB Score</td>
@@ -117,7 +117,7 @@
                         {% for name,a_id, agent in indi %}
                                 {% if agent.Peb_all.count != 0 and agent_id == name %}
                                     <tr>
-                                         <td headers="name" style=" background-color: darkred; color: white;"><a href="{% url 'PSS:score_detail' a_id %}"> {{ name }} (click for detail)</a></td>
+                                         <td headers="name" style=" background-color: darkred; color: white;"><a href="{% url 'PSS:score_detail' a_id %}">{{ a_id }} {{ name }} (click for detail)</a></td>
                                     </tr>
                                     <tr>
                                         <td headers="name">PEB Score</td>

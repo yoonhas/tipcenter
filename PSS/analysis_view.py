@@ -132,7 +132,7 @@ def score_detail(request, agent_id):
         for i  in fact_list:
             data[i]=helper(df,i)
 
-        print (data)
+
         return data
 
     def helper(df, str):
@@ -170,8 +170,10 @@ def score_detail(request, agent_id):
 
 
     agent = User.objects.get(id=agent_id)
+    print(agent.get_username())
     i = 1
     list1=[]
+    print(agent_id)
     if agent_id == '1':
         while i != 5:
             pd.set_option('precision', 6)
@@ -218,15 +220,17 @@ def compare_detail(request):
 
     raw_data = read_frame(Total_for_Admin.objects.all())
     races = request.POST['race']
-
     age = request.POST['age']
     if '-' in age:
         ages = list(age.split('-'))
+        beginAge= ages[0]
+        endAge= ages[1]
         ageMask = (raw_data['DM12']>=ages[0])&(raw_data['DM12']<=ages[1])
+    elif age == '77':
+        ageMask = int(age)
     else:
         ages=age
         ageMask =(raw_data['DM12']==ages[0])
-
 
     year = request.POST['year']
     if '-' in year:
@@ -248,19 +252,6 @@ def compare_detail(request):
     housing = request.POST['Housing']
     compare = request.POST.getlist('compare')
 
-    print(ages)
-    print(years)
-    print(status)
-    print(dates)
-    print(begin, end)
-    print(housing)
-    print(compare)
-
-    agent_list= {}
-    for i in compare:
-        if i == 1:
-            if races != 77:
-                raceMask = (raw_data['DM14']==races)
 
 
 
