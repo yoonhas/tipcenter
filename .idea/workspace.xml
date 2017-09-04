@@ -1,39 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1fa12040-2742-4849-9dbd-2eba2e5beec7" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/PSS/templates/PSS/Dm_tem.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/Survey/Dm_tem.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/PSS/templates/PSS/EB_tem1.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/Survey/EB_tem1.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/PSS/templates/PSS/EH_tem.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/Survey/EH_tem.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/PSS/templates/PSS/ES_tem.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/Survey/ES_tem.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/PSS/templates/PSS/EXF_tem.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/Survey/EXF_tem.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/PSS/templates/PSS/F_tem.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/Survey/F_tem.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/PSS/templates/PSS/GD_tem.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/Survey/GD_tem.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/PSS/templates/PSS/GR_tem.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/Survey/GR_tem.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/PSS/templates/PSS/HEALTH_tem.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/Survey/HEALTH_tem.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/PSS/templates/PSS/HM_tem.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/Survey/HM_tem.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/PSS/templates/PSS/R_SEF_GR_tem.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/Survey/R_SEF_GR_tem.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/PSS/templates/PSS/R_tem.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/Survey/R_tem.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/PSS/templates/PSS/SEF_tem.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/Survey/SEF_tem.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/PSS/templates/PSS/SPR_tem.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/Survey/SPR_tem.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/PSS/templates/PSS/SSP_tem.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/Survey/SSP_tem.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/PSS/templates/PSS/Tip_tem.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/Survey/Tip_tem.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/PSS/templates/PSS/compare.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/Analysis/compare.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/PSS/templates/PSS/score_detail.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/Analysis/score_detail.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/PSS/templates/PSS/show_graph.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/Analysis/show_graph.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/PSS/templates/PSS/summary.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/Analysis/summary.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/PSS/templates/PSS/upload.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/Analysis/upload.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/analysis_view.py" afterPath="$PROJECT_DIR$/PSS/analysis_view.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/models.py" afterPath="$PROJECT_DIR$/PSS/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/questions_view.py" afterPath="$PROJECT_DIR$/PSS/questions_view.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/templates/PSS/agent_detail.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/agent_detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/templates/PSS/index.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/templates/PSS/times.html" afterPath="$PROJECT_DIR$/PSS/templates/PSS/times.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/urls.py" afterPath="$PROJECT_DIR$/PSS/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSS/views.py" afterPath="$PROJECT_DIR$/PSS/views.py" />
-    </list>
+    <list default="true" id="1fa12040-2742-4849-9dbd-2eba2e5beec7" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,8 +21,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PSS/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="206" column="30" lean-forward="true" selection-start-line="206" selection-start-column="30" selection-end-line="206" selection-end-column="30" />
+            <state relative-caret-position="85">
+              <caret line="49" column="28" lean-forward="true" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
               <folding>
                 <element signature="e#0#73#0" expanded="true" />
                 <element signature="e#1284#1420#0" expanded="false" />
@@ -69,7 +37,7 @@
         <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/times.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
-              <caret line="11" column="29" lean-forward="true" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+              <caret line="11" column="29" lean-forward="false" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -79,7 +47,7 @@
         <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/show_links.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
-              <caret line="16" column="14" lean-forward="true" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
+              <caret line="16" column="14" lean-forward="false" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -99,7 +67,7 @@
         <entry file="file://$PROJECT_DIR$/PSS/survey_views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="780">
-              <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+              <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
               <folding>
                 <element signature="e#0#73#0" expanded="true" />
               </folding>
@@ -111,7 +79,7 @@
         <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/release_show_participants.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="510">
-              <caret line="34" column="14" lean-forward="true" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
+              <caret line="34" column="14" lean-forward="false" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -131,7 +99,7 @@
         <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="405">
-              <caret line="27" column="14" lean-forward="true" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
+              <caret line="27" column="14" lean-forward="false" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -141,7 +109,7 @@
         <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/Survey/EH_tem.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
-              <caret line="19" column="39" lean-forward="true" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
+              <caret line="19" column="39" lean-forward="false" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -151,7 +119,7 @@
         <entry file="file://$PROJECT_DIR$/PSS/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="556">
-              <caret line="57" column="100" lean-forward="true" selection-start-line="57" selection-start-column="100" selection-end-line="57" selection-end-column="100" />
+              <caret line="57" column="100" lean-forward="false" selection-start-line="57" selection-start-column="100" selection-end-line="57" selection-end-column="100" />
               <folding>
                 <element signature="e#640#672#0" expanded="true" />
               </folding>
@@ -242,7 +210,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="184" />
+    <option name="x" value="759" />
     <option name="y" value="27" />
     <option name="width" value="1942" />
     <option name="height" value="1164" />
@@ -630,8 +598,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="184" y="27" width="1942" height="1164" extended-state="0" />
-    <editor active="true" />
+    <frame x="759" y="27" width="1942" height="1164" extended-state="0" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298279" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -641,7 +608,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298279" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3288719" sideWeight="0.49789473" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3288719" sideWeight="0.49789473" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1029,7 +996,7 @@
     <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/Survey/EH_tem.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
-          <caret line="19" column="39" lean-forward="true" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
+          <caret line="19" column="39" lean-forward="false" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
           <folding />
         </state>
       </provider>
@@ -1037,7 +1004,7 @@
     <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/release_show_participants.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
-          <caret line="34" column="14" lean-forward="true" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
+          <caret line="34" column="14" lean-forward="false" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -1045,7 +1012,7 @@
     <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/show_links.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
-          <caret line="16" column="14" lean-forward="true" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
+          <caret line="16" column="14" lean-forward="false" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -1069,7 +1036,7 @@
     <entry file="file://$PROJECT_DIR$/PSS/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="556">
-          <caret line="57" column="100" lean-forward="true" selection-start-line="57" selection-start-column="100" selection-end-line="57" selection-end-column="100" />
+          <caret line="57" column="100" lean-forward="false" selection-start-line="57" selection-start-column="100" selection-end-line="57" selection-end-column="100" />
           <folding>
             <element signature="e#640#672#0" expanded="true" />
           </folding>
@@ -1079,7 +1046,7 @@
     <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/times.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
-          <caret line="11" column="29" lean-forward="true" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+          <caret line="11" column="29" lean-forward="false" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -1087,7 +1054,7 @@
     <entry file="file://$PROJECT_DIR$/PSS/templates/PSS/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
-          <caret line="27" column="14" lean-forward="true" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
+          <caret line="27" column="14" lean-forward="false" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -1095,7 +1062,7 @@
     <entry file="file://$PROJECT_DIR$/PSS/survey_views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="780">
-          <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
           <folding>
             <element signature="e#0#73#0" expanded="true" />
           </folding>
@@ -1104,8 +1071,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PSS/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="206" column="30" lean-forward="true" selection-start-line="206" selection-start-column="30" selection-end-line="206" selection-end-column="30" />
+        <state relative-caret-position="85">
+          <caret line="49" column="28" lean-forward="true" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
           <folding>
             <element signature="e#0#73#0" expanded="true" />
             <element signature="e#1284#1420#0" expanded="false" />
