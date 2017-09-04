@@ -1,0 +1,51 @@
+{% extends 'PSS/base.html' %}
+{% block content %}
+
+<h1>Select Participants To Release </h1>
+    <p>Paticipants Who have been done with the First Survey</p><br>
+    <form action="{% url 'PSS:set_ready'%}" method="post" class="post-form">{% csrf_token %}
+    {% if participants_1 %}
+        <ul>
+        {% for participant in participants_1 %}
+            <li> <input type="checkbox" name="participants1" value={{ participant.caseNum }}>{{ participant.caseNum }}</li>
+        {% endfor %}
+         </ul>
+    {% else %}
+        <p> No participant is available. </p>
+    {% endif %}
+
+    <p>Paticipants Who have been done with the Second Survey</p><br>
+    {% if participants_2 %}
+        <ul>
+        {% for participant in participants_2 %}
+            <li> <input type="checkbox" name="participants2"  value={{ participant.caseNum }}>{{ participant.caseNum }}</li>
+        {% endfor %}
+         </ul>
+    {% else %}
+        <p> No participant is available. </p>
+    {% endif %}
+
+    <p>Paticipants Who have been done with the Thrid Survey</p><br>
+    {% if participants_3 %}
+        <ul>
+        {% for participant in participants_3 %}
+            <li> <input type="checkbox" name="participants3"  value={{ participant.caseNum }}>{{ participant.caseNum }}</li>
+        {% endfor %}
+         </ul>
+    {% else %}
+        <p> No participant is available. </p>
+    {% endif %}
+
+    <p>Paticipants Who have been done </p><br>
+    {% if participants_4 %}
+        <ul>
+        {% for participant in participants_4 %}
+            <li> {{ participant.caseNum }}</li>
+        {% endfor %}
+         </ul>
+    {% else %}
+        <p> No participant is available. </p>
+    {% endif %}
+    <button type="submit" class="save btn btn-default">Submit</button>
+</form>
+{% endblock content %}

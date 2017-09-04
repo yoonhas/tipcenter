@@ -1,0 +1,16 @@
+{% extends 'PSS/base.html' %}
+{% block content %}
+
+<h1>Select an Agent To Release </h1>
+    {% if agents %}
+        <ul>
+        {% for agent in agents %}
+            <li><a href="{% url 'PSS:release_survey_participants' agent.id%}">{{ agent.username }}</a></li>
+        {% endfor %}
+         </ul>
+    {% else %}
+        <p> No agent is available. </p>
+    {% endif %}
+
+
+{% endblock content %}

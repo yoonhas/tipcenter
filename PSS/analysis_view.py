@@ -59,7 +59,7 @@ def summary(request, agent_id):
             list1.append(p)
 
 
-    return render(request, "PSS/summary.html", {'agent_id':User.objects.get(id=agent_id).get_username(), 'total':total, 'indi':list1})
+    return render(request, "PSS/Analysis/summary.html", {'agent_id':User.objects.get(id=agent_id).get_username(), 'total':total, 'indi':list1})
 
 def draw_graph(box,agent_id):
     if agent_id ==1:
@@ -190,11 +190,11 @@ def score_detail(request, agent_id):
             i += 1
 
     html_fig = draw_graph(list1, agent_id)
-    return render(request, "PSS/score_detail.html", { 'agent':agent.get_username(), 'detail_list':list1, 'html_fig':html_fig})
+    return render(request, "PSS/Analysis/score_detail.html", {'agent':agent.get_username(), 'detail_list':list1, 'html_fig':html_fig})
 
 def compare_view(request):
     agents = User.objects.all()
-    return render(request, 'PSS/compare.html', {'agents':agents})
+    return render(request, 'PSS/Analysis/compare.html', {'agents':agents})
 
 def compare_detail(request):
 
@@ -220,42 +220,70 @@ def compare_detail(request):
 
     raw_data = read_frame(Total_for_Admin.objects.all())
     races = request.POST['race']
+
+    if races != '77':
+        mask = (raw_data['DM14'] == races)
+        raw_data =raw_data[mask]
+
     age = request.POST['age']
     if '-' in age:
         ages = list(age.split('-'))
         beginAge= ages[0]
         endAge= ages[1]
-        ageMask = (raw_data['DM12']>=ages[0])&(raw_data['DM12']<=ages[1])
-    elif age == '77':
-        ageMask = int(age)
+        ageMask = (raw_data['DM12_1']>=int(beginAge))&(raw_data['DM12_1']<=int(endAge))
+        raw_data = raw_data[ageMask]
+    elif age == '0':
+        age =0
     else:
         ages=age
-        ageMask =(raw_data['DM12']==ages[0])
+        ageMask =(raw_data['DM12_1']==int(ages))
+        raw_data = raw_data[ageMask]
+
 
     year = request.POST['year']
     if '-' in year:
         years = list(year.split('-'))
-        yearMask = (raw_data['DM12'] >= ages[0]) & (raw_data['DM12'] <= ages[1])
+        begin = pd.to_datetime(years[0], format='%Y-%m-%d')
+        end = pd.to_datetime(years[1], format='%Y-%m-%d')
+        yearMask = (raw_data['DM12_3'] >= begin) & (raw_data['DM12_3'] <= end)
+        raw_data = raw_data[yearMask]
+    elif year == '0':
+        year =0
     else:
-        years=year
+        years=pd.to_datetime(year, format='%Y-%m-%d')
+        yearMask = (raw_data['DM12_3'] >= years)
+        raw_data = raw_data[yearMask]
 
     status = request.POST['status']
+    if status != '77':
+        statusMask = (raw_data['DM12'] >= int(status))
+        raw_data = raw_data[statusMask]
+
     date = request.POST['date']
     if '-' in date:
         dates = list(date.split('-'))
+        beginDate = pd.to_datetime(dates[0], format='%Y-%m-%d')
+        endDate = pd.to_datetime(dates[1], format='%Y-%m-%d')
+        dateMask = (raw_data['DM12'] >= beginDate) & (raw_data['DM12'] <= endDate)
+        raw_data = raw_data[dateMask]
+    elif date == '0':
+        date = int(0)
     else:
-        dates = date
-
-    begin = pd.to_datetime(dates[0], format='%Y-%m-%d' )
-    end = pd.to_datetime(dates[1], format='%Y-%m-%d' )
+        dates = pd.to_datetime(date, format='%Y-%m-%d')
+        dateMask = (raw_data['DM12'] >= dates)
+        raw_data = raw_data[dateMask]
 
     housing = request.POST['Housing']
+    if housing != '77':
+        housingMask = (raw_data['DM9'] >= int(housing))
+        raw_data = raw_data[housingMask]
+
     compare = request.POST.getlist('compare')
 
 
 
 
-    return render(request, 'PSS/compare.html')
+    return render(request, 'PSS/Analysis/compare.html')
 
 
 def show_graph(request):

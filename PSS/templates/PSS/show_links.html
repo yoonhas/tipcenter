@@ -1,0 +1,28 @@
+{% extends 'PSS/base.html' %}
+{% block content %}
+
+<h1>Select an Agent To Release </h1>
+    {% if link1 %}
+        <ul>
+        {% for i in link1 %}
+            <li>{{ i.0 }}:  {{ i.1 }}</li>
+        {% endfor %}
+         </ul>
+    {% endif %}
+        {% if link2 %}
+        <ul>
+        {% for i in link2 %}
+            <li>{{ i.0 }}:  {{ i.1 }}</li>
+        {% endfor %}
+         </ul>
+    {% endif %}
+        {% if link3 %}
+        <ul>
+        {% for i in link3 %}
+            <li>{{ i.0 }}:  {{ i.1 }}</li>
+        {% endfor %}
+         </ul>
+    {% endif %}
+
+
+{% endblock content %}

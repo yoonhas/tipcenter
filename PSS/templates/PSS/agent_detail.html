@@ -2,6 +2,9 @@
 {% block content %}
 
 <h1>PSS Main Page</h1>
+    {% if message %}
+        <p> *** {{ message }} has been added ***</p><br>
+    {% endif %}
     {% if surveyee_list %}
         <ul>
         {% for surveyee in surveyee_list %}

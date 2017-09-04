@@ -1,0 +1,264 @@
+{% extends 'PSS/base.html' %}
+{% block content %}
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#hide").click(function(){
+        $("p").hide(1000);
+    });
+    $("#show").click(function(){
+        $("p").show();
+    });
+});
+</script>
+</head>
+<h1> {{ agent }} Score Detail</h1>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th{
+
+            background-color: black;
+            color: white;
+         }
+            th, td {
+            padding: 5px;
+        }
+
+    </style>
+
+    <form action="" method="POST" class="post-form">{% csrf_token %}
+        <ol>
+             <a href="{% url 'PSS:compare_view' %}">Compare (click for compare)</a><br>
+
+            <table style="width:80%">
+                <tr>
+                    <th id="times">Time</th>
+                    <th id="name">Statistics</th>
+                    <th id="Health">Health</th>
+                    <th id="Community">Community</th>
+                    <th id="Childcare">Childcare</th>
+                    <th id="Jobskills">Jobskills</th>
+                    <th id="SoftSkill">SoftSkill</th>
+                    <th id="Peb_all">Peb_all</th>
+                </tr>
+                 <p> {{ html_fig|safe }}</p>
+                <strong>PEB</strong> <button id="show">Show Graph</button> <button id="hide">Hide Graph</button>
+
+                {% for name, each in detail_list %}
+
+                <tr>
+                    <td headers="times" style=" background-color: darkred; color: white;"> {{ name }}</td>
+                    <td headers="name">Mean</td>
+                    <td headers="Health">{{each.Health.mean }}</td>
+                    <td headers="Community">{{ each.Community.mean }}</td>
+                    <td headers="Childcare">{{ each.Childcare.mean }}</td>
+                    <td headers="Jobskills">{{ each.Jobskills.mean }}</td>
+                    <td headers="SoftSkill">{{ each.SoftSkill.mean }}</td>
+                    <td headers="Peb_all">{{ each.Peb_all.mean }}</td>
+
+
+                </tr>
+
+                  <tr>
+                  <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Count</td>
+                    <td headers="Health">{{each.Health.count }}</td>
+                    <td headers="Community">{{ each.Community.count }}</td>
+                    <td headers="Childcare">{{ each.Childcare.count }}</td>
+                    <td headers="Jobskills">{{ each.Jobskills.count }}</td>
+                    <td headers="SoftSkill">{{ each.SoftSkill.count }}</td>
+                    <td headers="Peb_all">{{ each.Peb_all.count }}</td>
+
+                </tr>
+                <tr>
+                 <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Min</td>
+                    <td headers="Health">{{each.Health.min }}</td>
+                    <td headers="Community">{{ each.Community.min }}</td>
+                    <td headers="Childcare">{{ each.Childcare.min }}</td>
+                    <td headers="Jobskills">{{ each.Jobskills.min }}</td>
+                    <td headers="SoftSkill">{{ each.SoftSkill.min }}</td>
+                    <td headers="Peb_all">{{ each.Peb_all.min }}</td>
+
+                </tr>
+                <tr>
+                 <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Max</td>
+                    <td headers="Health">{{each.Health.max }}</td>
+                    <td headers="Community">{{ each.Community.max }}</td>
+                    <td headers="Childcare">{{ each.Childcare.max }}</td>
+                    <td headers="Jobskills">{{ each.Jobskills.max }}</td>
+                    <td headers="SoftSkill">{{ each.SoftSkill.max }}</td>
+                    <td headers="Peb_all">{{ each.Peb_all.max }}</td>
+
+
+                </tr>
+                    <tr>
+                     <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Std</td>
+                    <td headers="Health">{{each.Health.std }}</td>
+                    <td headers="Community">{{ each.Community.std }}</td>
+                    <td headers="Childcare">{{ each.Childcare.std }}</td>
+                    <td headers="Jobskills">{{ each.Jobskills.std }}</td>
+                    <td headers="SoftSkill">{{ each.SoftSkill.std }}</td>
+                    <td headers="Peb_all">{{ each.Peb_all.std }}</td>
+
+                </tr>
+                {% endfor %}
+
+            </table>
+            <table style="width:80%">
+                <tr>
+                    <th id="times">Time</th>
+                    <th id="name">Statistics</th>
+                    <th id="Empowerment">Empowerment</th>
+                    <th id="Selfmotivation">Selfmotivation</th>
+                    <th id="SkilResources">SkilResources</th>
+                    <th id="GaolOrientation">GaolOrientation</th>
+                    <th id="Ehs_all">Ehs_all</th>
+                </tr>
+                <br>
+                <strong>EHS</strong>
+                {% for name, each in detail_list %}
+
+                <tr>
+                    <td headers="times" style=" background-color: darkred; color: white;"> {{ name }}</td>
+                    <td headers="name">Mean</td>
+                    <td headers="Empowerment">{{each.Empowerment.mean }}</td>
+                    <td headers="Selfmotivation">{{ each.Selfmotivation.mean }}</td>
+                    <td headers="SkilResources">{{ each.SkilResources.mean }}</td>
+                    <td headers="GaolOrientation">{{ each.GaolOrientation.mean }}</td>
+                    <td headers="Ehs_all">{{ each.Ehs_all.mean }}</td>
+
+
+
+                </tr>
+
+                  <tr>
+                  <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Count</td>
+                   <td headers="Empowerment">{{each.Empowerment.count }}</td>
+                    <td headers="Selfmotivation">{{ each.Selfmotivation.count }}</td>
+                    <td headers="SkilResources">{{ each.SkilResources.count }}</td>
+                    <td headers="GaolOrientation">{{ each.GaolOrientation.count }}</td>
+                    <td headers="Ehs_all">{{ each.Ehs_all.count }}</td>
+
+                </tr>
+                <tr>
+                 <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Min</td>
+                 <td headers="Empowerment">{{each.Empowerment.min }}</td>
+                    <td headers="Selfmotivation">{{ each.Selfmotivation.min }}</td>
+                    <td headers="SkilResources">{{ each.SkilResources.min }}</td>
+                    <td headers="GaolOrientation">{{ each.GaolOrientation.min }}</td>
+                    <td headers="Ehs_all">{{ each.Ehs_all.min }}</td>
+
+                </tr>
+                <tr>
+                 <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Max</td>
+                 <td headers="Empowerment">{{each.Empowerment.max }}</td>
+                    <td headers="Selfmotivation">{{ each.Selfmotivation.max }}</td>
+                    <td headers="SkilResources">{{ each.SkilResources.max }}</td>
+                    <td headers="GaolOrientation">{{ each.GaolOrientation.max }}</td>
+                    <td headers="Ehs_all">{{ each.Ehs_all.max }}</td>
+
+                </tr>
+                    <tr>
+                     <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Std</td>
+                    <td headers="Community">{{ each.Community.std }}</td>
+                    <td headers="Selfmotivation">{{each.Selfmotivation.std }}</td>
+                    <td headers="SkilResources">{{ each.SkilResources.std }}</td>
+                    <td headers="GaolOrientation">{{ each.GaolOrientation.std }}</td>
+                    <td headers="Ehs_all">{{ each.Ehs_all.std }}</td>
+
+                </tr>
+                {% endfor %}
+
+            </table>
+        <table style="width:80%">
+                <tr>
+                    <th id="times">Time</th>
+                    <th id="name">Statistics</th>
+                    <th id="ESS1">ESS1</th>
+                    <th id="ESS2">ESS2</th>
+                    <th id="ESS3">ESS3</th>
+                    <th id="ESS4">ESS4</th>
+                    <th id="Ess_all">Ess_all</th>
+                    <th id="PSS">PSS</th>
+                </tr>
+                <strong>ESS/PSS</strong>
+                {% for name, each in detail_list %}
+
+                <tr>
+                    <td headers="times" style=" background-color: darkred; color: white;"> {{ name }}</td>
+                    <td headers="name">Mean</td>
+                     <td headers="ESS1">{{ each.Ess1.mean }}</td>
+                    <td headers="ESS2">{{each.Ess2.mean }}</td>
+                    <td headers="ESS3">{{ each.Ess3.mean }}</td>
+                    <td headers="ESS4">{{ each.Ess4.mean }}</td>
+                    <td headers="Ess_all">{{ each.Ess_all.mean }}</td>
+                    <td headers="PSS">{{ each.PSS.mean }}</td>
+
+
+                </tr>
+
+                  <tr>
+                  <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Count</td>
+                    <td headers="ESS1">{{ each.Ess1.count }}</td>
+                      <td headers="ESS2">{{each.Ess2.count }}</td>
+                    <td headers="ESS3">{{ each.Ess3.count }}</td>
+                    <td headers="ESS4">{{ each.Ess4.count }}</td>
+                    <td headers="Ess_all">{{ each.Ess_all.count }}</td>
+                    <td headers="PSS">{{ each.PSS.count }}</td>
+
+                </tr>
+                <tr>
+                 <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Min</td>
+                    <td headers="ESS1">{{ each.Ess1.min }}</td>
+                <td headers="ESS2">{{each.Ess2.min }}</td>
+                    <td headers="ESS3">{{ each.Ess3.min }}</td>
+                    <td headers="ESS4">{{ each.Ess4.min }}</td>
+                    <td headers="Ess_all">{{ each.Ess_all.min }}</td>
+                    <td headers="PSS">{{ each.PSS.min }}</td>
+
+                </tr>
+                <tr>
+                 <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Max</td>
+                    <td headers="ESS1">{{ each.Ess1.max }}</td>
+                <td headers="ESS2">{{each.Ess2.max }}</td>
+                    <td headers="ESS3">{{ each.Ess3.max }}</td>
+                    <td headers="ESS4">{{ each.Ess4.max }}</td>
+                    <td headers="Ess_all">{{ each.Ess_all.max }}</td>
+                    <td headers="PSS">{{ each.PSS.max }}</td>
+
+
+                </tr>
+                    <tr>
+                     <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Std</td>
+                    <td headers="ESS1">{{ each.Ess1.std }}</td>
+                        <td headers="ESS2">{{each.Ess2.std }}</td>
+                    <td headers="ESS3">{{ each.Ess3.std }}</td>
+                    <td headers="ESS4">{{ each.Ess4.std }}</td>
+                    <td headers="Ess_all">{{ each.Ess_all.std }}</td>
+                    <td headers="PSS">{{ each.PSS.std }}</td>
+
+                </tr>
+                {% endfor %}
+
+            </table>
+
+
+
+         </ol>
+
+{% endblock %}
