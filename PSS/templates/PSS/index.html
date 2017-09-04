@@ -11,10 +11,13 @@
                     {% if agent.get_username == 'yoonhas' %}
                         <li><a href="{% url 'PSS:upload_csv_start' %}">{{ agent.get_username }}</a></li>
                         <li><a href="{% url 'PSS:summary' agent.id %}">{{ agent.get_username }} Summary</a></li>
+                        <li><a href="{% url 'PSS:call_add_participant' %}">Add New Participant</a></li>
+                        <li><a href="{% url 'PSS:release_survey_agent' %}">Release Survey</a></li>
+
                     {% else %}
                         <li><a href="{% url 'PSS:agent_detail' agent.id%}">{{ agent.get_username }}</a></li>
                         <li><a href="{% url 'PSS:summary'  agent.id %}">{{ agent.get_username }} Summary</a></li>
-                         <li><a href="{% url 'PSS:add_new_participant'  agent.id %}">Add New Participant</a></li>
+
                     {% endif %}
                 {% endif %}
             {% endfor %}

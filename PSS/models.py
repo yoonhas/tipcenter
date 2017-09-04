@@ -2,26 +2,28 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 
-##hi
-##newline
-#hellolow
-# modified
-### new new line
 # Create your models here.
 class Surveyee(models.Model):
     caseNum = models.IntegerField(unique=True, primary_key=True)
     agent_name = models.ForeignKey(User, on_delete=models.CASCADE,
                                    help_text="If you delete agent, you will lose all surveyees")
+    survey1 = models.BooleanField(default=False)
+    survey2 = models.BooleanField(default=False)
+    survey3 = models.BooleanField(default=False)
+    survey4 = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.caseNum)
 
-#yoonha
 class SurveyTimes(models.Model):
     choices = ((1, '1'), (2, '2'), (3, '3'), (4, '4'))
     caseNum = models.ForeignKey('Surveyee', on_delete=models.CASCADE)
+    agent = models.ForeignKey(User,  on_delete=models.CASCADE)
     time = models.IntegerField(null=False, default=1, choices=choices)
     pub_Date = models.DateTimeField()
+    readyToStart = models.BooleanField(default=False)
+    doneSurvey = models.BooleanField(default=False)
+
 
     def publish(self):
         self.pub_Date = timezone.now()
@@ -30,7 +32,7 @@ class SurveyTimes(models.Model):
     def __str__(self):
         return str(self.pk)
 
-#yollo
+
 class EB(models.Model):
     choices = ((1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5'))
     surveytime = models.IntegerField()

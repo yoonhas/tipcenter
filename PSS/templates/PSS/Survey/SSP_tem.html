@@ -1,0 +1,42 @@
+{% extends 'PSS/base.html' %}
+{% block content %}
+
+<html>
+    <head>
+        <title> SSP </title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="">SSP </a></h1>
+        </div>
+        <p>
+           SSP.  This scale is made up of a list of statements each of which may or may not be true about you. <br>
+            For each statement circle "definitely true" if you are sure it is true about you and "probably true" <br>
+            if you think it is true but are not absolutely certain. <br>
+            Similarly, you should circle “definitely false” if you are sure the statement is false <br>
+            and “probably false” if you think it is false but are not absolutely certain.
+
+
+
+        </p>
+        <form action="{% url 'PSS:ssp' surveyee_caseNum survey %}" method="post" class="post-form">{% csrf_token %}
+            {% for name, value in  questions.get_fields %}
+                {%  if value != '1' %}
+                    <p>{{ value }} <br>
+                    {% for choice in choices %}
+                        <input type="radio" name="{{ name }}" value="{{ choice}}">{{ choice }}
+                    {% endfor %}
+                    {% endif %}
+                </p>
+                <br><br>
+            {% endfor %}
+
+
+
+
+            <button type="submit" class="save btn btn-default">Save</button>
+        </form>
+    </body>
+</html>
+
+{% endblock %}

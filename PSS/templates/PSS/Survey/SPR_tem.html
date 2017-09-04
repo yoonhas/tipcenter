@@ -1,0 +1,42 @@
+{% extends 'PSS/base.html' %}
+{% block content %}
+
+<html>
+    <head>
+        <title> SPR </title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="">SPR </a></h1>
+        </div>
+        <p>
+          SPR.  As was the case with one of the above questions, <br>
+            the following six questions use a 0 to 10 response key in which 0 corresponding to an absence or zero amount of the attribute,<br>
+            while 10 corresponds to the maximum amount of the attribute. <br>
+            Please circle the number along the continuum that best reflects your initial feeling. <br>
+            Spirituality refers as your relationship to God.
+
+
+
+        </p>
+        <form action="{% url 'PSS:spr' surveyee_caseNum survey %}" method="post" class="post-form">{% csrf_token %}
+            {% for name, value in  questions.get_fields %}
+                {%  if value != '1' %}
+                    <p>{{ value }} <br>
+                    {% for choice in choices %}
+                        <input type="radio" name="{{ name }}" value="{{ choice}}">{{ choice }}
+                    {% endfor %}
+                    {% endif %}
+                </p>
+                <br><br>
+            {% endfor %}
+
+
+
+
+            <button type="submit" class="save btn btn-default">Save</button>
+        </form>
+    </body>
+</html>
+
+{% endblock %}
