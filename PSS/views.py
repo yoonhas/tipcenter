@@ -53,7 +53,7 @@ def add_surveyee(request, agent_id):
     new_id = str(agent_id) + '000'+str(numbers)
     new_surveyee = Surveyee(caseNum=int(new_id), agent_name=agent)
     new_surveyee.save()
-    first_surveyTime =  SurveyTimes(caseNum=new_surveyee,time=1, pub_Date=timezone.now(), readyToStart=True)
+    first_surveyTime =  SurveyTimes(caseNum=new_surveyee,agent=agent, time=1, pub_Date=timezone.now(), readyToStart=True)
     first_surveyTime.save()
     all_surveyee = Surveyee.objects.filter(agent_name_id=agent_id)
 
