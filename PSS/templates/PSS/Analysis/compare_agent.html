@@ -1,0 +1,70 @@
+{% extends 'PSS/base.html' %}
+{% block content %}
+
+<html>
+    <head>
+        <title> Compare </title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="">Select factors</a></h1>
+        </div>
+
+            <form action="{% url 'PSS:show_compare_agent' user.id%}" method="post" class="post-form">{% csrf_token %}
+                <br><li>Race</li>  <br>
+            <span style="margin-left:1em"></span>
+                <input type="radio" name="race" value=77 checked }>Default
+                <input type="radio" name="race" value=0>Native American or Alaska Native
+                <input type="radio" name="race" value=1>Asian or Pacific Islander
+                <input type="radio" name="race" value=2}>Black or African American <br>
+                <span style="margin-left:1em"></span>
+                <input type="radio" name="race" value=3>White or European American
+                <input type="radio" name="race" value=4}>Non-White Hispanic
+                <input type="radio" name="race" value=5>Bi- / multi-racial
+                <input type="radio" name="race" value=6}>Other
+
+            <br><br>
+            <li> Age (23, or 23-32)</li> <br>
+            <span style="margin-left:1em"></span>
+                <input type="text" name="age" value="0">
+            <br>
+            <br><li>Gender</li> <br>
+            <span style="margin-left:1em"></span>
+                <input type="radio" name="gender" value=77 checked }>Default
+                <input type="radio" name="gender" value=0>Male
+                <input type="radio" name="gender" value=1>Female
+
+                <br><br>
+            <li>Education Level</li> <br>
+            <span style="margin-left:1em"><input type="radio" name="education" value=77 checked>Default</span><br>
+            <span style="margin-left:1em"><input type="radio" name="education" value=0>Less than High School</span> <br>
+            <span style="margin-left:1em"><input type="radio" name="education" value=1>High-School / GED</span><br>
+            <span style="margin-left:1em"><input type="radio" name="education" value=2>Some College but no degree</span><br>
+            <span style="margin-left:1em"><input type="radio" name="education" value=3>Diploma or certificate from vocational, technical or trade school</span><br>
+            <span style="margin-left:1em"><input type="radio" name="education" value=4>Associates Degree</span><br>
+            <span style="margin-left:1em"><input type="radio" name="education" value=5>Bachelors Degree</span><br>
+            <span style="margin-left:1em"><input type="radio" name="education" value=6>Masters Degree</span><br>
+            <span style="margin-left:1em"><input type="radio" name="education" value=7>Professional School Degree</span><br>
+            <span style="margin-left:1em"><input type="radio" name="education" value=8>Doctorate</span><br>
+            <br><br>
+
+                <li>Select Case Number</li><br>
+                <span style="margin-left:2em"></span>
+                <select name="caseNum">
+                    <option value= -1 selected >Default</option>
+
+                        {% for i in surveylist %}
+
+                            <option value={{ i.caseNum }} >{{ i.caseNum }}</option>
+                        {% endfor %}
+                    </select>
+
+
+                <br>
+                <br>
+            <button type="submit" class="save btn btn-default">Submit</button>
+        </form>
+        </body>
+</html>
+
+{% endblock %}

@@ -113,7 +113,7 @@ def draw_graph(box,userId):
 
     return html_fig
 
-def draw_graph_Agent(box,box1, userId):
+def draw_graph_Agent(box,box1):
 
     PSS = pd.DataFrame(columns=['PEB_Total','Ehs_Total', 'Ess_Total', 'PSS_Total', 'PEB','Ehs', 'Ess', 'PSS'])
 
@@ -153,6 +153,48 @@ def draw_graph_Agent(box,box1, userId):
     plt.close(fig)
 
     return html_fig
+
+def draw_graph_Agent_compare(box,box1, box2):
+
+    PSS = pd.DataFrame(columns=['PEB_Total','Ehs_Total', 'Ess_Total', 'PSS_Total', 'PEB','Ehs', 'Ess', 'PSS', 'PEB_case','Ehs', 'Ess', 'PSS',])
+
+    for i in range(4):
+        _, diction = box[i]
+        _, diction1 = box1[i]
+        PSS.loc[i] = [ diction['Peb_all']['mean'],diction['Ehs_all']['mean'],diction['Ess_all']['mean'],
+                       diction['PSS']['mean'],
+                       diction1['Peb_all']['mean'],
+                      diction1['Ehs_all']['mean'],
+                      diction1['Ess_all']['mean'], diction1['PSS']['mean'], box2.ix[i]['Peb_all'], box2.ix[i]['Ehs_all'], box2.ix[i]['Ess_all'], box2.ix[i]['PSS']]
+
+
+    fig, ax = plt.subplots()
+    line_collection= []
+    x =['1st', '2nd', '3rd', '4th']
+    ax.grid(True, alpha=0.3)
+    for key, val in PSS.iteritems():
+
+        l = ax.plot((val.index +1), val.values, label=key)
+        line_collection.append(l)
+
+
+    handles, labels = ax.get_legend_handles_labels()  # return lines and labels
+    plt.xticks(val.index+1, x)
+
+    interactive_legend = plugins.InteractiveLegendPlugin(line_collection,labels)
+    plugins.connect(fig, interactive_legend)
+    fig.subplots_adjust(right=0.7)
+
+    ax.set_xlabel('Times')
+    ax.set_ylabel('Mean')
+    ax.set_title('PSS', size=20)
+    fig.set_size_inches(12, 5)
+    html_fig = mpld3.fig_to_html(fig)
+
+    plt.close(fig)
+
+    return html_fig
+
 
 def score_detail_agent(request, agent_id, userId):
     def describe(df, agent_id):
@@ -202,7 +244,7 @@ def score_detail_agent(request, agent_id, userId):
         list2.append((i, describe(df2, agent_id)))
         i += 1
 
-    html_fig = draw_graph_Agent(list1,list2, userId)
+    html_fig = draw_graph_Agent(list1,list2)
     return render(request, "PSS/Analysis/summary_agent.html",
                   {'agent': agent.get_username(), 'detail_list': list2, 'html_fig': html_fig})
 
@@ -379,9 +421,121 @@ def compare_detail(request):
     compare = request.POST.getlist('compare')
 
 
-
-
     return render(request, 'PSS/Analysis/compare.html')
+
+def compare_agent(request, agent_id):
+    users = get_user_model()
+    agent = users.objects.get(id= agent_id)
+    surveylist = Surveyee.objects.filter(agent_name_id= agent_id)
+    return render(request, 'PSS/Analysis/compare_agent.html', {'surveylist': surveylist})
+
+
+def show_compare_agent(request,agent_id):
+
+    def describe(df):
+        pd.set_option('precision', 6)
+        data ={}
+
+        fact_list = ['Peb_all', 'Ehs_all','Ess_all', 'PSS', 'Peb_all_Z','Ehs_all_Z',
+                         'Ess_all_Z', 'PSS_Z']
+
+        for i  in fact_list:
+            data[i]=helper(df,i)
+
+
+        return data
+
+
+    def helper(df, str):
+        pd.set_option('precision', 6)
+        mean =df[str].mean().round(10)
+        count = df[str].count()
+        min = df[str].min()
+        max = df[str].max()
+        std = df[str].std().round(6)
+        desc ={'mean':mean, 'count':count, 'min':min, 'max':max, 'std':std}
+        return desc
+
+    def z_score(df):
+
+        df['Peb_all_Z'] = (df.Peb_all - df.Peb_all.mean()) / df.Peb_all.std(ddof=0)
+        df['Ehs_all_Z'] = (df.Ehs_all - df.Ehs_all.mean()) / df.Ehs_all.std(ddof=0)
+        df['Ess4_Z'] = (df.Ess4 - df.Ess4.mean()) / df.Ess4.std(ddof=0)
+        df['Ess_all_Z'] = (df.Ess_all - df.Ess_all.mean()) / df.Ess_all.std(ddof=0)
+        df['PSS_Z'] = (df.PSS - df.PSS.mean()) / df.PSS.std(ddof=0)
+
+        return df
+
+
+
+
+    def maskfunction(raw_data,races,age,gender,education):
+
+        if races != '77':
+            mask = (raw_data['DM14'] == races)
+            raw_data =raw_data[mask]
+
+
+        if '-' in age:
+            ages = list(age.split('-'))
+            beginAge= ages[0]
+            endAge= ages[1]
+            ageMask = (raw_data['DM12_1']>=int(beginAge))&(raw_data['DM12_1']<=int(endAge))
+            raw_data = raw_data[ageMask]
+        elif age == '0':
+            age =0
+        else:
+            ages=age
+            ageMask =(raw_data['DM12_1']==int(ages))
+            raw_data = raw_data[ageMask]
+
+
+        if gender != 77:
+            genderMask =(raw_data['DM13']==gender)
+            raw_data = raw_data[genderMask]
+
+
+
+        if education != 77:
+            educationMask =(raw_data['DM16']==education)
+            raw_data = raw_data[educationMask]
+        return raw_data
+
+    races = request.POST['race']
+    age = request.POST['age']
+    gender = int(request.POST['gender'])
+    education = int(request.POST['education'])
+    case = int(request.POST['caseNum'])
+
+    users = get_user_model()
+    agent = users.objects.get(id=agent_id)
+
+    if case != 77:
+        surveyee = Surveyee.objects.get(caseNum=case)
+        individual = read_frame(Total_for_Admin.objects.filter(caseNum=surveyee))
+
+    i = 1
+    list1 = []
+    list2 = []
+    while i != 5:
+        pd.set_option('precision', 6)
+        time_total = Total_for_Admin.objects.filter(Time=i)
+        time_agent = Total_for_Admin.objects.filter(Time=i, Agent=agent)
+        total_mask = maskfunction(read_frame(time_total), races,age, gender, education)
+        agent_mask = maskfunction(read_frame(time_agent), races,age, gender, education)
+        df1 = z_score(total_mask)
+        df2 = z_score(agent_mask)
+        list1.append((i, describe(df1)))
+        list2.append((i, describe(df2)))
+        i += 1
+
+    if individual:
+        html_fig = draw_graph_Agent_compare(list1, list2,individual )
+    else:
+        html_fig = draw_graph_Agent(list1, list2, )
+
+    return render(request, 'PSS/Analysis/compare_agent_show.html', {'agent': agent.get_username(), 'detail_list': list2, 'html_fig': html_fig})
+
 
 
 def show_graph(request):

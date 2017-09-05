@@ -33,7 +33,7 @@ $(document).ready(function(){
     <form action="" method="POST" class="post-form">{% csrf_token %}
 
         <ol>
-             <a href="{% url 'PSS:compare_view' %}">Compare (click for compare)</a><br>
+             <a href="{% url 'PSS:compare_agent' user.id %}">Compare (click for compare)</a><br>
 
             <table style="width:80%">
                 <tr>
