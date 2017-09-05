@@ -61,8 +61,8 @@ def summary(request, agent_id):
 
     return render(request, "PSS/Analysis/summary.html", {'agent_id':User.objects.get(id=agent_id).get_username(), 'total':total, 'indi':list1})
 
-def draw_graph(box,agent_id):
-    if agent_id ==1:
+def draw_graph(box,userId):
+    if userId == '1':
         PSS =pd.DataFrame(columns=['Health', 'Community','Childcare', 'Jobskills', 'SoftSkill', 'Peb_all',
                                    'Empowerment', 'Selfmotivation', 'SkilResources', 'GaolOrientation','Ehs_all',
                                    'Ess1', 'Ess2', 'Ess3', 'Ess4', 'Ess_all', 'PSS'])
@@ -102,21 +102,117 @@ def draw_graph(box,agent_id):
     interactive_legend = plugins.InteractiveLegendPlugin(line_collection,labels)
     plugins.connect(fig, interactive_legend)
     fig.subplots_adjust(right=0.7)
+
     ax.set_xlabel('Times')
     ax.set_ylabel('Mean')
     ax.set_title('PSS', size=20)
+    fig.set_size_inches(12, 5)
     html_fig = mpld3.fig_to_html(fig)
 
     plt.close(fig)
 
     return html_fig
 
-def score_detail(request, agent_id):
+def draw_graph_Agent(box,box1, userId):
+
+    PSS = pd.DataFrame(columns=['PEB_Total','Ehs_Total', 'Ess_Total', 'PSS_Total', 'PEB','Ehs', 'Ess', 'PSS'])
+
+    for i in range(4):
+        _, diction = box[i]
+        _, diction1 = box1[i]
+        PSS.loc[i] = [ diction['Peb_all']['mean'],diction['Ehs_all']['mean'],diction['Ess_all']['mean'],
+                       diction['PSS']['mean'],
+                       diction1['Peb_all']['mean'],
+                      diction1['Ehs_all']['mean'],
+                      diction1['Ess_all']['mean'], diction1['PSS']['mean']]
+
+
+    fig, ax = plt.subplots()
+    line_collection= []
+    x =['1st', '2nd', '3rd', '4th']
+    ax.grid(True, alpha=0.3)
+    for key, val in PSS.iteritems():
+
+        l = ax.plot((val.index +1), val.values, label=key)
+        line_collection.append(l)
+
+
+    handles, labels = ax.get_legend_handles_labels()  # return lines and labels
+    plt.xticks(val.index+1, x)
+
+    interactive_legend = plugins.InteractiveLegendPlugin(line_collection,labels)
+    plugins.connect(fig, interactive_legend)
+    fig.subplots_adjust(right=0.7)
+
+    ax.set_xlabel('Times')
+    ax.set_ylabel('Mean')
+    ax.set_title('PSS', size=20)
+    fig.set_size_inches(12, 5)
+    html_fig = mpld3.fig_to_html(fig)
+
+    plt.close(fig)
+
+    return html_fig
+
+def score_detail_agent(request, agent_id, userId):
+    def describe(df, agent_id):
+        pd.set_option('precision', 6)
+        data ={}
+
+        fact_list = ['Peb_all', 'Ehs_all','Ess_all', 'PSS', 'Peb_all_Z','Ehs_all_Z',
+                         'Ess_all_Z', 'PSS_Z']
+
+        for i  in fact_list:
+            data[i]=helper(df,i)
+
+
+        return data
+
+
+    def helper(df, str):
+        pd.set_option('precision', 6)
+        mean =df[str].mean().round(10)
+        count = df[str].count()
+        min = df[str].min()
+        max = df[str].max()
+        std = df[str].std().round(6)
+        desc ={'mean':mean, 'count':count, 'min':min, 'max':max, 'std':std}
+        return desc
+
+    def z_score(df):
+
+        df['Peb_all_Z'] = (df.Peb_all - df.Peb_all.mean()) / df.Peb_all.std(ddof=0)
+        df['Ehs_all_Z'] = (df.Ehs_all - df.Ehs_all.mean()) / df.Ehs_all.std(ddof=0)
+        df['Ess4_Z'] = (df.Ess4 - df.Ess4.mean()) / df.Ess4.std(ddof=0)
+        df['Ess_all_Z'] = (df.Ess_all - df.Ess_all.mean()) / df.Ess_all.std(ddof=0)
+        df['PSS_Z'] = (df.PSS - df.PSS.mean()) / df.PSS.std(ddof=0)
+
+        return df
+    agent = User.objects.get(id=agent_id)
+    i=1
+    list1=[]
+    list2=[]
+    while i != 5:
+        pd.set_option('precision', 6)
+        time_total = Total_for_Admin.objects.filter(Time=i)
+        time_agent = Total_for_Admin.objects.filter(Time=i, Agent=agent)
+        df1 = z_score(read_frame(time_total))
+        df2 = z_score(read_frame(time_agent))
+        list1.append((i, describe(df1, agent_id)))
+        list2.append((i, describe(df2, agent_id)))
+        i += 1
+
+    html_fig = draw_graph_Agent(list1,list2, userId)
+    return render(request, "PSS/Analysis/summary_agent.html",
+                  {'agent': agent.get_username(), 'detail_list': list2, 'html_fig': html_fig})
+
+
+def score_detail(request, agent_id, userId):
     pd.set_option('precision', 6)
     def describe(df, agent_id):
         pd.set_option('precision', 6)
         data ={}
-        if agent_id==1:
+        if userId=='1':
             fact_list=['Health', 'Community','Childcare', 'Jobskills', 'SoftSkill', 'Peb_all',
                        'Empowerment', 'Selfmotivation', 'SkilResources', 'GaolOrientation','Ehs_all',
                        'Ess1','Ess2','Ess3','Ess4', 'Ess_all', 'PSS', 'Health_Z', 'Community_Z','Childcare_Z', 'Jobskills_Z', 'SoftSkill_Z', 'Peb_all_Z',
@@ -170,11 +266,12 @@ def score_detail(request, agent_id):
 
 
     agent = User.objects.get(id=agent_id)
-    print(agent.get_username())
+
     i = 1
     list1=[]
-    print(agent_id)
+
     if agent_id == '1':
+
         while i != 5:
             pd.set_option('precision', 6)
             time = Total_for_Admin.objects.filter(Time=i)
@@ -182,6 +279,7 @@ def score_detail(request, agent_id):
             list1.append((i, describe(df,agent_id)))
             i += 1
     else:
+
         while i != 5:
             pd.set_option('precision', 6)
             time = Total_for_Admin.objects.filter(Time=i, Agent=agent)
@@ -189,7 +287,7 @@ def score_detail(request, agent_id):
             list1.append((i, describe(df,agent_id)))
             i += 1
 
-    html_fig = draw_graph(list1, agent_id)
+    html_fig = draw_graph(list1, userId)
     return render(request, "PSS/Analysis/score_detail.html", {'agent':agent.get_username(), 'detail_list':list1, 'html_fig':html_fig})
 
 def compare_view(request):
