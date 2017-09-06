@@ -708,7 +708,7 @@ def inputFromPanda(df):
                 DM10=1,
                 DM11_1=1, DM11_2=1, DM11_3=1,
                 DM11_4=1,
-                DM12_1=1, DM12_3=1, DM13=df.ix[i]['Gender'],
+                DM12_1=df.ix[i]['Age'], DM12_3=1, DM13=df.ix[i]['Gender'],
                 DM14=df.ix[i]['Race'], DM14_1=' ',
                 DM15=1, DM16=df.ix[i]['EDULevel'], DM17=1, DM18=1,
                 DM19=1
@@ -734,7 +734,7 @@ def inputFromPanda(df):
                                 DM10=1,
                                 DM11_1=1, DM11_2=1, DM11_3=1,
                                 DM11_4=1,
-                                DM12_1=1, DM12_3=1, DM13=df.ix[i]['Gender'],
+                                DM12_1=df.ix[i]['Age'], DM12_3=1, DM13=df.ix[i]['Gender'],
                                 DM14=df.ix[i]['Race'], DM14_1=' ',
                                 DM15=1, DM16=df.ix[i]['EDULevel'], DM17=1, DM18=1,
                                 DM19=1)

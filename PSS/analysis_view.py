@@ -155,8 +155,9 @@ def draw_graph_Agent(box,box1):
     return html_fig
 
 def draw_graph_Agent_compare(box,box1, box2):
-
-    PSS = pd.DataFrame(columns=['PEB_Total','Ehs_Total', 'Ess_Total', 'PSS_Total', 'PEB','Ehs', 'Ess', 'PSS', 'PEB_case','Ehs', 'Ess', 'PSS',])
+    print("hellow")
+    PSS = pd.DataFrame(columns=['PEB_Total','Ehs_Total', 'Ess_Total', 'PSS_Total', 'PEB_Agent','Ehs_Agent', 'Ess_Agent', 'PSS_Agent',
+                                'PEB_Case','Ehs_Case', 'Ess_Case', 'PSS_Case'])
 
     for i in range(4):
         _, diction = box[i]
@@ -181,7 +182,7 @@ def draw_graph_Agent_compare(box,box1, box2):
     handles, labels = ax.get_legend_handles_labels()  # return lines and labels
     plt.xticks(val.index+1, x)
 
-    interactive_legend = plugins.InteractiveLegendPlugin(line_collection,labels)
+    interactive_legend = plugins.InteractiveLegendPlugin(line_collection,labels, start_visible=False)
     plugins.connect(fig, interactive_legend)
     fig.subplots_adjust(right=0.7)
 
@@ -448,7 +449,7 @@ def show_compare_agent(request,agent_id):
 
     def helper(df, str):
         pd.set_option('precision', 6)
-        mean =df[str].mean().round(10)
+        mean =df[str].mean().round(6)
         count = df[str].count()
         min = df[str].min()
         max = df[str].max()
@@ -471,7 +472,7 @@ def show_compare_agent(request,agent_id):
 
     def maskfunction(raw_data,races,age,gender,education):
 
-        if races != '77':
+        if races != 77:
             mask = (raw_data['DM14'] == races)
             raw_data =raw_data[mask]
 
@@ -485,23 +486,23 @@ def show_compare_agent(request,agent_id):
         elif age == '0':
             age =0
         else:
-            ages=age
-            ageMask =(raw_data['DM12_1']==int(ages))
+            ages=int(age)
+            ageMask =(raw_data['DM12_1']==ages)
             raw_data = raw_data[ageMask]
 
 
         if gender != 77:
+
             genderMask =(raw_data['DM13']==gender)
             raw_data = raw_data[genderMask]
-
-
 
         if education != 77:
             educationMask =(raw_data['DM16']==education)
             raw_data = raw_data[educationMask]
+
         return raw_data
 
-    races = request.POST['race']
+    races = int(request.POST['race'])
     age = request.POST['age']
     gender = int(request.POST['gender'])
     education = int(request.POST['education'])
@@ -510,9 +511,12 @@ def show_compare_agent(request,agent_id):
     users = get_user_model()
     agent = users.objects.get(id=agent_id)
 
-    if case != 77:
+    if case != -1:
+
         surveyee = Surveyee.objects.get(caseNum=case)
-        individual = read_frame(Total_for_Admin.objects.filter(caseNum=surveyee))
+        individual = Total_for_Admin.objects.filter(caseNum=surveyee)
+    else:
+        individual=1
 
     i = 1
     list1 = []
@@ -529,10 +533,12 @@ def show_compare_agent(request,agent_id):
         list2.append((i, describe(df2)))
         i += 1
 
-    if individual:
-        html_fig = draw_graph_Agent_compare(list1, list2,individual )
+
+    if individual.exists():
+        indi = read_frame(individual)
+        html_fig = draw_graph_Agent_compare(list1, list2,indi )
     else:
-        html_fig = draw_graph_Agent(list1, list2, )
+        html_fig = draw_graph_Agent(list1, list2 )
 
     return render(request, 'PSS/Analysis/compare_agent_show.html', {'agent': agent.get_username(), 'detail_list': list2, 'html_fig': html_fig})
 
