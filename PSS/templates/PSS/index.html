@@ -1,7 +1,7 @@
 {% extends 'PSS/base.html' %}
 {% block content %}
+<div class="container">
 
-<h1>PSS Main Page</h1>
     {% if user.is_active %}
         {% if agent_list %}
             <ul>
@@ -9,15 +9,33 @@
 
                 {% if agent.id == user.id %}
                     {% if agent.get_username == 'yoonhas' %}
-                        <li><a href="{% url 'PSS:upload_csv_start' %}">{{ agent.get_username }}</a></li>
-                        <li><a href="{% url 'PSS:summary' agent.id %}">{{ agent.get_username }} Summary</a></li>
-                        <li><a href="{% url 'PSS:call_add_participant' %}">Add New Participant</a></li>
-                        <li><a href="{% url 'PSS:release_survey_agent' %}">Release Survey</a></li>
+                        <h1>PSS Admin Main </h1><br><br>
+                        <div class="list-group">
+                        <a href="{% url 'PSS:upload_csv_start' %}" class="list-group-item" >
+                            <h4 class="list-group-item-heading">Upload Survey file</h4>
+                             <p class="list-group-item-text">csv file and 1.5 MB Max</p>
+                            </a>
+                        <a href="{% url 'PSS:summary' agent.id %}" class="list-group-item">
+                            <h4 class="list-group-item-heading">Total Summary</h4>
+                             <p class="list-group-item-text"></p></a>
+                        <a href="{% url 'PSS:call_add_participant' %}" class="list-group-item">
+                            <h4 class="list-group-item-heading">Add New Participant</h4>
+                             <p class="list-group-item-text"></p></a>
+                        <a href="{% url 'PSS:release_survey_agent' %}" class="list-group-item">
+                            <h4 class="list-group-item-heading">Release Survey</h4>
+                             <p class="list-group-item-text"></p></a>
+                        </div>
 
                     {% else %}
-                        <li><a href="{% url 'PSS:agent_detail' agent.id%}">{{ agent.get_username }}</a></li>
-                        <li><a href="{% url 'PSS:summary'  agent.id %}">{{ agent.get_username }} Summary</a></li>
-
+                        <h1>{{ agent.get_username }} PSS Main</h1><br><br>
+                         <div class="list-group">
+                        <a href="{% url 'PSS:agent_detail' agent.id%}" class="list-group-item ">
+                            <h4 class="list-group-item-heading">Case Number List</h4>
+                             <p class="list-group-item-text">Start survey</p></a>
+                        <a href="{% url 'PSS:summary'  agent.id %}" class="list-group-item">
+                            <h4 class="list-group-item-heading">{{ agent.get_username }}</h4>
+                             <p class="list-group-item-text">Summary</p></a>
+                        </div>
                     {% endif %}
                 {% endif %}
             {% endfor %}
@@ -28,5 +46,6 @@
     {% else %}
         <p>Log in Please</p>
     {% endif %}
-
+</div>
 {% endblock content %}
+

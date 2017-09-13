@@ -62,7 +62,7 @@ def draw_graph(box,userId):
     handles, labels = ax.get_legend_handles_labels()  # return lines and labels
     plt.xticks(val.index+1, x)
 
-    interactive_legend = plugins.InteractiveLegendPlugin(line_collection,labels)
+    interactive_legend = plugins.InteractiveLegendPlugin(line_collection,labels, start_visible=False)
     plugins.connect(fig, interactive_legend)
     fig.subplots_adjust(right=0.7)
 
@@ -103,7 +103,7 @@ def draw_graph_Agent(box,box1):
     handles, labels = ax.get_legend_handles_labels()  # return lines and labels
     plt.xticks(val.index+1, x)
 
-    interactive_legend = plugins.InteractiveLegendPlugin(line_collection,labels)
+    interactive_legend = plugins.InteractiveLegendPlugin(line_collection,labels, start_visible=False)
     plugins.connect(fig, interactive_legend)
     fig.subplots_adjust(right=0.7)
 
