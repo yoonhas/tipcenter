@@ -146,7 +146,11 @@ def score_detail(request, agent_id, userId):
 
 def compare_view(request):
     agents = User.objects.all()
-    return render(request, 'PSS/Analysis/compare.html', {'agents':agents})
+    surveyee = []
+    for i in agents:
+        tem_survey = Surveyee.objects.filter(agent_name=i)
+        surveyee.append(tem_survey)
+    return render(request, 'PSS/Analysis/compare.html', {'agents':agents, 'surveyee':surveyee})
 
 def compare_detail(request):
 
