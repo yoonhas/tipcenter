@@ -153,73 +153,121 @@ def compare_view(request):
     return render(request, 'PSS/Analysis/compare.html', {'agents':agents, 'surveyee':surveyee})
 
 def compare_detail(request):
+    def maskfunction( rawData, employ, welfare, race, marital, education, housing, age, born,gender,date):
+        if race != 77:
+            mask = (rawData['DM14'] == race)
+            rawData =rawData[mask]
+        if employ!= 77:
+            mask = (rawData['DM1'] == employ)
+            rawData =rawData[mask]
+        if welfare!= 77:
+            mask = (rawData['DM7'] == welfare)
+            rawData =rawData[mask]
+        if marital!= 77:
+            mask = (rawData['DM8'] == marital)
+            rawData =rawData[mask]
+        if education!= 77:
+            mask = (rawData['DM16'] == education)
+            rawData =rawData[mask]
+        if housing!= 77:
+            mask = (rawData['DM9'] == housing)
+            rawData =rawData[mask]
+        if gender!= 77:
+            mask = (rawData['DM13'] == gender)
+            rawData =rawData[mask]
+
+        if '-' in born:
+            borns = list(born.split('-'))
+            begin= borns[0]
+            end= borns[1]
+            bornMask = (rawData['DM12_3']>=int(begin))&(rawData['DM12_3']<=int(end))
+            rawData = rawData[bornMask]
+        elif born == '0':
+            born =0
+        else:
+            borns=int(born)
+            bornMask =(rawData['DM12_3']==borns)
+            rawData = rawData[bornMask]
+
+        if '-' in age:
+            ages = list(age.split('-'))
+            beginAge= ages[0]
+            endAge= ages[1]
+            ageMask = (rawData['DM12_1']>=int(beginAge))&(rawData['DM12_1']<=int(endAge))
+            rawData = rawData[ageMask]
+        elif age == '0':
+            age =0
+        else:
+            ages=int(age)
+            ageMask =(rawData['DM12_1']==ages)
+            rawData = rawData[ageMask]
+
+        if '-' in date:
+            dates = list(date.split('-'))
+            begin= pd.datetime.strptime(dates[0], '%Y.%m.%d')
+            end= pd.datetime.strptime(dates[1], '%Y.%m.%d')
+            dateMask = (rawData['cDATE']>=begin)&(rawData['cDATE']<=end)
+            rawData = rawData[dateMask]
+        elif date == '0':
+            dates =0
+        else:
+            date=pd.datetime.strptime(date, '%Y.%m.%d')
+            dateMask =(rawData['cDATE']==date)
+            rawData = rawData[dateMask]
+        return rawData
 
 
     fact_list = ['Health', 'Community', 'Childcare', 'Jobskills', 'SoftSkill', 'Peb_all',
                  'Empowerment', 'Selfmotivation', 'SkilResources', 'GaolOrientation', 'Ehs_all',
                  'Ess1', 'Ess2', 'Ess3', 'Ess4', 'Ess_all', 'PSS']
-
-    raw_data = read_frame(Total_for_Admin.objects.all())
-    races = request.POST['race']
-
-    if races != '77':
-        mask = (raw_data['DM14'] == races)
-        raw_data =raw_data[mask]
-
-    age = request.POST['age']
-    if '-' in age:
-        ages = list(age.split('-'))
-        beginAge= ages[0]
-        endAge= ages[1]
-        ageMask = (raw_data['DM12_1']>=int(beginAge))&(raw_data['DM12_1']<=int(endAge))
-        raw_data = raw_data[ageMask]
-    elif age == '0':
-        age =0
-    else:
-        ages=age
-        ageMask =(raw_data['DM12_1']==int(ages))
-        raw_data = raw_data[ageMask]
-
-
-    year = request.POST['year']
-    if '-' in year:
-        years = list(year.split('-'))
-        begin = pd.to_datetime(years[0], format='%Y-%m-%d')
-        end = pd.to_datetime(years[1], format='%Y-%m-%d')
-        yearMask = (raw_data['DM12_3'] >= begin) & (raw_data['DM12_3'] <= end)
-        raw_data = raw_data[yearMask]
-    elif year == '0':
-        year =0
-    else:
-        years=pd.to_datetime(year, format='%Y-%m-%d')
-        yearMask = (raw_data['DM12_3'] >= years)
-        raw_data = raw_data[yearMask]
-
-    status = request.POST['status']
-    if status != '77':
-        statusMask = (raw_data['DM12'] >= int(status))
-        raw_data = raw_data[statusMask]
-
-    date = request.POST['date']
-    if '-' in date:
-        dates = list(date.split('-'))
-        beginDate = pd.to_datetime(dates[0], format='%Y-%m-%d')
-        endDate = pd.to_datetime(dates[1], format='%Y-%m-%d')
-        dateMask = (raw_data['DM12'] >= beginDate) & (raw_data['DM12'] <= endDate)
-        raw_data = raw_data[dateMask]
-    elif date == '0':
-        date = int(0)
-    else:
-        dates = pd.to_datetime(date, format='%Y-%m-%d')
-        dateMask = (raw_data['DM12'] >= dates)
-        raw_data = raw_data[dateMask]
-
-    housing = request.POST['Housing']
-    if housing != '77':
-        housingMask = (raw_data['DM9'] >= int(housing))
-        raw_data = raw_data[housingMask]
+    users = get_user_model()
+    agentDic = {}
 
     compare = request.POST.getlist('compare')
+
+    factors = request.POST.getlist('factors')
+
+    employ = int(request.POST['employ'])
+    welfare =int(request.POST['welfare'])
+    race = int(request.POST['race'])
+    marital = int(request.POST['marital'])
+    education = int(request.POST['education'])
+    housing = int(request.POST['Housing'])
+    age = request.POST['age']
+    born = request.POST['year']
+    gender = int(request.POST['gender'])
+    date = request.POST['date']
+    case = request.POST['indi_case']
+
+
+    if case != '-1':
+        checking =1
+        surveyee = Surveyee.objects.get(caseNum=case)
+        individual = Total_for_Admin.objects.filter(caseNum=surveyee)
+    else:
+        checking =0
+
+    total =maskfunction(read_frame(Total_for_Admin.objects.all()), employ, welfare, race, marital, education, housing, age, born,gender,date)
+    total_mask = full_z_score(total)
+    agent_filtered ={}
+    print(compare)
+    for key in compare:
+        if key == '1':
+            tem_list =[]
+            agent_filtered['Total'] = total_mask
+        agentObj = users.objects.get(id=key)
+        agent_filtered[agentObj.username] = total_mask[(total_mask['Agent'] == agentObj.username)]
+
+    new = pd.DataFrame([])
+    for key, values in agent_filtered.items():
+        print(key)
+
+        for i in factors:
+            if i != '77':
+                temp = values.groupby(values['Time'])
+                new[key+"_"+(str(i)+'_mean')]=temp[i].mean()
+    print(new)
+
 
 
     return render(request, 'PSS/Analysis/compare.html')

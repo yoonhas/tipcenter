@@ -1,28 +1,11 @@
-from django.shortcuts import render, redirect, get_object_or_404, reverse
-from django.views.generic.base import TemplateView
-from  django.views.generic.edit import CreateView
-from django.http import HttpResponse, HttpResponseRedirect
-from django.views import generic
-from  django.contrib import messages
-from django.core.urlresolvers import reverse_lazy
-from .forms import CreateUserForm
-from django.contrib.auth.models import User
-from django.contrib.auth import get_user_model
-from .models import Surveyee, SurveyTimes,EB, EH, EH_Question, ES_Question, ES, Tip_Question, Tip, EB_Question
-from .models import EXF_Question,EXF, R, R_Question, SEF, SEF_Question, GR, GR_Question, SPR, SPR_Question,Total_for_Admin
-from .models import SSP_Question, SSP, F, F_Question, GD, GD_Question, HM_Question, HM, HEALTH_Question, HEALTH, DM, DM_Question
-from django.utils import timezone
-from .readFile import readFile
+
 import pandas as pd
-import logging
-from django_pandas.io import read_frame
 import matplotlib
 matplotlib.use("Agg")
 import mpld3
 from mpld3 import plugins
 import matplotlib.pyplot as plt
-import numpy as np
-from matplotlib.ticker import FormatStrFormatter
+
 
 def draw_graph(box,userId):
     if userId == '1':
@@ -118,7 +101,6 @@ def draw_graph_Agent(box,box1):
     return html_fig
 
 def draw_graph_Agent_compare(box,box1, box2):
-    print("hellow")
     PSS = pd.DataFrame(columns=['PEB_Total','Ehs_Total', 'Ess_Total', 'PSS_Total', 'PEB_Agent','Ehs_Agent', 'Ess_Agent', 'PSS_Agent',
                                 'PEB_Case','Ehs_Case', 'Ess_Case', 'PSS_Case'])
 

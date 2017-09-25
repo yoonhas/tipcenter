@@ -32,8 +32,8 @@
                 </div>
                 <div class ='panel-body'>
 
-                    <select class="form-control" id="indi_case">
-                        <option value=77 >Default</option>
+                    <select name="indi_case">
+                        <option value=-1 >Default</option>
                         {% for indi_agent in surveyee %}
                             {% for indi_surveyee in indi_agent %}
                                 <option value={{ indi_surveyee }}>{{ indi_surveyee.agent_name }} : {{ indi_surveyee }}</option>
@@ -41,24 +41,24 @@
                         {% endfor %}
                     </select>
                 </div>
-            </div>
-              </div>
 
+                          </div>
+              </div>
 
                 <div class="panel panel-default">
                 <div class="panel-heading"><strong>Factors</strong></div>
                 <div class="panel-body">
 
-                    <p><input type="checkbox" name="factors" value='default' checked >Default(PEB, EHS, ESS, PSS) <br></p>
+                    <p><input type="checkbox" name="factors" value='77' checked >Default(PEB, EHS, ESS, PSS) <br></p>
                     <p>PEB factors <br>
-                    <span style="margin-left:1em"><input type="checkbox" name="factors" value='PEB_all'>PEB_all
+                    <span style="margin-left:1em"><input type="checkbox" name="factors" value='Peb_all'>PEB_all
                     <input type="checkbox" name="factors" value='Health'>Health
                     <input type="checkbox" name="factors" value='Community'>Community
                     <input type="checkbox" name="factors" value='Childcare'>Childcare
                     <input type="checkbox" name="factors" value='Jobskills'>Jobskills
                     <input type="checkbox" name="factors" value='SoftSkill'>SoftSkill</span></p>
                      <p>EHS factors <br>
-                    <span style="margin-left:1em"><input type="checkbox" name="factors" value='EHS_all'>EHS_all
+                    <span style="margin-left:1em"><input type="checkbox" name="factors" value='Ehs_all'>EHS_all
                     <input type="checkbox" name="factors" value='Empowerment'>Empowerment
                     <input type="checkbox" name="factors" value='Selfmotivation'>Selfmotivation
                     <input type="checkbox" name="factors" value='SkilResources'>SkilResources
@@ -90,6 +90,11 @@
                         <input type="radio" name="welfare" value=77 checked }>Default
                 <input type="radio" name="welfare" value=0>No
                 <input type="radio" name="welfare" value=1>Yes <br>
+                           <br> Gender <br>
+                        <span style="margin-left:1em"></span>
+                        <input type="radio" name="gender" value=77 checked }>Default
+                <input type="radio" name="gender" value=0>Male
+                <input type="radio" name="gender" value=1>Female <br>
                          <br>Race <br>
                 <span style="margin-left:1em"></span>
                 <input type="radio" name="race" value=77 checked }>Default
