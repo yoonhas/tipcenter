@@ -22,14 +22,21 @@
         </p>
         <form action="{% url 'PSS:f_scare' surveyee_caseNum survey %}" method="post" class="post-form">{% csrf_token %}
             {% for name, value in  questions.get_fields %}
-                {%  if value != '1' %}
-                    <p>{{ value }} <br>
-                    {% for choice in choices %}
-                        <input type="radio" name="{{ name }}" value="{{ choice}}">{{ choice }}
-                    {% endfor %}
-                    {% endif %}
-                </p>
-                <br><br>
+                  <div class="panel panel-default">
+                    {%  if value != '1' and value != '2' %}
+                        <div class="panel-heading"> {{ value }}</div>
+                       <div class="panel-body">
+                       <span style="margin-left:1em"></span>
+                        {% for choice in choices %}
+                            <input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}<span style="margin-left:5em"></span>
+
+                        {% endfor %}
+                           <br>
+                       <span style="margin-left:1em"></span>Strong disagree <span style="margin-left:38em"> Strong agree.</span>
+                        </div>
+                        {% endif %}
+                    </p>
+                  </div>
             {% endfor %}
 
 

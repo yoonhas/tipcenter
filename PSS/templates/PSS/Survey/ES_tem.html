@@ -19,14 +19,26 @@
         </p>
         <form action="{% url 'PSS:ess' surveyee_caseNum survey %}" method="post" class="post-form">{% csrf_token %}
             {% for name, value in  questions.get_fields %}
-                {%  if value != '1' %}
-                    <p>{{ value }} <br>
-                    {% for choice in choices %}
-                        <input type="radio" name="{{ name }}" value="{{ choice}}">{{ choice }}
-                    {% endfor %}
-                    {% endif %}
-                </p>
-                <br><br>
+                  <div class="panel panel-default">
+                    {%  if value != '1' and value != '2' %}
+                        <div class="panel-heading"> {{ value }}</div>
+                       <div class="panel-body">
+                       <span style="margin-left:1em"></span>1.No, not at all
+                           <span style="margin-left:1em"></span>2. Ocassionally
+                           <span style="margin-left:1em"></span>3. Sometimes
+                           <span style="margin-left:1em"></span>4. Most of the time
+                           <span style="margin-left:1em"></span>5. Yes, all of the time <br>
+                       <span style="margin-left:1em"></span>
+                        {% for choice in choices %}
+                            <input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}<span style="margin-left:6em"></span>
+
+                        {% endfor %}
+                           <br>
+
+                        </div>
+                        {% endif %}
+                    </p>
+                  </div>
             {% endfor %}
 
 

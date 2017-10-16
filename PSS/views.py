@@ -42,12 +42,14 @@ def add_paticipants_view(request):
     agents = users.objects.all()
     return render(request, 'PSS/add_participant.html', {'agents':agents})
 
-def add_surveyee(request, agent_id):
+def add_surveyee(request):
+    agent_id = request.POST['agentid']
     users = get_user_model()
     agent = users.objects.get(id= agent_id)
     numbers= Surveyee.objects.filter(agent_name_id = agent.id).count()
     new_id = str(agent_id) + '000'+str(numbers)
-    new_surveyee = Surveyee(caseNum=int(new_id), agent_name=agent)
+    language = request.POST['language']
+    new_surveyee = Surveyee(caseNum=int(new_id), agent_name=agent, survey_kind=int(language))
     new_surveyee.save()
     first_surveyTime =  SurveyTimes(caseNum=new_surveyee,agent=agent, time=1, pub_Date=timezone.now(), readyToStart=True)
     first_surveyTime.save()

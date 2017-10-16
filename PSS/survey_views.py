@@ -538,12 +538,14 @@ def total_for_admin(surveyee_caseNum, survey, time, dm_id ):
 
 
 def inputFromPanda(df):
-    agent_map = {1: 'cara', 2: 'hello', 3: 'Tara'}
+    agent_map = {1: 'CARA', 2: 'HPOG-Gateway', 3: 'HPOG-SouthLand', 4:'CHA', 5:'Inspiration', 6:'instituto-IDPL', 7:'instituto-IDPL',
+                 8:'MBC', 9:'Cara-CWF', 10:'GrowingHome', 11:'CJC-CNH', 12: 'CJC-Safer', 13:'CJC-SER', 14:'HPOG2.0', 15:'GreaterWestTown',
+                 16:'DuPagePads', 17:'HeartlandAlli', 18:'CTA', 19:'CentroRomero', 20:'St.Patricks-Mc' }
 
     for i in range(len(df)):
 
         users = get_user_model()
-        agent = users.objects.get(username= agent_map[df.ix[i]['PROGRAM']])
+        agent = users.objects.get(username= agent_map[df.ix[i]['Site']])
 
 
         # surveyee

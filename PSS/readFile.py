@@ -358,7 +358,7 @@ def parsing(row):
 
 
 def readFile(file):
-    dateparse = lambda x: pd.datetime.strptime(x, '%Y.%m.%d')
+    dateparse = lambda x: pd.datetime.strptime(x, '%m/%d/%Y')
     rawData = pd.read_csv(file, parse_dates=['cDATE'], date_parser=dateparse)
     df = pd.DataFrame(rawData)
     df.fillna(99, inplace=True)

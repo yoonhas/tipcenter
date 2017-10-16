@@ -6,9 +6,98 @@
         <title> DM</title>
     </head>
     <body>
+     <form action="{% url 'PSS:dm' surveyee_caseNum survey %}" method="post" class="post-form">{% csrf_token %}
         <div>
             <h1><a href="">DM</a></h1>
         </div>
+        <div class="panel panel-default">
+          <div class="panel-heading"> DM.  Please fill in the blank or circle the appropriate answer.</div>
+          <div class="panel-body">
+               <div class="panel panel-default">
+                  <div class="panel-heading"> {{ questions.DM1 }}</div>
+                  <div class="panel-body">
+                      <span style="margin-left:1em">
+                        <input type="radio" name="DM1" value="{{ choices.0 }}"></span>No
+                        <input type="radio" name="DM1" value="{{ choices.1 }}">Yes
+                        <br>
+                  </div>
+                   <div class="panel-heading">  <span style="margin-left:2em">{{ questions.DM1_1_year }}</span></div>
+                   <div class="panel-body">
+                     <input type="number" name="DM1_1_year" value=0>
+                        <br>
+                   </div>
+                    <div class="panel-heading">  <span style="margin-left:2em">{{ questions.DM1_1_month }}</span></div>
+                   <div class="panel-body">
+                     <input type="number" name="DM1_1_month" value=0>
+                        <br>
+                   </div>
+                   <div class="panel-heading">  <span style="margin-left:2em">{{ questions.DM1_1_days }}</span></div>
+                   <div class="panel-body">
+                     <input type="number" name="DM1_1_days" value=0>
+                        <br>
+                   </div>
+                      <div class="panel-heading">  <span style="margin-left:2em">{{ questions.DM1_2 }}</span></div>
+                   <div class="panel-body">
+                     <span style="margin-left:2em"><input type="number" name="DM1_2" value=0></span>
+                        <br>
+                   </div>
+                      <div class="panel-heading">  <span style="margin-left:2em">{{ questions.DM1_3 }}</span></div>
+                   <div class="panel-body">
+                     <span style="margin-left:4em">
+                        <input type="radio" name="DM1_3" value="{{ choices.0 }}"></span>No
+                        <input type="radio" name="DM1_3" value="{{ choices.1 }}">Yes
+                        <br>
+
+                   </div>
+                   <div class="panel-heading">  <span style="margin-left:2em">{{ questions.DM1_4 }}</span></div>
+                   <div class="panel-body">
+                     <span style="margin-left:4em">
+                        <input type="radio" name="DM1_4" value="{{ choices.0 }}"></span>No
+                        <input type="radio" name="DM1_4" value="{{ choices.1 }}">Yes
+                        <br>
+
+                   </div>
+                </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading">{{ questions.DM2 }}</div>
+                  <div class="panel-body"><span style="margin-left:1em">
+                      <input type="radio" name="DM2" value=0>No
+                    <input type="radio" name="DM2" value=1>Yes
+                    </span><br></div>
+                </div>
+
+                <div class="panel panel-default">
+                  <div class="panel-heading">{{ questions.DM3 }}</div>
+                  <div class="panel-body"><span style="margin-left:1em">
+                    <span style="margin-left:1em"><input type="number" name="DM3" value=0></span>
+                    </span><br></div>
+                </div>
+
+              <div class="panel panel-default">
+                  <div class="panel-heading">{{ questions.DM4 }}</div>
+                  <div class="panel-body"><span style="margin-left:1em">
+                    <span style="margin-left:1em"><input type="number" name="DM4" value=0></span>
+                    </span><br></div>
+                </div>
+
+              <div class="panel panel-default">
+                  <div class="panel-heading">{{ questions.DM5 }}</div>
+                  <div class="panel-body"><span style="margin-left:1em">
+                    <span style="margin-left:1em"><input type="number" name="DM5" value=0></span>
+                    </span><br></div>
+                </div>
+
+              <div class="panel panel-default">
+                  <div class="panel-heading">{{ questions.DM6 }}</div>
+                  <div class="panel-body"><span style="margin-left:1em">
+                    <span style="margin-left:1em"><input type="number" name="DM6" value=0></span>
+                    </span><br></div>
+                </div>
+
+          </div>
+        </div>
+     </form>
+
         <p>
                 DM.  Please fill in the blank or circle the appropriate answer.
 

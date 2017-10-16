@@ -11,6 +11,7 @@ class Surveyee(models.Model):
     survey2 = models.BooleanField(default=False)
     survey3 = models.BooleanField(default=False)
     survey4 = models.BooleanField(default=False)
+    survey_kind = models.IntegerField(null=False, default=1)
 
     def __str__(self):
         return str(self.caseNum)

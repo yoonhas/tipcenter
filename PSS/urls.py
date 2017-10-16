@@ -24,7 +24,7 @@ app_name = 'PSS'
 
 urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='index'),
-    url(r'^(?P<agent_id>[0-9]+)/add/participant', views.add_surveyee, name="add_new_participant"),
+    url(r'^add/participant/new', views.add_surveyee, name="add_new_participant"),
     url(r'^add/participant', views.add_paticipants_view, name="call_add_participant"),
     url(r'^(?P<agent_id>[0-9]+)/detail$', views.Surveyee_detail_view, name="agent_detail"),
     url(r'^select/agents/release$', views.release_survey_agent, name="release_survey_agent"),

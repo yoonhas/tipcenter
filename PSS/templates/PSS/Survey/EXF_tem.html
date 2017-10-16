@@ -13,7 +13,7 @@
           EXF.  Read each item and then think about how well it describes you. Use the rating scale to choose the best score.
             <br>
             If the item doesn’t describe you at all then you’d circle <br>
-            1, strongly disagree. If it describes you very well then you’d circle 6, strongly agree.br
+            1, strongly disagree. If it describes you very well then you’d circle 6, strongly agree.
             Often, you’ll find that you’re somewhere in between so then you’d circle one of the numbers from 2 to 5 that describes you best.
             <br>
             Be as honest as possible—the more honest you are, the more you’ll learn about yourself.
@@ -23,14 +23,21 @@
         </p>
         <form action="{% url 'PSS:exf' surveyee_caseNum survey %}" method="post" class="post-form">{% csrf_token %}
             {% for name, value in  questions.get_fields %}
-                {%  if value != '1' %}
-                    <p>{{ value }} <br>
-                    {% for choice in choices %}
-                        <input type="radio" name="{{ name }}" value="{{ choice}}">{{ choice }}
-                    {% endfor %}
-                    {% endif %}
-                </p>
-                <br><br>
+                  <div class="panel panel-default">
+                    {%  if value != '1' and value != '2' %}
+                        <div class="panel-heading"> {{ value }}</div>
+                       <div class="panel-body">
+                       <span style="margin-left:1em"></span>
+                        {% for choice in choices %}
+                            <input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}<span style="margin-left:5em"></span>
+
+                        {% endfor %}
+                           <br>
+                       <span style="margin-left:1em"></span>strongly disagree. <span style="margin-left:27em"> strongly agree</span>
+                        </div>
+                        {% endif %}
+                    </p>
+                  </div>
             {% endfor %}
 
 

@@ -1,16 +1,28 @@
 {% extends 'PSS/base.html' %}
 {% block content %}
 
-<h1>Add Participants</h1>
-    {% if agents %}
-        <ul>
-        {% for agent in agents %}
-            <li><a href="{% url 'PSS:add_new_participant' agent.id%}">{{ agent.username }}</a></li>
-        {% endfor %}
-         </ul>
-    {% else %}
-        <p> No agent is available. </p>
-    {% endif %}
+<h1 xmlns="http://www.w3.org/1999/html">Add Participants</h1>
+    <form action="{% url 'PSS:add_new_participant' %}" method="post" class="post-form">{% csrf_token %}
+                <div class="form-group">
+                  <label for="sel1">Select Language:</label>
+                  <select class="form-control" name="language">
+                    <option value=1 selected>English</option>
+                    <option value=2 >Korean</option>
+                  </select>
+                </div>
+        {% if agents %}
+            <ul>
+            {% for agent in agents %}
 
+                {% if agent.username != 'yoonhas' %}
+                    <input type="radio" name="agentid" value={{ agent.id }}> <strong>{{ agent.username }}</strong> </input>
+                {% endif %}
+                {% endfor %}
+             </ul>
+        {% else %}
+            <p> No agent is available. </p>
+        {% endif %}
+        <button type="submit" class="save btn btn-default">Submit</button>
+    </form>
 
 {% endblock content %}
