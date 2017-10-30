@@ -580,15 +580,27 @@ def inputFromPanda(df):
         eb.save()
 
         # eh
-        eh = EH(caseNum=surveyee, time=Time, surveytime=surveyTime.pk,
-                EH1=df.ix[i]['EH1'], EH2=df.ix[i]['EH2'], EH3=df.ix[i]['EH3'], EH4=df.ix[i]['EH4'], EH5=df.ix[i]['EH5'],
-                EH6=df.ix[i]['EH6'], EH7=df.ix[i]['EH7'], EH8=df.ix[i]['EH8'], EH9=df.ix[i]['EH9'],
-                EH10=df.ix[i]['EH10'],
-                EH11=df.ix[i]['EH11'], EH12=df.ix[i]['EH12'], EH13=df.ix[i]['EH13'], EH14=df.ix[i]['EH14'],
-                EH15=df.ix[i]['EH15'],
-                EH16=df.ix[i]['EH16'], EH17=df.ix[i]['EH17'], EH18=df.ix[i]['EH18'], EH19=df.ix[i]['EH19'],
-                EH20=df.ix[i]['EH20'],
-                EH21=df.ix[i]['EH21'], EH22=df.ix[i]['EH22'], EH23=df.ix[i]['EH23'], EH24=df.ix[i]['EH24'])
+        if 'EH15' in df.columns:
+            eh = EH(caseNum=surveyee, time=Time, surveytime=surveyTime.pk,
+                    EH1=df.ix[i]['EH1'], EH2=df.ix[i]['EH2'], EH3=df.ix[i]['EH3'], EH4=df.ix[i]['EH4'], EH5=df.ix[i]['EH5'],
+                    EH6=df.ix[i]['EH6'], EH7=df.ix[i]['EH7'], EH8=df.ix[i]['EH8'], EH9=df.ix[i]['EH9'],
+                    EH10=df.ix[i]['EH10'],
+                    EH11=df.ix[i]['EH11'], EH12=df.ix[i]['EH12'], EH13=df.ix[i]['EH13'], EH14=df.ix[i]['EH14'],
+                    EH15=df.ix[i]['EH15'],
+                    EH16=df.ix[i]['EH16'], EH17=df.ix[i]['EH17'], EH18=df.ix[i]['EH18'], EH19=df.ix[i]['EH19'],
+                    EH20=df.ix[i]['EH20'],
+                    EH21=df.ix[i]['EH21'], EH22=df.ix[i]['EH22'], EH23=df.ix[i]['EH23'], EH24=df.ix[i]['EH24'])
+        else:
+            eh = EH(caseNum=surveyee, time=Time, surveytime=surveyTime.pk,
+                    EH1=df.ix[i]['EH1'], EH2=df.ix[i]['EH2'], EH3=df.ix[i]['EH3'], EH4=df.ix[i]['EH4'], EH5=df.ix[i]['EH5'],
+                    EH6=df.ix[i]['EH6'], EH7=df.ix[i]['EH7'], EH8=df.ix[i]['EH8'], EH9=df.ix[i]['EH9'],
+                    EH10=df.ix[i]['EH10'],
+                    EH11=df.ix[i]['EH11'], EH12=df.ix[i]['EH12'], EH13=df.ix[i]['EH13'], EH14=df.ix[i]['EH14'],
+                    EH15=99,
+                    EH16=99, EH17=99, EH18=99, EH19=99,
+                    EH20=99,
+                    EH21=99, EH22=99, EH23=99, EH24=99)#old data
+
 
         eh.save()
 

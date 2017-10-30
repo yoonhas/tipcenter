@@ -6,28 +6,32 @@ from .models import SSP_Question, SSP, F, F_Question, GD, GD_Question, HM_Questi
 
 def checkEBnES(val):
     if 77 in val.unique():
-        sum = 0
+        summ = 0
         col = 0
         for i in val:
             if i > 5 or i <0:
-                sum += 0
+                summ += 0
                 col += 0
             else:
-                sum += i
+                summ += i
                 col += 1
-        return (sum, col)
+        return (summ, col)
     elif 99 in val.unique():
-        sum = 0
+        summ = 0
         col = 0
         for i in val:
             if i > 5 or i <0:
-                sum += 0
+                summ += 0
                 col += 0
             else:
-                sum += i
+                summ += i
                 col += 1
-        return (sum, col)
+        return (summ, col)
     else:
+        print(val)
+        print(type(val[0]),type(val[1]),type(val[2]),type(val[3]))
+        print(val.sum())
+        print(len(val))
         return (val.sum(), len(val))
 
 def checkEH(val):
@@ -240,12 +244,19 @@ def checkF(val):
         return (sum, len(val))
 
 def parsing(row):
+    if 'EH15' in row:
+        Empowerment_sum, Empowerment_col =checkEH(row[['EH3','EH4','EH5','EH6']])
+        SelfMotivation_sum, SelfMotivation_col = checkEH(row[['EH11', 'EH15']])
+        SkillResources_sum, SkillResources_col = checkEH(row[['EH17', 'EH18', 'EH19', 'EH20']])
+        GoalOrientation_sum, GoalOrientation_col = checkEH(row[['EH21', 'EH22', 'EH23', 'EH24']])
+        EHS_all_sum, EHS_all_col = checkEH(row[['EH3','EH4','EH5','EH6','EH11', 'EH15','EH17', 'EH18', 'EH19', 'EH20','EH21', 'EH22', 'EH23', 'EH24']])
 
-    Empowerment_sum, Empowerment_col =checkEH(row[['EH3','EH4','EH5','EH6']])
-    SelfMotivation_sum, SelfMotivation_col = checkEH(row[['EH11', 'EH15']])
-    SkillResources_sum, SkillResources_col = checkEH(row[['EH17', 'EH18', 'EH19', 'EH20']])
-    GoalOrientation_sum, GoalOrientation_col = checkEH(row[['EH21', 'EH22', 'EH23', 'EH24']])
-    EHS_all_sum, EHS_all_col = checkEH(row[['EH3','EH4','EH5','EH6','EH11', 'EH15','EH17', 'EH18', 'EH19', 'EH20','EH21', 'EH22', 'EH23', 'EH24']])
+    else:
+        Empowerment_sum, Empowerment_col =checkEH(row[['EH1','EH2','EH3','EH4']])
+        SelfMotivation_sum, SelfMotivation_col = checkEH(row[['EH6', 'EH5']])
+        SkillResources_sum, SkillResources_col = checkEH(row[['EH7', 'EH8', 'EH9', 'EH10']])
+        GoalOrientation_sum, GoalOrientation_col = checkEH(row[['EH11', 'EH12', 'EH13', 'EH14']])
+        EHS_all_sum, EHS_all_col = checkEH(row[['EH3','EH4','EH5','EH6','EH1', 'EH2','EH7', 'EH8', 'EH9', 'EH10','EH11', 'EH12', 'EH13', 'EH14']])
 
 
     Health_sum, Health_col = checkEBnES(row[['EB10', 'EB11', 'EB12', 'EB13']])
@@ -358,7 +369,7 @@ def parsing(row):
 
 
 def readFile(file):
-    dateparse = lambda x: pd.datetime.strptime(x, '%m/%d/%Y')
+    dateparse = lambda x: '11/22/1984' if x== '#NULL!' else pd.datetime.strptime(x, '%m/%d/%Y')
     rawData = pd.read_csv(file, parse_dates=['cDATE'], date_parser=dateparse)
     df = pd.DataFrame(rawData)
     df.fillna(99, inplace=True)
@@ -391,6 +402,7 @@ def readFile(file):
 
 
     for i in range(len(df)):
+        print(df.iloc[i]['CaseNum'])
         Empowerment, SelfMotivation, SkillResources, GoalOrientation, EHS_all, Health, Community, ChildCare, JobSkills, SoftSkill, PEBS_all, ESS1, ESS2, ESS3, ESS4, ESS_all\
             ,Resilience,self_effi, gr_per, gr_con, spr_all, f_self, f_other, f_situation, f_all, gr_all = parsing(df.iloc[i])
         df.set_value(i, 'Empowerment',Empowerment)
