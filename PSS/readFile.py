@@ -28,10 +28,7 @@ def checkEBnES(val):
                 col += 1
         return (summ, col)
     else:
-        print(val)
-        print(type(val[0]),type(val[1]),type(val[2]),type(val[3]))
-        print(val.sum())
-        print(len(val))
+
         return (val.sum(), len(val))
 
 def checkEH(val):
@@ -274,11 +271,20 @@ def parsing(row):
     self_effi_sum, self_effi_col = checkEBnES(row[['SEF1','SEF2','SEF3', 'SEF4','SEF5','SEF6','SEF7', 'SEF8']])
     gr_per_sum, gr_per_col = checkEBnES(row[['GR2','GR4', 'GR7', 'GR8']])
     gr_con_sum, gr_con_col = checkGR(row[['GR1', 'GR3', 'GR5', 'GR6']])
-    spr_all_sum, spr_all_col = checkSPR(row[['SPR1', 'SPR2', 'SPR3','SPR4', 'SPR5', 'SPR6']])
+    if 'SPR1' in row:
 
-    f_self_sum, f_self_col =checkF(row[['F2','F1', 'F4', 'F3',  'F6', 'F5']])
-    f_other_sum, f_other_col = checkF(row[['F7', 'F8', 'F9', 'F10', 'F11', 'F12']])
-    f_situation_sum, f_situation_col = checkF(row[['F13', 'F14', 'F15', 'F16', 'F17', 'F18']])
+        spr_all_sum, spr_all_col = checkSPR(row[['SPR1', 'SPR2', 'SPR3','SPR4', 'SPR5', 'SPR6']])
+    else:
+        spr_all_col =6
+        spr_all_sum = 99*spr_all_col
+    if 'F1' in row:
+        f_self_sum, f_self_col =checkF(row[['F2','F1', 'F4', 'F3',  'F6', 'F5']])
+        f_other_sum, f_other_col = checkF(row[['F7', 'F8', 'F9', 'F10', 'F11', 'F12']])
+        f_situation_sum, f_situation_col = checkF(row[['F13', 'F14', 'F15', 'F16', 'F17', 'F18']])
+    else:
+        f_self_sum, f_self_col =99*6, 6
+        f_other_sum, f_other_col = 99*6, 6
+        f_situation_sum, f_situation_col = 99*6, 6
 
     if Resilience_sum ==0:Resilience = 0.0
     else: Resilience= round(float(Resilience_sum/Resilience_col),6)

@@ -660,13 +660,21 @@ def inputFromPanda(df):
                 GR6=df.ix[i]['GR6'], GR7=df.ix[i]['GR7'], GR8=df.ix[i]['GR8']
                 )
         gr.save()
+        if 'SPR1' in df.columns:
+            spr = SPR(caseNum=surveyee, time=Time, surveytime=surveyTime.pk,
+                      SPR1=df.ix[i]['SPR1'], SPR2=df.ix[i]['SPR2'], SPR3=df.ix[i]['SPR3'],
+                      SPR4=df.ix[i]['SPR4'],
+                      SPR5=df.ix[i]['SPR5'],
+                      SPR6=df.ix[i]['SPR6']
+                      )
+        else:
+            spr = SPR(caseNum=surveyee, time=Time, surveytime=surveyTime.pk,
+                      SPR1=99, SPR2=99, SPR3=99,
+                      SPR4=99,
+                      SPR5=99,
+                      SPR6=99
+                      )
 
-        spr = SPR(caseNum=surveyee, time=Time, surveytime=surveyTime.pk,
-                  SPR1=df.ix[i]['SPR1'], SPR2=df.ix[i]['SPR2'], SPR3=df.ix[i]['SPR3'],
-                  SPR4=df.ix[i]['SPR4'],
-                  SPR5=df.ix[i]['SPR5'],
-                  SPR6=df.ix[i]['SPR6']
-                  )
 
         spr.save()
         ssp = SSP(caseNum=surveyee, time=Time, surveytime=surveyTime.pk,
@@ -678,15 +686,28 @@ def inputFromPanda(df):
                   SSP11=4, SSP12=4
                   )
         ssp.save()
-        f = F(caseNum=surveyee, time=Time, surveytime=surveyTime.pk,
-              F1=df.ix[i]['F1'], F2=df.ix[i]['F2'], F3=df.ix[i]['F3'], F4=df.ix[i]['F4'],
-              F5=df.ix[i]['F5'],
-              F6=df.ix[i]['F6'], F7=df.ix[i]['F7'], F8=df.ix[i]['F8'], F9=df.ix[i]['F9'],
-              F10=df.ix[i]['F10'],
-              F11=df.ix[i]['F11'], F12=df.ix[i]['F12'], F13=df.ix[i]['F13'], F14=df.ix[i]['F14'],
-              F15=df.ix[i]['F15'],
-              F16=df.ix[i]['F16'], F17=df.ix[i]['F17'], F18=df.ix[i]['F18']
-              )
+
+        if 'F1' in df.columns:
+            f = F(caseNum=surveyee, time=Time, surveytime=surveyTime.pk,
+                  F1=df.ix[i]['F1'], F2=df.ix[i]['F2'], F3=df.ix[i]['F3'], F4=df.ix[i]['F4'],
+                  F5=df.ix[i]['F5'],
+                  F6=df.ix[i]['F6'], F7=df.ix[i]['F7'], F8=df.ix[i]['F8'], F9=df.ix[i]['F9'],
+                  F10=df.ix[i]['F10'],
+                  F11=df.ix[i]['F11'], F12=df.ix[i]['F12'], F13=df.ix[i]['F13'], F14=df.ix[i]['F14'],
+                  F15=df.ix[i]['F15'],
+                  F16=df.ix[i]['F16'], F17=df.ix[i]['F17'], F18=df.ix[i]['F18']
+                  )
+        else:
+            f = F(caseNum=surveyee, time=Time, surveytime=surveyTime.pk,
+                  F1=99, F2=99, F3=99, F4=99,
+                  F5=99,
+                  F6=99, F7=99, F8=99, F9=99,
+                  F10=99,
+                  F11=99, F12=99, F13=99, F14=99,
+                  F15=99,
+                  F16=99, F17=99, F18=99
+                  )
+
         f.save()
         gd = GD(caseNum=surveyee, time=Time, surveytime=surveyTime.pk,
                 GD1=4, GD2=4, GD3=4,
