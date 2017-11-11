@@ -140,3 +140,32 @@ def draw_graph_Agent_compare(box,box1, box2):
     plt.close(fig)
 
     return html_fig
+
+def draw_graph_Admin_compare(box):
+
+    fig, ax = plt.subplots()
+    line_collection= []
+    x =['1st', '2nd', '3rd', '4th']
+    ax.grid(True, alpha=0.3)
+    for key, val in box.iteritems():
+
+        l = ax.plot((val.index +1), val.values, label=key)
+        line_collection.append(l)
+
+
+    handles, labels = ax.get_legend_handles_labels()  # return lines and labels
+    plt.xticks(val.index+1, x)
+
+    interactive_legend = plugins.InteractiveLegendPlugin(line_collection,labels, start_visible=False)
+    plugins.connect(fig, interactive_legend)
+    fig.subplots_adjust(right=0.7)
+
+    ax.set_xlabel('Times')
+    ax.set_ylabel('Mean')
+    ax.set_title('PSS', size=20)
+    fig.set_size_inches(12, 5)
+    html_fig = mpld3.fig_to_html(fig)
+
+    plt.close(fig)
+
+    return html_fig

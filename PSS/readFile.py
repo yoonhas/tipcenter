@@ -33,33 +33,28 @@ def checkEBnES(val):
 
 def checkEH(val):
     if 77 in val.unique():
-        if (val.sum() == 77 * (len(val))):
-            return (val.sum(), len(val))
-        else:
-            sum = 0
-            col = 0
-            for i in val:
-                if i > 10 or i < 0 or i== None:
-                    sum += 0
-                    col += 0
-                else:
-                    sum += i
-                    col += 1
-            return (sum, col)
+        sum = 0
+        col = 0
+        for i in val:
+            if i > 10 or i < 0 or i== None:
+                sum += 0
+                col += 0
+            else:
+                sum += i
+                col += 1
+        return (sum, col)
     elif 99 in val.unique():
-        if(val.sum()==99*(len(val))):
-            return (val.sum(), len(val))
-        else:
-            sum = 0
-            col = 0
-            for i in val:
-                if i > 10 or i < 0 or i==None:
-                    sum += 0
-                    col += 0
-                else:
-                    sum += i
-                    col += 1
-            return (sum, col)
+
+        sum = 0
+        col = 0
+        for i in val:
+            if i > 10 or i < 0 or i==None:
+                sum += 0
+                col += 0
+            else:
+                sum += i
+                col += 1
+        return (sum, col)
     else:
         return (val.sum(), len(val))
 

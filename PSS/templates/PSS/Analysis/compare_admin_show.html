@@ -1,0 +1,105 @@
+{% extends 'PSS/base.html' %}
+{% block content %}
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#hide").click(function(){
+        $("p").hide(1000);
+    });
+    $("#show").click(function(){
+        $("p").show();
+    });
+});
+</script>
+</head>
+<h1> {{ agent }} Score Detail</h1>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th{
+
+            background-color: black;
+            color: white;
+         }
+            th, td {
+            padding: 5px;
+        }
+
+    </style>
+
+    <form action="" method="POST" class="post-form">{% csrf_token %}
+
+        <ol>
+             Compare <br><br>
+
+            <table style="width:80%">
+                <tr>
+                    <th id="times">Time</th>
+                    <th id="name">Statistics</th>
+                    {% for i in key_list %}
+                        <th id={{ i }}>{{ i }}</th>
+                    {% endfor %}
+                </tr>
+                 <p> {{ html_fig|safe }}</p>
+                <strong>Summary</strong> <button id="show">Show Graph</button> <button id="hide">Hide Graph</button>
+
+                {% for name, each in detail_list %}
+
+                <tr>
+                    <td headers="times" style=" background-color: darkred; color: white;"> {{ name }}</td>
+                    <td headers="name">Mean</td>
+                    <td headers="Peb_all">{{each.Peb_all.mean }}</td>
+                    <td headers="Ehs_all">{{ each.Ehs_all.mean }}</td>
+                    <td headers="Ess_all">{{ each.Ess_all.mean }}</td>
+                    <td headers="PSS">{{ each.PSS.mean }}</td>
+
+
+                </tr>
+
+                  <tr>
+                  <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Count</td>
+                    <td headers="Peb_all">{{each.Peb_all.count }}</td>
+                    <td headers="Ehs_all">{{ each.Ehs_all.count }}</td>
+                    <td headers="Ess_all">{{ each.Ess_all.count }}</td>
+                    <td headers="PSS">{{ each.PSS.count }}</td>
+
+                </tr>
+                <tr>
+                 <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Min</td>
+                    <td headers="Peb_all">{{each.Peb_all.min }}</td>
+                    <td headers="Ehs_all">{{ each.Ehs_all.min }}</td>
+                    <td headers="Ess_all">{{ each.Ess_all.min }}</td>
+                    <td headers="PSS">{{ each.PSS.min }}</td>
+
+                </tr>
+                <tr>
+                 <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Max</td>
+                    <td headers="Peb_all">{{each.Peb_all.max }}</td>
+                    <td headers="Ehs_all">{{ each.Ehs_all.max }}</td>
+                    <td headers="Ess_all">{{ each.Ess_all.max }}</td>
+                    <td headers="PSS">{{ each.PSS.max }}</td>
+
+
+                </tr>
+                    <tr>
+                     <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Std</td>
+                    <td headers="Peb_all">{{each.Peb_all.std }}</td>
+                    <td headers="Ehs_all">{{ each.Ehs_all.std }}</td>
+                    <td headers="Ess_all">{{ each.Ess_all.std }}</td>
+                    <td headers="PSS">{{ each.PSS.std }}</td>
+
+                </tr>
+                {% endfor %}
+
+            </table>
+
+         </ol>
+
+{% endblock %}

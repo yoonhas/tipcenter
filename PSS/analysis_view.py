@@ -154,29 +154,38 @@ def compare_view(request):
 
 def compare_detail(request):
     def maskfunction( rawData, employ, welfare, race, marital, education, housing, age, born,gender,date):
-        if race != 77:
-            mask = (rawData['DM14'] == race)
+        print(race, marital, education, housing)
+        if sum(list(map(int,race))) != -1:
+            mask = (rawData['DM14'].isin(race))
             rawData =rawData[mask]
+
         if employ!= 77:
+            print("stay1")
             mask = (rawData['DM1'] == employ)
             rawData =rawData[mask]
         if welfare!= 77:
+            print("stay2")
             mask = (rawData['DM7'] == welfare)
             rawData =rawData[mask]
-        if marital!= 77:
-            mask = (rawData['DM8'] == marital)
+        if sum(list(map(int,marital)))!= -1:
+            print("stay3")
+            mask = (rawData['DM8'].isin(marital))
             rawData =rawData[mask]
-        if education!= 77:
-            mask = (rawData['DM16'] == education)
+        if sum(list(map(int,education)))!= -1:
+            print("stay4")
+            mask = (rawData['DM16'].isin(education))
             rawData =rawData[mask]
-        if housing!= 77:
-            mask = (rawData['DM9'] == housing)
+        if sum(list(map(int,housing)))!= -1:
+            print("stay5")
+            mask = (rawData['DM9'].isin(housing))
             rawData =rawData[mask]
         if gender!= 77:
+            print("stay6")
             mask = (rawData['DM13'] == gender)
             rawData =rawData[mask]
 
         if '-' in born:
+            print("stay1")
             borns = list(born.split('-'))
             begin= borns[0]
             end= borns[1]
@@ -184,36 +193,45 @@ def compare_detail(request):
             rawData = rawData[bornMask]
         elif born == '0':
             born =0
+            print("must")
         else:
+            print("stay1")
             borns=int(born)
             bornMask =(rawData['DM12_3']==borns)
             rawData = rawData[bornMask]
 
         if '-' in age:
+            print("stay1")
             ages = list(age.split('-'))
             beginAge= ages[0]
             endAge= ages[1]
             ageMask = (rawData['DM12_1']>=int(beginAge))&(rawData['DM12_1']<=int(endAge))
             rawData = rawData[ageMask]
         elif age == '0':
+            print("must")
             age =0
         else:
+            print("stay1")
             ages=int(age)
             ageMask =(rawData['DM12_1']==ages)
             rawData = rawData[ageMask]
 
         if '-' in date:
+            print("stay1")
             dates = list(date.split('-'))
             begin= pd.datetime.strptime(dates[0], '%Y.%m.%d')
             end= pd.datetime.strptime(dates[1], '%Y.%m.%d')
             dateMask = (rawData['cDATE']>=begin)&(rawData['cDATE']<=end)
             rawData = rawData[dateMask]
         elif date == '0':
+            print("must")
             dates =0
         else:
+            print("stay1")
             date=pd.datetime.strptime(date, '%Y.%m.%d')
             dateMask =(rawData['cDATE']==date)
             rawData = rawData[dateMask]
+
         return rawData
 
 
@@ -221,24 +239,24 @@ def compare_detail(request):
                  'Empowerment', 'Selfmotivation', 'SkilResources', 'GaolOrientation', 'Ehs_all',
                  'Ess1', 'Ess2', 'Ess3', 'Ess4', 'Ess_all', 'PSS']
     users = get_user_model()
-    agentDic = {}
 
     compare = request.POST.getlist('compare')
 
-    factors = request.POST.getlist('factors')
+    factors = request.POST['factors']
 
     employ = int(request.POST['employ'])
     welfare =int(request.POST['welfare'])
-    race = int(request.POST['race'])
-    marital = int(request.POST['marital'])
-    education = int(request.POST['education'])
-    housing = int(request.POST['Housing'])
+    race = request.POST.getlist('race')
+    marital = request.POST.getlist('marital')
+    education = request.POST.getlist('education')
+    housing = request.POST.getlist('Housing')
     age = request.POST['age']
     born = request.POST['year']
     gender = int(request.POST['gender'])
     date = request.POST['date']
     case = request.POST['indi_case']
-
+    #print("haosidjfoiasdjfoiasdjfoiajsdf")
+    #print(compare,race, marital,education,housing)
 
     if case != '-1':
         checking =1
@@ -248,9 +266,12 @@ def compare_detail(request):
         checking =0
 
     total =maskfunction(read_frame(Total_for_Admin.objects.all()), employ, welfare, race, marital, education, housing, age, born,gender,date)
+    #print("toatlllllllll")
+    #print(total)
     total_mask = full_z_score(total)
+
     agent_filtered ={}
-    print(compare)
+    #print(compare)
     for key in compare:
         if key == '1':
             tem_list =[]
@@ -258,19 +279,28 @@ def compare_detail(request):
         agentObj = users.objects.get(id=key)
         agent_filtered[agentObj.username] = total_mask[(total_mask['Agent'] == agentObj.username)]
 
-    new = pd.DataFrame([])
+    #print(agent_filtered)
+    new = {}
+    frame_for_graph = pd.DataFrame([])
+
+    #print("factorrrrr: %s", factors)
     for key, values in agent_filtered.items():
-        print(key)
+        #print(key)
+        if key != 'yoonhas':
 
-        for i in factors:
-            if i != '77':
-                temp = values.groupby(values['Time'])
-                new[key+"_"+(str(i)+'_mean')]=temp[i].mean()
-    print(new)
+            temp = values.groupby(values['Time'])
 
+            frame_for_graph[key]=temp[factors+"_Z"].mean()
+            new[key + "_" + (factors + '_Mean')] = temp[factors ].mean()
+            new[key + "_" + (factors + '_Count')] = temp[factors ].count()
+            new[key + "_" + (factors + '_Min')] = temp[factors].min()
+            new[key + "_" + (factors + '_Max')] = temp[factors].max()
+            new[key + "_" + (factors + '_Std')] = temp[factors].std()
 
+    html_fig=Graph.draw_graph_Admin_compare(frame_for_graph)
+    print(agent_filtered.keys())
 
-    return render(request, 'PSS/Analysis/compare.html')
+    return render(request, 'PSS/Analysis/compare_admin_show.html', {'detail_list':new,"html_fig":html_fig, 'key_list':agent_filtered.keys()})
 
 def compare_agent(request, agent_id):
     users = get_user_model()
