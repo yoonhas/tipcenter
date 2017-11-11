@@ -40,39 +40,39 @@
                 </tr>
                 <tr>
                     <td headers="name">PEB Score</td>
-                    <td headers="mean">{{total.Peb_all.mean }}</td>
+                    <td headers="mean">{{total.Peb_all.mean|floatformat:2  }}</td>
                     <td headers="count">{{ total.Peb_all.count }}</td>
-                    <td headers="min">{{ total.Peb_all.min }}</td>
-                    <td headers="max">{{ total.Peb_all.max }}</td>
-                    <td headers="std">{{ total.Peb_all.std }}</td>
+                    <td headers="min">{{ total.Peb_all.min|floatformat:2  }}</td>
+                    <td headers="max">{{ total.Peb_all.max|floatformat:2  }}</td>
+                    <td headers="std">{{ total.Peb_all.std |floatformat:2 }}</td>
 
                 </tr>
 
                   <tr>
                     <td headers="name">EHS Score</td>
-                    <td headers="mean">{{total.Ehs_all.mean }}</td>
+                    <td headers="mean">{{total.Ehs_all.mean|floatformat:2  }}</td>
                     <td headers="count">{{ total.Ehs_all.count }}</td>
-                    <td headers="min">{{ total.Ehs_all.min }}</td>
-                    <td headers="max">{{ total.Ehs_all.max }}</td>
-                    <td headers="std">{{ total.Ehs_all.std }}</td>
+                    <td headers="min">{{ total.Ehs_all.min|floatformat:2  }}</td>
+                    <td headers="max">{{ total.Ehs_all.max|floatformat:2  }}</td>
+                    <td headers="std">{{ total.Ehs_all.std|floatformat:2  }}</td>
 
                 </tr>
                 <tr>
                     <td headers="name">ESS Score</td>
-                    <td headers="mean">{{total.Ess_all.mean }}</td>
+                    <td headers="mean">{{total.Ess_all.mean|floatformat:2  }}</td>
                     <td headers="count">{{ total.Ess_all.count }}</td>
-                    <td headers="min">{{ total.Ess_all.min }}</td>
-                    <td headers="max">{{ total.Ess_all.max }}</td>
-                    <td headers="std">{{ total.Ess_all.std }}</td>
+                    <td headers="min">{{ total.Ess_all.min|floatformat:2  }}</td>
+                    <td headers="max">{{ total.Ess_all.max|floatformat:2  }}</td>
+                    <td headers="std">{{ total.Ess_all.std|floatformat:2  }}</td>
 
                 </tr>
                 <tr>
                     <td headers="name">PSS Score</td>
-                    <td headers="mean">{{total.PSS.mean }}</td>
+                    <td headers="mean">{{total.PSS.mean|floatformat:2  }}</td>
                     <td headers="count">{{ total.PSS.count }}</td>
-                    <td headers="min">{{ total.PSS.min }}</td>
-                    <td headers="max">{{ total.PSS.max }}</td>
-                    <td headers="std">{{ total.PSS.std }}</td>
+                    <td headers="min">{{ total.PSS.min|floatformat:2  }}</td>
+                    <td headers="max">{{ total.PSS.max|floatformat:2  }}</td>
+                    <td headers="std">{{ total.PSS.std|floatformat:2  }}</td>
 
                 </tr>
                     {% if agent_id == 'yoonhas' %}
@@ -83,37 +83,37 @@
                                 </tr>
                                 <tr>
                                     <td headers="name">PEB Score</td>
-                                    <td headers="mean">{{agent.Peb_all.mean  }}</td>
+                                    <td headers="mean">{{agent.Peb_all.mean|floatformat:2   }}</td>
                                     <td headers="count">{{ agent.Peb_all.count }}</td>
-                                    <td headers="min">{{  agent.Peb_all.min }}</td>
-                                    <td headers="max">{{ agent.Peb_all.max }}</td>
-                                    <td headers="std">{{ agent.Peb_all.std}}</td>
+                                    <td headers="min">{{  agent.Peb_all.min|floatformat:2  }}</td>
+                                    <td headers="max">{{ agent.Peb_all.max|floatformat:2  }}</td>
+                                    <td headers="std">{{ agent.Peb_all.std|floatformat:2 }}</td>
                                 </tr>
                                 <tr>
                                     <td headers="name">EHS Score</td>
-                                    <td headers="mean">{{agent.Ehs_all.mean  }}</td>
+                                    <td headers="mean">{{agent.Ehs_all.mean|floatformat:2   }}</td>
                                     <td headers="count">{{ agent.Ehs_all.count }}</td>
-                                    <td headers="min">{{  agent.Ehs_all.min }}</td>
-                                    <td headers="max">{{ agent.Ehs_all.max }}</td>
-                                    <td headers="std">{{ agent.Ehs_all.std}}</td>
+                                    <td headers="min">{{  agent.Ehs_all.min|floatformat:2  }}</td>
+                                    <td headers="max">{{ agent.Ehs_all.max|floatformat:2  }}</td>
+                                    <td headers="std">{{ agent.Ehs_all.std|floatformat:2 }}</td>
                                 </tr>
 
                                 <tr>
                                     <td headers="name">ESS Score</td>
-                                    <td headers="mean">{{agent.Ess_all.mean  }}</td>
+                                    <td headers="mean">{{agent.Ess_all.mean|floatformat:2   }}</td>
                                     <td headers="count">{{ agent.Ess_all.count }}</td>
-                                    <td headers="min">{{  agent.Ess_all.min }}</td>
-                                    <td headers="max">{{ agent.Ess_all.max }}</td>
-                                    <td headers="std">{{ agent.Ess_all.std}}</td>
+                                    <td headers="min">{{  agent.Ess_all.min|floatformat:2  }}</td>
+                                    <td headers="max">{{ agent.Ess_all.max|floatformat:2  }}</td>
+                                    <td headers="std">{{ agent.Ess_all.std|floatformat:2 }}</td>
                                 </tr>
 
                                 <tr>
                                     <td headers="name">PSS Score</td>
-                                    <td headers="mean">{{agent.PSS.mean  }}</td>
+                                    <td headers="mean">{{agent.PSS.mean|floatformat:2   }}</td>
                                     <td headers="count">{{ agent.PSS.count }}</td>
-                                    <td headers="min">{{  agent.PSS.min }}</td>
-                                    <td headers="max">{{ agent.PSS.max }}</td>
-                                    <td headers="std">{{ agent.PSS.std}}</td>
+                                    <td headers="min">{{  agent.PSS.min|floatformat:2  }}</td>
+                                    <td headers="max">{{ agent.PSS.max|floatformat:2  }}</td>
+                                    <td headers="std">{{ agent.PSS.std|floatformat:2 }}</td>
                                 </tr>
                             {% endif %}
                         {% endfor %}
@@ -125,37 +125,37 @@
                                     </tr>
                                     <tr>
                                         <td headers="name">PEB Score</td>
-                                        <td headers="mean">{{agent.Peb_all.mean  }}</td>
+                                        <td headers="mean">{{agent.Peb_all.mean|floatformat:2   }}</td>
                                         <td headers="count">{{ agent.Peb_all.count }}</td>
-                                        <td headers="min">{{  agent.Peb_all.min }}</td>
-                                        <td headers="max">{{ agent.Peb_all.max }}</td>
-                                        <td headers="std">{{ agent.Peb_all.std}}</td>
+                                        <td headers="min">{{  agent.Peb_all.min|floatformat:2  }}</td>
+                                        <td headers="max">{{ agent.Peb_all.max|floatformat:2  }}</td>
+                                        <td headers="std">{{ agent.Peb_all.std|floatformat:2 }}</td>
                                     </tr>
                                     <tr>
                                         <td headers="name">EHS Score</td>
-                                        <td headers="mean">{{agent.Ehs_all.mean  }}</td>
+                                        <td headers="mean">{{agent.Ehs_all.mean|floatformat:2   }}</td>
                                         <td headers="count">{{ agent.Ehs_all.count }}</td>
-                                        <td headers="min">{{  agent.Ehs_all.min }}</td>
-                                        <td headers="max">{{ agent.Ehs_all.max }}</td>
-                                        <td headers="std">{{ agent.Ehs_all.std}}</td>
+                                        <td headers="min">{{  agent.Ehs_all.min|floatformat:2  }}</td>
+                                        <td headers="max">{{ agent.Ehs_all.max|floatformat:2  }}</td>
+                                        <td headers="std">{{ agent.Ehs_all.std|floatformat:2 }}</td>
                                     </tr>
 
                                     <tr>
                                         <td headers="name">ESS Score</td>
-                                        <td headers="mean">{{agent.Ess_all.mean  }}</td>
+                                        <td headers="mean">{{agent.Ess_all.mean|floatformat:2   }}</td>
                                         <td headers="count">{{ agent.Ess_all.count }}</td>
-                                        <td headers="min">{{  agent.Ess_all.min }}</td>
-                                        <td headers="max">{{ agent.Ess_all.max }}</td>
-                                        <td headers="std">{{ agent.Ess_all.std}}</td>
+                                        <td headers="min">{{  agent.Ess_all.min|floatformat:2  }}</td>
+                                        <td headers="max">{{ agent.Ess_all.max|floatformat:2  }}</td>
+                                        <td headers="std">{{ agent.Ess_all.std|floatformat:2 }}</td>
                                     </tr>
 
                                     <tr>
                                         <td headers="name">PSS Score</td>
-                                        <td headers="mean">{{agent.PSS.mean  }}</td>
+                                        <td headers="mean">{{agent.PSS.mean|floatformat:2   }}</td>
                                         <td headers="count">{{ agent.PSS.count }}</td>
-                                        <td headers="min">{{  agent.PSS.min }}</td>
-                                        <td headers="max">{{ agent.PSS.max }}</td>
-                                        <td headers="std">{{ agent.PSS.std}}</td>
+                                        <td headers="min">{{  agent.PSS.min|floatformat:2  }}</td>
+                                        <td headers="max">{{ agent.PSS.max|floatformat:2  }}</td>
+                                        <td headers="std">{{ agent.PSS.std|floatformat:2 }}</td>
                                     </tr>
 
 

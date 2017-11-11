@@ -52,10 +52,10 @@ $(document).ready(function(){
                 <tr>
                     <td headers="times" style=" background-color: darkred; color: white;"> {{ name }}</td>
                     <td headers="name">Mean</td>
-                    <td headers="Peb_all">{{each.Peb_all.mean }}</td>
-                    <td headers="Ehs_all">{{ each.Ehs_all.mean }}</td>
-                    <td headers="Ess_all">{{ each.Ess_all.mean }}</td>
-                    <td headers="PSS">{{ each.PSS.mean }}</td>
+                    <td headers="Peb_all">{{each.Peb_all.mean|floatformat:2  }}</td>
+                    <td headers="Ehs_all">{{ each.Ehs_all.mean|floatformat:2  }}</td>
+                    <td headers="Ess_all">{{ each.Ess_all.mean|floatformat:2  }}</td>
+                    <td headers="PSS">{{ each.PSS.mean|floatformat:2  }}</td>
 
 
                 </tr>
@@ -72,29 +72,29 @@ $(document).ready(function(){
                 <tr>
                  <td headers="times" style=" background-color: darkred; color: white;"> </td>
                     <td headers="name">Min</td>
-                    <td headers="Peb_all">{{each.Peb_all.min }}</td>
-                    <td headers="Ehs_all">{{ each.Ehs_all.min }}</td>
-                    <td headers="Ess_all">{{ each.Ess_all.min }}</td>
-                    <td headers="PSS">{{ each.PSS.min }}</td>
+                    <td headers="Peb_all">{{each.Peb_all.min|floatformat:2  }}</td>
+                    <td headers="Ehs_all">{{ each.Ehs_all.min|floatformat:2  }}</td>
+                    <td headers="Ess_all">{{ each.Ess_all.min|floatformat:2  }}</td>
+                    <td headers="PSS">{{ each.PSS.min|floatformat:2  }}</td>
 
                 </tr>
                 <tr>
                  <td headers="times" style=" background-color: darkred; color: white;"> </td>
                     <td headers="name">Max</td>
-                    <td headers="Peb_all">{{each.Peb_all.max }}</td>
-                    <td headers="Ehs_all">{{ each.Ehs_all.max }}</td>
-                    <td headers="Ess_all">{{ each.Ess_all.max }}</td>
-                    <td headers="PSS">{{ each.PSS.max }}</td>
+                    <td headers="Peb_all">{{each.Peb_all.max|floatformat:2  }}</td>
+                    <td headers="Ehs_all">{{ each.Ehs_all.max|floatformat:2  }}</td>
+                    <td headers="Ess_all">{{ each.Ess_all.max|floatformat:2  }}</td>
+                    <td headers="PSS">{{ each.PSS.max|floatformat:2  }}</td>
 
 
                 </tr>
                     <tr>
                      <td headers="times" style=" background-color: darkred; color: white;"> </td>
                     <td headers="name">Std</td>
-                    <td headers="Peb_all">{{each.Peb_all.std }}</td>
-                    <td headers="Ehs_all">{{ each.Ehs_all.std }}</td>
-                    <td headers="Ess_all">{{ each.Ess_all.std }}</td>
-                    <td headers="PSS">{{ each.PSS.std }}</td>
+                    <td headers="Peb_all">{{each.Peb_all.std|floatformat:2  }}</td>
+                    <td headers="Ehs_all">{{ each.Ehs_all.std|floatformat:2  }}</td>
+                    <td headers="Ess_all">{{ each.Ess_all.std |floatformat:2 }}</td>
+                    <td headers="PSS">{{ each.PSS.std|floatformat:2  }}</td>
 
                 </tr>
                 {% endfor %}

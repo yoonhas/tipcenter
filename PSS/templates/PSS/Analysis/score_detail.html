@@ -88,12 +88,12 @@
                             <tr>
                                 <td headers="times" style=" background-color: darkred; color: white;"> {{ name }}</td>
                                 <td headers="name">Mean</td>
-                                <td headers="Health">{{each.Health.mean }}</td>
-                                <td headers="Community">{{ each.Community.mean }}</td>
-                                <td headers="Childcare">{{ each.Childcare.mean }}</td>
-                                <td headers="Jobskills">{{ each.Jobskills.mean }}</td>
-                                <td headers="SoftSkill">{{ each.SoftSkill.mean }}</td>
-                                <td headers="Peb_all">{{ each.Peb_all.mean }}</td>
+                                <td headers="Health">{{each.Health.mean|floatformat:2  }}</td>
+                                <td headers="Community">{{ each.Community.mean|floatformat:2  }}</td>
+                                <td headers="Childcare">{{ each.Childcare.mean|floatformat:2  }}</td>
+                                <td headers="Jobskills">{{ each.Jobskills.mean|floatformat:2  }}</td>
+                                <td headers="SoftSkill">{{ each.SoftSkill.mean|floatformat:2  }}</td>
+                                <td headers="Peb_all">{{ each.Peb_all.mean|floatformat:2  }}</td>
 
 
                             </tr>
@@ -113,34 +113,34 @@
                              <td headers="times" style=" background-color: darkred; color: white;"> </td>
                                 <td headers="name">Min</td>
                                 <td headers="Health">{{each.Health.min }}</td>
-                                <td headers="Community">{{ each.Community.min }}</td>
-                                <td headers="Childcare">{{ each.Childcare.min }}</td>
-                                <td headers="Jobskills">{{ each.Jobskills.min }}</td>
-                                <td headers="SoftSkill">{{ each.SoftSkill.min }}</td>
-                                <td headers="Peb_all">{{ each.Peb_all.min }}</td>
+                                <td headers="Community">{{ each.Community.min|floatformat:2  }}</td>
+                                <td headers="Childcare">{{ each.Childcare.min|floatformat:2  }}</td>
+                                <td headers="Jobskills">{{ each.Jobskills.min|floatformat:2  }}</td>
+                                <td headers="SoftSkill">{{ each.SoftSkill.min|floatformat:2  }}</td>
+                                <td headers="Peb_all">{{ each.Peb_all.min|floatformat:2  }}</td>
 
                             </tr>
                             <tr>
                              <td headers="times" style=" background-color: darkred; color: white;"> </td>
                                 <td headers="name">Max</td>
-                                <td headers="Health">{{each.Health.max }}</td>
-                                <td headers="Community">{{ each.Community.max }}</td>
-                                <td headers="Childcare">{{ each.Childcare.max }}</td>
-                                <td headers="Jobskills">{{ each.Jobskills.max }}</td>
-                                <td headers="SoftSkill">{{ each.SoftSkill.max }}</td>
-                                <td headers="Peb_all">{{ each.Peb_all.max }}</td>
+                                <td headers="Health">{{each.Health.max|floatformat:2  }}</td>
+                                <td headers="Community">{{ each.Community.max|floatformat:2  }}</td>
+                                <td headers="Childcare">{{ each.Childcare.max|floatformat:2  }}</td>
+                                <td headers="Jobskills">{{ each.Jobskills.max|floatformat:2  }}</td>
+                                <td headers="SoftSkill">{{ each.SoftSkill.max|floatformat:2  }}</td>
+                                <td headers="Peb_all">{{ each.Peb_all.max|floatformat:2  }}</td>
 
 
                             </tr>
                                 <tr>
                                  <td headers="times" style=" background-color: darkred; color: white;"> </td>
                                 <td headers="name">Std</td>
-                                <td headers="Health">{{each.Health.std }}</td>
-                                <td headers="Community">{{ each.Community.std }}</td>
-                                <td headers="Childcare">{{ each.Childcare.std }}</td>
-                                <td headers="Jobskills">{{ each.Jobskills.std }}</td>
-                                <td headers="SoftSkill">{{ each.SoftSkill.std }}</td>
-                                <td headers="Peb_all">{{ each.Peb_all.std }}</td>
+                                <td headers="Health">{{each.Health.std|floatformat:2  }}</td>
+                                <td headers="Community">{{ each.Community.std|floatformat:2  }}</td>
+                                <td headers="Childcare">{{ each.Childcare.std|floatformat:2  }}</td>
+                                <td headers="Jobskills">{{ each.Jobskills.std|floatformat:2  }}</td>
+                                <td headers="SoftSkill">{{ each.SoftSkill.std|floatformat:2 }}</td>
+                                <td headers="Peb_all">{{ each.Peb_all.std|floatformat:2  }}</td>
 
                             </tr>
                             {% endfor %}
@@ -165,11 +165,11 @@
                             <tr>
                                 <td headers="times" style=" background-color: darkred; color: white;"> {{ name }}</td>
                                 <td headers="name">Mean</td>
-                                <td headers="Empowerment">{{each.Empowerment.mean }}</td>
-                                <td headers="Selfmotivation">{{ each.Selfmotivation.mean }}</td>
-                                <td headers="SkilResources">{{ each.SkilResources.mean }}</td>
-                                <td headers="GaolOrientation">{{ each.GaolOrientation.mean }}</td>
-                                <td headers="Ehs_all">{{ each.Ehs_all.mean }}</td>
+                                <td headers="Empowerment">{{each.Empowerment.mean|floatformat:2  }}</td>
+                                <td headers="Selfmotivation">{{ each.Selfmotivation.mean|floatformat:2  }}</td>
+                                <td headers="SkilResources">{{ each.SkilResources.mean|floatformat:2  }}</td>
+                                <td headers="GaolOrientation">{{ each.GaolOrientation.mean|floatformat:2  }}</td>
+                                <td headers="Ehs_all">{{ each.Ehs_all.mean|floatformat:2  }}</td>
 
 
 
@@ -188,31 +188,31 @@
                             <tr>
                              <td headers="times" style=" background-color: darkred; color: white;"> </td>
                                 <td headers="name">Min</td>
-                             <td headers="Empowerment">{{each.Empowerment.min }}</td>
-                                <td headers="Selfmotivation">{{ each.Selfmotivation.min }}</td>
-                                <td headers="SkilResources">{{ each.SkilResources.min }}</td>
-                                <td headers="GaolOrientation">{{ each.GaolOrientation.min }}</td>
-                                <td headers="Ehs_all">{{ each.Ehs_all.min }}</td>
+                             <td headers="Empowerment">{{each.Empowerment.min|floatformat:2  }}</td>
+                                <td headers="Selfmotivation">{{ each.Selfmotivation.min|floatformat:2  }}</td>
+                                <td headers="SkilResources">{{ each.SkilResources.min|floatformat:2  }}</td>
+                                <td headers="GaolOrientation">{{ each.GaolOrientation.min|floatformat:2  }}</td>
+                                <td headers="Ehs_all">{{ each.Ehs_all.min|floatformat:2  }}</td>
 
                             </tr>
                             <tr>
                              <td headers="times" style=" background-color: darkred; color: white;"> </td>
                                 <td headers="name">Max</td>
-                             <td headers="Empowerment">{{each.Empowerment.max }}</td>
-                                <td headers="Selfmotivation">{{ each.Selfmotivation.max }}</td>
-                                <td headers="SkilResources">{{ each.SkilResources.max }}</td>
-                                <td headers="GaolOrientation">{{ each.GaolOrientation.max }}</td>
-                                <td headers="Ehs_all">{{ each.Ehs_all.max }}</td>
+                             <td headers="Empowerment">{{each.Empowerment.max|floatformat:2  }}</td>
+                                <td headers="Selfmotivation">{{ each.Selfmotivation.max|floatformat:2  }}</td>
+                                <td headers="SkilResources">{{ each.SkilResources.max|floatformat:2  }}</td>
+                                <td headers="GaolOrientation">{{ each.GaolOrientation.max|floatformat:2  }}</td>
+                                <td headers="Ehs_all">{{ each.Ehs_all.max|floatformat:2  }}</td>
 
                             </tr>
                                 <tr>
                                  <td headers="times" style=" background-color: darkred; color: white;"> </td>
                                 <td headers="name">Std</td>
-                                <td headers="Community">{{ each.Community.std }}</td>
-                                <td headers="Selfmotivation">{{each.Selfmotivation.std }}</td>
-                                <td headers="SkilResources">{{ each.SkilResources.std }}</td>
-                                <td headers="GaolOrientation">{{ each.GaolOrientation.std }}</td>
-                                <td headers="Ehs_all">{{ each.Ehs_all.std }}</td>
+                                <td headers="Community">{{ each.Community.std|floatformat:2  }}</td>
+                                <td headers="Selfmotivation">{{each.Selfmotivation.std|floatformat:2  }}</td>
+                                <td headers="SkilResources">{{ each.SkilResources.std|floatformat:2  }}</td>
+                                <td headers="GaolOrientation">{{ each.GaolOrientation.std|floatformat:2  }}</td>
+                                <td headers="Ehs_all">{{ each.Ehs_all.std|floatformat:2  }}</td>
 
                             </tr>
                             {% endfor %}
@@ -237,12 +237,12 @@
                             <tr>
                                 <td headers="times" style=" background-color: darkred; color: white;"> {{ name }}</td>
                                 <td headers="name">Mean</td>
-                                 <td headers="ESS1">{{ each.Ess1.mean }}</td>
-                                <td headers="ESS2">{{each.Ess2.mean }}</td>
-                                <td headers="ESS3">{{ each.Ess3.mean }}</td>
-                                <td headers="ESS4">{{ each.Ess4.mean }}</td>
-                                <td headers="Ess_all">{{ each.Ess_all.mean }}</td>
-                                <td headers="PSS">{{ each.PSS.mean }}</td>
+                                 <td headers="ESS1">{{ each.Ess1.mean|floatformat:2  }}</td>
+                                <td headers="ESS2">{{each.Ess2.mean|floatformat:2  }}</td>
+                                <td headers="ESS3">{{ each.Ess3.mean|floatformat:2  }}</td>
+                                <td headers="ESS4">{{ each.Ess4.mean|floatformat:2  }}</td>
+                                <td headers="Ess_all">{{ each.Ess_all.mean|floatformat:2  }}</td>
+                                <td headers="PSS">{{ each.PSS.mean|floatformat:2  }}</td>
 
 
                             </tr>
@@ -261,35 +261,35 @@
                             <tr>
                              <td headers="times" style=" background-color: darkred; color: white;"> </td>
                                 <td headers="name">Min</td>
-                                <td headers="ESS1">{{ each.Ess1.min }}</td>
-                            <td headers="ESS2">{{each.Ess2.min }}</td>
-                                <td headers="ESS3">{{ each.Ess3.min }}</td>
-                                <td headers="ESS4">{{ each.Ess4.min }}</td>
-                                <td headers="Ess_all">{{ each.Ess_all.min }}</td>
-                                <td headers="PSS">{{ each.PSS.min }}</td>
+                                <td headers="ESS1">{{ each.Ess1.min|floatformat:2  }}</td>
+                            <td headers="ESS2">{{each.Ess2.min|floatformat:2  }}</td>
+                                <td headers="ESS3">{{ each.Ess3.min|floatformat:2  }}</td>
+                                <td headers="ESS4">{{ each.Ess4.min|floatformat:2  }}</td>
+                                <td headers="Ess_all">{{ each.Ess_all.min|floatformat:2  }}</td>
+                                <td headers="PSS">{{ each.PSS.min|floatformat:2  }}</td>
 
                             </tr>
                             <tr>
                              <td headers="times" style=" background-color: darkred; color: white;"> </td>
                                 <td headers="name">Max</td>
-                                <td headers="ESS1">{{ each.Ess1.max }}</td>
-                            <td headers="ESS2">{{each.Ess2.max }}</td>
-                                <td headers="ESS3">{{ each.Ess3.max }}</td>
-                                <td headers="ESS4">{{ each.Ess4.max }}</td>
-                                <td headers="Ess_all">{{ each.Ess_all.max }}</td>
-                                <td headers="PSS">{{ each.PSS.max }}</td>
+                                <td headers="ESS1">{{ each.Ess1.max|floatformat:2  }}</td>
+                            <td headers="ESS2">{{each.Ess2.max|floatformat:2  }}</td>
+                                <td headers="ESS3">{{ each.Ess3.max|floatformat:2  }}</td>
+                                <td headers="ESS4">{{ each.Ess4.max|floatformat:2  }}</td>
+                                <td headers="Ess_all">{{ each.Ess_all.max|floatformat:2  }}</td>
+                                <td headers="PSS">{{ each.PSS.max|floatformat:2  }}</td>
 
 
                             </tr>
                                 <tr>
                                  <td headers="times" style=" background-color: darkred; color: white;"> </td>
                                 <td headers="name">Std</td>
-                                <td headers="ESS1">{{ each.Ess1.std }}</td>
-                                    <td headers="ESS2">{{each.Ess2.std }}</td>
-                                <td headers="ESS3">{{ each.Ess3.std }}</td>
-                                <td headers="ESS4">{{ each.Ess4.std }}</td>
-                                <td headers="Ess_all">{{ each.Ess_all.std }}</td>
-                                <td headers="PSS">{{ each.PSS.std }}</td>
+                                <td headers="ESS1">{{ each.Ess1.std|floatformat:2  }}</td>
+                                    <td headers="ESS2">{{each.Ess2.std|floatformat:2  }}</td>
+                                <td headers="ESS3">{{ each.Ess3.std|floatformat:2  }}</td>
+                                <td headers="ESS4">{{ each.Ess4.std|floatformat:2  }}</td>
+                                <td headers="Ess_all">{{ each.Ess_all.std|floatformat:2  }}</td>
+                                <td headers="PSS">{{ each.PSS.std|floatformat:2  }}</td>
 
                             </tr>
                             {% endfor %}

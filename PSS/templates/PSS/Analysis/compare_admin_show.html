@@ -39,22 +39,24 @@ $(document).ready(function(){
                 <tr>
                     <th id="times">Time</th>
                     <th id="name">Statistics</th>
-                    {% for i in key_list %}
-                        <th id={{ i }}>{{ i }}</th>
-                    {% endfor %}
+                    <th id="time1">Time 1</th>
+                    <th id="time2">Time 2</th>
+                    <th id="time3">Time 3</th>
+                    <th id="time4">Time 4</th>
+
                 </tr>
                  <p> {{ html_fig|safe }}</p>
                 <strong>Summary</strong> <button id="show">Show Graph</button> <button id="hide">Hide Graph</button>
 
-                {% for name, each in detail_list %}
+                {% for name, each in detail_list.items %}
 
                 <tr>
                     <td headers="times" style=" background-color: darkred; color: white;"> {{ name }}</td>
                     <td headers="name">Mean</td>
-                    <td headers="Peb_all">{{each.Peb_all.mean }}</td>
-                    <td headers="Ehs_all">{{ each.Ehs_all.mean }}</td>
-                    <td headers="Ess_all">{{ each.Ess_all.mean }}</td>
-                    <td headers="PSS">{{ each.PSS.mean }}</td>
+                    <td headers="time1">{{each.Mean.0|floatformat:2 }}</td>
+                    <td headers="time2">{{ each.Mean.1|floatformat:2}}</td>
+                    <td headers="time3">{{ each.Mean.2|floatformat:2 }}</td>
+                    <td headers="time4">{{ each.Mean.3|floatformat:2 }}</td>
 
 
                 </tr>
@@ -62,38 +64,38 @@ $(document).ready(function(){
                   <tr>
                   <td headers="times" style=" background-color: darkred; color: white;"> </td>
                     <td headers="name">Count</td>
-                    <td headers="Peb_all">{{each.Peb_all.count }}</td>
-                    <td headers="Ehs_all">{{ each.Ehs_all.count }}</td>
-                    <td headers="Ess_all">{{ each.Ess_all.count }}</td>
-                    <td headers="PSS">{{ each.PSS.count }}</td>
+                    <td headers="time1">{{ each.Count.0 }}</td>
+                    <td headers="time2">{{ each.Count.1 }}</td>
+                    <td headers="time3">{{ each.Count.2 }}</td>
+                    <td headers="time4">{{ each.Count.3 }}</td>
 
                 </tr>
                 <tr>
                  <td headers="times" style=" background-color: darkred; color: white;"> </td>
                     <td headers="name">Min</td>
-                    <td headers="Peb_all">{{each.Peb_all.min }}</td>
-                    <td headers="Ehs_all">{{ each.Ehs_all.min }}</td>
-                    <td headers="Ess_all">{{ each.Ess_all.min }}</td>
-                    <td headers="PSS">{{ each.PSS.min }}</td>
+                    <td headers="time1">{{ each.Min.0|floatformat:2 }}</td>
+                    <td headers="time2">{{ each.Min.1|floatformat:2 }}</td>
+                    <td headers="time3">{{ each.Min.2|floatformat:2 }}</td>
+                    <td headers="time4">{{ each.Min.3|floatformat:2}}</td>
 
                 </tr>
                 <tr>
                  <td headers="times" style=" background-color: darkred; color: white;"> </td>
                     <td headers="name">Max</td>
-                    <td headers="Peb_all">{{each.Peb_all.max }}</td>
-                    <td headers="Ehs_all">{{ each.Ehs_all.max }}</td>
-                    <td headers="Ess_all">{{ each.Ess_all.max }}</td>
-                    <td headers="PSS">{{ each.PSS.max }}</td>
+                    <td headers="time1">{{ each.Max.0|floatformat:2 }}</td>
+                    <td headers="time2">{{ each.Max.1|floatformat:2 }}</td>
+                    <td headers="time3">{{ each.Max.2|floatformat:2 }}</td>
+                    <td headers="time4">{{ each.Max.3|floatformat:2 }}</td>
 
 
                 </tr>
                     <tr>
                      <td headers="times" style=" background-color: darkred; color: white;"> </td>
                     <td headers="name">Std</td>
-                    <td headers="Peb_all">{{each.Peb_all.std }}</td>
-                    <td headers="Ehs_all">{{ each.Ehs_all.std }}</td>
-                    <td headers="Ess_all">{{ each.Ess_all.std }}</td>
-                    <td headers="PSS">{{ each.PSS.std }}</td>
+                    <td headers="time1">{{ each.Std.0|floatformat:2 }}</td>
+                    <td headers="time2">{{ each.Std.1|floatformat:2 }}</td>
+                    <td headers="time3">{{ each.Std.2|floatformat:2 }}</td>
+                    <td headers="time4">{{ each.Std.3|floatformat:2 }}</td>
 
                 </tr>
                 {% endfor %}

@@ -276,8 +276,9 @@ def compare_detail(request):
         if key == '1':
             tem_list =[]
             agent_filtered['Total'] = total_mask
-        agentObj = users.objects.get(id=key)
-        agent_filtered[agentObj.username] = total_mask[(total_mask['Agent'] == agentObj.username)]
+        else:
+            agentObj = users.objects.get(id=key)
+            agent_filtered[agentObj.username] = total_mask[(total_mask['Agent'] == agentObj.username)]
 
     #print(agent_filtered)
     new = {}
@@ -285,20 +286,22 @@ def compare_detail(request):
 
     #print("factorrrrr: %s", factors)
     for key, values in agent_filtered.items():
-        #print(key)
+
         if key != 'yoonhas':
 
             temp = values.groupby(values['Time'])
 
             frame_for_graph[key]=temp[factors+"_Z"].mean()
-            new[key + "_" + (factors + '_Mean')] = temp[factors ].mean()
-            new[key + "_" + (factors + '_Count')] = temp[factors ].count()
-            new[key + "_" + (factors + '_Min')] = temp[factors].min()
-            new[key + "_" + (factors + '_Max')] = temp[factors].max()
-            new[key + "_" + (factors + '_Std')] = temp[factors].std()
+            new[key]={}
+            temp1 =temp[factors ].mean()
+            new[key]['Mean'] = [x for x in temp[factors ].mean()]
+            new[key]['Count'] = [x for x in temp[factors ].count()]
+            new[key]['Min'] = [x for x in temp[factors ].min()]
+            new[key]['Max'] = [x for x in temp[factors ].max()]
+            new[key]['Std'] = [x for x in temp[factors ].std()]
 
     html_fig=Graph.draw_graph_Admin_compare(frame_for_graph)
-    print(agent_filtered.keys())
+    print(new)
 
     return render(request, 'PSS/Analysis/compare_admin_show.html', {'detail_list':new,"html_fig":html_fig, 'key_list':agent_filtered.keys()})
 
