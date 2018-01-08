@@ -142,6 +142,7 @@ def draw_graph_Agent_compare(box,box1, box2):
     return html_fig
 
 def draw_graph_Admin_compare(box):
+    print(box)
 
     fig, ax = plt.subplots()
     line_collection= []

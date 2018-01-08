@@ -1,8 +1,7 @@
-from django.shortcuts import render, redirect, get_object_or_404, reverse
+from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
-from .models import Surveyee, SurveyTimes,EB, EH, EH_Question, ES_Question, ES, Tip_Question, Tip, EB_Question
-from .models import EXF_Question,EXF, R, R_Question, SEF, SEF_Question, GR, GR_Question, SPR, SPR_Question,Total_for_Admin
+from .models import Surveyee, Total_for_Admin
 
 import pandas as pd
 import logging
@@ -23,11 +22,13 @@ def helper(df, str):
     desc = {'mean': mean, 'count': count, 'min': min, 'max': max, 'std': std}
     return desc
 
+
 def describe(df, fact_list):
     data ={}
-    for i  in fact_list:
-        data[i]=helper(df,i)
+    for i in fact_list:
+        data[i] = helper(df, i)
     return data
+
 
 def z_score(df):
 
@@ -36,6 +37,7 @@ def z_score(df):
     df['Ess_all_Z'] = (df.Ess_all - df.Ess_all.mean()) / df.Ess_all.std(ddof=0)
     df['PSS_Z'] = (df.PSS - df.PSS.mean()) / df.PSS.std(ddof=0)
     return df
+
 
 def full_z_score(df):
     df['Health_Z']= (df.Health - df.Health.mean()) / df.Health.std(ddof=0)
@@ -60,7 +62,6 @@ def full_z_score(df):
     return df
 
 
-
 def summary(request, agent_id):
 
     all = Total_for_Admin.objects.all()
@@ -75,10 +76,8 @@ def summary(request, agent_id):
             agent = read_frame(Total_for_Admin.objects.filter(Agent=i.pk))
             p=(i.get_username(),i.id, describe(agent, fact_list))
             list1.append(p)
-
-
-    return render(request, "PSS/Analysis/summary.html", {'agent_id':User.objects.get(id=agent_id).get_username(), 'total':total, 'indi':list1})
-
+    return render(request, "PSS/Analysis/summary.html", {'agent_id':User.objects.get(id=agent_id).get_username(),
+                                                         'total':total, 'indi':list1})
 
 
 def score_detail_agent(request, agent_id, userId):
@@ -130,6 +129,7 @@ def score_detail(request, agent_id, userId):
             pd.set_option('precision', 6)
             time = Total_for_Admin.objects.filter(Time=i)
             df = full_z_score(read_frame(time))
+            print(df[df['Health']<1])
             list1.append((i, describe(df,fact_list)))
             i += 1
     else:
@@ -144,6 +144,7 @@ def score_detail(request, agent_id, userId):
     html_fig = Graph.draw_graph(list1, userId)
     return render(request, "PSS/Analysis/score_detail.html", {'agent':agent.get_username(), 'detail_list':list1, 'html_fig':html_fig})
 
+
 def compare_view(request):
     agents = User.objects.all()
     surveyee = []
@@ -152,40 +153,36 @@ def compare_view(request):
         surveyee.append(tem_survey)
     return render(request, 'PSS/Analysis/compare.html', {'agents':agents, 'surveyee':surveyee})
 
+
 def compare_detail(request):
+
+
     def maskfunction( rawData, employ, welfare, race, marital, education, housing, age, born,gender,date):
-        print(race, marital, education, housing)
+
         if sum(list(map(int,race))) != -1:
             mask = (rawData['DM14'].isin(race))
             rawData =rawData[mask]
 
         if employ!= 77:
-            print("stay1")
             mask = (rawData['DM1'] == employ)
             rawData =rawData[mask]
         if welfare!= 77:
-            print("stay2")
             mask = (rawData['DM7'] == welfare)
             rawData =rawData[mask]
         if sum(list(map(int,marital)))!= -1:
-            print("stay3")
             mask = (rawData['DM8'].isin(marital))
             rawData =rawData[mask]
         if sum(list(map(int,education)))!= -1:
-            print("stay4")
             mask = (rawData['DM16'].isin(education))
             rawData =rawData[mask]
         if sum(list(map(int,housing)))!= -1:
-            print("stay5")
             mask = (rawData['DM9'].isin(housing))
             rawData =rawData[mask]
         if gender!= 77:
-            print("stay6")
             mask = (rawData['DM13'] == gender)
             rawData =rawData[mask]
 
         if '-' in born:
-            print("stay1")
             borns = list(born.split('-'))
             begin= borns[0]
             end= borns[1]
@@ -193,41 +190,33 @@ def compare_detail(request):
             rawData = rawData[bornMask]
         elif born == '0':
             born =0
-            print("must")
         else:
-            print("stay1")
             borns=int(born)
             bornMask =(rawData['DM12_3']==borns)
             rawData = rawData[bornMask]
 
         if '-' in age:
-            print("stay1")
             ages = list(age.split('-'))
             beginAge= ages[0]
             endAge= ages[1]
             ageMask = (rawData['DM12_1']>=int(beginAge))&(rawData['DM12_1']<=int(endAge))
             rawData = rawData[ageMask]
         elif age == '0':
-            print("must")
             age =0
         else:
-            print("stay1")
             ages=int(age)
             ageMask =(rawData['DM12_1']==ages)
             rawData = rawData[ageMask]
 
         if '-' in date:
-            print("stay1")
             dates = list(date.split('-'))
             begin= pd.datetime.strptime(dates[0], '%Y.%m.%d')
             end= pd.datetime.strptime(dates[1], '%Y.%m.%d')
             dateMask = (rawData['cDATE']>=begin)&(rawData['cDATE']<=end)
             rawData = rawData[dateMask]
         elif date == '0':
-            print("must")
             dates =0
         else:
-            print("stay1")
             date=pd.datetime.strptime(date, '%Y.%m.%d')
             dateMask =(rawData['cDATE']==date)
             rawData = rawData[dateMask]
@@ -255,23 +244,20 @@ def compare_detail(request):
     gender = int(request.POST['gender'])
     date = request.POST['date']
     case = request.POST['indi_case']
-    #print("haosidjfoiasdjfoiasdjfoiajsdf")
-    #print(compare,race, marital,education,housing)
+
 
     if case != '-1':
         checking =1
         surveyee = Surveyee.objects.get(caseNum=case)
-        individual = Total_for_Admin.objects.filter(caseNum=surveyee)
+        individual = read_frame( Total_for_Admin.objects.filter(caseNum=surveyee))
+        indi_z = full_z_score(individual)
     else:
         checking =0
 
     total =maskfunction(read_frame(Total_for_Admin.objects.all()), employ, welfare, race, marital, education, housing, age, born,gender,date)
-    #print("toatlllllllll")
-    #print(total)
     total_mask = full_z_score(total)
 
     agent_filtered ={}
-    #print(compare)
     for key in compare:
         if key == '1':
             tem_list =[]
@@ -280,30 +266,38 @@ def compare_detail(request):
             agentObj = users.objects.get(id=key)
             agent_filtered[agentObj.username] = total_mask[(total_mask['Agent'] == agentObj.username)]
 
-    #print(agent_filtered)
     new = {}
     frame_for_graph = pd.DataFrame([])
 
-    #print("factorrrrr: %s", factors)
     for key, values in agent_filtered.items():
 
         if key != 'yoonhas':
 
             temp = values.groupby(values['Time'])
-
             frame_for_graph[key]=temp[factors+"_Z"].mean()
+
             new[key]={}
-            temp1 =temp[factors ].mean()
             new[key]['Mean'] = [x for x in temp[factors ].mean()]
             new[key]['Count'] = [x for x in temp[factors ].count()]
             new[key]['Min'] = [x for x in temp[factors ].min()]
             new[key]['Max'] = [x for x in temp[factors ].max()]
             new[key]['Std'] = [x for x in temp[factors ].std()]
 
+    if checking == 1:
+        frame_for_graph[case]=""
+        temp1= indi_z.groupby(indi_z['Time'])
+        frame_for_graph[case] = temp1[factors+"_Z"].mean()
+        print("+++++++++++++")
+        new[case]={}
+        new[case]['Mean'] =[x for x in temp1[factors ].mean()]
+        new[case]['Count'] =[x for x in temp1[factors ].count()]
+        new[case]['Min'] = [x for x in temp1[factors ].min()]
+        new[case]['Max'] = [x for x in temp1[factors ].max()]
+        new[case]['Std'] = 0
+        print(new)
     html_fig=Graph.draw_graph_Admin_compare(frame_for_graph)
-    print(new)
-
     return render(request, 'PSS/Analysis/compare_admin_show.html', {'detail_list':new,"html_fig":html_fig, 'key_list':agent_filtered.keys()})
+
 
 def compare_agent(request, agent_id):
     users = get_user_model()

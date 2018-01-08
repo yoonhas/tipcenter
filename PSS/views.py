@@ -4,7 +4,7 @@ from  django.views.generic.edit import CreateView
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
 from  django.contrib import messages
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse
 from .forms import CreateUserForm
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
@@ -30,12 +30,14 @@ class IndexView(generic.ListView):
         return User.objects.filter()
 
 class CreateUserView(CreateView):
-    template_name = 'registration/signup.html'
+    template_name = 'PSS/registration/signup.html'
     form_class = CreateUserForm
-    success_url = reverse_lazy('create_user_done')
+    def get_success_url(self): # override this function if you want to use reverse
+
+        return reverse('index')
 
 class RegisteredView(TemplateView):
-    template_name = 'registration/signup_done.html'
+    template_name = 'PSS/registration/signup_done.html'
 
 def add_paticipants_view(request):
     users = get_user_model()

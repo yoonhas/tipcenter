@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from django.contrib.auth.models import User
 from .models import Surveyee, SurveyTimes,EB, EH, EH_Question, ES_Question, ES, Tip_Question, Tip, EB_Question
 from .models import EXF_Question,EXF, R, R_Question, SEF, SEF_Question, GR, GR_Question, SPR, SPR_Question,Total_for_Admin
@@ -327,41 +328,47 @@ def parsing(row):
     if  (Empowerment_sum+SelfMotivation_sum+SkillResources_sum+GoalOrientation_sum)==0:EHS_all=0.0
     else:EHS_all = round(float(EHS_all_sum)/(EHS_all_col),6)
 
-    if Health_sum==0:Health=0.0
+    if Health_sum==0:Health=np.NaN
     else:Health = round(float(Health_sum)/ Health_col,6)
 
-    if Community_sum==0:Community=0.0
+    if Community_sum==0:Community=np.NaN
     else:Community =round(float(Community_sum)/Community_col,6)
 
-    if ChildCare_sum==0:ChildCare=0.0
+    if ChildCare_sum==0:ChildCare=np.NaN
     else:ChildCare =round( float(ChildCare_sum)/ ChildCare_col,6)
 
-    if JobSkills_sum==0: JobSkills=0.0
+    if JobSkills_sum==0: JobSkills=np.NaN
     else:JobSkills = round(float(JobSkills_sum)/ JobSkills_col,6)
 
-    if SoftSkill_sum==0: SoftSkill=0.0
+    if SoftSkill_sum==0: SoftSkill=np.NaN
     else:SoftSkill = round(float(SoftSkill_sum)/ SoftSkill_col,6)
 
-    if (Health_sum+Community_sum+ChildCare_sum+JobSkills_sum+SoftSkill_sum) ==0:PEBS_all=0
-    else:PEBS_all = round(float(Health_sum+Community_sum+ChildCare_sum+JobSkills_sum+SoftSkill_sum)/(Health_col+Community_col+ChildCare_col+JobSkills_col+SoftSkill_col),6)
+    if (Health_sum+Community_sum+ChildCare_sum+JobSkills_sum+SoftSkill_sum) ==0:PEBS_all=np.NaN
+    else:
+        PEBS_all_sum = np.array([Health,Community,ChildCare,JobSkills,SoftSkill])
+        PEBS_all = np.round_(np.nanmean(PEBS_all_sum),6)
+        if np.amax(PEBS_all_sum) > 5:
+            print(row['CaseNum'])
+            print(PEBS_all_sum)
 
-    if ESS1_sum ==0:ESS1=0.0
+
+
+    if ESS1_sum ==0:ESS1=np.NaN
     else:ESS1 = round(float(ESS1_sum)/ ESS1_col,6)
 
-    if ESS2_sum ==0:ESS2=0.0
+    if ESS2_sum ==0:ESS2=np.NaN
     else:ESS2 = round(float(ESS2_sum) / ESS2_col,6)
 
-    if ESS3_sum ==0: ESS3=0.0
+    if ESS3_sum ==0: ESS3=np.NaN
     else:ESS3 = round(float(ESS3_sum) / ESS3_col,6)
 
-    if ESS4_sum==0:ESS4=0.0
+    if ESS4_sum==0:ESS4=np.NaN
     else:ESS4 = round(float(ESS4_sum) / ESS4_col,6)
 
-    if (ESS1_sum+ESS2_sum+ESS3_sum+ESS4_sum)==0:ESS_all =0.0
-    else:ESS_all =round(float(ESS1_sum+ESS2_sum+ESS3_sum+ESS4_sum)/(ESS1_col+ESS2_col+ESS3_col+ESS4_col),6)
-
-
-
+    if (ESS1_sum+ESS2_sum+ESS3_sum+ESS4_sum)==0:ESS_all =np.NaN
+    else:
+        ESS_all_sum = np.array([ESS1,ESS2,ESS3,ESS4])
+        ESS_all =np.round_(np.nanmean(ESS_all_sum),6)
 
 
     return (Empowerment, SelfMotivation, SkillResources, GoalOrientation, EHS_all, Health, Community, ChildCare, JobSkills,
@@ -403,7 +410,7 @@ def readFile(file):
 
 
     for i in range(len(df)):
-        print(df.iloc[i]['CaseNum'])
+
         Empowerment, SelfMotivation, SkillResources, GoalOrientation, EHS_all, Health, Community, ChildCare, JobSkills, SoftSkill, PEBS_all, ESS1, ESS2, ESS3, ESS4, ESS_all\
             ,Resilience,self_effi, gr_per, gr_con, spr_all, f_self, f_other, f_situation, f_all, gr_all = parsing(df.iloc[i])
         df.set_value(i, 'Empowerment',Empowerment)
@@ -432,8 +439,6 @@ def readFile(file):
         df.set_value(i, 'F_other', f_other)
         df.set_value(i, 'F_situation', f_situation)
         df.set_value(i, 'F_all', f_all)
-
-
 
     return df
 

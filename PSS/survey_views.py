@@ -4,7 +4,6 @@ from  django.views.generic.edit import CreateView
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
 from  django.contrib import messages
-from django.core.urlresolvers import reverse_lazy
 from .forms import CreateUserForm
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model

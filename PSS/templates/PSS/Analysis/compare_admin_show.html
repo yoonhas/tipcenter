@@ -101,6 +101,71 @@ $(document).ready(function(){
                 {% endfor %}
 
             </table>
+            {% if indi_list %}
+                <table style="width:80%">
+                <tr>
+                    <th id="times">Time</th>
+                    <th id="name">Statistics</th>
+                    <th id="time1">Time 1</th>
+                    <th id="time2">Time 2</th>
+                    <th id="time3">Time 3</th>
+                    <th id="time4">Time 4</th>
+
+                </tr>
+
+
+                {% for name, each in indi_list.items %}
+
+                <tr>
+                    <td headers="times" style=" background-color: darkred; color: white;"> {{ name }}</td>
+                    <td headers="name">Mean</td>
+                    <td headers="time1">{{each.Mean.0|floatformat:2 }}</td>
+                    <td headers="time2">{{ each.Mean.1|floatformat:2}}</td>
+                    <td headers="time3">{{ each.Mean.2|floatformat:2 }}</td>
+                    <td headers="time4">{{ each.Mean.3|floatformat:2 }}</td>
+
+
+                </tr>
+
+                  <tr>
+                  <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Count</td>
+                    <td headers="time1">{{ each.Count.0 }}</td>
+                    <td headers="time2">{{ each.Count.1 }}</td>
+                    <td headers="time3">{{ each.Count.2 }}</td>
+                    <td headers="time4">{{ each.Count.3 }}</td>
+
+                </tr>
+                <tr>
+                 <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Min</td>
+                    <td headers="time1">{{ each.Min.0|floatformat:2 }}</td>
+                    <td headers="time2">{{ each.Min.1|floatformat:2 }}</td>
+                    <td headers="time3">{{ each.Min.2|floatformat:2 }}</td>
+                    <td headers="time4">{{ each.Min.3|floatformat:2}}</td>
+
+                </tr>
+                <tr>
+                 <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Max</td>
+                    <td headers="time1">{{ each.Max.0|floatformat:2 }}</td>
+                    <td headers="time2">{{ each.Max.1|floatformat:2 }}</td>
+                    <td headers="time3">{{ each.Max.2|floatformat:2 }}</td>
+                    <td headers="time4">{{ each.Max.3|floatformat:2 }}</td>
+
+
+                </tr>
+                    <tr>
+                     <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Std</td>
+                    <td headers="time1">{{ each.Std.0|floatformat:2 }}</td>
+                    <td headers="time2">{{ each.Std.1|floatformat:2 }}</td>
+                    <td headers="time3">{{ each.Std.2|floatformat:2 }}</td>
+                    <td headers="time4">{{ each.Std.3|floatformat:2 }}</td>
+
+                </tr>
+                {% endfor %}
+            {% endif %}
 
          </ol>
 
