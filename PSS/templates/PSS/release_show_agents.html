@@ -5,7 +5,7 @@
     {% if agents %}
         <ul>
         {% for agent in agents %}
-            {% if agent.usernamegit  != 'yoonhas' %}
+            {% if agent.username  != 'yoonhas' %}
             <li><a href="{% url 'PSS:release_survey_participants' agent.id%}">{{ agent.username }}</a></li>
             {% endif %}
         {% endfor %}

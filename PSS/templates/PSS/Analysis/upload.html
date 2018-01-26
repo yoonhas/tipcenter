@@ -3,11 +3,11 @@
 
 <html>
     <head>
-        <title> Up load</title>
+        <title> First Survey Upload</title>
     </head>
     <body>
         <div>
-            <h1><a href="">Up load</a></h1>
+            <h1><a href="">First Survey Upload</a></h1>
         </div>
 
         <form action="{% url 'PSS:upload_csv' %}" method="post" enctype="multipart/form-data" class="post-form">{% csrf_token %}
@@ -22,6 +22,11 @@
                      <button class="btn btn-primary"> <span class="glyphicon glyphicon-upload" style="margin-right:5px;"></span>Upload </button>
                 </div>
             </div>
+            {% if existing %}
+                {% for i in existing %}
+                    <p>{{ i }} does exist already.</p>
+                {% endfor %}
+            {% endif %}
             </form>
     </body>
 </html>

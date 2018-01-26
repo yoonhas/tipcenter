@@ -5,61 +5,25 @@ from .models import Surveyee, SurveyTimes,EB, EH, EH_Question, ES_Question, ES, 
 from .models import EXF_Question,EXF, R, R_Question, SEF, SEF_Question, GR, GR_Question, SPR, SPR_Question,Total_for_Admin
 from .models import SSP_Question, SSP, F, F_Question, GD, GD_Question, HM_Question, HM, HEALTH_Question, HEALTH, DM, DM_Question
 
-def checkEBnES(val):
-    if 77 in val.unique():
-        summ = 0
-        col = 0
-        for i in val:
-            if i > 5 or i <0:
-                summ += 0
-                col += 0
-            else:
-                summ += i
-                col += 1
-        return (summ, col)
-    elif 99 in val.unique():
-        summ = 0
-        col = 0
-        for i in val:
-            if i > 5 or i <0:
-                summ += 0
-                col += 0
-            else:
-                summ += i
-                col += 1
-        return (summ, col)
-    else:
+def check_element(val):
+    val.fillna(99, inplace=True)
+    val[val == 77] = np.NaN
+    val[val == 99] = np.NaN
+    # all values are NaN
 
-        return (val.sum(), len(val))
+    if val.isnull().sum() == len(val):
+        return (np.NaN, np.NaN)
 
-def checkEH(val):
-    if 77 in val.unique():
-        sum = 0
-        col = 0
-        for i in val:
-            if i > 10 or i < 0 or i== None:
-                sum += 0
-                col += 0
-            else:
-                sum += i
-                col += 1
-        return (sum, col)
-    elif 99 in val.unique():
+    summ = np.nansum(val)
+    mean = np.nanmean(val)
 
-        sum = 0
-        col = 0
-        for i in val:
-            if i > 10 or i < 0 or i==None:
-                sum += 0
-                col += 0
-            else:
-                sum += i
-                col += 1
-        return (sum, col)
-    else:
-        return (val.sum(), len(val))
+    return (summ, mean)
+
 
 def checkR(val):
+    val.fillna(99, inplace=True)
+    val[val == 77] = np.NaN
+    val[val == 99] = np.NaN
     if 77 in val.unique():
         if (val.sum() == 77 * (len(val))):
             return (val.sum(), len(val))
@@ -92,51 +56,17 @@ def checkR(val):
         return (val.sum(), len(val))
 
 def checkGR(val):
-    dmap={1:5, 2:4, 3:3, 4:2, 5:1}
-    if 77 in val.unique():
-        sum = 0
-        col = 0
-        count=1
-        for i in val:
-            if i > 5 or i <0:
-                sum += 0
-                col += 0
-            else:
-                i = dmap[i]
-                sum += i
-                col += 1
-            count+=1
-        return (sum, col)
+    val.fillna(99, inplace=True)
+    val.fillna(77, inplace=True)
+    dmap={1:5, 2:4, 3:3, 4:2, 5:1, 99:np.NaN}
+    new_list=[ dmap[x] for x in val]
 
-    elif 99 in val.unique():
-
-        sum = 0
-        col = 0
-        count = 1
-        for i in val:
-            if i > 5 or i <0:
-                sum += 0
-                col += 0
-            else:
-                i = dmap[i]
-                sum += i
-                col += 1
-            count += 1
-        return (sum, col)
-    else:
-        sum=0
-        count=1
-        for i in val:
-             if i > 5 or i < 0:
-                sum += 0
-             else:
-                i = dmap[i]
-                sum += i
-             count += 1
-        return (sum, len(val))
+    return check_element(pd.Series(new_list))
 
 
 def checkSPR(val):
+    val.fillna(99, inplace=True)
+    val.fillna(77, inplace=True)
     dmap = {0:10, 1: 9, 2: 8, 3: 7, 4: 6, 5: 5, 6: 4, 7: 3, 8: 2, 9: 1, 10: 0}
     if 77 in val.unique():
         sum = 0
@@ -188,6 +118,8 @@ def checkSPR(val):
         return (sum, len(val))
 
 def checkF(val):
+    val.fillna(99, inplace=True)
+    val.fillna(77, inplace=True)
     dmap = { 1: 7, 2: 6, 3: 5, 4: 4, 5: 3, 6: 2, 7: 1}
     if 77 in val.unique():
         sum = 0
@@ -238,37 +170,42 @@ def checkF(val):
 
 def parsing(row):
     if 'EH15' in row:
-        Empowerment_sum, Empowerment_col =checkEH(row[['EH3','EH4','EH5','EH6']])
-        SelfMotivation_sum, SelfMotivation_col = checkEH(row[['EH11', 'EH15']])
-        SkillResources_sum, SkillResources_col = checkEH(row[['EH17', 'EH18', 'EH19', 'EH20']])
-        GoalOrientation_sum, GoalOrientation_col = checkEH(row[['EH21', 'EH22', 'EH23', 'EH24']])
-        EHS_all_sum, EHS_all_col = checkEH(row[['EH3','EH4','EH5','EH6','EH11', 'EH15','EH17', 'EH18', 'EH19', 'EH20','EH21', 'EH22', 'EH23', 'EH24']])
+        Empowerment_sum, Empowerment =check_element(row[['EH3','EH4','EH5','EH6']])
+        SelfMotivation_sum, SelfMotivation = check_element(row[['EH11', 'EH15']])
+        SkillResources_sum,SkillResources = check_element(row[['EH17', 'EH18', 'EH19', 'EH20']])
+        GoalOrientation_sum, GoalOrientation = check_element(row[['EH21', 'EH22', 'EH23', 'EH24']])
+        EHS_all_sum, EHS_all = check_element(row[['EH3','EH4','EH5','EH6','EH11', 'EH15','EH17', 'EH18', 'EH19', 'EH20','EH21', 'EH22', 'EH23', 'EH24']])
 
     else:
-        Empowerment_sum, Empowerment_col =checkEH(row[['EH1','EH2','EH3','EH4']])
-        SelfMotivation_sum, SelfMotivation_col = checkEH(row[['EH6', 'EH5']])
-        SkillResources_sum, SkillResources_col = checkEH(row[['EH7', 'EH8', 'EH9', 'EH10']])
-        GoalOrientation_sum, GoalOrientation_col = checkEH(row[['EH11', 'EH12', 'EH13', 'EH14']])
-        EHS_all_sum, EHS_all_col = checkEH(row[['EH3','EH4','EH5','EH6','EH1', 'EH2','EH7', 'EH8', 'EH9', 'EH10','EH11', 'EH12', 'EH13', 'EH14']])
+        Empowerment_sum,Empowerment =check_element(row[['EH1','EH2','EH3','EH4']])
+        SelfMotivation_sum, SelfMotivation = check_element(row[['EH6', 'EH5']])
+        SkillResources_sum,SkillResources = check_element(row[['EH7', 'EH8', 'EH9', 'EH10']])
+        GoalOrientation_sum,GoalOrientation = check_element(row[['EH11', 'EH12', 'EH13', 'EH14']])
+        EHS_all_sum,EHS_all = check_element(row[['EH3','EH4','EH5','EH6','EH1', 'EH2','EH7', 'EH8', 'EH9', 'EH10','EH11', 'EH12', 'EH13', 'EH14']])
 
 
-    Health_sum, Health_col = checkEBnES(row[['EB10', 'EB11', 'EB12', 'EB13']])
-    Community_sum, Community_col = checkEBnES(row[['EB15', 'EB16', 'EB17']])
-    ChildCare_sum, ChildCare_col = checkEBnES(row[['EB6', 'EB19', 'EB18']])
-    JobSkills_sum, JobSkills_col = checkEBnES(row[['EB1', 'EB2', 'EB3', 'EB4', 'EB8']])
-    SoftSkill_sum , SoftSkill_col = checkEBnES(row[['EB22', 'EB23', 'EB24', 'EB25', 'EB26']])
+    Health_sum,Health = check_element(row[['EB10', 'EB11', 'EB12', 'EB13']])
+    Community_sum,Community = check_element(row[['EB15', 'EB16', 'EB17']])
+    ChildCare_sum,ChildCare = check_element(row[['EB6', 'EB19', 'EB18']])
+    JobSkills_sum,JobSkills = check_element(row[['EB1', 'EB2', 'EB3', 'EB4', 'EB8']])
+    SoftSkill_sum ,SoftSkill = check_element(row[['EB22', 'EB23', 'EB24', 'EB25', 'EB26']])
+    PEBS_all_sum, PEBS_all = check_element(row[['EB10', 'EB11', 'EB12', 'EB13','EB15', 'EB16', 'EB17',
+                                                              'EB6', 'EB19', 'EB18','EB1', 'EB2', 'EB3', 'EB4', 'EB8',
+                                                              'EB22', 'EB23', 'EB24', 'EB25', 'EB26' ]])
 
-    ESS1_sum, ESS1_col = checkEBnES(row[['SS2', 'SS8', 'SS9', 'SS10', 'SS12']])
-    ESS2_sum, ESS2_col = checkEBnES(row[['SS1', 'SS4', 'SS13', 'SS14']])
-    ESS3_sum, ESS3_col = checkEBnES(row[['SS11', 'SS7']])
-    ESS4_sum, ESS4_col = checkEBnES(row[['SS3', 'SS5', 'SS6']])
 
-    Resilience_sum,Resilience_col = checkR(row[['R1', 'R2']])
-    self_effi_sum, self_effi_col = checkEBnES(row[['SEF1','SEF2','SEF3', 'SEF4','SEF5','SEF6','SEF7', 'SEF8']])
-    gr_per_sum, gr_per_col = checkEBnES(row[['GR2','GR4', 'GR7', 'GR8']])
-    gr_con_sum, gr_con_col = checkGR(row[['GR1', 'GR3', 'GR5', 'GR6']])
+    ESS1_sum,ESS1 = check_element(row[['SS2', 'SS8', 'SS9', 'SS10', 'SS12']])
+    ESS2_sum,ESS2 = check_element(row[['SS1', 'SS4', 'SS13', 'SS14']])
+    ESS3_sum,ESS3 = check_element(row[['SS11', 'SS7']])
+    ESS4_sum,ESS4 = check_element(row[['SS3', 'SS5', 'SS6']])
+    ESS_all_sum, ESS_all = check_element(row[['SS3', 'SS5', 'SS6','SS2', 'SS8', 'SS9', 'SS10', 'SS12',
+                                                           'SS1', 'SS4', 'SS13', 'SS14','SS11', 'SS7']])
+
+    Resilience_sum,Resilience = check_element(row[['R1', 'R2']])
+    self_effi_sum, self_effi = check_element(row[['SEF1','SEF2','SEF3', 'SEF4','SEF5','SEF6','SEF7', 'SEF8']])
+    gr_per_sum, gr_per = check_element(row[['GR2','GR4', 'GR7', 'GR8']])
+    gr_con_sum, gr_con = checkGR(row[['GR1', 'GR3', 'GR5', 'GR6']])
     if 'SPR1' in row:
-
         spr_all_sum, spr_all_col = checkSPR(row[['SPR1', 'SPR2', 'SPR3','SPR4', 'SPR5', 'SPR6']])
     else:
         spr_all_col =6
@@ -282,14 +219,14 @@ def parsing(row):
         f_other_sum, f_other_col = 99*6, 6
         f_situation_sum, f_situation_col = 99*6, 6
 
-    if Resilience_sum ==0:Resilience = 0.0
-    else: Resilience= round(float(Resilience_sum/Resilience_col),6)
+    if Resilience_sum ==0 or Resilience_sum ==np.NaN :Resilience = np.NaN
+    else: Resilience= round(float(Resilience_sum/Resilience),6)
     if self_effi_sum ==0:self_effi = 0.0
-    else: self_effi = round(float(self_effi_sum/self_effi_col),6)
+    else: self_effi = round(float(self_effi_sum/self_effi),6)
     if gr_per_sum ==0:gr_per = 0.0
-    else: gr_per= round(float(gr_per_sum/gr_per_col),6)
+    else: gr_per= round(float(gr_per_sum/gr_per),6)
     if gr_con_sum == 0:gr_con = 0.0
-    else:gr_con = round(float(gr_con_sum / gr_con_col),6)
+    else:gr_con = round(float(gr_con_sum / gr_con),6)
     if spr_all_sum == 0:
         spr_all = 0.0
     else:
@@ -311,64 +248,9 @@ def parsing(row):
     if gr_per_sum + gr_con_sum == 0:
         gr_all = 0.0
     else:
-        gr_all = round(float((gr_per_sum + gr_con_sum)  / (gr_per_col + gr_con_col)),6)
+        gr_all = round(float((gr_per_sum + gr_con_sum)  / (gr_per+ gr_con)),6)
 
 
-    if Empowerment_sum == 0:Empowerment = 0.0
-    else: Empowerment = round(float(Empowerment_sum)/Empowerment_col,6)
-
-    if SelfMotivation_sum ==0:SelfMotivation=0.0
-    else: SelfMotivation=round(float(SelfMotivation_sum)/ SelfMotivation_col,6)
-
-    if SkillResources_sum ==0: SkillResources=0.0
-    else: SkillResources=round(float(SkillResources_sum)/ SkillResources_col,6)
-
-    if GoalOrientation_sum ==0:GoalOrientation=0.0
-    else: GoalOrientation=round(float(GoalOrientation_sum)/ GoalOrientation_col,6)
-    if  (Empowerment_sum+SelfMotivation_sum+SkillResources_sum+GoalOrientation_sum)==0:EHS_all=0.0
-    else:EHS_all = round(float(EHS_all_sum)/(EHS_all_col),6)
-
-    if Health_sum==0:Health=np.NaN
-    else:Health = round(float(Health_sum)/ Health_col,6)
-
-    if Community_sum==0:Community=np.NaN
-    else:Community =round(float(Community_sum)/Community_col,6)
-
-    if ChildCare_sum==0:ChildCare=np.NaN
-    else:ChildCare =round( float(ChildCare_sum)/ ChildCare_col,6)
-
-    if JobSkills_sum==0: JobSkills=np.NaN
-    else:JobSkills = round(float(JobSkills_sum)/ JobSkills_col,6)
-
-    if SoftSkill_sum==0: SoftSkill=np.NaN
-    else:SoftSkill = round(float(SoftSkill_sum)/ SoftSkill_col,6)
-
-    if (Health_sum+Community_sum+ChildCare_sum+JobSkills_sum+SoftSkill_sum) ==0:PEBS_all=np.NaN
-    else:
-        PEBS_all_sum = np.array([Health,Community,ChildCare,JobSkills,SoftSkill])
-        PEBS_all = np.round_(np.nanmean(PEBS_all_sum),6)
-        if np.amax(PEBS_all_sum) > 5:
-            print(row['CaseNum'])
-            print(PEBS_all_sum)
-
-
-
-    if ESS1_sum ==0:ESS1=np.NaN
-    else:ESS1 = round(float(ESS1_sum)/ ESS1_col,6)
-
-    if ESS2_sum ==0:ESS2=np.NaN
-    else:ESS2 = round(float(ESS2_sum) / ESS2_col,6)
-
-    if ESS3_sum ==0: ESS3=np.NaN
-    else:ESS3 = round(float(ESS3_sum) / ESS3_col,6)
-
-    if ESS4_sum==0:ESS4=np.NaN
-    else:ESS4 = round(float(ESS4_sum) / ESS4_col,6)
-
-    if (ESS1_sum+ESS2_sum+ESS3_sum+ESS4_sum)==0:ESS_all =np.NaN
-    else:
-        ESS_all_sum = np.array([ESS1,ESS2,ESS3,ESS4])
-        ESS_all =np.round_(np.nanmean(ESS_all_sum),6)
 
 
     return (Empowerment, SelfMotivation, SkillResources, GoalOrientation, EHS_all, Health, Community, ChildCare, JobSkills,
@@ -411,8 +293,10 @@ def readFile(file):
 
     for i in range(len(df)):
 
-        Empowerment, SelfMotivation, SkillResources, GoalOrientation, EHS_all, Health, Community, ChildCare, JobSkills, SoftSkill, PEBS_all, ESS1, ESS2, ESS3, ESS4, ESS_all\
-            ,Resilience,self_effi, gr_per, gr_con, spr_all, f_self, f_other, f_situation, f_all, gr_all = parsing(df.iloc[i])
+        Empowerment, SelfMotivation, SkillResources, GoalOrientation, EHS_all, Health, Community, ChildCare, JobSkills, \
+            SoftSkill, PEBS_all, ESS1, ESS2, ESS3, ESS4, ESS_all\
+            ,Resilience,self_effi, gr_per, gr_con, spr_all, f_self, f_other, f_situation, f_all, gr_all \
+            = parsing(df.iloc[i])
         df.set_value(i, 'Empowerment',Empowerment)
         df.set_value(i, 'SelfMotivation', SelfMotivation)
         df.set_value(i, 'SkillResources', SkillResources)

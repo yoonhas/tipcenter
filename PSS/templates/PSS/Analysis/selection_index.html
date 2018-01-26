@@ -1,0 +1,25 @@
+{% extends 'PSS/base.html' %}
+{% block content %}
+<div class="container">
+
+    {% if user.is_active %}
+            <ul>
+
+                <h1>Selection</h1><br><br>
+                <div class="list-group">
+                <a href="{% url 'PSS:compare_view' %}" class="list-group-item" >
+                    <h4 class="list-group-item-heading">Combine Selection</h4>
+                     <p class="list-group-item-text">Combine all selected demographic</p>
+                    </a>
+                <a href="{% url 'PSS:compare_indi_view' %}" class="list-group-item">
+                    <h4 class="list-group-item-heading">Individual Selection </h4>
+                     <p class="list-group-item-text"></p></a>
+                </div>
+
+             </ul>
+    {% else %}
+        <p>Log in Please</p>
+    {% endif %}
+</div>
+{% endblock content %}
+

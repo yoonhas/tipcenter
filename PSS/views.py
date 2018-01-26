@@ -16,6 +16,8 @@ from .readFile import readFile
 import pandas as pd
 import logging
 
+from .upload_file import add_first_Survey
+
 import matplotlib
 matplotlib.use("Agg")
 
@@ -79,15 +81,17 @@ def release_survey_participants(request, agent_id):
 def set_ready(request):
 
     def helper(i, time):
+        NAME = 'www.pssdatasolution.org/PSS/'
+        TIMES = '/times/'
         surveyee = Surveyee.objects.get(caseNum=int(i))
         users = get_user_model()
         agent = users.objects.get(id = surveyee.agent_name_id)
         if  SurveyTimes.objects.filter(caseNum=surveyee, agent = agent, time = time, readyToStart=True ).exists():
-            link = 'http://127.0.0.1:8000/PSS/' + str(surveyee.caseNum) + '/times/'
+            link = "{}{}{}".format(NAME,str(surveyee.caseNum),TIMES)
             return (surveyee.caseNum, link)
         surveyTime = SurveyTimes(caseNum=surveyee, agent = agent, time = time, pub_Date= timezone.now(), readyToStart=True )
         surveyTime.save()
-        link = 'http://127.0.0.1:8000/PSS/' + str(surveyee.caseNum) + '/times/'
+        link = "{}{}{}".format(NAME,str(surveyee.caseNum),TIMES)
         return (surveyee.caseNum, link)
 
     participants1=request.POST.getlist('participants1')
@@ -155,36 +159,6 @@ def Surveytimes_view(request, surveyee_caseNum):
     return render(request, 'PSS/times.html', {'surveyTime':surveyTime, 'message': "No Survey is avaialbe now"
                                               })
 
-
-
-
-def upload_view(request):
-    return render(request, 'PSS/Analysis/upload.html')
-
-def upload_csv(request):
-    if "GET" == request.method:
-        return render(request, "PSS/Analysis/upload.html")
-
-    try:
-        csv_file = request.FILES["csv_file"]
-        if not csv_file.name.endswith('.csv'):
-            messages.error(request, 'File is not CSV type')
-            return HttpResponseRedirect(reverse("PSS:upload_csv"))
-
-        if csv_file.multiple_chunks():
-            messages.error(request, "Uploaded file is too big (%.2f MB)." % (csv_file.size / (1000 * 1000),))
-            return HttpResponseRedirect(reverse("PSS:upload_csv"))
-
-
-    except Exception as e:
-        logging.getLogger("error_logger").error("unable to upload file."+repr(e))
-        messages.error(request, "unable to upload file."+repr(e))
-
-    else:
-        df = readFile(csv_file)
-        survey_views.inputFromPanda(df)
-
-    return HttpResponseRedirect(reverse('PSS:upload_csv'))
 
 def Thanks(request):
     return HttpResponse('Thank you')

@@ -1,0 +1,33 @@
+{% extends 'PSS/base.html' %}
+{% block content %}
+
+<html>
+    <head>
+        <title> Download Online Survey</title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="">Download Online Survey</a></h1>
+        </div>
+
+        <form action="{% url 'PSS:upload_csv' %}" method="post" enctype="multipart/form-data" class="post-form">{% csrf_token %}
+        <div class="container">
+            <div class="list-group">
+                {% if date_list %}
+                    {% for date in date_list %}
+                        <a href="{% url 'PSS:export_csv_date' date %}" class="list-group-item ">
+                        <h class="list-group-item-heading">{{ date }}</h>
+                        </a>
+                    {% endfor %}
+                    {{ sam }}
+                {% else %}
+                    <p> <h3>There is no online survey... </h3></p>
+                {% endif %}
+
+            </div>
+        </div>
+            </form>
+    </body>
+</html>
+
+{% endblock %}

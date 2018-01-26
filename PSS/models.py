@@ -19,15 +19,16 @@ class Surveyee(models.Model):
 class SurveyTimes(models.Model):
 
     caseNum = models.ForeignKey('Surveyee', on_delete=models.CASCADE)
+    online = models.BooleanField(default=False)
     agent = models.ForeignKey(User,  on_delete=models.CASCADE)
     time = models.IntegerField(null=False, default=1)
-    pub_Date = models.DateTimeField()
+    pub_Date = models.DateField()
     readyToStart = models.BooleanField(default=False)
     doneSurvey = models.BooleanField(default=False)
 
 
     def publish(self):
-        self.pub_Date = timezone.now()
+        self.pub_Date = timezone.localdate(timezone.now())
         self.save()
 
     def __str__(self):
@@ -271,22 +272,22 @@ class EXF(models.Model):
     caseNum = models.ForeignKey('Surveyee', on_delete=models.CASCADE)
     time = models.IntegerField()
     surveytime = models.IntegerField()
-    A3 = models.IntegerField(null=False, default=None)
-    B3 = models.IntegerField(null=False, default=None)
-    C3 = models.IntegerField(null=False, default=None)
-    D3 = models.IntegerField(null=False, default=None)
-    E2 = models.IntegerField(null=False, default=None)
-    F2 = models.IntegerField(null=False, default=None)
-    G1 = models.IntegerField(null=False, default=None)
-    H3 = models.IntegerField(null=False, default=None)
-    I2 = models.IntegerField(null=False, default=None)
-    J3 = models.IntegerField(null=False, default=None)
-    K1 = models.IntegerField(null=False, default=None)
-    K2 = models.IntegerField(null=False, default=None)
-    K3 = models.IntegerField(null=False, default=None)
-    L1 = models.IntegerField(null=False, default=None)
-    L2 = models.IntegerField(null=False, default=None)
-    L3 = models.IntegerField(null=False, default=None)
+    A_3 = models.IntegerField(null=False, default=None)
+    B_3 = models.IntegerField(null=False, default=None)
+    C_3 = models.IntegerField(null=False, default=None)
+    D_3 = models.IntegerField(null=False, default=None)
+    E_2 = models.IntegerField(null=False, default=None)
+    F_2 = models.IntegerField(null=False, default=None)
+    G_1 = models.IntegerField(null=False, default=None)
+    H_3 = models.IntegerField(null=False, default=None)
+    I_2 = models.IntegerField(null=False, default=None)
+    J_3 = models.IntegerField(null=False, default=None)
+    K_1 = models.IntegerField(null=False, default=None)
+    K_2 = models.IntegerField(null=False, default=None)
+    K_3 = models.IntegerField(null=False, default=None)
+    L_1 = models.IntegerField(null=False, default=None)
+    L_2 = models.IntegerField(null=False, default=None)
+    L_3 = models.IntegerField(null=False, default=None)
 
     def __str__(self):
         return 'TIP'+str(self.caseNum)+ '_' + str(self.time)

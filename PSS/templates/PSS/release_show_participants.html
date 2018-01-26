@@ -2,19 +2,19 @@
 {% block content %}
 
 <h1>Select Participants To Release </h1>
-    <p>Paticipants Who have been done with the First Survey</p><br>
+    <p><strong> Release Second Survey(Completed First Survey)</strong><br>
     <form action="{% url 'PSS:set_ready'%}" method="post" class="post-form">{% csrf_token %}
     {% if participants_1 %}
         <ul>
         {% for participant in participants_1 %}
-            <li> <input type="checkbox" name="participants1" value={{ participant.caseNum }}>{{ participant.caseNum }}</li>
+            <li><input type="checkbox" name="participants1" value={{ participant.caseNum }}>{{ participant.caseNum }}</li>
         {% endfor %}
          </ul>
     {% else %}
         <p> No participant is available. </p>
     {% endif %}
-
-    <p>Paticipants Who have been done with the Second Survey</p><br>
+    </p>
+    <p><strong> Release Third Survey(Completed Second Survey)</strong><br>
     {% if participants_2 %}
         <ul>
         {% for participant in participants_2 %}
@@ -24,8 +24,9 @@
     {% else %}
         <p> No participant is available. </p>
     {% endif %}
+    </p>
 
-    <p>Paticipants Who have been done with the Thrid Survey</p><br>
+    <p><strong> Release Fourth Survey(Completed Third Survey)</strong><br>
     {% if participants_3 %}
         <ul>
         {% for participant in participants_3 %}
@@ -35,8 +36,8 @@
     {% else %}
         <p> No participant is available. </p>
     {% endif %}
-
-    <p>Paticipants Who have been done </p><br>
+    </p>
+    <p><strong> Completed</strong> <br>
     {% if participants_4 %}
         <ul>
         {% for participant in participants_4 %}
@@ -46,6 +47,7 @@
     {% else %}
         <p> No participant is available. </p>
     {% endif %}
+    </p>
     <button type="submit" class="save btn btn-default">Submit</button>
 </form>
 {% endblock content %}

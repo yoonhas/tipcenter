@@ -1,0 +1,25 @@
+{% extends 'PSS/base.html' %}
+{% block content %}
+
+<h1>Complete </h1>
+    <p><strong>Uploaded</strong></p>
+    {% if succeed %}
+        <ul>
+        {% for i in succeed %}
+            <li>{{ i }}</li>
+        {% endfor %}
+         </ul>
+    {% endif %}
+    <br>
+    <p><strong>Existing</strong></p>
+    {% if fail %}
+        <ul>
+        {% for i in fail %}
+            <li>{{ i }}</li>
+        {% endfor %}
+         </ul>
+    {% endif %}
+
+
+
+{% endblock content %}

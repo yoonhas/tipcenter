@@ -19,6 +19,10 @@ from . import views
 from . import questions_view
 from . import analysis_view
 from . import survey_views
+from . import download_file
+from . import update_total
+from . import upload_file
+
 
 app_name = 'PSS'
 
@@ -64,16 +68,24 @@ urlpatterns = [
     url(r'^(?P<surveyee_caseNum>[0-9]+)/dm/(?P<survey>[0-9]+)/$', survey_views.DM_view1, name="dm"),
     url(r'^(?P<surveyee_caseNum>[0-9]+)/(?P<survey>[0-9]+)/rsefgr/start$', questions_view.R_SEF_GR_view, name="r_sef_gr_start"),
     url(r'^(?P<surveyee_caseNum>[0-9]+)/rsefgr/(?P<survey>[0-9]+)/$', questions_view.R_SEF_GR_view, name="r_sef_gr"),
-    url(r'^upload/csv/$', views.upload_csv, name= 'upload_csv'),
-    url(r'^upload/csv/start/$', views.upload_csv, name= 'upload_csv_start'),
+    url(r'^upload/csv/$', upload_file.upload_csv, name= 'upload_csv'),
+    url(r'^upload/csv/start/$', upload_file.upload_view, name= 'upload_csv_start'),
     url(r'^thankyou/$', views.Thanks, name="thanks"),
     url(r'^(?P<agent_id>[0-9]+)/summary/$', analysis_view.summary, name="summary"),
     url(r'^(?P<agent_id>[0-9]+)/summary/(?P<userId>[0-9]+)/agent/$', analysis_view.score_detail_agent, name="summary_agent"),
     url(r'^(?P<agent_id>[0-9]+)/score/(?P<userId>[0-9]+)/detail/$', analysis_view.score_detail, name="score_detail"),
     url(r'^compare/$', analysis_view.compare_view, name= 'compare_view'),
     url(r'^compare/detail/$', analysis_view.compare_detail, name= 'compare_detail'),
+    url(r'^compare/indi$', analysis_view.compare_indi_view, name='compare_indi_view'),
+
     url(r'^compare/(?P<agent_id>[0-9]+)/detail/$', analysis_view.compare_agent, name= 'compare_agent'),
     url(r'^compare/(?P<agent_id>[0-9]+)/detail/show/$', analysis_view.show_compare_agent, name= 'show_compare_agent'),
     url(r'^showgraph$', analysis_view.show_graph, name='show_graph'),
+    url(r'^selection/iritiqndintiaion/index$', analysis_view.selection_index, name='selection_index'),
+    url(r'^downlaod/asdfasdf/', download_file.show_online_survey_Date, name='show_online_survey_Date'),
+    url(r'^export/(?P<date>.+)/csv/$', download_file.export_csv_date, name='export_csv_date'),
+    url(r'^update/total/$', update_total.update_total_view, name='update_total_view'),
+    url(r'^update/asdfasdfasdfqert/total/$', update_total.update_total_csv, name='update_total_csv'),
+
 
 ]

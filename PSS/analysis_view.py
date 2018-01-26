@@ -79,6 +79,8 @@ def summary(request, agent_id):
     return render(request, "PSS/Analysis/summary.html", {'agent_id':User.objects.get(id=agent_id).get_username(),
                                                          'total':total, 'indi':list1})
 
+def selection_index(request):
+    return render(request, "PSS/Analysis/selection_index.html")
 
 def score_detail_agent(request, agent_id, userId):
 
@@ -109,27 +111,18 @@ def score_detail(request, agent_id, userId):
 
     i = 1
     list1=[]
-    if userId == '1':
-        fact_list = ['Health', 'Community', 'Childcare', 'Jobskills', 'SoftSkill', 'Peb_all',
-                     'Empowerment', 'Selfmotivation', 'SkilResources', 'GaolOrientation', 'Ehs_all',
-                     'Ess1', 'Ess2', 'Ess3', 'Ess4', 'Ess_all', 'PSS', 'Health_Z', 'Community_Z', 'Childcare_Z',
-                     'Jobskills_Z', 'SoftSkill_Z', 'Peb_all_Z',
-                     'Empowerment_Z', 'Selfmotivation_Z', 'SkilResources_Z', 'GaolOrientation_Z', 'Ehs_all_Z',
-                     'Ess1_Z', 'Ess2_Z', 'Ess3_Z', 'Ess4_Z', 'Ess_all_Z', 'PSS_Z']
-    else:
-        fact_list = ['Peb_all',
-                     'Ehs_all',
-                     'Ess_all', 'PSS', 'Peb_all_Z',
-                     'Ehs_all_Z',
-                     'Ess_all_Z', 'PSS_Z']
+
+    fact_list = ['Health', 'Community', 'Childcare', 'Jobskills', 'SoftSkill', 'Peb_all',
+                 'Empowerment', 'Selfmotivation', 'SkilResources', 'GaolOrientation', 'Ehs_all',
+                 'Ess1', 'Ess2', 'Ess3', 'Ess4', 'Ess_all', 'PSS']
+
 
     if agent_id == '1':
 
         while i != 5:
             pd.set_option('precision', 6)
             time = Total_for_Admin.objects.filter(Time=i)
-            df = full_z_score(read_frame(time))
-            print(df[df['Health']<1])
+            df = read_frame(time)
             list1.append((i, describe(df,fact_list)))
             i += 1
     else:
@@ -137,7 +130,7 @@ def score_detail(request, agent_id, userId):
         while i != 5:
             pd.set_option('precision', 6)
             time = Total_for_Admin.objects.filter(Time=i, Agent=agent)
-            df=full_z_score(read_frame(time))
+            df=read_frame(time)
             list1.append((i, describe(df,fact_list)))
             i += 1
 
@@ -153,82 +146,83 @@ def compare_view(request):
         surveyee.append(tem_survey)
     return render(request, 'PSS/Analysis/compare.html', {'agents':agents, 'surveyee':surveyee})
 
+def compare_indi_view(request):
+    agents = User.objects.all()
+    surveyee = []
+    for i in agents:
+        tem_survey = Surveyee.objects.filter(agent_name=i)
+        surveyee.append(tem_survey)
+    return render(request, 'PSS/Analysis/compare_indivisual.html', {'agents':agents, 'surveyee':surveyee})
+
+def maskfunction( rawData, employ, welfare, race, marital, education, housing, age, income, gender,date):
+
+    if sum(list(map(int,race))) != -1:
+        mask = (rawData['DM14'].isin(race))
+        rawData =rawData[mask]
+
+    if employ!= 77:
+        mask = (rawData['DM1'] == employ)
+        rawData =rawData[mask]
+    if welfare!= 77:
+        mask = (rawData['DM7'] == welfare)
+        rawData =rawData[mask]
+    if sum(list(map(int,marital)))!= -1:
+        mask = (rawData['DM8'].isin(marital))
+        rawData =rawData[mask]
+    if sum(list(map(int,education)))!= -1:
+        mask = (rawData['DM16'].isin(education))
+        rawData =rawData[mask]
+    if sum(list(map(int,housing)))!= -1:
+        mask = (rawData['DM9'].isin(housing))
+        rawData =rawData[mask]
+    if gender!= 77:
+        mask = (rawData['DM13'] == gender)
+        rawData =rawData[mask]
+
+    if '-' in income:
+        incomes = list(income.split('-'))
+        begin= incomes[0]
+        end= incomes[1]
+        incomeMask = (rawData['DM6']>=int(begin))&(rawData['DM6']<=int(end))
+        rawData = rawData[incomeMask]
+    elif income == '0':
+        income =0
+    else:
+        incomes=int(income)
+        incomeMask =(rawData['DM6']==incomes)
+        rawData = rawData[incomeMask]
+
+    if '-' in age:
+        ages = list(age.split('-'))
+        beginAge= ages[0]
+        endAge= ages[1]
+        ageMask = (rawData['DM12_1']>=int(beginAge))&(rawData['DM12_1']<=int(endAge))
+        rawData = rawData[ageMask]
+    elif age == '0':
+        age =0
+    else:
+        ages=int(age)
+        ageMask =(rawData['DM12_1']==ages)
+        rawData = rawData[ageMask]
+
+    if '-' in date:
+        dates = list(date.split('-'))
+        begin= pd.datetime.strptime(dates[0], '%Y.%m.%d')
+        end= pd.datetime.strptime(dates[1], '%Y.%m.%d')
+        dateMask = (rawData['cDATE']>=begin)&(rawData['cDATE']<=end)
+        rawData = rawData[dateMask]
+    elif date == '0':
+        dates =0
+    else:
+        date=pd.datetime.strptime(date, '%Y.%m.%d')
+        dateMask =(rawData['cDATE']==date)
+        rawData = rawData[dateMask]
+
+    return rawData
 
 def compare_detail(request):
 
-
-    def maskfunction( rawData, employ, welfare, race, marital, education, housing, age, born,gender,date):
-
-        if sum(list(map(int,race))) != -1:
-            mask = (rawData['DM14'].isin(race))
-            rawData =rawData[mask]
-
-        if employ!= 77:
-            mask = (rawData['DM1'] == employ)
-            rawData =rawData[mask]
-        if welfare!= 77:
-            mask = (rawData['DM7'] == welfare)
-            rawData =rawData[mask]
-        if sum(list(map(int,marital)))!= -1:
-            mask = (rawData['DM8'].isin(marital))
-            rawData =rawData[mask]
-        if sum(list(map(int,education)))!= -1:
-            mask = (rawData['DM16'].isin(education))
-            rawData =rawData[mask]
-        if sum(list(map(int,housing)))!= -1:
-            mask = (rawData['DM9'].isin(housing))
-            rawData =rawData[mask]
-        if gender!= 77:
-            mask = (rawData['DM13'] == gender)
-            rawData =rawData[mask]
-
-        if '-' in born:
-            borns = list(born.split('-'))
-            begin= borns[0]
-            end= borns[1]
-            bornMask = (rawData['DM12_3']>=int(begin))&(rawData['DM12_3']<=int(end))
-            rawData = rawData[bornMask]
-        elif born == '0':
-            born =0
-        else:
-            borns=int(born)
-            bornMask =(rawData['DM12_3']==borns)
-            rawData = rawData[bornMask]
-
-        if '-' in age:
-            ages = list(age.split('-'))
-            beginAge= ages[0]
-            endAge= ages[1]
-            ageMask = (rawData['DM12_1']>=int(beginAge))&(rawData['DM12_1']<=int(endAge))
-            rawData = rawData[ageMask]
-        elif age == '0':
-            age =0
-        else:
-            ages=int(age)
-            ageMask =(rawData['DM12_1']==ages)
-            rawData = rawData[ageMask]
-
-        if '-' in date:
-            dates = list(date.split('-'))
-            begin= pd.datetime.strptime(dates[0], '%Y.%m.%d')
-            end= pd.datetime.strptime(dates[1], '%Y.%m.%d')
-            dateMask = (rawData['cDATE']>=begin)&(rawData['cDATE']<=end)
-            rawData = rawData[dateMask]
-        elif date == '0':
-            dates =0
-        else:
-            date=pd.datetime.strptime(date, '%Y.%m.%d')
-            dateMask =(rawData['cDATE']==date)
-            rawData = rawData[dateMask]
-
-        return rawData
-
-
-    fact_list = ['Health', 'Community', 'Childcare', 'Jobskills', 'SoftSkill', 'Peb_all',
-                 'Empowerment', 'Selfmotivation', 'SkilResources', 'GaolOrientation', 'Ehs_all',
-                 'Ess1', 'Ess2', 'Ess3', 'Ess4', 'Ess_all', 'PSS']
     users = get_user_model()
-
     compare = request.POST.getlist('compare')
 
     factors = request.POST['factors']
@@ -240,7 +234,7 @@ def compare_detail(request):
     education = request.POST.getlist('education')
     housing = request.POST.getlist('Housing')
     age = request.POST['age']
-    born = request.POST['year']
+    income = request.POST['income']
     gender = int(request.POST['gender'])
     date = request.POST['date']
     case = request.POST['indi_case']
@@ -250,17 +244,115 @@ def compare_detail(request):
         checking =1
         surveyee = Surveyee.objects.get(caseNum=case)
         individual = read_frame( Total_for_Admin.objects.filter(caseNum=surveyee))
-        indi_z = full_z_score(individual)
+
     else:
         checking =0
 
-    total =maskfunction(read_frame(Total_for_Admin.objects.all()), employ, welfare, race, marital, education, housing, age, born,gender,date)
+    total =maskfunction(read_frame(Total_for_Admin.objects.all()), employ, welfare, race, marital, education, housing, age, income, gender,date)
     total_mask = full_z_score(total)
 
     agent_filtered ={}
     for key in compare:
         if key == '1':
             tem_list =[]
+            agent_filtered['Total'] = total_mask
+        else:
+            agentObj = users.objects.get(id=key)
+            agent_filtered[agentObj.username] = total_mask[(total_mask['Agent'] == agentObj.username)]
+
+    new = {}
+    frame_for_graph = {}
+
+    for key, values in agent_filtered.items():
+        print("hello")
+        print(key)
+        if key != 'yoonhas':
+            if factors == 'Default':
+                new[key + '_PEB_all'] = {}
+                new[key + '_EHS_all'] = {}
+                new[key + '_ESS_all'] = {}
+                new[key + '_PSS_all'] = {}
+                frame_for_graph[key + '_PEB_all'] = ""
+                frame_for_graph[key + '_EHS_all'] = ""
+                frame_for_graph[key + '_ESS_all'] = ""
+                frame_for_graph[key + '_PSS_all'] = ""
+                i=0
+                while i !=4:
+                    temp = values[values['Time'] == i+1]
+
+                    frame_for_graph[key + '_PEB_all'][str(i)] = temp['Peb_all'].mean()
+                    frame_for_graph[key + '_EHS_all'][i] = temp['Ehs_all'].mean()
+                    frame_for_graph[key + '_ESS_all'][i] = temp['Ess_all'].mean()
+                    frame_for_graph[key + '_PSS_all'][i] = temp['PSS'].mean()
+
+
+                    new[key + '_PEB_all']['Mean'][i] = temp['Peb_all'].mean()
+                    new[key + '_PEB_all']['Count'][i] =  temp['Peb_all'].count()
+                    new[key + '_PEB_all']['Min'][i] =  temp['Peb_all'].min()
+                    new[key + '_PEB_all']['Max'][i] = temp['Peb_all'].max()
+                    new[key + '_PEB_all']['Std'][i] =temp['Peb_all'].std()
+                    new[key + '_EHS_all']['Mean'][i] = temp['Ehs_all'].mean()
+                    new[key + '_EHS_all']['Count'][i] = temp['Ehs_all'].count()
+                    new[key + '_EHS_all']['Min'][i] = temp['Ehs_all'].min()
+                    new[key + '_EHS_all']['Max'][i] = temp['Ehs_all'].max()
+                    new[key + '_EHS_all']['Std'][i] =  temp['Ehs_all'].std()
+                    new[key + '_ESS_all']['Mean'][i] = temp['Ess_all'].mean()
+                    new[key + '_ESS_all']['Count'][i] = temp['Ess_all'].count()
+                    new[key + '_ESS_all']['Min'][i] =  temp['Ess_all'].min()
+                    new[key + '_ESS_all']['Max'][i] =  temp['Ess_all'].max()
+                    new[key + '_ESS_all']['Std'][i] = temp['Ess_all'].std()
+                    new[key + '_PSS_all']['Mean'][i] = temp['Ess_all'].mean()
+                    new[key + '_PSS_all']['Count'][i] = temp['Ess_all'].count()
+                    new[key + '_PSS_all']['Min'][i] = temp['Ess_all'].min()
+                    new[key + '_PSS_all']['Max'][i] = temp['Ess_all'].max()
+                    new[key + '_PSS_all']['Std'][i] = temp['Ess_all'].std()
+                    i+=1
+            else:
+                i=0
+                while i != 4:
+                    temp = values[values['Time'] == i+1]
+                    frame_for_graph[key][i]=temp[factors].mean()
+
+                    new[key]={}
+                    new[key]['Mean'][i] = temp[factors ].mean()
+                    new[key]['Count'][i] =temp[factors ].count()
+                    new[key]['Min'][i] = temp[factors ].min()
+                    new[key]['Max'][i] = temp[factors ].max()
+                    new[key]['Std'][i] = temp[factors ].std()
+                    i+=1
+
+    print(frame_for_graph)
+    html_fig=Graph.draw_graph_Admin_compare(frame_for_graph)
+    return render(request, 'PSS/Analysis/compare_admin_show.html', {'detail_list':new,"html_fig":html_fig, 'key_list':agent_filtered.keys()})
+
+def compare_detail_indi(request):
+
+    users = get_user_model()
+    compare1 = request.POST.getlist('compare1')
+    compare2 = request.POST.getlist('compare2')
+
+
+    factors = request.POST['factors']
+
+    employ = int(request.POST['employ'])
+    welfare =int(request.POST['welfare'])
+    race = request.POST.getlist('race')
+    marital = request.POST.getlist('marital')
+    education = request.POST.getlist('education')
+    housing = request.POST.getlist('Housing')
+    age = request.POST['age']
+    income = request.POST['income']
+    gender = int(request.POST['gender'])
+    date = request.POST['date']
+    case = request.POST['indi_case']
+
+
+    total =maskfunction(read_frame(Total_for_Admin.objects.all()), employ, welfare, race, marital, education, housing, age, income, gender,date)
+    total_mask = full_z_score(total)
+
+    agent_filtered ={}
+    for key in compare1:
+        if key == '1':
             agent_filtered['Total'] = total_mask
         else:
             agentObj = users.objects.get(id=key)
@@ -274,7 +366,21 @@ def compare_detail(request):
         if key != 'yoonhas':
 
             temp = values.groupby(values['Time'])
-            frame_for_graph[key]=temp[factors+"_Z"].mean()
+            if factors == 'Default':
+                frame_for_graph[key + '_PEB_all'] = temp['PEB_all'].mean()
+                frame_for_graph[key + '_EHS_all'] = temp['EHS_all'].mean()
+                frame_for_graph[key + '_ESS_all'] = temp['ESS_all'].mean()
+                frame_for_graph[key + '_PSS_all'] = temp['PSS_all'].mean()
+
+                new[key+'_PEB_all'] = {}
+                new[key+'_PEB_all']['Mean'] = [x for x in temp[factors].mean()]
+                new[key+'_PEB_all']['Count'] = [x for x in temp[factors].count()]
+                new[key+'_PEB_all']['Min'] = [x for x in temp[factors].min()]
+                new[key+'_PEB_all']['Max'] = [x for x in temp[factors].max()]
+                new[key+'_PEB_all']['Std'] = [x for x in temp[factors].std()]
+
+
+            frame_for_graph[key]=temp[factors].mean()
 
             new[key]={}
             new[key]['Mean'] = [x for x in temp[factors ].mean()]
@@ -285,8 +391,8 @@ def compare_detail(request):
 
     if checking == 1:
         frame_for_graph[case]=""
-        temp1= indi_z.groupby(indi_z['Time'])
-        frame_for_graph[case] = temp1[factors+"_Z"].mean()
+        temp1= individual.groupby(individual['Time'])
+        frame_for_graph[case] = temp1[factors].mean()
         print("+++++++++++++")
         new[case]={}
         new[case]['Mean'] =[x for x in temp1[factors ].mean()]
@@ -297,7 +403,6 @@ def compare_detail(request):
         print(new)
     html_fig=Graph.draw_graph_Admin_compare(frame_for_graph)
     return render(request, 'PSS/Analysis/compare_admin_show.html', {'detail_list':new,"html_fig":html_fig, 'key_list':agent_filtered.keys()})
-
 
 def compare_agent(request, agent_id):
     users = get_user_model()

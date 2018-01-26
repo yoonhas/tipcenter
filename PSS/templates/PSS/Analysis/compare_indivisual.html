@@ -1,0 +1,315 @@
+{% extends 'PSS/base.html' %}
+{% block content %}
+
+<html>
+    <head>
+        <title> Compare </title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="">Select factors</a></h1>
+        </div>
+        <form action="{% url 'PSS:compare_detail' %}" method="post" class="post-form">{% csrf_token %}
+            <div class="container">
+              <h2>Select options</h2>
+              <div class="panel panel-default">
+                <div class="panel-heading text-center"> <strong>Agent</strong>  </div>
+                <div class="panel-body">
+                  <div class="row vdivide">
+                    <div class="col-sm-6 text-center"><h4>Agent 1</h4><br>
+                        {% for i in agents %}
+                            {% if i.get_username == 'yoonhas' %}
+                                <input type="radio" name="compare1" value={{ i.id }} checked> Total
+                            {% else %}
+                                <input type="radio" name="compare1" value={{ i.id }} >{{ i.get_username }}
+                            {% endif %}
+                        {% endfor %}
+                        <br>
+                    </div>
+                    <div class="col-sm-6 text-center"><h4>Agent 2</h4><br>
+                        {% for i in agents %}
+                            {% if i.get_username == 'yoonhas' %}
+                                <input type="radio" name="compare2" value={{ i.id }} checked> Total
+                            {% else %}
+                                <input type="radio" name="compare2" value={{ i.id }} >{{ i.get_username }}
+                            {% endif %}
+                        {% endfor %}
+                        <br>
+                    </div>
+                  </div>
+
+
+                </div>
+
+              </div>
+
+                <div class="panel panel-default">
+                <div class="panel-heading text-center"><strong>Factors</strong></div>
+                <div class="panel-body">
+                    <p>Defualt <br>
+                    <span style="margin-left:1em"><input type="radio" name="factors" value='Default' checked>PEB_all, EHS_all, ESS_all, PSS<br></span></p>
+
+                    <p>PEB factors <br>
+                    <span style="margin-left:1em"><input type="radio" name="factors" value='Peb_all'>PEB_all
+                    <input type="radio" name="factors" value='Health'>Health
+                    <input type="radio" name="factors" value='Community'>Community
+                    <input type="radio" name="factors" value='Childcare'>Childcare
+                    <input type="radio" name="factors" value='Jobskills'>Jobskills
+                    <input type="radio" name="factors" value='SoftSkill'>SoftSkill</span></p>
+                     <p>EHS factors <br>
+                    <span style="margin-left:1em"><input type="radio" name="factors" value='Ehs_all'>EHS_all
+                    <input type="radio" name="factors" value='Empowerment'>Empowerment
+                    <input type="radio" name="factors" value='Selfmotivation'>Selfmotivation
+                    <input type="radio" name="factors" value='SkilResources'>SkilResources
+                    <input type="radio" name="factors" value='GaolOrientation'>GaolOrientation</span></p>
+                    <p>ESS Factors <br>
+                    <span style="margin-left:1em"><input type="radio" name="factors" value='Ess_all'>Ess_all
+                    <input type="radio" name="factors" value='Ess1'>Ess1
+                    <input type="radio" name="factors" value='Ess2'>Ess2
+                    <input type="radio" name="factors" value='Ess3'>Ess3
+                    <input type="radio" name="factors" value='Ess4'>Ess4</span></p>
+                    <p>PSS <br>
+                    <span style="margin-left:1em"><input type="radio" name="factors" value='PSS'>PSS</span></p>
+
+              </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading text-center"><strong>Demographics</strong></div>
+                        <div class="panel-body">
+                            <div class="row vdivide">
+                                <div class="col-sm-6 text-left"><h3>Agent 1</h3>
+                                    <div class="panel-group">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">Employ</div>
+                                            <div class="panel-body"><span style="margin-left:1em"></span>
+                                                <input type="radio" name="employ1" value=77 checked }>Default
+                                                <input type="radio" name="employ1" value=0>No
+                                                <input type="radio" name="employ1" value=1>Yes
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">Welfare Benefit</div>
+                                            <div class="panel-body"><span style="margin-left:1em"></span>
+                                                <input type="radio" name="welfare1" value=77 checked }>Default
+                                                <input type="radio" name="welfare1" value=0>No
+                                                <input type="radio" name="welfare1" value=1>Yes
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">Gender</div>
+                                            <div class="panel-body"><span style="margin-left:1em"></span>
+                                                <input type="radio" name="gender1" value=77 checked }>Default
+                                                <input type="radio" name="gender1" value=0>Male
+                                                <input type="radio" name="gender1" value=1>Female
+                                           </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">Race</div>
+                                            <div class="panel-body">
+                                                <span style="margin-left:1em"></span>
+                                                <input type="checkbox" name="race1" value=-1 checked }>Default
+                                                <input type="checkbox" name="race1" value=0>Native American or Alaska Native
+                                                <input type="checkbox" name="race1" value=1>Asian or Pacific Islander
+                                                <input type="checkbox" name="race1" value=2}>Black or African American <br>
+                                                <span style="margin-left:1em"></span>
+                                                <input type="checkbox" name="race1" value=3>White or European American
+                                                <input type="checkbox" name="race1" value=4>Non-White Hispanic
+                                                <input type="checkbox" name="race1" value=5>Bi- / multi-racial
+                                                <input type="checkbox" name="race1" value=6>Other
+                                             </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">Marital Status</div>
+                                            <div class="panel-body">
+                                                <span style="margin-left:1em"></span>
+                                                <input type="checkbox" name="marital1" value=-1 checked }>Default
+                                                <input type="checkbox" name="marital1" value=0>Married, spouse present
+                                                <input type="checkbox" name="marital1" value=1>Married, spouse absent
+                                                <input type="checkbox" name="marital1" value=2}>Never Married <br>
+                                                <span style="margin-left:1em"></span>
+                                                <input type="checkbox" name="marital1" value=3>Separated
+                                                <input type="checkbox" name="marital1" value=4>Divorced
+                                                <input type="checkbox" name="marital1" value=5>Widowed
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading"> Education</div>
+                                            <div class="panel-body">
+                                                <span style="margin-left:1em"></span>
+                                                <input type="checkbox" name="education1" value=-1 checked }>Default
+                                                <input type="checkbox" name="education1" value=0>Less than High School
+                                                <input type="checkbox" name="education1" value=1>High-School / GED
+                                                <input type="checkbox" name="education1" value=2}>Some College but no degree<br>
+                                                <span style="margin-left:1em"></span>
+                                                <input type="checkbox" name="education1" value=3>Diploma or certificate from vocational, technical or trade school
+                                                        <br>
+                                                <span style="margin-left:1em"></span>
+                                                        <input type="checkbox" name="education1" value=4>Associates Degree
+                                                <input type="checkbox" name="education1" value=5>Bachelors Degree
+                                                        <input type="checkbox" name="education1" value=6>Masters Degree
+                                                <input type="radio" name="education1" value=6>Professional School Degree
+                                                        <input type="checkbox" name="education1" value=8> Doctorate
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading"> Housing</div>
+                                            <div class="panel-body">
+                                                <span style="margin-left:1em"></span>
+                                                <input type="checkbox" name="Housing1" value=-1 checked>Default
+                                                <input type="checkbox" name="Housing1" value=0>Rental
+                                                <input type="checkbox" name="Housing1" value=1>Own Home
+                                                <input type="checkbox" name="Housing1" value=2>Homeless
+                                                <input type="checkbox" name="Housing1" value=3>Public housing
+                                                <input type="checkbox" name="Housing1" value=4>Other
+                                                <input type="checkbox" name="Housing1" value=5>Living with family or friend
+
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading"> Age (23, or 23-32) </div>
+                                            <div class="panel-body">
+                                                <span style="margin-left:1em"></span>
+                                                <input type="text" name="age1" value="0">
+                                            </div>
+                                        </div>
+
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading"> Income (30000, or 30000-40000) </div>
+                                            <div class="panel-body">
+                                                <span style="margin-left:1em"></span>
+                                                <input type="text" name="income1" value="0">
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading"> Date(2011.12.12, or 2011.12.12-2015.10.11)  </div>
+                                            <div class="panel-body">
+                                                <span style="margin-left:1em"></span>
+                                                 <input type="text" name="date1" value=0></span>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                <div class="col-sm-6 text-left"><h3>Agent 2</h3>
+                                    <div class="panel-group">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">Employ</div>
+                                            <div class="panel-body"><span style="margin-left:1em"></span>
+                                                <input type="radio" name="employ2" value=77 checked }>Default
+                                                <input type="radio" name="employ2" value=0>No
+                                                <input type="radio" name="employ2" value=1>Yes
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">Welfare Benefit</div>
+                                            <div class="panel-body"><span style="margin-left:1em"></span>
+                                                <input type="radio" name="welfare2" value=77 checked }>Default
+                                                <input type="radio" name="welfare2" value=0>No
+                                                <input type="radio" name="welfare2" value=1>Yes
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">Gender</div>
+                                            <div class="panel-body"><span style="margin-left:1em"></span>
+                                                <input type="radio" name="gender2" value=77 checked }>Default
+                                                <input type="radio" name="gender2" value=0>Male
+                                                <input type="radio" name="gender2" value=1>Female
+                                           </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">Race</div>
+                                            <div class="panel-body">
+                                                <span style="margin-left:1em"></span>
+                                                <input type="checkbox" name="race2" value=-1 checked }>Default
+                                                <input type="checkbox" name="race2" value=0>Native American or Alaska Native
+                                                <input type="checkbox" name="race2" value=1>Asian or Pacific Islander
+                                                <input type="checkbox" name="race2" value=2}>Black or African American <br>
+                                                <span style="margin-left:1em"></span>
+                                                <input type="checkbox" name="race2" value=3>White or European American
+                                                <input type="checkbox" name="race2" value=4>Non-White Hispanic
+                                                <input type="checkbox" name="race2" value=5>Bi- / multi-racial
+                                                <input type="checkbox" name="race2" value=6>Other
+                                             </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">Marital Status</div>
+                                            <div class="panel-body">
+                                                <span style="margin-left:1em"></span>
+                                                <input type="checkbox" name="marital2" value=-1 checked }>Default
+                                                <input type="checkbox" name="marital2" value=0>Married, spouse present
+                                                <input type="checkbox" name="marital2" value=1>Married, spouse absent
+                                                <input type="checkbox" name="marital2" value=2}>Never Married <br>
+                                                <span style="margin-left:1em"></span>
+                                                <input type="checkbox" name="marital2" value=3>Separated
+                                                <input type="checkbox" name="marital2" value=4>Divorced
+                                                <input type="checkbox" name="marital2" value=5>Widowed
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading"> Education</div>
+                                            <div class="panel-body">
+                                                <span style="margin-left:1em"></span>
+                                                <input type="checkbox" name="education2" value=-1 checked }>Default
+                                                <input type="checkbox" name="education2" value=0>Less than High School
+                                                <input type="checkbox" name="education2" value=1>High-School / GED
+                                                <input type="checkbox" name="education2" value=2}>Some College but no degree<br>
+                                                <span style="margin-left:1em"></span>
+                                                <input type="checkbox" name="education2" value=3>Diploma or certificate from vocational, technical or trade school
+                                                        <br>
+                                                <span style="margin-left:1em"></span>
+                                                        <input type="checkbox" name="education2" value=4>Associates Degree
+                                                <input type="checkbox" name="education2" value=5>Bachelors Degree
+                                                        <input type="checkbox" name="education2" value=6>Masters Degree
+                                                <input type="radio" name="education2" value=6>Professional School Degree
+                                                        <input type="checkbox" name="education2" value=8> Doctorate
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading"> Housing</div>
+                                            <div class="panel-body">
+                                                <span style="margin-left:1em"></span>
+                                                <input type="checkbox" name="Housing2" value=-1 checked>Default
+                                                <input type="checkbox" name="Housing2" value=0>Rental
+                                                <input type="checkbox" name="Housing2" value=1>Own Home
+                                                <input type="checkbox" name="Housing2" value=2>Homeless
+                                                <input type="checkbox" name="Housing2" value=3>Public housing
+                                                <input type="checkbox" name="Housing2" value=4>Other
+                                                <input type="checkbox" name="Housing2" value=5>Living with family or friend
+
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading"> Age (23, or 23-32) </div>
+                                            <div class="panel-body">
+                                                <span style="margin-left:1em"></span>
+                                                <input type="text" name="age2" value="0">
+                                            </div>
+                                        </div>
+
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading"> Income (30000, or 30000-40000) </div>
+                                            <div class="panel-body">
+                                                <span style="margin-left:1em"></span>
+                                                <input type="text" name="income2" value="0">
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading"> Date(2011.12.12, or 2011.12.12-2015.10.11)  </div>
+                                            <div class="panel-body">
+                                                <span style="margin-left:1em"></span>
+                                                 <input type="text" name="date2" value=0></span>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+            <button type="submit" class="save btn btn-default">Submit</button>
+            <br><br><br><br>
+        </form>
+        </body>
+</html>
+
+{% endblock %}
