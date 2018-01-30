@@ -77,6 +77,7 @@ urlpatterns = [
     url(r'^compare/$', analysis_view.compare_view, name= 'compare_view'),
     url(r'^compare/detail/$', analysis_view.compare_detail, name= 'compare_detail'),
     url(r'^compare/indi$', analysis_view.compare_indi_view, name='compare_indi_view'),
+    url(r'^compare/detail/indi$', analysis_view.compare_detail_indi, name='compare_detail_indi'),
 
     url(r'^compare/(?P<agent_id>[0-9]+)/detail/$', analysis_view.compare_agent, name= 'compare_agent'),
     url(r'^compare/(?P<agent_id>[0-9]+)/detail/show/$', analysis_view.show_compare_agent, name= 'show_compare_agent'),

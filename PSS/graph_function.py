@@ -38,7 +38,7 @@ def draw_graph(box,userId):
     line_collection= []
     x =['1st', '2nd', '3rd', '4th']
     ax.grid(True, alpha=0.3)
-    print(PSS)
+
     for key, val in PSS.iteritems():
 
         l = ax.plot((val.index +1), val.values, marker='.', label=key)
@@ -52,6 +52,10 @@ def draw_graph(box,userId):
     plugins.connect(fig, interactive_legend)
     fig.subplots_adjust(right=0.7)
     #plt.ylim(-1, 1)
+    plt.ylim(ymin=0)
+    plt.ylim(ymax=12)
+    plt.xlim(xmin=(0.8))
+    plt.xlim(xmax=4.2)
     ax.set_xlabel('Times')
     ax.set_ylabel('Mean')
     ax.set_title('PSS', size=20)
@@ -92,7 +96,10 @@ def draw_graph_Agent(box,box1):
     interactive_legend = plugins.InteractiveLegendPlugin(line_collection,labels, start_visible=False)
     plugins.connect(fig, interactive_legend)
     fig.subplots_adjust(right=0.7)
-
+    plt.ylim(ymin=0)
+    plt.ylim(ymax=12)
+    plt.xlim(xmin=(0.8))
+    plt.xlim(xmax=4.2)
     ax.set_xlabel('Times')
     ax.set_ylabel('Mean')
     ax.set_title('PSS', size=20)
@@ -133,7 +140,10 @@ def draw_graph_Agent_compare(box,box1, box2):
     interactive_legend = plugins.InteractiveLegendPlugin(line_collection,labels, start_visible=False)
     plugins.connect(fig, interactive_legend)
     fig.subplots_adjust(right=0.7)
-
+    plt.ylim(ymin=0)
+    plt.ylim(ymax=12)
+    plt.xlim(xmin=(0.8))
+    plt.xlim(xmax=4.2)
     ax.set_xlabel('Times')
     ax.set_ylabel('Mean')
     ax.set_title('PSS', size=20)
@@ -150,7 +160,6 @@ def draw_graph_Admin_compare(box):
     line_collection= []
     x =['1st', '2nd', '3rd', '4th']
     ax.grid(True, alpha=0.3)
-    print("=========")
 
 
     for key, val in box.iteritems():
@@ -171,8 +180,8 @@ def draw_graph_Admin_compare(box):
     plt.rcParams['axes.xmargin'] = 0
     plt.ylim(ymin=0)
     plt.ylim(ymax=12)
-    plt.xlim(xmin=1)
-    plt.xlim(xmax=5.4)
+    plt.xlim(xmin= (0.8))
+    plt.xlim(xmax=4.2)
     ax.set_xlabel('Times')
     ax.set_ylabel('Mean')
     ax.set_title('PSS', size=20)

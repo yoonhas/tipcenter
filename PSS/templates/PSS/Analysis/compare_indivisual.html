@@ -9,7 +9,7 @@
         <div>
             <h1><a href="">Select factors</a></h1>
         </div>
-        <form action="{% url 'PSS:compare_detail' %}" method="post" class="post-form">{% csrf_token %}
+        <form action="{% url 'PSS:compare_detail_indi' %}" method="post" class="post-form">{% csrf_token %}
             <div class="container">
               <h2>Select options</h2>
               <div class="panel panel-default">
@@ -111,7 +111,7 @@
                                                 <input type="checkbox" name="race1" value=-1 checked }>Default
                                                 <input type="checkbox" name="race1" value=0>Native American or Alaska Native
                                                 <input type="checkbox" name="race1" value=1>Asian or Pacific Islander
-                                                <input type="checkbox" name="race1" value=2}>Black or African American <br>
+                                                <input type="checkbox" name="race1" value=2>Black or African American <br>
                                                 <span style="margin-left:1em"></span>
                                                 <input type="checkbox" name="race1" value=3>White or European American
                                                 <input type="checkbox" name="race1" value=4>Non-White Hispanic
@@ -126,7 +126,7 @@
                                                 <input type="checkbox" name="marital1" value=-1 checked }>Default
                                                 <input type="checkbox" name="marital1" value=0>Married, spouse present
                                                 <input type="checkbox" name="marital1" value=1>Married, spouse absent
-                                                <input type="checkbox" name="marital1" value=2}>Never Married <br>
+                                                <input type="checkbox" name="marital1" value=2>Never Married <br>
                                                 <span style="margin-left:1em"></span>
                                                 <input type="checkbox" name="marital1" value=3>Separated
                                                 <input type="checkbox" name="marital1" value=4>Divorced
@@ -140,7 +140,7 @@
                                                 <input type="checkbox" name="education1" value=-1 checked }>Default
                                                 <input type="checkbox" name="education1" value=0>Less than High School
                                                 <input type="checkbox" name="education1" value=1>High-School / GED
-                                                <input type="checkbox" name="education1" value=2}>Some College but no degree<br>
+                                                <input type="checkbox" name="education1" value=2>Some College but no degree<br>
                                                 <span style="margin-left:1em"></span>
                                                 <input type="checkbox" name="education1" value=3>Diploma or certificate from vocational, technical or trade school
                                                         <br>
@@ -223,7 +223,7 @@
                                                 <input type="checkbox" name="race2" value=-1 checked }>Default
                                                 <input type="checkbox" name="race2" value=0>Native American or Alaska Native
                                                 <input type="checkbox" name="race2" value=1>Asian or Pacific Islander
-                                                <input type="checkbox" name="race2" value=2}>Black or African American <br>
+                                                <input type="checkbox" name="race2" value=2>Black or African American <br>
                                                 <span style="margin-left:1em"></span>
                                                 <input type="checkbox" name="race2" value=3>White or European American
                                                 <input type="checkbox" name="race2" value=4>Non-White Hispanic
@@ -238,7 +238,7 @@
                                                 <input type="checkbox" name="marital2" value=-1 checked }>Default
                                                 <input type="checkbox" name="marital2" value=0>Married, spouse present
                                                 <input type="checkbox" name="marital2" value=1>Married, spouse absent
-                                                <input type="checkbox" name="marital2" value=2}>Never Married <br>
+                                                <input type="checkbox" name="marital2" value=2>Never Married <br>
                                                 <span style="margin-left:1em"></span>
                                                 <input type="checkbox" name="marital2" value=3>Separated
                                                 <input type="checkbox" name="marital2" value=4>Divorced
@@ -252,7 +252,7 @@
                                                 <input type="checkbox" name="education2" value=-1 checked }>Default
                                                 <input type="checkbox" name="education2" value=0>Less than High School
                                                 <input type="checkbox" name="education2" value=1>High-School / GED
-                                                <input type="checkbox" name="education2" value=2}>Some College but no degree<br>
+                                                <input type="checkbox" name="education2" value=2>Some College but no degree<br>
                                                 <span style="margin-left:1em"></span>
                                                 <input type="checkbox" name="education2" value=3>Diploma or certificate from vocational, technical or trade school
                                                         <br>

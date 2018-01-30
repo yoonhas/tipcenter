@@ -220,6 +220,94 @@ def maskfunction( rawData, employ, welfare, race, marital, education, housing, a
 
     return rawData
 
+def iterate_dictionary(agent_filtered, new,frame_for_graph, factors):
+    for key, values in agent_filtered.items():
+
+        if key != 'yoonhas':
+            if factors == 'Default':
+                new[key + '_PEB_all'] = {}
+                new[key + '_EHS_all'] = {}
+                new[key + '_ESS_all'] = {}
+                new[key + '_PSS_all'] = {}
+                new[key + '_PEB_all']['Mean'] = {}
+                new[key + '_PEB_all']['Count'] = {}
+                new[key + '_PEB_all']['Min'] = {}
+                new[key + '_PEB_all']['Max'] = {}
+                new[key + '_PEB_all']['Std'] = {}
+                new[key + '_EHS_all']['Mean'] = {}
+                new[key + '_EHS_all']['Count'] = {}
+                new[key + '_EHS_all']['Min'] = {}
+                new[key + '_EHS_all']['Max'] = {}
+                new[key + '_EHS_all']['Std'] = {}
+                new[key + '_ESS_all']['Mean'] = {}
+                new[key + '_ESS_all']['Count'] = {}
+                new[key + '_ESS_all']['Min'] = {}
+                new[key + '_ESS_all']['Max'] = {}
+                new[key + '_ESS_all']['Std'] = {}
+                new[key + '_PSS_all']['Mean'] = {}
+                new[key + '_PSS_all']['Count'] = {}
+                new[key + '_PSS_all']['Min'] = {}
+                new[key + '_PSS_all']['Max'] = {}
+                new[key + '_PSS_all']['Std'] = {}
+                frame_for_graph[key + '_PEB_all'] = ""
+                frame_for_graph[key + '_EHS_all'] = ""
+                frame_for_graph[key + '_ESS_all'] = ""
+                frame_for_graph[key + '_PSS_all'] = ""
+                i=0
+                while i !=4:
+                    temp = values[values['Time'] == i+1]
+
+                    frame_for_graph.at[i,key + '_PEB_all'] = temp['Peb_all'].mean()
+                    frame_for_graph.ix[i][key + '_EHS_all'] = temp['Ehs_all'].mean()
+                    frame_for_graph.ix[i][key + '_ESS_all'] = temp['Ess_all'].mean()
+                    frame_for_graph.ix[i][key + '_PSS_all'] = temp['PSS'].mean()
+
+                    new[key + '_PEB_all']['Mean'][i] = temp['Peb_all'].mean()
+                    new[key + '_PEB_all']['Count'][i] =  temp['Peb_all'].count()
+                    new[key + '_PEB_all']['Min'][i] =  temp['Peb_all'].min()
+                    new[key + '_PEB_all']['Max'][i] = temp['Peb_all'].max()
+                    new[key + '_PEB_all']['Std'][i] =temp['Peb_all'].std()
+
+                    new[key + '_EHS_all']['Mean'][i] = temp['Ehs_all'].mean()
+                    new[key + '_EHS_all']['Count'][i] = temp['Ehs_all'].count()
+                    new[key + '_EHS_all']['Min'][i] = temp['Ehs_all'].min()
+                    new[key + '_EHS_all']['Max'][i] = temp['Ehs_all'].max()
+                    new[key + '_EHS_all']['Std'][i] =  temp['Ehs_all'].std()
+                    new[key + '_ESS_all']['Mean'][i] = temp['Ess_all'].mean()
+                    new[key + '_ESS_all']['Count'][i] = temp['Ess_all'].count()
+                    new[key + '_ESS_all']['Min'][i] =  temp['Ess_all'].min()
+                    new[key + '_ESS_all']['Max'][i] =  temp['Ess_all'].max()
+                    new[key + '_ESS_all']['Std'][i] = temp['Ess_all'].std()
+                    new[key + '_PSS_all']['Mean'][i] = temp['Ess_all'].mean()
+                    new[key + '_PSS_all']['Count'][i] = temp['Ess_all'].count()
+                    new[key + '_PSS_all']['Min'][i] = temp['Ess_all'].min()
+                    new[key + '_PSS_all']['Max'][i] = temp['Ess_all'].max()
+                    new[key + '_PSS_all']['Std'][i] = temp['Ess_all'].std()
+                    i += 1
+
+            else:
+                i=0
+                frame_for_graph[key + factors] = ""
+                new[key+factors] = {}
+                new[key + factors]['Mean'] = {}
+                new[key + factors]['Count'] = {}
+                new[key + factors]['Min'] = {}
+                new[key + factors]['Max'] = {}
+                new[key + factors]['Std'] = {}
+                while i != 4:
+                    temp = values[values['Time'] == i+1]
+                    frame_for_graph.at[i, key + factors]=temp[factors].mean()
+
+
+                    new[key+ factors]['Mean'][i] = temp[factors ].mean()
+                    new[key+ factors]['Count'][i] =temp[factors ].count()
+                    new[key+ factors]['Min'][i] = temp[factors ].min()
+                    new[key+ factors]['Max'][i] = temp[factors ].max()
+                    new[key+ factors]['Std'][i] = temp[factors ].std()
+                    i+=1
+
+    return (frame_for_graph, new)
+
 def compare_detail(request):
 
     users = get_user_model()
@@ -238,6 +326,7 @@ def compare_detail(request):
     gender = int(request.POST['gender'])
     date = request.POST['date']
     case = request.POST['indi_case']
+    Demo_for_1 = map_function(employ,welfare,race,marital,education,housing,age,income,gender,date)
 
 
     if case != '-1':
@@ -261,148 +350,104 @@ def compare_detail(request):
             agent_filtered[agentObj.username] = total_mask[(total_mask['Agent'] == agentObj.username)]
 
     new = {}
-    frame_for_graph = {}
-
-    for key, values in agent_filtered.items():
-        print("hello")
-        print(key)
-        if key != 'yoonhas':
-            if factors == 'Default':
-                new[key + '_PEB_all'] = {}
-                new[key + '_EHS_all'] = {}
-                new[key + '_ESS_all'] = {}
-                new[key + '_PSS_all'] = {}
-                frame_for_graph[key + '_PEB_all'] = ""
-                frame_for_graph[key + '_EHS_all'] = ""
-                frame_for_graph[key + '_ESS_all'] = ""
-                frame_for_graph[key + '_PSS_all'] = ""
-                i=0
-                while i !=4:
-                    temp = values[values['Time'] == i+1]
-
-                    frame_for_graph[key + '_PEB_all'][str(i)] = temp['Peb_all'].mean()
-                    frame_for_graph[key + '_EHS_all'][i] = temp['Ehs_all'].mean()
-                    frame_for_graph[key + '_ESS_all'][i] = temp['Ess_all'].mean()
-                    frame_for_graph[key + '_PSS_all'][i] = temp['PSS'].mean()
+    frame_for_graph = pd.DataFrame()
+    if checking == 1:
+        agent_filtered[case] = individual
+    frame_for_graph, new = iterate_dictionary(agent_filtered, new, frame_for_graph,factors)
 
 
-                    new[key + '_PEB_all']['Mean'][i] = temp['Peb_all'].mean()
-                    new[key + '_PEB_all']['Count'][i] =  temp['Peb_all'].count()
-                    new[key + '_PEB_all']['Min'][i] =  temp['Peb_all'].min()
-                    new[key + '_PEB_all']['Max'][i] = temp['Peb_all'].max()
-                    new[key + '_PEB_all']['Std'][i] =temp['Peb_all'].std()
-                    new[key + '_EHS_all']['Mean'][i] = temp['Ehs_all'].mean()
-                    new[key + '_EHS_all']['Count'][i] = temp['Ehs_all'].count()
-                    new[key + '_EHS_all']['Min'][i] = temp['Ehs_all'].min()
-                    new[key + '_EHS_all']['Max'][i] = temp['Ehs_all'].max()
-                    new[key + '_EHS_all']['Std'][i] =  temp['Ehs_all'].std()
-                    new[key + '_ESS_all']['Mean'][i] = temp['Ess_all'].mean()
-                    new[key + '_ESS_all']['Count'][i] = temp['Ess_all'].count()
-                    new[key + '_ESS_all']['Min'][i] =  temp['Ess_all'].min()
-                    new[key + '_ESS_all']['Max'][i] =  temp['Ess_all'].max()
-                    new[key + '_ESS_all']['Std'][i] = temp['Ess_all'].std()
-                    new[key + '_PSS_all']['Mean'][i] = temp['Ess_all'].mean()
-                    new[key + '_PSS_all']['Count'][i] = temp['Ess_all'].count()
-                    new[key + '_PSS_all']['Min'][i] = temp['Ess_all'].min()
-                    new[key + '_PSS_all']['Max'][i] = temp['Ess_all'].max()
-                    new[key + '_PSS_all']['Std'][i] = temp['Ess_all'].std()
-                    i+=1
-            else:
-                i=0
-                while i != 4:
-                    temp = values[values['Time'] == i+1]
-                    frame_for_graph[key][i]=temp[factors].mean()
-
-                    new[key]={}
-                    new[key]['Mean'][i] = temp[factors ].mean()
-                    new[key]['Count'][i] =temp[factors ].count()
-                    new[key]['Min'][i] = temp[factors ].min()
-                    new[key]['Max'][i] = temp[factors ].max()
-                    new[key]['Std'][i] = temp[factors ].std()
-                    i+=1
-
-    print(frame_for_graph)
     html_fig=Graph.draw_graph_Admin_compare(frame_for_graph)
-    return render(request, 'PSS/Analysis/compare_admin_show.html', {'detail_list':new,"html_fig":html_fig, 'key_list':agent_filtered.keys()})
+    return render(request, 'PSS/Analysis/compare_admin_show.html', {'detail_list':new,"html_fig":html_fig, 'key_list':list(new.keys()),
+                                                                    'demo_com': Demo_for_1})
+
+def map_function(employ, welfare, race, marital, education, housing, age, income, gender,date):
+
+    employ_map = {77: 'Default', 0:'Non-Employed', 1:'Employed'}
+    welfare_map = {77: 'Default', 0:'Non-Wellfare Benfit', 1:'Wellfare Benfit'}
+    gender_map = {77: 'Default', 0:'Male', 1:'Female'}
+    race_map = {'-1': 'Default', '0':'Native American or Alaska Native', '1':'Asian or Pacific Islander', '2':'Black or African American',
+                '3':'White or European American','4':'Non-White Hispanic', '5':'Bi-/ multi-racial','6':'Other'}
+    marry_map = {'-1': 'Default', '0': 'Married, spouse present', '1': 'Married, spouse absent',
+                '2': 'Never Married',
+                '3': 'Separated', '4': 'Divorced', '5': 'Widowed'}
+    education_map = {'-1': 'Default', '0': 'Less than High School', '1': 'High-School / GEDt',
+                '2': 'Some College but no degree',
+                '3': 'Diploma or certificate from vocational, technical or trade school', '4': 'Associates Degree', '5': 'Bachelors Degree',
+                     '6':'Masters Degree', '7':'Professional School Degree', '8':'Doctorate'}
+    housing_map = {'-1': 'Default', '0': 'Rental', '1': 'Own Home',
+                '2': 'Homeless',
+                '3': 'Public Housing', '4': 'Other', '5': 'Living with family or friend'}
+    races = [race_map[x] for x in race]
+
+    marry = [marry_map[x] for x in marital]
+    edu = [education_map[x] for x in education]
+    house = [housing_map[x] for x in housing]
+
+    return {"Employ": employ_map[employ], 'Welfare Benefit': welfare_map[welfare],'Race':", ".join(races),
+            "Gender": gender_map[gender], 'Martial Status': ", ".join(marry), 'Education': ", ".join(edu),
+            'Housing': ", ".join(house), 'Age': age, 'Income': income, 'Date': date}
 
 def compare_detail_indi(request):
 
     users = get_user_model()
-    compare1 = request.POST.getlist('compare1')
-    compare2 = request.POST.getlist('compare2')
+    compare1 = request.POST['compare1']
+    compare2 = request.POST['compare2']
 
 
     factors = request.POST['factors']
 
-    employ = int(request.POST['employ'])
-    welfare =int(request.POST['welfare'])
-    race = request.POST.getlist('race')
-    marital = request.POST.getlist('marital')
-    education = request.POST.getlist('education')
-    housing = request.POST.getlist('Housing')
-    age = request.POST['age']
-    income = request.POST['income']
-    gender = int(request.POST['gender'])
-    date = request.POST['date']
-    case = request.POST['indi_case']
+    employ1 = int(request.POST['employ1'])
+    welfare1 =int(request.POST['welfare1'])
+    race1 = request.POST.getlist('race1')
+    marital1 = request.POST.getlist('marital1')
+    education1 = request.POST.getlist('education1')
+    housing1 = request.POST.getlist('Housing1')
+    age1 = request.POST['age1']
+    income1 = request.POST['income1']
+    gender1 = int(request.POST['gender1'])
+    date1 = request.POST['date1']
+    Demo_for_1 = map_function(employ1,welfare1,race1,marital1,education1,housing1,age1,income1,gender1,date1)
+
+    employ2 = int(request.POST['employ2'])
+    welfare2 =int(request.POST['welfare2'])
+    race2 = request.POST.getlist('race2')
+    marital2 = request.POST.getlist('marital2')
+    education2 = request.POST.getlist('education2')
+    housing2 = request.POST.getlist('Housing2')
+    age2 = request.POST['age2']
+    income2 = request.POST['income2']
+    gender2 = int(request.POST['gender2'])
+    date2 = request.POST['date2']
+    Demo_for_2 = map_function(employ2,welfare2,race2,marital2,education2,housing2,age2,income2,gender2,date2)
 
 
-    total =maskfunction(read_frame(Total_for_Admin.objects.all()), employ, welfare, race, marital, education, housing, age, income, gender,date)
-    total_mask = full_z_score(total)
+
+    total_for_1 =maskfunction(read_frame(Total_for_Admin.objects.all()), employ1, welfare1, race1, marital1, education1,
+                        housing1, age1, income1, gender1,date1)
+    total_for_2 = maskfunction(read_frame(Total_for_Admin.objects.all()), employ2, welfare2, race2, marital2,
+                               education2, housing2, age2, income2, gender2, date2)
+
 
     agent_filtered ={}
-    for key in compare1:
-        if key == '1':
-            agent_filtered['Total'] = total_mask
-        else:
-            agentObj = users.objects.get(id=key)
-            agent_filtered[agentObj.username] = total_mask[(total_mask['Agent'] == agentObj.username)]
+
+    if compare1 == '1':
+        agent_filtered['Total_1'] = total_for_1
+    else:
+        agentObj = users.objects.get(id=compare1)
+        agent_filtered[agentObj.username+"_1"] = total_for_1[(total_for_1['Agent'] == agentObj.username)]
+    if compare2 == '1':
+        agent_filtered['Total_2'] = total_for_2
+    else:
+        agentObj = users.objects.get(id=compare2)
+        agent_filtered[agentObj.username+"_2"] = total_for_2[(total_for_2['Agent'] == agentObj.username)]
 
     new = {}
     frame_for_graph = pd.DataFrame([])
+    frame_for_graph, new = iterate_dictionary(agent_filtered, new, frame_for_graph, factors)
 
-    for key, values in agent_filtered.items():
-
-        if key != 'yoonhas':
-
-            temp = values.groupby(values['Time'])
-            if factors == 'Default':
-                frame_for_graph[key + '_PEB_all'] = temp['PEB_all'].mean()
-                frame_for_graph[key + '_EHS_all'] = temp['EHS_all'].mean()
-                frame_for_graph[key + '_ESS_all'] = temp['ESS_all'].mean()
-                frame_for_graph[key + '_PSS_all'] = temp['PSS_all'].mean()
-
-                new[key+'_PEB_all'] = {}
-                new[key+'_PEB_all']['Mean'] = [x for x in temp[factors].mean()]
-                new[key+'_PEB_all']['Count'] = [x for x in temp[factors].count()]
-                new[key+'_PEB_all']['Min'] = [x for x in temp[factors].min()]
-                new[key+'_PEB_all']['Max'] = [x for x in temp[factors].max()]
-                new[key+'_PEB_all']['Std'] = [x for x in temp[factors].std()]
-
-
-            frame_for_graph[key]=temp[factors].mean()
-
-            new[key]={}
-            new[key]['Mean'] = [x for x in temp[factors ].mean()]
-            new[key]['Count'] = [x for x in temp[factors ].count()]
-            new[key]['Min'] = [x for x in temp[factors ].min()]
-            new[key]['Max'] = [x for x in temp[factors ].max()]
-            new[key]['Std'] = [x for x in temp[factors ].std()]
-
-    if checking == 1:
-        frame_for_graph[case]=""
-        temp1= individual.groupby(individual['Time'])
-        frame_for_graph[case] = temp1[factors].mean()
-        print("+++++++++++++")
-        new[case]={}
-        new[case]['Mean'] =[x for x in temp1[factors ].mean()]
-        new[case]['Count'] =[x for x in temp1[factors ].count()]
-        new[case]['Min'] = [x for x in temp1[factors ].min()]
-        new[case]['Max'] = [x for x in temp1[factors ].max()]
-        new[case]['Std'] = 0
-        print(new)
     html_fig=Graph.draw_graph_Admin_compare(frame_for_graph)
-    return render(request, 'PSS/Analysis/compare_admin_show.html', {'detail_list':new,"html_fig":html_fig, 'key_list':agent_filtered.keys()})
+    return render(request, 'PSS/Analysis/compare_admin_show.html', {'detail_list':new,"html_fig":html_fig,
+                    'key_list':new.keys(), "demo":zip(Demo_for_2.keys(), Demo_for_1.values(),Demo_for_2.values())})
 
 def compare_agent(request, agent_id):
     users = get_user_model()

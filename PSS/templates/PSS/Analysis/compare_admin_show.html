@@ -20,12 +20,13 @@ $(document).ready(function(){
             border-collapse: collapse;
         }
         th{
-
             background-color: black;
             color: white;
          }
             th, td {
-            padding: 5px;
+            padding: 3px;
+                width: 1px;
+                text-align: center;
         }
 
     </style>
@@ -33,72 +34,233 @@ $(document).ready(function(){
     <form action="" method="POST" class="post-form">{% csrf_token %}
 
         <ol>
-             Compare <br><br>
+
+            {% if demo %}
+                <p><strong>Condition:</strong> {{ demo1 }}</p>
+
+
+            <table style="width:80%">
+                <tr>
+                    <th id="Demographic" >Demographic</th>
+                    <th id ='first'> First</th>
+                    <th id ='second'> Second</th>
+                </tr>
+
+                {% for a,b,c in demo  %}
+                    <tr>
+                        <td headers="Demographic" bgcolor="#f5f5dc">{{ a }}</td>
+                        <td headers="first">{{ b }}</td>
+                        <td headers="first">{{ c }}</td>
+                    </tr>
+                {% endfor %}
+            {% elif demo_com %}
+                <table style="width:80%">
+                <tr>
+                    <th id="Demographic" >Demographic</th>
+                    <th id ='first'> Condition</th>
+                </tr>
+
+                {% for a,b in demo_com.items %}
+                    <tr>
+                        <td headers="Demographic" bgcolor="#f5f5dc">{{ a }}</td>
+                        <td headers="first">{{ b }}</td>
+
+                    </tr>
+                {% endfor %}
+            {% endif %}
+
+
+            </table>
 
             <table style="width:80%">
                 <tr>
                     <th id="times">Time</th>
                     <th id="name">Statistics</th>
-                    <th id="time1">Time 1</th>
-                    <th id="time2">Time 2</th>
-                    <th id="time3">Time 3</th>
-                    <th id="time4">Time 4</th>
+                    {% for key in key_list %}
+                        <th  id = {{ key }}> {{ key }}</th>
+                    {% endfor %}
+
 
                 </tr>
                  <p> {{ html_fig|safe }}</p>
-                <strong>Summary</strong> <button id="show">Show Graph</button> <button id="hide">Hide Graph</button>
-
-                {% for name, each in detail_list.items %}
-
+                <strong>Summary</strong>
                 <tr>
-                    <td headers="times" style=" background-color: darkred; color: white;"> {{ name }}</td>
+                    <td headers="times" style=" background-color: darkred; color: white;"> 1st </td>
                     <td headers="name">Mean</td>
-                    <td headers="time1">{{each.Mean.0|floatformat:2 }}</td>
-                    <td headers="time2">{{ each.Mean.1|floatformat:2}}</td>
-                    <td headers="time3">{{ each.Mean.2|floatformat:2 }}</td>
-                    <td headers="time4">{{ each.Mean.3|floatformat:2 }}</td>
-
+                    {% for name, value in detail_list.items %}
+                        <td headers={{ name }}>{{value.Mean.0|floatformat:2 }}</td>
+                    {% endfor %}
 
                 </tr>
 
                   <tr>
                   <td headers="times" style=" background-color: darkred; color: white;"> </td>
                     <td headers="name">Count</td>
-                    <td headers="time1">{{ each.Count.0 }}</td>
-                    <td headers="time2">{{ each.Count.1 }}</td>
-                    <td headers="time3">{{ each.Count.2 }}</td>
-                    <td headers="time4">{{ each.Count.3 }}</td>
+                    {% for name, value in detail_list.items %}
+                        <td headers={{ name }}>{{value.Count.0|floatformat:2 }}</td>
+                    {% endfor %}
 
                 </tr>
                 <tr>
                  <td headers="times" style=" background-color: darkred; color: white;"> </td>
                     <td headers="name">Min</td>
-                    <td headers="time1">{{ each.Min.0|floatformat:2 }}</td>
-                    <td headers="time2">{{ each.Min.1|floatformat:2 }}</td>
-                    <td headers="time3">{{ each.Min.2|floatformat:2 }}</td>
-                    <td headers="time4">{{ each.Min.3|floatformat:2}}</td>
+
+                    {% for name, value in detail_list.items %}
+                        <td headers={{ name }}>{{value.Min.0|floatformat:2 }}</td>
+                    {% endfor %}
 
                 </tr>
                 <tr>
                  <td headers="times" style=" background-color: darkred; color: white;"> </td>
                     <td headers="name">Max</td>
-                    <td headers="time1">{{ each.Max.0|floatformat:2 }}</td>
-                    <td headers="time2">{{ each.Max.1|floatformat:2 }}</td>
-                    <td headers="time3">{{ each.Max.2|floatformat:2 }}</td>
-                    <td headers="time4">{{ each.Max.3|floatformat:2 }}</td>
 
+                    {% for name, value in detail_list.items %}
+                        <td headers={{ name }}>{{value.Max.0|floatformat:2 }}</td>
+                    {% endfor %}
 
                 </tr>
                     <tr>
                      <td headers="times" style=" background-color: darkred; color: white;"> </td>
                     <td headers="name">Std</td>
-                    <td headers="time1">{{ each.Std.0|floatformat:2 }}</td>
-                    <td headers="time2">{{ each.Std.1|floatformat:2 }}</td>
-                    <td headers="time3">{{ each.Std.2|floatformat:2 }}</td>
-                    <td headers="time4">{{ each.Std.3|floatformat:2 }}</td>
+
+                    {% for name, value in detail_list.items %}
+                        <td headers={{ name }}>{{value.Std.0|floatformat:2 }}</td>
+                    {% endfor %}
 
                 </tr>
-                {% endfor %}
+              <tr>
+                    <td headers="times" style=" background-color: darkred; color: white;"> 2nd </td>
+                    <td headers="name">Mean</td>
+                    {% for name, value in detail_list.items %}
+                        <td headers={{ name }}>{{value.Mean.1|floatformat:2 }}</td>
+                    {% endfor %}
+
+                </tr>
+
+                  <tr>
+                  <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Count</td>
+                    {% for name, value in detail_list.items %}
+                        <td headers={{ name }}>{{value.Count.1|floatformat:2 }}</td>
+                    {% endfor %}
+
+                </tr>
+                <tr>
+                 <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Min</td>
+
+                    {% for name, value in detail_list.items %}
+                        <td headers={{ name }}>{{value.Min.1|floatformat:2 }}</td>
+                    {% endfor %}
+
+                </tr>
+                <tr>
+                 <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Max</td>
+
+                    {% for name, value in detail_list.items %}
+                        <td headers={{ name }}>{{value.Max.1|floatformat:2 }}</td>
+                    {% endfor %}
+
+                </tr>
+                    <tr>
+                     <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Std</td>
+
+                    {% for name, value in detail_list.items %}
+                        <td headers={{ name }}>{{value.Std.1|floatformat:2 }}</td>
+                    {% endfor %}
+
+                </tr>
+              <tr>
+                    <td headers="times" style=" background-color: darkred; color: white;"> 3rd </td>
+                    <td headers="name">Mean</td>
+                    {% for name, value in detail_list.items %}
+                        <td headers={{ name }}>{{value.Mean.2|floatformat:2 }}</td>
+                    {% endfor %}
+
+                </tr>
+
+                  <tr>
+                  <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Count</td>
+                    {% for name, value in detail_list.items %}
+                        <td headers={{ name }}>{{value.Count.2|floatformat:2 }}</td>
+                    {% endfor %}
+
+                </tr>
+                <tr>
+                 <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Min</td>
+
+                    {% for name, value in detail_list.items %}
+                        <td headers={{ name }}>{{value.Min.2|floatformat:2 }}</td>
+                    {% endfor %}
+
+                </tr>
+                <tr>
+                 <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Max</td>
+
+                    {% for name, value in detail_list.items %}
+                        <td headers={{ name }}>{{value.Max.2|floatformat:2 }}</td>
+                    {% endfor %}
+
+                </tr>
+                    <tr>
+                     <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Std</td>
+
+                    {% for name, value in detail_list.items %}
+                        <td headers={{ name }}>{{value.Std.2|floatformat:2 }}</td>
+                    {% endfor %}
+
+                </tr>
+              <tr>
+                    <td headers="times" style=" background-color: darkred; color: white;"> 4th </td>
+                    <td headers="name">Mean</td>
+                    {% for name, value in detail_list.items %}
+                        <td headers={{ name }}>{{value.Mean.3|floatformat:2 }}</td>
+                    {% endfor %}
+
+                </tr>
+
+                  <tr>
+                  <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Count</td>
+                    {% for name, value in detail_list.items %}
+                        <td headers={{ name }}>{{value.Count.3|floatformat:2 }}</td>
+                    {% endfor %}
+
+                </tr>
+                <tr>
+                 <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Min</td>
+
+                    {% for name, value in detail_list.items %}
+                        <td headers={{ name }}>{{value.Min.3|floatformat:2 }}</td>
+                    {% endfor %}
+
+                </tr>
+                <tr>
+                 <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Max</td>
+
+                    {% for name, value in detail_list.items %}
+                        <td headers={{ name }}>{{value.Max.3|floatformat:2 }}</td>
+                    {% endfor %}
+
+                </tr>
+                    <tr>
+                     <td headers="times" style=" background-color: darkred; color: white;"> </td>
+                    <td headers="name">Std</td>
+
+                    {% for name, value in detail_list.items %}
+                        <td headers={{ name }}>{{value.Std.3|floatformat:2 }}</td>
+                    {% endfor %}
+
+                </tr>
+
 
             </table>
             {% if indi_list %}
@@ -168,5 +330,5 @@ $(document).ready(function(){
             {% endif %}
 
          </ol>
-
+        <br><br><br>
 {% endblock %}
