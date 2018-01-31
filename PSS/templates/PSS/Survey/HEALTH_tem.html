@@ -9,6 +9,16 @@
         <div>
             <h1><a href="">HEALTH </a></h1>
         </div>
+        {% if virsion == 1 %}
+            <p>
+                 Health
+            </p>
+        {% else %}
+            <p>
+                건강. <br>
+
+            </p>
+        {% endif %}
 
         <form action="{% url 'PSS:health' surveyee_caseNum survey %}" method="post" class="post-form">{% csrf_token %}
             {% for name, value in  questions.get_fields %}

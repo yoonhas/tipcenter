@@ -47,7 +47,7 @@ def EB_view1(request,surveyee_caseNum, survey):
         return render(request, 'PSS/Survey/EB_tem1.html', {'surveyee_caseNum' :surveyee_caseNum})
     else:
         eb.save()
-        return redirect('PSS:ehs_start', surveyee_caseNum, survey)
+        return redirect('PSS:ehs_start', surveyee_caseNum, survey, )
 
 
 def EH_view1(request, surveyee_caseNum, survey):

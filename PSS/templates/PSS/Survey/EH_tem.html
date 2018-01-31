@@ -9,11 +9,18 @@
         <div>
             <h1><a href="">EH </a></h1>
         </div>
+        {%  if virsion == 1 %}
         <p>
            After reading some statements about employment, please rank the following by circling a number on a scale of 0 to 10.
             <br> 0 indicates strong disagreement to the statement, 10 indicates strong agreement, and 5 indicates neutral.
 
         </p>
+        {% else %}
+        <p>
+            EH. 고용희망에 관한 질문입니다, 각 문항에 해당 되는 점수를 0점에서 10점사이로 표시하여 주십시오. <br>
+            0은 전혀 동의하지 않는다, 10은 매우 동의한다, 그리고 5는 보통을 나타냅니다.
+        </p>
+        {% endif %}
         <form action="{% url 'PSS:ehs' surveyee_caseNum survey%}" method="post" class="post-form">{% csrf_token %}
             {% for name, value in  questions.get_fields %}
                   <div class="panel panel-default">
@@ -25,19 +32,14 @@
                             <input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}<span style="margin-left:3em"></span>
 
                         {% endfor %}
-                           <br>
-                       <span style="margin-left:1em"></span>1 = Strong Disagreement <span style="margin-left:17em"> 5 = Neutral</span>
-                           <span style="margin-left:17em"> 10 = Strong Agreement.</span>
                         </div>
                         {% endif %}
                     </p>
                   </div>
             {% endfor %}
 
-
-
-
-            <button type="submit" class="save btn btn-default">Save</button>
+            <button type="submit" class="save btn btn-default">Next</button>
+            <br><br>
         </form>
     </body>
 </html>

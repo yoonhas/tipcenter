@@ -9,16 +9,21 @@
         <div>
             <h1><a href="">SEF </a></h1>
         </div>
+        {% if virsion == 1 %}
         <p>
            SEF.  Below is a list of statements dealing with your general feelings about yourself. <br>
-            If you strongly agree, circle 5. <br>
-            If you agree with the statement, circle 4.  If you disagree, circle 2.  If you strongly disagree, circle 1.
+            If you strongly agree, circle 5.If you agree with the statement, circle 4.  If you disagree, circle 2.  If you strongly disagree, circle 1.
             <br>
-            If you neither agree or disagree, circle neutral.
-
-
-
+            If you neither agree or disagree, circle neutral. <br>
+             1.Strongly disagree 2.Disagree 3.Neutral 4.Agree 5.Strongly agree
         </p>
+            {% else %}
+            <p>
+               SEF. 귀하의 평소 감정에 대한 문항입니다. 해당되는 숫자에 표시하여 주십시오. <br>
+            1. 매우 동의하지 않음. 2.동의하지 않음. 3.보통이다 4.동의함. 5.매우 동의함.
+            </p>
+        {% endif %}
+
         <form action="{% url 'PSS:sef' surveyee_caseNum survey %}" method="post" class="post-form">{% csrf_token %}
             {% for name, value in  questions.get_fields %}
                   <div class="panel panel-default">

@@ -7,19 +7,24 @@
     </head>
     <body>
         <div>
-            <h1><a href="">EB Score</a></h1>
+            <h1><a href="">EB Score </a></h1>
         </div>
-        <p>
-            EB.  After reading some statements about employment, please rank the following by circling a number on a scale of 1 to 5 according to how each item affects you securing a job.
-            <br>1=Not a barrier and 5=Strong barrier.
+        {% if virsion == 1 %}
+            <p>
+                EB. After reading some statements about employment, please rank the following by circling a number on a scale of 1 to 5 according to how each item affects you securing a job.
+                <br>1=Not a barrier and 5=Strong barrier.
+            </p>
+        {% else %}
+            <p>
+                EB. 고용 및 개인 목표 장벽에 관한 질문입니다. 다음 문항을 읽고 안정된 직업 및 개인 목표를 유지하는데 얼마나 영향을 미치는지 1점에서 5점까지 표시해 주십시오. <br>
+                1. 전혀 영향을 미치지 않는다 - 5. 매우 영향을 미친다
+            </p>
+        {% endif %}
 
-        </p>
 
 
 
-
-
-        <form action="{% url 'PSS:peb' surveyee_caseNum survey%}" method="post" class="post-form">{% csrf_token %}
+        <form action="{% url 'PSS:peb' surveyee_caseNum survey virsion%}" method="post" class="post-form">{% csrf_token %}
 
               {% for name, value in  questions.get_fields %}
                   <div class="panel panel-default">
@@ -32,7 +37,6 @@
 
                         {% endfor %}
                            <br>
-                       <span style="margin-left:1em"></span>Not a barrier <span style="margin-left:24em"> Strong barrier.</span>
                         </div>
                         {% endif %}
                     </p>
@@ -40,7 +44,8 @@
             {% endfor %}
 
 
-            <button type="submit" class="save btn btn-default">Save</button>
+            <button type="submit" class="save btn btn-default">Next</button>
+            <br><br>
         </form>
     </body>
 </html>

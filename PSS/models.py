@@ -27,6 +27,7 @@ class SurveyTimes(models.Model):
     doneSurvey = models.BooleanField(default=False)
 
 
+
     def publish(self):
         self.pub_Date = timezone.localdate(timezone.now())
         self.save()

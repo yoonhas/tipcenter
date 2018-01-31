@@ -9,11 +9,18 @@
         <div>
             <h1><a href="">HM </a></h1>
         </div>
-        <p>
-        HM. Please respond to the following 15 items. Be honest – there are no right or wrong answers!<br>
+        {% if virsion == 1 %}
+            <p>
+                HM. Please respond to the following 15 items. Be honest – there are no right or wrong answers!<br>
+            1. Strongly disagree - 5. Strongly agree
+            </p>
+        {% else %}
+            <p>
+            다음 질문에 솔직히 답변하여 주십시오. 옳고 그른 답은 없습니다. <br>
+            1. 전혀 동의하지 않음 - 5. 매우 동의함
+            </p>
+        {% endif %}
 
-
-        </p>
         <form action="{% url 'PSS:hm' surveyee_caseNum survey %}" method="post" class="post-form">{% csrf_token %}
             {% for name, value in  questions.get_fields %}
                   <div class="panel panel-default">
@@ -25,8 +32,7 @@
                             <input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}<span style="margin-left:5em"></span>
 
                         {% endfor %}
-                           <br>
-                                              <span style="margin-left:1em"></span>Strong disagree <span style="margin-left:25em"> Strong agree.</span>
+
 
                         </div>
                         {% endif %}

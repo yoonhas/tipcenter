@@ -9,11 +9,18 @@
         <div>
             <h1><a href="">TIP </a></h1>
         </div>
-        <p>
-           SS.  Think about your personal economic situation over the past 1 month. <br>
-            For each of the following items, circle the number that most clearly indicates where you rate yourself, using the scale:
-            <br>
-            <p>1.Strongly Disagree ... 7. Strongly agree </p><br>
+        {% if virsion == 1 %}
+                <p> 1.Disagree strongly. 2.Disagree moderately. 3.Disagree a little. <br>
+                    4.Neither agree nor disagree. <br>
+                    5.Agree a little. 6.Agree moderately. 7.Agree strongly</p>
+
+        {% else %}
+            <p>
+                1.전혀 그렇지 않다. 2.그렇지 않은 편이 3.약간 그렇지 않다 <br>
+                4.그저 그렇다. <br>
+                5.약간 그렇다 6.그런편이다. 7.매우 그렇다.
+            </p>
+        {% endif %}
 
 
         </p>
@@ -29,7 +36,7 @@
 
                         {% endfor %}
                            <br>
-                        <span style="margin-left:1em"></span>Strongly Disagree <span style="margin-left:35em"> Strongly agree</span>
+
                         </div>
                         {% endif %}
                     </p>

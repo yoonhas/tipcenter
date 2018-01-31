@@ -9,13 +9,20 @@
         <div>
             <h1><a href="">GD </a></h1>
         </div>
+        {% if virsion == 1 %}
         <p>
            GD.  Using the scale below as a guide, circle a number beside each statement to indicate how much you agree with it.
+            <br>
+            1.Strongly Disagree. - 7.Strongly Agree
 
             <br>
-
-
         </p>
+        {% else %}
+            <p>
+            GD. 아래의 질문을 읽고 귀하가 동의하는 정도에 표시하여 주십시오. <br>
+            1. 전혀 동의하지 않음 - 7.매우 동의함
+            </p>
+        {% endif %}
         <form action="{% url 'PSS:gd' surveyee_caseNum survey%}" method="post" class="post-form">{% csrf_token %}
             {% for name, value in  questions.get_fields %}
                   <div class="panel panel-default">
@@ -27,8 +34,7 @@
                             <input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}<span style="margin-left:5em"></span>
 
                         {% endfor %}
-                           <br>
-                           <span style="margin-left:1em"></span>Strong disagree <span style="margin-left:38em"> Strong agree.</span>
+
 
                         </div>
                         {% endif %}

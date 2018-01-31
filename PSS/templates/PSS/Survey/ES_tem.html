@@ -9,6 +9,7 @@
         <div>
             <h1><a href="">ES </a></h1>
         </div>
+        {% if virsion == 1 %}
         <p>
            SS.  Think about your personal economic situation over the past 1 month. <br>
             For each of the following items, circle the number that most clearly indicates where you rate yourself, using the scale:
@@ -17,6 +18,13 @@
 
 
         </p>
+        {% else %}
+        <p>
+            SS. 지난 한 달간 귀하의 경제적 상황에 대한 질문입니다. 해당되는 곳에 표시하여 주십시오. <br>
+            최근(지난 1개월) 재정 상황으로 나는..<br>
+            1. 전혀 그렇지 않다. 2.그렇지 않다. 3그저 그렇다. 4.그렇다 5.항상 그렇다
+        </p>
+        {% endif %}
         <form action="{% url 'PSS:ess' surveyee_caseNum survey %}" method="post" class="post-form">{% csrf_token %}
             {% for name, value in  questions.get_fields %}
                   <div class="panel panel-default">
@@ -44,7 +52,8 @@
 
 
 
-            <button type="submit" class="save btn btn-default">Save</button>
+            <button type="submit" class="save btn btn-default">Next</button>
+            <br><br>
         </form>
     </body>
 </html>

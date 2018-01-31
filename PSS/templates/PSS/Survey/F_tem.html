@@ -9,6 +9,7 @@
         <div>
             <h1><a href="">F </a></h1>
         </div>
+        {% if virsion == 1  %}
         <p>
            F.  In the course of our lives negative things may occur because of our own actions, the actions of others, or circumstances beyond our control.
             <br>
@@ -17,9 +18,19 @@
             Think about how you typically respond to such negative events. <br>
             Next to each of the following items write the number (from the 7-point scale below) that best describes how you typically respond to the type of negative situation described.
             <br>
-            There are no right or wrong answers. Please be as open as possible in your answers.
+            There are no right or wrong answers. Please be as open as possible in your answers. <br>
+            1.Almost always false of me. 3.More often false of me. 5.More often true of me. 7.Almost always true of me
 
         </p>
+
+        {% else %}
+            <p>
+            F. 우리는 살면서 자신이나 타인의 행동, 혹은 우리의 통제를 벗어난 상황으로 인해 부정적인 일이 생기기도 합니다. <br>
+            부정적인 상황은 우리의 생각이나 행동에 영향을 미치기도 합니다. 만약 귀하에게 불쾌한 일이 생겼다면 보통 어떻게 반응하는지 떠올려 보십시오. <br>
+            질문을 잘 읽고 귀하에게 해당되는 번호에 표시하여 주십시오. <br>
+            1.항상 그렇지 않다. 3.그렇지 않을때가 더 많다. 5.그러한 경우가 더 많다. 7.항상 그렇다
+            </p>
+        {% endif %}
         <form action="{% url 'PSS:f_scare' surveyee_caseNum survey %}" method="post" class="post-form">{% csrf_token %}
             {% for name, value in  questions.get_fields %}
                   <div class="panel panel-default">
@@ -32,7 +43,7 @@
 
                         {% endfor %}
                            <br>
-                       <span style="margin-left:1em"></span>Strong disagree <span style="margin-left:38em"> Strong agree.</span>
+
                         </div>
                         {% endif %}
                     </p>
