@@ -9,7 +9,7 @@
         <div>
             <h1><a href="">EB Score </a></h1>
         </div>
-        {% if virsion == 1 %}
+        {% if version == 1 %}
             <p>
                 EB. After reading some statements about employment, please rank the following by circling a number on a scale of 1 to 5 according to how each item affects you securing a job.
                 <br>1=Not a barrier and 5=Strong barrier.
@@ -24,8 +24,8 @@
 
 
 
-        <form action="{% url 'PSS:peb' surveyee_caseNum survey virsion%}" method="post" class="post-form">{% csrf_token %}
-
+        <form action="{% url 'PSS:peb' surveyee_caseNum survey %}" method="post" class="post-form">{% csrf_token %}
+        {{ survey  }}
               {% for name, value in  questions.get_fields %}
                   <div class="panel panel-default">
                     {%  if value != '1' and value != '2' %}

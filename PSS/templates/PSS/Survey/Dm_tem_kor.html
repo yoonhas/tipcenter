@@ -11,14 +11,14 @@
             <h1><a href="">DM</a></h1>
         </div>
         <div class="panel panel-default">
-          <div class="panel-heading"> DM.  Please fill in the blank or circle the appropriate answer.</div>
+          <div class="panel-heading"> DM. 빈칸을 채우거나 해당되는 답을 표시해 주십시오.</div>
           <div class="panel-body">
                <div class="panel panel-default">
                   <div class="panel-heading"> {{ questions.DM1 }}</div>
                   <div class="panel-body">
                       <span style="margin-left:1em">
-                        <input type="radio" name="DM1" value="{{ choices.0 }}"></span>No
-                        <input type="radio" name="DM1" value="{{ choices.1 }}">Yes
+                        <input type="radio" name="DM1" value="{{ choices.0 }}"></span>아니오
+                        <input type="radio" name="DM1" value="{{ choices.1 }}">예
                         <br>
                   </div>
                    <div class="panel-heading">  <span style="margin-left:2em">{{ questions.DM1_1_year }}</span></div>
@@ -44,16 +44,16 @@
                       <div class="panel-heading">  <span style="margin-left:2em">{{ questions.DM1_3 }}</span></div>
                    <div class="panel-body">
                      <span style="margin-left:4em">
-                        <input type="radio" name="DM1_3" value="{{ choices.0 }}"></span>No
-                        <input type="radio" name="DM1_3" value="{{ choices.1 }}">Yes
+                        <input type="radio" name="DM1_3" value="{{ choices.0 }}"></span>아니오
+                        <input type="radio" name="DM1_3" value="{{ choices.1 }}">예
                         <br>
 
                    </div>
                    <div class="panel-heading">  <span style="margin-left:2em">{{ questions.DM1_4 }}</span></div>
                    <div class="panel-body">
                      <span style="margin-left:4em">
-                        <input type="radio" name="DM1_4" value="{{ choices.0 }}"></span>No
-                        <input type="radio" name="DM1_4" value="{{ choices.1 }}">Yes
+                        <input type="radio" name="DM1_4" value="{{ choices.0 }}"></span>아니오
+                        <input type="radio" name="DM1_4" value="{{ choices.1 }}">예
                         <br>
 
                    </div>
@@ -61,8 +61,8 @@
                 <div class="panel panel-default">
                   <div class="panel-heading">{{ questions.DM2 }}</div>
                   <div class="panel-body"><span style="margin-left:1em">
-                      <input type="radio" name="DM2" value=0>No
-                    <input type="radio" name="DM2" value=1>Yes
+                      <input type="radio" name="DM2" value=0>아니오
+                    <input type="radio" name="DM2" value=1>예
                     </span><br></div>
                 </div>
 
@@ -98,8 +98,8 @@
                   <div class="panel-heading">{{ questions.DM7 }}</div>
                   <div class="panel-body"><span style="margin-left:1em">
                     <span style="margin-left:1em">
-                        <input type="radio" name="DM7" value=0>No
-                         <input type="radio" name="DM7" value=1>Yes</span>
+                        <input type="radio" name="DM7" value=0>아니오
+                         <input type="radio" name="DM7" value=1>예</span>
                     </span>
                   </div>
               </div>
@@ -107,12 +107,12 @@
                   <div class="panel-heading">{{ questions.DM8 }}</div>
                   <div class="panel-body"><span style="margin-left:1em">
                     <span style="margin-left:1em">
-                        <input type="radio" name="DM8" value=0>Married, spouse present
-                        <input type="radio" name="DM8" value=1>Married, spouse absent
-                        <input type="radio" name="DM8" value=2>Never Married
-                        <input type="radio" name="DM8" value=3>Separated
-                        <input type="radio" name="DM8" value=4>Divorced
-                        <input type="radio" name="DM8" value=5>Widowed
+                        <input type="radio" name="DM8" value=0>결혼, 배우자 있음
+                        <input type="radio" name="DM8" value=1>결혼, 배우자 없음
+                        <input type="radio" name="DM8" value=2>결혼한적 없음
+                        <input type="radio" name="DM8" value=3>별거
+                        <input type="radio" name="DM8" value=4>이혼
+                        <input type="radio" name="DM8" value=5>사별
                     </span>
                     </span>
                   </div>
@@ -121,14 +121,14 @@
                   <div class="panel-heading">{{ questions.DM9 }}</div>
                   <div class="panel-body"><span style="margin-left:1em">
                     <span style="margin-left:1em">
-                        <input type="radio" name="DM9" value=0>Rental
-                        <input type="radio" name="DM9" value=1>Own Home
-                        <input type="radio" name="DM9" value=2>Homeless
-                        <input type="radio" name="DM9" value=3>Public housing
-                        <input type="radio" name="DM9" value=4>Other
-                        <input type="radio" name="DM9" value=5>Living with family or friend</span>
+                        <input type="radio" name="DM9" value=0>월세 혹은 전세
+                        <input type="radio" name="DM9" value=1>소유 주택
+                        <input type="radio" name="DM9" value=2>노숙
+                        <input type="radio" name="DM9" value=3>공공 임대 주
+                        <input type="radio" name="DM9" value=4>그외
+                        <input type="radio" name="DM9" value=5>친구 또는 가족과 산다</span>
                     </span>
-                      <br> Other: <input type="text" name="DM9_1" value="">
+                      <br>그외:<input type="text" name="DM9_1" value="">
                     </span>
                   </div>
               </div>
@@ -136,8 +136,8 @@
                   <div class="panel-heading">{{ questions.DM10 }}</div>
                   <div class="panel-body"><span style="margin-left:1em">
                     <span style="margin-left:1em">
-                        <input type="radio" name="DM10" value=0>No
-                        <input type="radio" name="DM10" value=1>Yes</span>
+                        <input type="radio" name="DM10" value=0>아니오
+                        <input type="radio" name="DM10" value=1>예</span>
                     </span>
                     </span>
                   </div>
@@ -148,40 +148,40 @@
                       <div class="panel-heading">{{ questions.DM11_1 }}</div>
                       <div class="panel-body"><span style="margin-left:1em">
                         <span style="margin-left:1em">
-                            <input type="radio" name="DM11_1" value=0>Worse
-                            <input type="radio" name="DM11_1" value=1>Same
-                            <input type="radio" name="DM11_1" value=2>Better
-                            <input type="radio" name="DM11_1" value=3>Don't know
+                            <input type="radio" name="DM11_1" value=0>나빠짐
+                            <input type="radio" name="DM11_1" value=1>같음
+                            <input type="radio" name="DM11_1" value=2>나아짐
+                            <input type="radio" name="DM11_1" value=3>알수 없음
                         </span>
                         </span>
                     </div>
                       <div class="panel-heading">{{ questions.DM11_2 }}</div>
                       <div class="panel-body"><span style="margin-left:1em">
                         <span style="margin-left:1em">
-                            <input type="radio" name="DM11_2" value=0>Worse
-                            <input type="radio" name="DM11_2" value=1>Same
-                            <input type="radio" name="DM11_2" value=2>Better
-                            <input type="radio" name="DM11_2" value=3>Don't know
+                            <input type="radio" name="DM11_2" value=0>나빠짐
+                            <input type="radio" name="DM11_2" value=1>같음
+                            <input type="radio" name="DM11_2" value=2>나아짐
+                            <input type="radio" name="DM11_2" value=3>알수 없음
                         </span>
                         </span>
                     </div>
                       <div class="panel-heading">{{ questions.DM11_3 }}</div>
                       <div class="panel-body"><span style="margin-left:1em">
                         <span style="margin-left:1em">
-                            <input type="radio" name="DM11_3" value=0>Worse
-                            <input type="radio" name="DM11_3" value=1>Same
-                            <input type="radio" name="DM11_3" value=2>Better
-                            <input type="radio" name="DM11_3" value=3>Don't know
+                            <input type="radio" name="DM11_3" value=0>나빠짐
+                            <input type="radio" name="DM11_3" value=1>같음
+                            <input type="radio" name="DM11_3" value=2>나아짐
+                            <input type="radio" name="DM11_3" value=3>알수 없음
                         </span>
                         </span>
                     </div>
                       <div class="panel-heading">{{ questions.DM11_4 }}</div>
                       <div class="panel-body"><span style="margin-left:1em">
                         <span style="margin-left:1em">
-                            <input type="radio" name="DM11_4" value=0>Worse
-                            <input type="radio" name="DM11_4" value=1>Same
-                            <input type="radio" name="DM11_4" value=2>Better
-                            <input type="radio" name="DM11_4" value=3>Don't know
+                            <input type="radio" name="DM11_4" value=0>나빠짐
+                            <input type="radio" name="DM11_4" value=1>같음
+                            <input type="radio" name="DM11_4" value=2>나아짐
+                            <input type="radio" name="DM11_4" value=3>알수 없음
                         </span>
                         </span>
                     </div>
@@ -201,8 +201,8 @@
                   <div class="panel-heading">{{ questions.DM13 }}</div>
                   <div class="panel-body"><span style="margin-left:1em">
                     <span style="margin-left:1em">
-                        <input type="radio" name="DM13" value=0>Male
-                        <input type="radio" name="DM13" value=1>Female
+                        <input type="radio" name="DM13" value=0>남자
+                        <input type="radio" name="DM13" value=1>여자
                     </span>
                   </span>
 
@@ -212,13 +212,10 @@
                   <div class="panel-heading">{{ questions.DM14 }}</div>
                   <div class="panel-body"><span style="margin-left:1em">
 
-                        <input type="radio" name="DM14" value=0>Native American or Alaska Native
-                        <input type="radio" name="DM14" value=1>Asian or Pacific Islander
-                        <input type="radio" name="DM14" value=2>Black or African American
-                        <input type="radio" name="DM14" value=3>White or European American
-                        <input type="radio" name="DM14" value=4>Non-White Hispanic
-                        <input type="radio" name="DM14" value=5>Bi- / multi-racial
-                        <input type="radio" name="DM14" value=6>Other
+
+                        <input type="radio" name="DM14" value=1>한국
+                        <input type="radio" name="DM14" value=5>다국적
+                       <input type="radio" name="DM14" value=6>그외(구체적으로 명시)
                         <br>
                          <span style="margin-left:1em"> {{ questions.DM14_1 }}
                         <input type="text" name="DM14_1" value=" ">
@@ -241,15 +238,15 @@
                   <div class="panel-heading">{{ questions.DM16 }}</div>
                   <div class="panel-body"><span style="margin-left:1em">
 
-                        <input type="radio" name="DM16" value=0>Less than High School
-                        <input type="radio" name="DM16" value=1>High-School / GED
-                        <input type="radio" name="DM16" value=2>Some College but no degree
-                        <input type="radio" name="DM16" value=3>Diploma or certificate from vocational, technical or trade school
-                        <input type="radio" name="DM16" value=4>Associates Degree <br>
-                        <span style="margin-left:1em"><input type="radio" name="DM16" value=5>Bachelors Degree
-                        <input type="radio" name="DM16" value=6>Masters Degree
-                        <input type="radio" name="DM16" value=7>Professional School Degree
-                        <input type="radio" name="DM16" value=8>Doctorate
+                        <input type="radio" name="DM16" value=0>고졸 이하
+                        <input type="radio" name="DM16" value=1>고졸/검정고시
+                        <input type="radio" name="DM16" value=2>대학 중퇴
+                        <input type="radio" name="DM16" value=3>직업, 기술학교 졸업증 또는 자격
+                        <input type="radio" name="DM16" value=4>전문대 졸업(2년제) <br>
+                        <span style="margin-left:1em"><input type="radio" name="DM16" value=5>학사
+                        <input type="radio" name="DM16" value=6>석
+                        <input type="radio" name="DM16" value=7>전문 대학원 졸업
+                        <input type="radio" name="DM16" value=8>박
                     </span>
                   </span>
 
@@ -289,7 +286,7 @@
          <br><br>
      </form>
 
-
+        
     </body>
 </html>
 

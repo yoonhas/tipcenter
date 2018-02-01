@@ -21,8 +21,7 @@ def join_dataFrames(df, dic):
     return df
 
 def adjust_column(df):
-    print(len(list(df)))
-    arrange = ['caseNum', 'cDate', 'Site', 'Time', 'EB1', 'EB2', 'EB3', 'EB4', 'EB5', 'EB6', 'EB7', 'EB8', 'EB9', 'EB10',
+    arrange = ['caseNum', 'cDate', 'Site', 'time', 'EB1', 'EB2', 'EB3', 'EB4', 'EB5', 'EB6', 'EB7', 'EB8', 'EB9', 'EB10',
             'EB11', 'EB12', 'EB13', 'EB14', 'EB15', 'EB16', 'EB17', 'EB18', 'EB19', 'EB20', 'EB21', 'EB22', 'EB23',
             'EB24', 'EB25', 'EB26', 'EB27',
             'EH1', 'EH2', 'EH3', 'EH4', 'EH5', 'EH6', 'EH7', 'EH8', 'EH9', 'EH10', 'EH11', 'EH12', 'EH13', 'EH14',
@@ -90,6 +89,7 @@ def get_online_data(date):
         time = i.time
         participant = Surveyee.objects.get(caseNum=caseNumber)
         tem=call_from_model(participant, time)
+
         temp_dataframe=temp_dataframe.append(tem)
         temp_dataframe['cDate'] = date
         temp_dataframe['Site'] = participant.agent_name

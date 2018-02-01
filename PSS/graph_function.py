@@ -79,14 +79,14 @@ def draw_graph_Agent(box,box1):
                       diction1['Ehs_all']['mean'],
                       diction1['Ess_all']['mean'], diction1['PSS']['mean']]
 
-
+    print(PSS)
     fig, ax = plt.subplots()
     line_collection= []
     x =['1st', '2nd', '3rd', '4th']
     ax.grid(True, alpha=0.3)
     for key, val in PSS.iteritems():
 
-        l = ax.plot((val.index +1), val.values, label=key)
+        l = ax.plot((val.index +1), val.values, marker='.', label=key)
         line_collection.append(l)
 
 
@@ -110,10 +110,9 @@ def draw_graph_Agent(box,box1):
 
     return html_fig
 
-def draw_graph_Agent_compare(box,box1, box2):
-    PSS = pd.DataFrame(columns=['PEB_Total','Ehs_Total', 'Ess_Total', 'PSS_Total', 'PEB_Agent','Ehs_Agent', 'Ess_Agent', 'PSS_Agent',
-                                'PEB_Case','Ehs_Case', 'Ess_Case', 'PSS_Case'])
-
+def draw_graph_Agent_compare(box,box1, box2, casenum):
+    PSS = pd.DataFrame(columns=['PEB_Total','Ehs_Total', 'Ess_Total', 'PSS_Total', 'PEB_Agent','Ehs_Agent', 'Ess_Agent', 'PSS_Agent'])
+    casenum =str(casenum)
     for i in range(4):
         _, diction = box[i]
         _, diction1 = box1[i]
@@ -121,16 +120,27 @@ def draw_graph_Agent_compare(box,box1, box2):
                        diction['PSS']['mean'],
                        diction1['Peb_all']['mean'],
                       diction1['Ehs_all']['mean'],
-                      diction1['Ess_all']['mean'], diction1['PSS']['mean'], box2.ix[i]['Peb_all'], box2.ix[i]['Ehs_all'], box2.ix[i]['Ess_all'], box2.ix[i]['PSS']]
+                      diction1['Ess_all']['mean'], diction1['PSS']['mean']]
+    PSS[casenum + "_PEB"] =""
+    PSS[casenum + "_EHS"] = ""
+    PSS[casenum + "_ESS"] = ""
+    PSS[casenum + "_PSS"] = ""
 
+    for i in range(len(box2)):
 
+        PSS.at[i, casenum + "_PEB"] =  box2.iloc[i]['Peb_all']
+        PSS.at[i, casenum + "_EHS"] = box2.iloc[i]['Ehs_all']
+        PSS.at[i, casenum + "_ESS"] = box2.iloc[i]['Ess_all']
+        PSS.at[i, casenum + "_PSS"] = box2.iloc[i]['PSS']
+    PSS =  PSS.replace("", np.nan, regex=True)
+    print(PSS)
     fig, ax = plt.subplots()
     line_collection= []
     x =['1st', '2nd', '3rd', '4th']
     ax.grid(True, alpha=0.3)
     for key, val in PSS.iteritems():
 
-        l = ax.plot((val.index +1), val.values, label=key)
+        l = ax.plot((val.index +1), val.values,  marker='.', label=key)
         line_collection.append(l)
 
 

@@ -76,6 +76,11 @@ def summary(request, agent_id):
             agent = read_frame(Total_for_Admin.objects.filter(Agent=i.pk))
             p=(i.get_username(),i.id, describe(agent, fact_list))
             list1.append(p)
+    if agent_id != '1':
+
+        return render(request, "PSS/Analysis/summary.html", {'agent_id':User.objects.get(id=agent_id).get_username(),
+                                                          'indi':list1})
+
     return render(request, "PSS/Analysis/summary.html", {'agent_id':User.objects.get(id=agent_id).get_username(),
                                                          'total':total, 'indi':list1})
 
@@ -88,6 +93,7 @@ def score_detail_agent(request, agent_id, userId):
     i=1
     list1=[]
     list2=[]
+    print("Helloasdfasdf")
     fact_list = ['Peb_all', 'Ehs_all', 'Ess_all', 'PSS', 'Peb_all_Z', 'Ehs_all_Z',
                  'Ess_all_Z', 'PSS_Z']
     while i != 5:
@@ -525,7 +531,8 @@ def show_compare_agent(request,agent_id):
 
     if checking == 1:
         indi = read_frame(individual)
-        html_fig = Graph.draw_graph_Agent_compare(list1, list2,indi )
+        print(indi)
+        html_fig = Graph.draw_graph_Agent_compare(list1, list2,indi, case )
     else:
         html_fig = Graph.draw_graph_Agent(list1, list2 )
 

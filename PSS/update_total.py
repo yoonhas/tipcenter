@@ -57,31 +57,45 @@ def updating_summary(df):
     # exting participants
     existing_pariticipants = []
 
-    Total_for_Admin.objects.all().delete() #delete all object before update
-    SurveyTimes.objects.all().delete()
-
+    users = get_user_model()
     for i in range(len(df)):
-        if df.ix[i]['Time'] > 4:
+        if df.ix[i]['Time'] > 4: #check it is over 4 times
             continue
-        users = get_user_model()
+        #call agent
         agent = users.objects.get(username=agent_map[df.ix[i]['Site']])
-
+        time = df.ix[i]['Time']
+        #create Surveyee object if it is not existed or call Survey obejct
         if Surveyee.objects.filter(caseNum=df.ix[i]['CaseNum']).exists():
             surveyee = Surveyee.objects.get(caseNum=df.ix[i]['CaseNum'])
+            if Total_for_Admin.objects.filter(caseNum=surveyee, Time=time).exists():
+                surveyTime = SurveyTimes.objects.get(caseNum=surveyee, time=time)
+                total_obj = Total_for_Admin.objects.get(caseNum=surveyee, Time=time)
+                total_obj.delete()
+                surveyTime.delete()
+                if time ==1:
+                    surveyee.survey1 = False
+                elif time ==2:
+                    surveyee.survey2 = False
+                elif time ==3:
+                    surveyee.survey1 = False
+                elif time ==4:
+                    surveyee.survey1 = False
+                surveyee.save()
         else:
             surveyee = Surveyee(caseNum=df.ix[i]['CaseNum'], agent_name=agent)
             surveyee.save()
 
+        #generate survey times
         surveyTime = SurveyTimes(caseNum=surveyee, agent= agent, time=df.ix[i]['Time'], pub_Date=df.ix[i]['cDATE'],
         doneSurvey=True)
         surveyTime.save()
-        if df.ix[i]['Time'] == 1:
+        if time == 1:
             surveyee.survey1 = True
-        elif df.ix[i]['Time'] == 2:
+        elif time == 2:
             surveyee.survey2 = True
-        elif df.ix[i]['Time'] == 3:
+        elif time == 3:
             surveyee.survey3 = True
-        elif df.ix[i]['Time'] == 4:
+        elif time == 4:
             surveyee.survey4 = True
         surveyee.save()
         try:

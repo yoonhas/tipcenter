@@ -11,11 +11,6 @@
                     {% if agent.get_username == 'yoonhas' %}
                         <h1>PSS Admin Main </h1><br><br>
                         <div class="list-group">
-                        <a href="{% url 'PSS:upload_csv_start' %}" class="list-group-item" >
-                            <h4 class="list-group-item-heading">Upload First Survey File</h4>
-                             <p class="list-group-item-text">csv file and 1.5 MB Max</p>
-                        </a>
-
                         <a href="{% url 'PSS:update_total_csv' %}" class="list-group-item" >
                         <h4 class="list-group-item-heading">Update Summary</h4>
 
