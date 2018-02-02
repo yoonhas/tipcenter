@@ -52,7 +52,7 @@ def updating_summary(df):
                  7: 'instituto-IDPL',
                  8: 'MBC', 9: 'Cara-CWF', 10: 'GrowingHome', 11: 'CJC-CNH', 12: 'CJC-Safer', 13: 'CJC-SER',
                  14: 'HPOG2.0', 15: 'GreaterWestTown',
-                 16: 'DuPagePads', 17: 'HeartlandAlli', 18: 'CTA', 19: 'CentroRomero', 20: 'St.Patricks-Mc'}
+                 16: 'DuPagePads', 17: 'HeartlandAlli', 18: 'CTA', 19: 'CentroRomero', 20: 'St.Patricks-Mc', 23:'YeonSungUniv'}
 
     # exting participants
     existing_pariticipants = []

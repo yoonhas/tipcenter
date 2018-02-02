@@ -5,6 +5,9 @@ from .models import Surveyee, SurveyTimes,EB, EH, EH_Question, ES_Question, ES, 
 from .models import EXF_Question,EXF, R, R_Question, SEF, SEF_Question, GR, GR_Question, SPR, SPR_Question,Total_for_Admin
 from .models import SSP_Question, SSP, F, F_Question, GD, GD_Question, HM_Question, HM, HEALTH_Question, HEALTH, DM, DM_Question
 
+
+
+
 def check_element(val):
     val.fillna(99, inplace=True)
     val[val == 77] = np.NaN
@@ -169,6 +172,7 @@ def checkF(val):
         return (sum, len(val))
 
 def parsing(row):
+
     if 'EH15' in row:
         Empowerment_sum, Empowerment =check_element(row[['EH3','EH4','EH5','EH6']])
         SelfMotivation_sum, SelfMotivation = check_element(row[['EH11', 'EH15']])
@@ -192,6 +196,11 @@ def parsing(row):
     PEBS_all_sum, PEBS_all = check_element(row[['EB10', 'EB11', 'EB12', 'EB13','EB15', 'EB16', 'EB17',
                                                               'EB6', 'EB19', 'EB18','EB1', 'EB2', 'EB3', 'EB4', 'EB8',
                                                               'EB22', 'EB23', 'EB24', 'EB25', 'EB26' ]])
+    k=0
+    if PEBS_all < 1:
+        k+=1
+        print(k)
+        print(row[['CaseNum']])
 
 
     ESS1_sum,ESS1 = check_element(row[['SS2', 'SS8', 'SS9', 'SS10', 'SS12']])

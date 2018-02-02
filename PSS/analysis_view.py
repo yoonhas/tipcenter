@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from .models import Surveyee, Total_for_Admin
-
+import numpy as np
 import pandas as pd
 import logging
 from django_pandas.io import read_frame
@@ -15,7 +15,11 @@ from . import graph_function as Graph
 def helper(df, str):
     pd.set_option('precision', 6)
     mean = df[str].mean()
+    #mean = np.nanmean(df[str],axis=0)
     count = df[str].count()
+    print("===={}======".format(str))
+    print((len(df[str])))
+    print( df[str].count())
     min = df[str].min()
     max = df[str].max()
     std = df[str].std()
