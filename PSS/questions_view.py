@@ -5,15 +5,14 @@ from .models import SSP_Question, SSP, F, F_Question, GD, GD_Question, HM_Questi
 
 
 def EB_view(request, surveyee_caseNum, survey):
-    if "Korean" in request.POST:
-        print("Korean")
-        casenum= Surveyee.objects.get(caseNum=surveyee_caseNum)
-        casenum.survey_kind = 2
+
+    casenum= Surveyee.objects.get(caseNum=surveyee_caseNum)
+    if casenum.agent_name.username != 'YeonSungUniv':
+        casenum.survey_kind = 1
         casenum.save()
     else:
         casenum= Surveyee.objects.get(caseNum=surveyee_caseNum)
-        print("English")
-        casenum.survey_kind = 1
+        casenum.survey_kind = 2
         casenum.save()
     questions = EB_Question.objects.get(pk=casenum.survey_kind)
     choices = [ 1, 2, 3, 4, 5]

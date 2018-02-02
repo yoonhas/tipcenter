@@ -36,6 +36,7 @@ class SurveyTimes(models.Model):
         return str(self.pk)
 
 
+
 class EB(models.Model):
 
     surveytime = models.IntegerField()
