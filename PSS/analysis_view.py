@@ -83,7 +83,7 @@ def summary(request, agent_id):
 
 
     return render(request, "PSS/Analysis/summary.html", {'agent_id':User.objects.get(id=agent_id).get_username(),
-                                                          'indi':list1})
+                                                          'indi':list1, 'a':agent_id})
 
 
 def selection_index(request):
