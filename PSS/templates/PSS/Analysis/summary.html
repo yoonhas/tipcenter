@@ -20,7 +20,7 @@
 
     <form action="" method="POST" class="post-form">{% csrf_token %}
         <ol>
-
+        {{ user.username }}
 
             <table style="width:100%">
                 <tr>
@@ -33,10 +33,10 @@
                 </tr>
                 {% if total %}
                 <tr>
-                    {% if user.username == 'yoonhas' %}
-                     <td headers="name" style=" background-color: darkred; color: white;"><a href="{% url 'PSS:score_detail' 1 user.id %}"> TOTAL (click for detail)</a></td>
+                    {% if user.username == 'yoonhas' or user.username == 'admin' or user.username == 'Cross' %}
+                        <td headers="name" style=" background-color: darkred; color: white;"><a href="{% url 'PSS:score_detail' user.id %}"> TOTAL (click for detail)</a></td>
                     {% else %}
-                    <td headers="name" style=" background-color: darkred; color: white;"> TOTAL</td>
+                         <td headers="name" style=" background-color: darkred; color: white;"> TOTAL</td>
                     {% endif %}
                 </tr>
                 <tr>
@@ -77,11 +77,11 @@
 
                 </tr>
             {% endif %}
-                    {% if agent_id == 'yoonhas' %}
+                    {% if user.username == 'yoonhas' or user.username == 'admin' or user.username == 'Cross' %}
                         {% for name,a_id, agent in indi %}
                             {% if agent.Peb_all.count != 0 %}
                                 <tr>
-                                    <td headers="name" style=" background-color: darkred; color: white;"><a href="{% url 'PSS:score_detail' a_id user.id %}">{{ a_id }} {{ name }} (click for detail)</a></td>
+                                    <td headers="name" style=" background-color: darkred; color: white;"><a href="{% url 'PSS:score_detail' a_id %}">{{ a_id }} {{ name }} (click for detail)</a></td>
                                 </tr>
                                 <tr>
                                     <td headers="name">PEB Score</td>
@@ -123,7 +123,7 @@
                         {% for name,a_id, agent in indi %}
                                 {% if agent.Peb_all.count != 0 and agent_id == name %}
                                     <tr>
-                                         <td headers="name" style=" background-color: darkred; color: white;"><a href="{% url 'PSS:summary_agent' a_id user.id%}">{{ a_id }} {{ name }} (click for detail)</a></td>
+                                         <td headers="name" style=" background-color: darkred; color: white;"><a href="{% url 'PSS:summary_agent' a_id %}">{{ a_id }} {{ name }} (click for detail)</a></td>
                                     </tr>
                                     <tr>
                                         <td headers="name">PEB Score</td>

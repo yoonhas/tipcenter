@@ -17,9 +17,6 @@ def helper(df, str):
     mean = df[str].mean()
     #mean = np.nanmean(df[str],axis=0)
     count = df[str].count()
-    print("===={}======".format(str))
-    print((len(df[str])))
-    print( df[str].count())
     min = df[str].min()
     max = df[str].max()
     std = df[str].std()
@@ -67,7 +64,6 @@ def full_z_score(df):
 
 
 def summary(request, agent_id):
-
     all = Total_for_Admin.objects.all()
     df = read_frame(all)
     fact_list = ['Peb_all', 'Ehs_all', 'Ess_all', 'PSS']
@@ -75,29 +71,31 @@ def summary(request, agent_id):
 
     users = User.objects.filter()
     list1=[]
+
     for i in users:
-        if i.get_username() != 'yoonhas':
+        if i.get_username() != 'yoonhas' or i.get_username() != 'admin' or i.get_username() != 'Cross':
             agent = read_frame(Total_for_Admin.objects.filter(Agent=i.pk))
             p=(i.get_username(),i.id, describe(agent, fact_list))
             list1.append(p)
-    if agent_id != '1':
 
-        return render(request, "PSS/Analysis/summary.html", {'agent_id':User.objects.get(id=agent_id).get_username(),
-                                                          'indi':list1})
+    if agent_id == '1' or agent_id == '27' or agent_id == '26':
+        return render(request, "PSS/Analysis/summary.html", {'agent_id': User.objects.get(id=agent_id).get_username(), 'total': total, 'indi': list1})
+
 
     return render(request, "PSS/Analysis/summary.html", {'agent_id':User.objects.get(id=agent_id).get_username(),
-                                                         'total':total, 'indi':list1})
+                                                          'indi':list1})
+
 
 def selection_index(request):
     return render(request, "PSS/Analysis/selection_index.html")
 
-def score_detail_agent(request, agent_id, userId):
+def score_detail_agent(request, agent_id):
 
-    agent = User.objects.get(id=agent_id)
+    agent = User.objects.get(username=agent_id)
     i=1
     list1=[]
     list2=[]
-    print("Helloasdfasdf")
+
     fact_list = ['Peb_all', 'Ehs_all', 'Ess_all', 'PSS', 'Peb_all_Z', 'Ehs_all_Z',
                  'Ess_all_Z', 'PSS_Z']
     while i != 5:
@@ -115,7 +113,7 @@ def score_detail_agent(request, agent_id, userId):
                   {'agent': agent.get_username(), 'detail_list': list2, 'html_fig': html_fig})
 
 
-def score_detail(request, agent_id, userId):
+def score_detail(request, agent_id):
     pd.set_option('precision', 6)
     agent = User.objects.get(id=agent_id)
 
@@ -127,7 +125,7 @@ def score_detail(request, agent_id, userId):
                  'Ess1', 'Ess2', 'Ess3', 'Ess4', 'Ess_all', 'PSS']
 
 
-    if agent_id == '1':
+    if agent_id == '1' or agent_id == '27' or agent_id == '26':
 
         while i != 5:
             pd.set_option('precision', 6)
@@ -144,7 +142,7 @@ def score_detail(request, agent_id, userId):
             list1.append((i, describe(df,fact_list)))
             i += 1
 
-    html_fig = Graph.draw_graph(list1, userId)
+    html_fig = Graph.draw_graph(list1, agent_id)
     return render(request, "PSS/Analysis/score_detail.html", {'agent':agent.get_username(), 'detail_list':list1, 'html_fig':html_fig})
 
 
@@ -535,7 +533,6 @@ def show_compare_agent(request,agent_id):
 
     if checking == 1:
         indi = read_frame(individual)
-        print(indi)
         html_fig = Graph.draw_graph_Agent_compare(list1, list2,indi, case )
     else:
         html_fig = Graph.draw_graph_Agent(list1, list2 )

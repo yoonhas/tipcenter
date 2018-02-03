@@ -8,14 +8,19 @@
             {% for agent in agent_list %}
 
                 {% if agent.id == user.id %}
-                    {% if agent.get_username == 'yoonhas' %}
+                    {% if agent.get_username == 'yoonhas' or agent.get_username == 'admin' or agent.get_username == 'Cross' %}
                         <h1>PSS Admin Main </h1><br><br>
                         <div class="list-group">
-                        <a href="{% url 'PSS:update_total_csv' %}" class="list-group-item" >
-                        <h4 class="list-group-item-heading">Update Summary</h4>
+                        {% if agent.get_username == 'yoonhas' or agent.get_username == 'admin' %}
+                            <a href="{% url 'PSS:update_total_csv' %}" class="list-group-item" >
+                            <h4 class="list-group-item-heading">Update Summary</h4>
 
-                        </a>
+                            </a>
+                            <a href="{% url 'PSS:release_survey_agent' %}" class="list-group-item">
+                            <h4 class="list-group-item-heading">Release Survey</h4>
+                             <p class="list-group-item-text"></p></a>
 
+                        {% endif %}
                         <a href="{% url 'PSS:show_online_survey_Date' %}" class="list-group-item" >
                         <h4 class="list-group-item-heading">Download Online Survey</h4>
 
@@ -23,11 +28,8 @@
                         <a href="{% url 'PSS:summary' agent.id %}" class="list-group-item">
                             <h4 class="list-group-item-heading">Total Summary</h4>
                              <p class="list-group-item-text"></p></a>
-                        <a href="{% url 'PSS:release_survey_agent' %}" class="list-group-item">
-                            <h4 class="list-group-item-heading">Release Survey</h4>
-                             <p class="list-group-item-text"></p></a>
-                        </div>
 
+                    </div>
                     {% else %}
                         <h1>{{ agent.get_username }} PSS Main</h1><br><br>
                          <div class="list-group">
