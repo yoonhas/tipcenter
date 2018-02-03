@@ -5,8 +5,8 @@
     {% if agents %}
         <ul>
         {% for agent in agents %}
-            {% if agent.username  != 'yoonhas' or agent.username  != 'admin' or agent.username  != 'Cross' %}
-            <li><a href="{% url 'PSS:release_survey_participants' agent.id%}">{{ agent.username }}</a></li>
+            {% if agent.username != 'yoonhas' and agent.username != 'admin' and agent.username != 'Cross' %}
+                <li><a href="{% url 'PSS:release_survey_participants' agent.id%}">{{ agent.username }}</a></li>
             {% endif %}
         {% endfor %}
          </ul>
