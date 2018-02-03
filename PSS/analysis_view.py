@@ -78,7 +78,7 @@ def summary(request, agent_id):
             p=(i.get_username(),i.id, describe(agent, fact_list))
             list1.append(p)
 
-    if agent_id == '1' or agent_id == '27' or agent_id == '26':
+    if i.get_username() != 'yoonhas' or i.get_username() != 'admin' or i.get_username() != 'Cross':
         return render(request, "PSS/Analysis/summary.html", {'agent_id': User.objects.get(id=agent_id).get_username(), 'total': total, 'indi': list1})
 
 
@@ -125,7 +125,7 @@ def score_detail(request, agent_id):
                  'Ess1', 'Ess2', 'Ess3', 'Ess4', 'Ess_all', 'PSS']
 
 
-    if agent_id == '1' or agent_id == '27' or agent_id == '26':
+    if agent.username == 'yoonhas' or agent.username == 'admin' or agent.username == 'Cross':
 
         while i != 5:
             pd.set_option('precision', 6)
