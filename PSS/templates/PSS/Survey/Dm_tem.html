@@ -41,15 +41,22 @@
                      <span style="margin-left:2em"><input type="number" name="DM1_2" value=0></span>
                         <br>
                    </div>
-                      <div class="panel-heading">  <span style="margin-left:2em">{{ questions.DM1_3 }}</span></div>
+                      <div class="panel-heading">  <span style="margin-left:2em">{{ questions.DM1_3 }}
+                      </span>
+                          <span style="margin-left:4em"><input type="radio" name="DM1_3" value="{{ 99 }}"checked>Default(Answer 'No' on Question 1)
+                            </span>
+                      </div>
                    <div class="panel-body">
                      <span style="margin-left:4em">
+
                         <input type="radio" name="DM1_3" value="{{ choices.0 }}"></span>No
                         <input type="radio" name="DM1_3" value="{{ choices.1 }}">Yes
                         <br>
 
                    </div>
-                   <div class="panel-heading">  <span style="margin-left:2em">{{ questions.DM1_4 }}</span></div>
+                   <div class="panel-heading">  <span style="margin-left:2em">{{ questions.DM1_4 }}</span>
+                   <span style="margin-left:4em"><input type="radio" name="DM1_4" value="{{ 99 }}"checked>Default(Answer 'No' on Question 1)
+                            </span></div>
                    <div class="panel-body">
                      <span style="margin-left:4em">
                         <input type="radio" name="DM1_4" value="{{ choices.0 }}"></span>No

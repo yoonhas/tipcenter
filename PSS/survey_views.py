@@ -1,11 +1,14 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from .models import Surveyee, SurveyTimes, EB, EH, ES, Tip
 from .models import EXF, R, SEF,  GR,  SPR
 from .models import SSP, F,  GD,  HM,  HEALTH, DM
-
+from django.core.urlresolvers import NoReverseMatch
 import matplotlib
 matplotlib.use("Agg")
 
+
+def panic_view(reqest):
+    return render(reqest, 'PSS/Survey/reverseError.html')
 
 
 def EB_view1(request,surveyee_caseNum, survey):
@@ -27,8 +30,8 @@ def EB_view1(request,surveyee_caseNum, survey):
                 EB21=request.POST['EB21'], EB22=request.POST['EB22'], EB23=request.POST['EB23'], EB24=request.POST['EB24'],
                 EB25=request.POST['EB25'],
                 EB26=request.POST['EB26'], EB27=request.POST['EB27'])
-    except(KeyError, EB.DoesNotExist):
-        return render(request, 'PSS/Survey/EB_tem1.html', {'surveyee_caseNum' :surveyee_caseNum})
+    except(KeyError, EB.DoesNotExist, NoReverseMatch) as E:
+        return redirect('PSS:panic')
     else:
         eb.save()
         return redirect('PSS:ehs_start', surveyee_caseNum, survey)
@@ -52,8 +55,8 @@ def EH_view1(request, surveyee_caseNum, survey):
                 EH20=request.POST['EH20'],
                 EH21=request.POST['EH21'], EH22=request.POST['EH22'], EH23=request.POST['EH23'], EH24=request.POST['EH24']
                     )
-    except(KeyError, EH.DoesNotExist):
-        return render(request, 'PSS/Survey/EH_tem.html', {'surveyee_caseNum' :surveyee_caseNum})
+    except(KeyError, EH.DoesNotExist, NoReverseMatch) as E:
+        return redirect('PSS:panic')
     else:
         eh.save()
         return redirect('PSS:ess_start', surveyee_caseNum, survey)
@@ -79,8 +82,8 @@ def ES_view1(request, surveyee_caseNum, survey):
                 ES14=request.POST['ES14'],
                 ES15=request.POST['ES15']
                     )
-    except (KeyError, ES.DoesNotExist):
-        return render(request, 'PSS/Survey/ES_tem.html', {'surveyee_caseNum' :surveyee_caseNum})
+    except (KeyError, ES.DoesNotExist, NoReverseMatch):
+        return redirect('PSS:panic')
 
     else:
 
@@ -106,8 +109,8 @@ def Tip_view1(request, surveyee_caseNum, survey):
                   TIP14=request.POST['TIP14'],
                   TIP15=request.POST['TIP15']
                     )
-    except (KeyError, ES.DoesNotExist):
-        return render(request, 'PSS/Survey/Tip_tem.html', {'surveyee_caseNum' :surveyee_caseNum})
+    except (KeyError, ES.DoesNotExist, NoReverseMatch):
+        return redirect('PSS:panic')
 
     else:
 
@@ -134,8 +137,8 @@ def EXF_view1(request, surveyee_caseNum, survey):
                   L_1=request.POST['L1'],
                   L_2=request.POST['L2'],L_3=request.POST['L3']
                 )
-    except (KeyError, EXF.DoesNotExist):
-        return render(request, 'PSS/Survey/EXF_tem.html', {'surveyee_caseNum' :surveyee_caseNum})
+    except (KeyError, EXF.DoesNotExist, NoReverseMatch):
+        return redirect('PSS:panic')
 
     else:
 
@@ -157,8 +160,8 @@ def R_view1(request, surveyee_caseNum, survey):
                   R1=request.POST['R1'], R2=request.POST['R2']
                   )
 
-    except (KeyError, R.DoesNotExist):
-        return render(request, 'PSS/Survey/SEF_tem.html', {'surveyee_caseNum': surveyee_caseNum})
+    except (KeyError, R.DoesNotExist, NoReverseMatch):
+        return redirect('PSS:panic')
 
     else:
 
@@ -182,8 +185,8 @@ def SEF_view1(request, surveyee_caseNum,survey):
                   SEF5=request.POST['SEF5'],
                   SEF6=request.POST['SEF6'], SEF7=request.POST['SEF7'], SEF8=request.POST['SEF8']
                 )
-    except (KeyError, SEF.DoesNotExist):
-        return render(request, 'PSS/Survey/SEF_tem.html', {'surveyee_caseNum' :surveyee_caseNum})
+    except (KeyError, SEF.DoesNotExist, NoReverseMatch):
+        return redirect('PSS:panic')
 
     else:
 
@@ -207,8 +210,8 @@ def GR_view1(request, surveyee_caseNum, survey):
                 GR5=request.POST['GR5'],
                 GR6=request.POST['GR6'], GR7=request.POST['GR7'], GR8=request.POST['GR8']
                   )
-    except (KeyError, GR.DoesNotExist):
-        return render(request, 'PSS/Survey/GR_tem.html', {'surveyee_caseNum': surveyee_caseNum})
+    except (KeyError, GR.DoesNotExist, NoReverseMatch):
+        return redirect('PSS:panic')
 
     else:
 
@@ -231,8 +234,8 @@ def SPR_view1(request, surveyee_caseNum,survey):
                   SPR5=request.POST['SPR5'],
                   SPR6=request.POST['SPR6']
                   )
-    except (KeyError, SPR.DoesNotExist):
-        return render(request, 'PSS/Survey/SPR_tem.html', {'surveyee_caseNum': surveyee_caseNum})
+    except (KeyError, SPR.DoesNotExist, NoReverseMatch):
+        return redirect('PSS:panic')
 
     else:
 
@@ -258,8 +261,8 @@ def SSP_view1(request, surveyee_caseNum,survey):
                   SSP10=request.POST['SSP10'],
                   SSP11=request.POST['SSP11'], SSP12=request.POST['SSP12']
                   )
-    except (KeyError, SSP.DoesNotExist):
-        return render(request, 'PSS/Survey/SSP_tem.html', {'surveyee_caseNum': surveyee_caseNum})
+    except (KeyError, SSP.DoesNotExist, NoReverseMatch):
+        return redirect('PSS:panic')
 
     else:
 
@@ -283,8 +286,8 @@ def F_view1(request, surveyee_caseNum,survey):
               F15=request.POST['F15'],
               F16=request.POST['F16'], F17=request.POST['F17'], F18=request.POST['F18']
                 )
-    except(KeyError, F.DoesNotExist):
-        return render(request, 'PSS/Survey/F_tem.html', {'surveyee_caseNum' :surveyee_caseNum})
+    except(KeyError, F.DoesNotExist, NoReverseMatch):
+        return redirect('PSS:panic')
     else:
 
         f.save()
@@ -307,8 +310,8 @@ def GD_view1(request, surveyee_caseNum,survey):
                     GD5=request.POST['GD5'],
                     GD6=request.POST['GD6']
                       )
-    except (KeyError, GD.DoesNotExist):
-        return render(request, 'PSS/Survey/GD_tem.html', {'surveyee_caseNum': surveyee_caseNum})
+    except (KeyError, GD.DoesNotExist, NoReverseMatch):
+        return redirect('PSS:panic')
 
     else:
 
@@ -333,7 +336,7 @@ def HM_view1(request, surveyee_caseNum,survey):
                     HM15=request.POST['HM15']
                   )
     except(KeyError, HM.DoesNotExist):
-        return render(request, 'PSS/Survey/HM_tem.html', {'surveyee_caseNum': surveyee_caseNum})
+        return redirect('PSS:panic')
     else:
 
         hm.save()
@@ -353,8 +356,8 @@ def HEALTH_view1(request, surveyee_caseNum,survey):
         health = HEALTH(caseNum=surveyee, time=time.time,surveytime=survey,
                             HEALTH1=request.POST['HEALTH1'], HEALTH2=request.POST['HEALTH2']
                   )
-    except(KeyError, HEALTH.DoesNotExist):
-        return render(request, 'PSS/Survey/HEALTH_tem.html', {'surveyee_caseNum': surveyee_caseNum})
+    except(KeyError, HEALTH.DoesNotExist, NoReverseMatch):
+        return redirect('PSS:panic')
     else:
 
         health.save()
@@ -383,8 +386,8 @@ def DM_view1(request, surveyee_caseNum,survey):
                     DM14=request.POST['DM14'],DM14_1=request.POST['DM14_1'],
                     DM15=request.POST['DM15'],DM16=request.POST['DM16'],DM17=request.POST['DM17'],DM18=request.POST['DM18'],DM19=request.POST['DM19']
                   )
-    except(KeyError, HEALTH.DoesNotExist):
-        return render(request, 'PSS/Survey/Dm_tem.html', {'surveyee_caseNum': surveyee_caseNum})
+    except(KeyError, HEALTH.DoesNotExist, NoReverseMatch):
+        return redirect('PSS:panic')
     else:
         time.online = True
         time.readyToStart = False

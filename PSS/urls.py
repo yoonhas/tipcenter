@@ -70,6 +70,7 @@ urlpatterns = [
     url(r'^upload/csv/$', upload_file.upload_csv, name= 'upload_csv'),
     url(r'^upload/csv/start/$', upload_file.upload_view, name= 'upload_csv_start'),
     url(r'^thankyou/$', views.Thanks, name="thanks"),
+    url(r'^panic/$', survey_views.panic_view, name="panic"),
     url(r'^(?P<agent_id>[0-9]+)/summary/$', analysis_view.summary, name="summary"),
     url(r'^(?P<agent_id>[0-9]+)/summary/agent/$', analysis_view.score_detail_agent, name="summary_agent"),
     url(r'^(?P<agent_id>[0-9]+)/score/$', analysis_view.score_detail, name="score_detail"),

@@ -41,17 +41,23 @@
                      <span style="margin-left:2em"><input type="number" name="DM1_2" value=0></span>
                         <br>
                    </div>
-                      <div class="panel-heading">  <span style="margin-left:2em">{{ questions.DM1_3 }}</span></div>
+                      <div class="panel-heading">  <span style="margin-left:2em">{{ questions.DM1_3 }} </span>
+                          <span style="margin-left:4em"><input type="radio" name="DM1_3" value="{{ 99 }}"checked>기본(1번에 '아니오' 라고 대답)
+                            </span></div>
                    <div class="panel-body">
-                     <span style="margin-left:4em">
+
+                        <span style="margin-left:4em">
                         <input type="radio" name="DM1_3" value="{{ choices.0 }}"></span>아니오
                         <input type="radio" name="DM1_3" value="{{ choices.1 }}">예
                         <br>
 
                    </div>
-                   <div class="panel-heading">  <span style="margin-left:2em">{{ questions.DM1_4 }}</span></div>
+                   <div class="panel-heading">  <span style="margin-left:2em">{{ questions.DM1_4 }} </span>
+                          <span style="margin-left:4em"><input type="radio" name="DM1_4" value="{{ 99 }}"checked>기본(1번에 '아니오' 라고 대답)
+                            </span></div>
                    <div class="panel-body">
-                     <span style="margin-left:4em">
+
+                        <span style="margin-left:4em">
                         <input type="radio" name="DM1_4" value="{{ choices.0 }}"></span>아니오
                         <input type="radio" name="DM1_4" value="{{ choices.1 }}">예
                         <br>
