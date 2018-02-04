@@ -31,12 +31,6 @@
                     {%  if value != '1' and value != '2' %}
                         <div class="panel-heading"> {{ value }}</div>
                        <div class="panel-body">
-                       <span style="margin-left:1em"></span>1.No, not at all
-                           <span style="margin-left:1em"></span>2. Ocassionally
-                           <span style="margin-left:1em"></span>3. Sometimes
-                           <span style="margin-left:1em"></span>4. Most of the time
-                           <span style="margin-left:1em"></span>5. Yes, all of the time <br>
-                       <span style="margin-left:1em"></span>
                         {% for choice in choices %}
                             <input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}<span style="margin-left:6em"></span>
 
