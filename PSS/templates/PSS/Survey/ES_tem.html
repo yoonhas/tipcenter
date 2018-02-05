@@ -12,7 +12,7 @@
         {% if version == 1 %}
         <p>
            SS.  Think about your personal economic situation over the past 1 month. <br>
-            For each of the following items, circle the number that most clearly indicates where you rate yourself, using the scale:
+            For each of the following items, click the number that most clearly indicates where you rate yourself, using the scale:
             <br>
             <p>1.No, not at all, 2. Ocassionally, 3. Sometimes, 4. Most of the time, 5. Yes, all of the time </p><br>
 
@@ -27,6 +27,30 @@
         {% endif %}
         <form action="{% url 'PSS:ess' surveyee_caseNum survey %}" method="post" class="post-form">{% csrf_token %}
             {% for name, value in  questions.get_fields %}
+                {% if name == 'ES15' %}
+                    <div class="panel panel-default">
+                    {%  if value != '1' and value != '2' %}
+                        <div class="panel-heading"> {{ value }}</div>
+                       <div class="panel-body">
+                       {% if version == 1 %}
+                           <input type="radio" name="{{ name }}" value=99 checked><span style="margin-left:1em"></span>Don't want to answer <span style="margin-left:6em"></span>
+                       {% else %}
+                          <input type="radio" name="{{ name }}" value=99 checked><span style="margin-left:1em"></span>자녀 없음 <span style="margin-left:6em"></span>
+                        {% endif %}
+                            <input type="radio" name="{{ name }}" value=1><span style="margin-left:1em"></span>1<span style="margin-left:6em"></span>
+                            <input type="radio" name="{{ name }}" value=2><span style="margin-left:1em"></span>2<span style="margin-left:6em"></span>
+                            <input type="radio" name="{{ name }}" value=3><span style="margin-left:1em"></span>3<span style="margin-left:6em"></span>
+                            <input type="radio" name="{{ name }}" value=4><span style="margin-left:1em"></span>4<span style="margin-left:6em"></span>
+                            <input type="radio" name="{{ name }}" value=5><span style="margin-left:1em"></span>5<span style="margin-left:6em"></span>
+
+
+
+
+                        </div>
+                        {% endif %}
+                    </p>
+                  </div>
+                {% else %}
                   <div class="panel panel-default">
                     {%  if value != '1' and value != '2' %}
                         <div class="panel-heading"> {{ value }}</div>
@@ -41,6 +65,7 @@
                         {% endif %}
                     </p>
                   </div>
+                {% endif %}
             {% endfor %}
 
 

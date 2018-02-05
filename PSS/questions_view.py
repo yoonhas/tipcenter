@@ -36,6 +36,8 @@ def Tip_view(request, surveyee_caseNum, survey):
     casenum = Surveyee.objects.get(caseNum=surveyee_caseNum)
     questions = Tip_Question.objects.get(pk=casenum.survey_kind)
     choices = [ 1, 2, 3, 4, 5, 6, 7]
+    print("_______")
+    print(questions)
     return render(request, 'PSS/Survey/Tip_tem.html', {'surveyee_caseNum':surveyee_caseNum, 'choices':choices,
                                                        'questions':questions, 'survey':survey, "version":casenum.survey_kind})
 def EXF_view(request, surveyee_caseNum, survey):

@@ -3,7 +3,7 @@
 
 {% if user.is_active %}
 <h2> Welcome, {{user.username}} </h2>
-<a href="{% url 'logout' %}">로그아웃</a>
+<a href="{% url 'logout' %}">log out</a>
 
 {% else %}
 {% if form.errors %}

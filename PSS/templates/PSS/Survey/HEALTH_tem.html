@@ -9,40 +9,79 @@
         <div>
             <h1><a href="">HEALTH </a></h1>
         </div>
-        {% if version == 1 %}
-            <p>
-                 Health
-            </p>
-        {% else %}
-            <p>
-                건강. <br>
-
-            </p>
-        {% endif %}
 
         <form action="{% url 'PSS:health' surveyee_caseNum survey %}" method="post" class="post-form">{% csrf_token %}
-            {% for name, value in  questions.get_fields %}
+            {% if version == 1 %}
+
                   <div class="panel panel-default">
                     {%  if value != '1' and value != '2' %}
-                        <div class="panel-heading"> {{ value }}</div>
+                        <div class="panel-heading"> {{ questions.HEALTH1 }}</div>
                        <div class="panel-body">
                        <span style="margin-left:1em"></span>
-                        {% for choice in choices %}
-                            <input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}<span style="margin-left:5em"></span>
 
-                        {% endfor %}
-                           <br>
+                           <input type="radio" name="{{ name }}" value=1><span style="margin-left:1em"></span>Excellent<span style="margin-left:5em"></span>
+                           <input type="radio" name="{{ name }}" value=2><span style="margin-left:1em"></span>Very Good<span style="margin-left:5em"></span>
+                           <input type="radio" name="{{ name }}" value=3><span style="margin-left:1em"></span>Good<span style="margin-left:5em"></span>
+                           <input type="radio" name="{{ name }}" value=4><span style="margin-left:1em"></span>Fair<span style="margin-left:5em"></span>
+                           <input type="radio" name="{{ name }}" value=5><span style="margin-left:1em"></span>Poor<span style="margin-left:5em"></span>
+
+
+
+                        </div>
+                        <div class="panel-heading"> {{ questions.HEALTH2 }}</div>
+                       <div class="panel-body">
+                       <span style="margin-left:1em"></span>
+
+                           <input type="radio" name="{{ name }}" value=1><span style="margin-left:1em"></span>Much better now<span style="margin-left:5em"></span>
+                           <input type="radio" name="{{ name }}" value=2><span style="margin-left:1em"></span>Somewhere at better<span style="margin-left:5em"></span>
+                           <input type="radio" name="{{ name }}" value=3><span style="margin-left:1em"></span>About same<span style="margin-left:5em"></span>
+                           <input type="radio" name="{{ name }}" value=4><span style="margin-left:1em"></span>Somewhere at worse<span style="margin-left:5em"></span>
+                           <input type="radio" name="{{ name }}" value=5><span style="margin-left:1em"></span>Much worse now<span style="margin-left:5em"></span>
+
+
 
                         </div>
                         {% endif %}
                     </p>
                   </div>
-            {% endfor %}
+
+            {% else %}
+                                  <div class="panel panel-default">
+                    {%  if value != '1' and value != '2' %}
+                        <div class="panel-heading"> {{ questions.HEALTH1 }}</div>
+                       <div class="panel-body">
+                       <span style="margin-left:1em"></span>
+
+                           <input type="radio" name="{{ name }}" value=1><span style="margin-left:1em"></span>아주 건강함<span style="margin-left:5em"></span>
+                           <input type="radio" name="{{ name }}" value=2><span style="margin-left:1em"></span>매우 건강<span style="margin-left:5em"></span>
+                           <input type="radio" name="{{ name }}" value=3><span style="margin-left:1em"></span>건강함<span style="margin-left:5em"></span>
+                           <input type="radio" name="{{ name }}" value=4><span style="margin-left:1em"></span>괜찮음<span style="margin-left:5em"></span>
+                           <input type="radio" name="{{ name }}" value=5><span style="margin-left:1em"></span>나쁨<span style="margin-left:5em"></span>
 
 
+
+                        </div>
+                        <div class="panel-heading"> {{ questions.HEALTH2 }}</div>
+                       <div class="panel-body">
+                       <span style="margin-left:1em"></span>
+
+                           <input type="radio" name="{{ name }}" value=1><span style="margin-left:1em"></span>훨씬 나아짐<span style="margin-left:5em"></span>
+                           <input type="radio" name="{{ name }}" value=2><span style="margin-left:1em"></span>약간 나아짐<span style="margin-left:5em"></span>
+                           <input type="radio" name="{{ name }}" value=3><span style="margin-left:1em"></span>똑같다<span style="margin-left:5em"></span>
+                           <input type="radio" name="{{ name }}" value=4><span style="margin-left:1em"></span>약간 나빠짐<span style="margin-left:5em"></span>
+                           <input type="radio" name="{{ name }}" value=5><span style="margin-left:1em"></span>아 나빠짐<span style="margin-left:5em"></span>
+
+
+
+                        </div>
+                        {% endif %}
+                    </p>
+                  </div>
+            {% endif %}
 
 
             <button type="submit" class="save btn btn-default">Save</button>
+            <br><br>
         </form>
     </body>
 </html>
