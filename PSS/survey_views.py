@@ -386,7 +386,8 @@ def DM_view1(request, surveyee_caseNum,survey):
                     DM14=request.POST['DM14'],DM14_1=request.POST['DM14_1'],
                     DM15=request.POST['DM15'],DM16=request.POST['DM16'],DM17=request.POST['DM17'],DM18=request.POST['DM18'],DM19=request.POST['DM19']
                   )
-    except(KeyError, HEALTH.DoesNotExist, NoReverseMatch):
+        surveyee.readyToStart = False
+    except(KeyError, HEALTH.DoesNotExist, NoReverseMatch, SurveyTimes.DoesNotExist):
         return redirect('PSS:panic')
     else:
         time.online = True
@@ -394,6 +395,7 @@ def DM_view1(request, surveyee_caseNum,survey):
         time.doneSurvey = True
         time.save()
         dm.save()
+
         if time.time == 1:
             surveyee.survey1 = True
         elif time.time == 2:

@@ -69,13 +69,15 @@ def release_survey_agent(request):
 def release_survey_participants(request, agent_id):
     users = get_user_model()
     agent = users.objects.get(id=agent_id)
-    participants_1 = Surveyee.objects.filter(agent_name_id=agent.id, survey1=True,survey2=False,survey3=False,survey4=False)
-    participants_2 = Surveyee.objects.filter(agent_name_id=agent.id, survey1=True,survey2=True,survey3=False,survey4=False)
-    participants_3 = Surveyee.objects.filter(agent_name_id=agent.id, survey1=True,survey2=True,survey3=True,survey4=False)
-    participants_4 = Surveyee.objects.filter(agent_name_id=agent.id,survey1=True,survey2=True,survey3=True,survey4=True)
+    participants_1 = Surveyee.objects.filter(agent_name_id=agent.id, survey1=True,survey2=False,survey3=False,survey4=False, readyToStart=False)
+    participants_2 = Surveyee.objects.filter(agent_name_id=agent.id, survey1=True,survey2=True,survey3=False,survey4=False, readyToStart=False)
+    participants_3 = Surveyee.objects.filter(agent_name_id=agent.id, survey1=True,survey2=True,survey3=True,survey4=False, readyToStart=False)
+    participants_4 = Surveyee.objects.filter(agent_name_id=agent.id,survey1=True,survey2=True,survey3=True,survey4=True, readyToStart=False)
+
+    waitingList = Surveyee.objects.filter(agent_name_id=agent.id, readyToStart=True)
 
     return render(request, 'PSS/release_show_participants.html', {'participants_1': participants_1, 'participants_2': participants_2,'participants_3': participants_3
-                                                                  ,'participants_4': participants_4})
+                                                                  ,'participants_4': participants_4, 'waiting':waitingList})
 
 
 def set_ready(request):
@@ -86,10 +88,14 @@ def set_ready(request):
         surveyee = Surveyee.objects.get(caseNum=int(i))
         users = get_user_model()
         agent = users.objects.get(id = surveyee.agent_name_id)
-        if  SurveyTimes.objects.filter(caseNum=surveyee, agent = agent, time = time, readyToStart=True ).exists():
+        if SurveyTimes.objects.filter(caseNum=surveyee, agent = agent, time = time, readyToStart=True ).exists():
+            surveyee.readyToStart = True
+            surveyee.save()
             link = "{}{}{}".format(NAME,str(surveyee.caseNum),TIMES)
             return (surveyee.caseNum, link)
         surveyTime = SurveyTimes(caseNum=surveyee, agent = agent, time = time, pub_Date= timezone.now(), readyToStart=True )
+        surveyee.readyToStart = True
+        surveyee.save()
         surveyTime.save()
         link = "{}{}{}".format(NAME,str(surveyee.caseNum),TIMES)
         return (surveyee.caseNum, link)

@@ -12,6 +12,8 @@ class Surveyee(models.Model):
     survey3 = models.BooleanField(default=False)
     survey4 = models.BooleanField(default=False)
     survey_kind = models.IntegerField(null=False, default=1)
+    readyToStart = models.BooleanField(default=False)
+
 
     def __str__(self):
         return str(self.caseNum)
@@ -33,7 +35,7 @@ class SurveyTimes(models.Model):
         self.save()
 
     def __str__(self):
-        return str(self.pk)
+        return "{}_{}".format( str(self.caseNum),str(self.time))
 
 
 
@@ -71,7 +73,7 @@ class EB(models.Model):
     EB27 = models.IntegerField(default=1)
 
     def __str__(self):
-        return 'EB'+str(self.caseNum)+ '_' + str(self.time)
+        return "EB_{}_{}".format(str(self.caseNum),str(self.time))
 
 
 class EB_Question(models.Model):
@@ -140,7 +142,7 @@ class EH(models.Model):
     EH24 = models.IntegerField(null=False, default=None)
 
     def __str__(self):
-        return 'EH'+str(self.caseNum)+ '_' + str(self.time)
+        return "EH_{}_{}".format(str(self.caseNum),str(self.time))
 
 
 class EH_Question(models.Model):
@@ -197,7 +199,7 @@ class ES(models.Model):
     ES15 = models.IntegerField(null=False, default=None)
 
     def __str__(self):
-        return 'ES'+str(self.caseNum)+ '_' + str(self.time)
+        return "ES_{}_{}".format(str(self.caseNum),str(self.time))
 
 class ES_Question(models.Model):
     ES1 = models.CharField(max_length=200)
@@ -244,7 +246,7 @@ class Tip(models.Model):
     TIP15 = models.IntegerField(null=False, default=None)
 
     def __str__(self):
-        return 'TIP'+str(self.caseNum)+ '_' + str(self.time)
+        return "Tip_{}_{}".format(str(self.caseNum),str(self.time))
 
 class Tip_Question(models.Model):
     TIP1 = models.CharField(max_length=200)
@@ -292,7 +294,7 @@ class EXF(models.Model):
     L_3 = models.IntegerField(null=False, default=None)
 
     def __str__(self):
-        return 'TIP'+str(self.caseNum)+ '_' + str(self.time)
+        return "EXF_{}_{}".format(str(self.caseNum),str(self.time))
 
 class EXF_Question(models.Model):
     A3 = models.CharField(max_length=200)
@@ -339,7 +341,7 @@ class SSP(models.Model):
 
 
     def __str__(self):
-        return 'ES'+str(self.caseNum)+ '_' + str(self.time)
+        return "SSP_{}_{}".format(str(self.caseNum),str(self.time))
 
 class SSP_Question(models.Model):
     SSP1 = models.CharField(max_length=200)
@@ -388,7 +390,7 @@ class F(models.Model):
     F18 = models.IntegerField(null=False, default=None)
 
     def __str__(self):
-        return 'F'+str(self.caseNum)+ '_' + str(self.time)
+        return "F_{}_{}".format(str(self.caseNum),str(self.time))
 
 class F_Question(models.Model):
     F1 = models.CharField(max_length=200)
@@ -430,7 +432,7 @@ class GD(models.Model):
 
 
     def __str__(self):
-        return 'GD'+str(self.caseNum)+ '_' + str(self.time)
+        return "GD_{}_{}".format(str(self.caseNum),str(self.time))
 
 class GD_Question(models.Model):
     GD1 = models.CharField(max_length=200)
@@ -469,7 +471,7 @@ class HM(models.Model):
     HM15 = models.IntegerField(null=False, default=None)
 
     def __str__(self):
-        return 'HM'+str(self.caseNum)+ '_' + str(self.time)
+        return "HM_{}_{}".format(str(self.caseNum),str(self.time))
 
 class HM_Question(models.Model):
     HM1 = models.CharField(max_length=200)
@@ -505,7 +507,7 @@ class HEALTH(models.Model):
 
 
     def __str__(self):
-        return 'HEALTH'+str(self.caseNum)+ '_' + str(self.time)
+        return "HEALTH_{}_{}".format(str(self.caseNum),str(self.time))
 
 class HEALTH_Question(models.Model):
     HEALTH1 = models.CharField(max_length=200)
@@ -535,7 +537,7 @@ class SEF(models.Model):
 
 
     def __str__(self):
-        return 'SEF'+str(self.caseNum)+ '_' + str(self.time)
+        return "SEF_{}_{}".format(str(self.caseNum),str(self.time))
 
 class SEF_Question(models.Model):
     SEF1 = models.CharField(max_length=200)
@@ -571,7 +573,7 @@ class GR(models.Model):
     GR8 = models.IntegerField(null=False, default=None)
 
     def __str__(self):
-        return 'GR' + str(self.caseNum) + '_' + str(self.time)
+        return "GR_{}_{}".format(str(self.caseNum),str(self.time))
 
 
 class GR_Question(models.Model):
@@ -604,7 +606,7 @@ class SPR(models.Model):
 
 
     def __str__(self):
-        return 'SPR' + str(self.caseNum) + '_' + str(self.time)
+        return "SPR_{}_{}".format(str(self.caseNum),str(self.time))
 
 
 class SPR_Question(models.Model):
@@ -632,7 +634,7 @@ class R(models.Model):
 
 
     def __str__(self):
-        return 'R'+str(self.caseNum)+ '_' + str(self.time)
+        return "R_{}_{}".format(str(self.caseNum),str(self.time))
 
 class R_Question(models.Model):
     R1 = models.CharField(max_length=200)
@@ -690,7 +692,7 @@ class DM(models.Model):
     DM19 = models.IntegerField()
 
     def __str__(self):
-        return 'DM'+str(self.caseNum)+ '_' + str(self.time)
+        return "DM_{}_{}".format(str(self.caseNum),str(self.time))
 
 
 class DM_Question(models.Model):
@@ -807,7 +809,7 @@ class Total_for_Admin(models.Model):
 
 
     def __str__(self):
-        return str(self.caseNum)+"_"+str(self.Time)
+        return "TOTAL_{}_{}".format(str(self.caseNum),str(self.time))
 
 
 

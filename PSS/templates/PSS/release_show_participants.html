@@ -48,6 +48,17 @@
         <p> No participant is available. </p>
     {% endif %}
     </p>
+    <p><strong> Released Survey</strong> <br>
+    {% if waiting %}
+        <ul>
+        {% for i in waiting %}
+            <li> {{ i.caseNum }}</li>
+        {% endfor %}
+         </ul>
+    {% else %}
+        <p> No participant is available. </p>
+    {% endif %}
+    </p>
     <button type="submit" class="save btn btn-default">Submit</button>
 </form>
 {% endblock content %}
