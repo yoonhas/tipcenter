@@ -21,7 +21,9 @@ def join_dataFrames(df, dic):
     return df
 
 def adjust_column(df):
-    arrange = ['caseNum', 'cDate', 'Site', 'time', 'EB1', 'EB2', 'EB3', 'EB4', 'EB5', 'EB6', 'EB7', 'EB8', 'EB9', 'EB10',
+    print("===2====")
+    print(df[['caseNum', 'cDate', 'Site',]])
+    arrange = df[['caseNum', 'cDate', 'Site', 'time', 'EB1', 'EB2', 'EB3', 'EB4', 'EB5', 'EB6', 'EB7', 'EB8', 'EB9', 'EB10',
             'EB11', 'EB12', 'EB13', 'EB14', 'EB15', 'EB16', 'EB17', 'EB18', 'EB19', 'EB20', 'EB21', 'EB22', 'EB23',
             'EB24', 'EB25', 'EB26', 'EB27',
             'EH1', 'EH2', 'EH3', 'EH4', 'EH5', 'EH6', 'EH7', 'EH8', 'EH9', 'EH10', 'EH11', 'EH12', 'EH13', 'EH14',
@@ -39,18 +41,20 @@ def adjust_column(df):
             'HM1', 'HM2', 'HM3', 'HM4', 'HM5', 'HM6', 'HM7', 'HM8', 'HM9', 'HM10', 'HM11', 'HM12', 'HM13', 'HM14', 'HM15',
             'HEALTH1', 'HEALTH2', 'DM1',  'DM1_1_days', 'DM1_1_month', 'DM1_1_year', 'DM1_2', 'DM1_3', 'DM1_4', 'DM2', 'DM3',
             'DM4', 'DM5', 'DM6', 'DM7', 'DM8', 'DM9', 'DM9_1' , 'DM10', 'DM11_1', 'DM11_2', 'DM11_3', 'DM11_4', 'DM12_1',
-            'DM12_3', 'DM13', 'DM14', 'DM14_1', 'DM15', 'DM16', 'DM17', 'DM18', 'DM19']
+            'DM12_3', 'DM13', 'DM14', 'DM14_1', 'DM15', 'DM16', 'DM17', 'DM18', 'DM19']]
+    print("====3===")
 
-    return df[arrange]
+    print(df[['caseNum', 'cDate', 'Site', ]])
+    return arrange
 
 def call_from_model(participant, time):
 
     eb = model_to_dict(EB.objects.get(caseNum=participant, time=time))
+
     eb_tem = pd.DataFrame(eb, index=[0])
 
     eh = model_to_dict(EH.objects.get(caseNum=participant, time=time))
     eb_tem = join_dataFrames(eb_tem, eh)
-
     es = model_to_dict(ES.objects.get(caseNum=participant, time=time))
     eb_tem = join_dataFrames(eb_tem, es)
     tip = model_to_dict(Tip.objects.get(caseNum=participant, time=time))
@@ -80,29 +84,36 @@ def call_from_model(participant, time):
     return eb_tem
 
 def get_online_data(date):
-    print(date)
+
+
     online_survey = SurveyTimes.objects.filter(online=True,pub_Date=date, doneSurvey=True)
     temp_dataframe = pd.DataFrame()
+
     for i in online_survey:
 
         caseNumber = i.caseNum.caseNum
         time = i.time
         participant = Surveyee.objects.get(caseNum=caseNumber)
         tem=call_from_model(participant, time)
+        tem['cDate'] =date
+        tem['Site'] =participant.agent_name
+        tem['time'] =time
 
         temp_dataframe=temp_dataframe.append(tem)
-        temp_dataframe['cDate'] = date
-        temp_dataframe['Site'] = participant.agent_name
-        temp_dataframe['Time'] = time
 
-    temp_dataframe = adjust_column(temp_dataframe)
-    return temp_dataframe
+
+        print("===0====")
+        print("date:{} participant.agent_name: {}, temp_dataframe['Site']: {}".format(date, participant.agent_name, temp_dataframe[['Site']]))
+    print("======1========")
+    print(temp_dataframe[['caseNum', 'cDate', 'Site', ]])
+    temp = adjust_column(temp_dataframe)
+    return temp
 
 
 def show_online_survey_Date(request):
 
     try:
-        online_survey = SurveyTimes.objects.filter(online= True,doneSurvey=True)
+        online_survey = SurveyTimes.objects.filter(online= True, doneSurvey=True, readyToStart=False)
         survey_times = read_frame(online_survey)
         by_date = survey_times.groupby(survey_times['pub_Date'])
         download_list = list(by_date.groups.keys())
@@ -116,6 +127,7 @@ def show_online_survey_Date(request):
 def export_csv_date(request, date):
 
     data_list = get_online_data(date)
+    #print(data_list)
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="{}.csv"'.format(date)
 

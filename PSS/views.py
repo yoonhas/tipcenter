@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from .models import Surveyee, SurveyTimes,EB, EH, EH_Question, ES_Question, ES, Tip_Question, Tip, EB_Question
 from .models import EXF_Question,EXF, R, R_Question, SEF, SEF_Question, GR, GR_Question, SPR, SPR_Question,Total_for_Admin
-from .models import SSP_Question, SSP, F, F_Question, GD, GD_Question, HM_Question, HM, HEALTH_Question, HEALTH, DM, DM_Question
+from .models import SSP_Question, SSP, F, F_Question, GD, GD_Question, HM_Question, HM, HEALTH_Question, HEALTH, DM, DM_Question, Image
 from django.utils import timezone
 from .readFile import readFile
 import pandas as pd
@@ -28,8 +28,14 @@ pd.set_option('precision', 6)
 class IndexView(generic.ListView):
     template_name = 'PSS/index.html'
     context_object_name = 'agent_list'
+
     def get_queryset(self):
         return User.objects.filter()
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context['Images'] = Image.objects.all()
+        return context
 
 class CreateUserView(CreateView):
     template_name = 'PSS/registration/signup.html'

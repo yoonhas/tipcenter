@@ -3,6 +3,12 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 # Create your models here.
+class Image(models.Model):
+    image = models.ImageField()
+
+    def __str__(self):
+        return str(self.pk)
+
 class Surveyee(models.Model):
     caseNum = models.IntegerField(unique=True, primary_key=True)
     agent_name = models.ForeignKey(User, on_delete=models.CASCADE,
