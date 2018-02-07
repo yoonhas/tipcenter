@@ -157,7 +157,8 @@ def checking_Survey_Status(surveyee_caseNum, time):
 
 def Surveytimes_view(request, surveyee_caseNum):
 
-    surveyee = Surveyee.objects.get(caseNum=surveyee_caseNum)
+    print(type(surveyee_caseNum))
+    surveyee = Surveyee.objects.get(caseNum=int(surveyee_caseNum))
     users = get_user_model()
     agent = users.objects.get(id=surveyee.agent_name_id)
 

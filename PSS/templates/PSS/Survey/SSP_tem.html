@@ -11,43 +11,63 @@
         </div>
         {% if version == 1 %}
         <p>
-           SSP.  This scale is made up of a list of statements each of which may or may not be true about you. <br>
-            For each statement circle "definitely true" if you are sure it is true about you and "probably true" <br>
-            if you think it is true but are not absolutely certain. <br>
-            Similarly, you should circle “definitely false” if you are sure the statement is false <br>
+           SSP.  This scale is made up of a list of statements each of which may or may not be true about you. For each statement circle "definitely true" if you are sure it is true about you and "probably true"
+            if you think it is true but are not absolutely certain. Similarly, you should circle “definitely false” if you are sure the statement is false
             and “probably false” if you think it is false but are not absolutely certain.brq
-            1.Definitely false. 2.Probably false 3.Probably true 4.Definitely true
 
         </p>
+                       <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-sm-3" style="text-align: center"><h5>1.Definitely false.</h5></div>
+                    <div class="col-sm-3" ><h5>2.Probably false  </h5></div>
+                    <div class="col-sm-3"><h5>3.Probably true </h5></div>
+                    <div class="col-sm-2" style="text-align: center"><h5>4.Definitely true</h5></div>
+                </div>
+            </div>
+            </div>
         {% else %}
             <p>
             SSP. 다음 문항을 잘 읽고 각 질문이 귀하에게 해당되거나 전혀 연관이 없는지에 대해 숫자로 응답하여 주십시오. <br>
-            1. 전혀 그렇지 않다 2.그렇지 않을 것이다 3.그럴 것이다 4.매우 그렇다
+
             </p>
+            <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-sm-3" style="text-align: center"><h5>1.전혀 그렇지 않다.</h5></div>
+                    <div class="col-sm-3" ><h5>2.그렇지 않을 것이다.  </h5></div>
+                    <div class="col-sm-3"><h5>3.그럴 것이다.</h5></div>
+                    <div class="col-sm-2" style="text-align: center"><h5>4.매우 그렇다.</h5></div>
+                </div>
+            </div>
+            </div>
         {% endif %}
         <form action="{% url 'PSS:ssp' surveyee_caseNum survey %}" method="post" class="post-form">{% csrf_token %}
+                          <div class="panel panel-default">
             {% for name, value in  questions.get_fields %}
-                  <div class="panel panel-default">
+
                     {%  if value != '1' and value != '2' %}
                         <div class="panel-heading"> {{ value }}</div>
                        <div class="panel-body">
-                       <span style="margin-left:1em"></span>
+                                       <div class="row">
+
                         {% for choice in choices %}
-                            <input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}<span style="margin-left:5em"></span>
+                            <div class="col-sm-3" style="text-align: center"><input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
 
                         {% endfor %}
-                           <br>
+
+                  </div>
 
                         </div>
                         {% endif %}
-                    </p>
-                  </div>
+
             {% endfor %}
+                  </div>
 
 
 
 
-            <button type="submit" class="save btn btn-default">Save</button>
+            <button type="submit" class="save btn btn-default">Submit</button><br><br><br><br>
         </form>
     </body>
 </html>

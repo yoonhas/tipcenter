@@ -11,35 +11,69 @@
         </div>
         {%  if version == 1 %}
         <p>
-           After reading some statements about employment, please rank the following by clicking a number on a scale of 0 to 10.
-            <br> 0 indicates strong disagreement to the statement, 10 indicates strong agreement, and 5 indicates neutral.
+           After reading some statements about employment, please rank the following by circling a number on a scale of 0 to 10, where 0 indicates strong disagreement to the statement, 10 indicates strong agreement, and 5 indicates neutral.</p>
+            <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-sm-1" style="text-align: right"><h5>0.Strongly disagree</h5></div>
+                    <div class="col-sm-1" ><h5> </h5></div>
+                    <div class="col-sm-1"><h5> </h5></div>
+                    <div class="col-sm-1"><h5> </h5></div>
+                    <div class="col-sm-1" ><h5> </h5></div>
+                    <div class="col-sm-1"><h5> </h5></div>
+                    <div class="col-sm-1"><h5> </h5></div>
+                    <div class="col-sm-1" ><h5> </h5></div>
+                    <div class="col-sm-1" ><h5> </h5></div>
+                    <div class="col-sm-1"><h5> </h5></div>
+                    <div class="col-sm-1" style="text-align: center"><h5>10.Strongly agree</h5></div>
+                </div>
+            </div>
+            </div>
 
-        </p>
         {% else %}
         <p>
-            EH. 고용희망에 관한 질문입니다, 각 문항에 해당 되는 점수를 0점에서 10점사이로 표시하여 주십시오. <br>
-            0은 전혀 동의하지 않는다, 10은 매우 동의한다, 그리고 5는 보통을 나타냅니다.
-        </p>
+            EH. 고용희망에 관한 질문입니다, 각 문항에 해당 되는 점수를 0점에서 10점사이로 표시하여 주십시오. </p>
+            <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-sm-1" style="text-align: right"><h5>0.전혀 동의 하지 않는다</h5></div>
+                    <div class="col-sm-1" ><h5> </h5></div>
+                    <div class="col-sm-1"><h5> </h5></div>
+                    <div class="col-sm-1"><h5> </h5></div>
+                    <div class="col-sm-1" ><h5> </h5></div>
+                    <div class="col-sm-1"><h5> 5.보통이다 </h5></div>
+                    <div class="col-sm-1"><h5> </h5></div>
+                    <div class="col-sm-1" ><h5> </h5></div>
+                    <div class="col-sm-1" ><h5> </h5></div>
+                    <div class="col-sm-1"><h5> </h5></div>
+                    <div class="col-sm-1" style="text-align: center"><h5>10.매우 동의한다</h5></div>
+                </div>
+            </div>
+            </div>
+
         {% endif %}
         <form action="{% url 'PSS:ehs' surveyee_caseNum survey%}" method="post" class="post-form">{% csrf_token %}
+        <div class="panel panel-default">
             {% for name, value in  questions.get_fields %}
-                  <div class="panel panel-default">
+
                     {%  if value != '1' and value != '2' %}
                         <div class="panel-heading"> {{ value }}</div>
                        <div class="panel-body">
-                       <span style="margin-left:1em"></span>
+                       <div class="row" style="text-align: left; width: 100%">
+
                         {% for choice in choices %}
-                            <input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}<span style="margin-left:3em"></span>
+                            <div class="col-sm-1" style="text-align: right" > <input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
 
                         {% endfor %}
                         </div>
+                        </div>
                         {% endif %}
-                    </p>
-                  </div>
-            {% endfor %}
 
-            <button type="submit" class="save btn btn-default">Next</button>
-            <br><br>
+
+            {% endfor %}
+            </div>
+            <button type="submit" class="save btn btn-default">Submit</button>
+            <br><br><br><br>
         </form>
     </body>
 </html>

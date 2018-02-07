@@ -11,39 +11,63 @@
         </div>
         {% if version == 1 %}
             <p>
-                HM. Please respond to the following 15 items. Be honest – there are no right or wrong answers!<br>
-            1. Strongly disagree - 5. Strongly agree
+                HM. Please respond to the following 15 items. Be honest – there are no right or wrong answers!
             </p>
+                        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-sm-2" style="text-align: center"><h5>1. Strongly disagree</h5></div>
+                    <div class="col-sm-2" ><h5> </h5></div>
+                    <div class="col-sm-2"><h5> </h5></div>
+                    <div class="col-sm-2"><h5> </h5></div>
+                    <div class="col-sm-2" style="text-align: center"><h5>5. Strongly agree</h5></div>
+                </div>
+            </div>
+            </div>
         {% else %}
             <p>
-            다음 질문에 솔직히 답변하여 주십시오. 옳고 그른 답은 없습니다. <br>
-            1. 전혀 동의하지 않음 - 5. 매우 동의함
+            다음 질문에 솔직히 답변하여 주십시오. 옳고 그른 답은 없습니다.
+
             </p>
+                                    <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-sm-2" style="text-align: center"><h5> 1. 전혀 동의하지 않음</h5></div>
+                    <div class="col-sm-2" ><h5> </h5></div>
+                    <div class="col-sm-2"><h5> </h5></div>
+                    <div class="col-sm-2"><h5> </h5></div>
+                    <div class="col-sm-2" style="text-align: center"><h5>5. 매우 동의함</h5></div>
+                </div>
+            </div>
+            </div>
         {% endif %}
 
         <form action="{% url 'PSS:hm' surveyee_caseNum survey %}" method="post" class="post-form">{% csrf_token %}
+        <div class="panel panel-default">
             {% for name, value in  questions.get_fields %}
-                  <div class="panel panel-default">
+
                     {%  if value != '1' and value != '2' %}
                         <div class="panel-heading"> {{ value }}</div>
                        <div class="panel-body">
-                       <span style="margin-left:1em"></span>
+                        <div class="row" style="text-align: left; width: 100%">
+
                         {% for choice in choices %}
-                            <input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}<span style="margin-left:5em"></span>
+                            <div class="col-sm-2" style="text-align: center" ><input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
 
                         {% endfor %}
+                        </div>
 
 
                         </div>
                         {% endif %}
-                    </p>
-                  </div>
+
             {% endfor %}
 
+                  </div>
 
 
 
-            <button type="submit" class="save btn btn-default">Save</button>
+            <button type="submit" class="save btn btn-default">Submit</button><br><br><br><br>
         </form>
     </body>
 </html>

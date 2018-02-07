@@ -10,43 +10,62 @@
             <h1><a href="">TIP </a></h1>
         </div>
         {% if version == 1 %}
-                <p> 1.Disagree strongly. 2.Disagree moderately. 3.Disagree a little. <br>
-                    4.Neither agree nor disagree. <br>
-                    5.Agree a little. 6.Agree moderately. 7.Agree strongly</p>
+            <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-sm-1" style="text-align: right"><h5> 1.Disagree strongly.</h5></div>
+                    <div class="col-sm-1" ><h5>2.Disagree moderately. </h5></div>
+                    <div class="col-sm-1"><h5>3.Disagree a little. </h5></div>
+                    <div class="col-sm-1"><h5> 4.Neither agree nor disagree. </h5></div>
+                    <div class="col-sm-1" ><h5>5.Agree a little. </h5></div>
+                    <div class="col-sm-1"><h5>6.Agree moderately. </h5></div>
+                    <div class="col-sm-1"><h5>7.Agree strongly </h5></div>
+                </div>
+            </div>
+            </div>
 
         {% else %}
-            <p>
-                1.전혀 그렇지 않다. 2.그렇지 않은 편이 3.약간 그렇지 않다 <br>
-                4.그저 그렇다. <br>
-                5.약간 그렇다 6.그런편이다. 7.매우 그렇다.
-            </p>
+            <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-sm-1" style="text-align: right"><h5> 1.전혀 그렇지 않다</h5></div>
+                    <div class="col-sm-1" ><h5>2.그렇지 않은 편이다 </h5></div>
+                    <div class="col-sm-1"><h5>3.약간 그렇지 않다</h5></div>
+                    <div class="col-sm-1"><h5> 4.그저 그렇다</h5></div>
+                    <div class="col-sm-1" ><h5>5.약간 그렇다 </h5></div>
+                    <div class="col-sm-1"><h5>6.그런 편이다 </h5></div>
+                    <div class="col-sm-1"><h5>7.매우 그렇다 </h5></div>
+                </div>
+            </div>
+            </div>
         {% endif %}
 
-
-        </p>
         <form action="{% url 'PSS:tip' surveyee_caseNum survey %}" method="post" class="post-form">{% csrf_token %}
-            {% for name, value in  questions.get_fields %}
-                  <div class="panel panel-default">
+              <div class="panel panel-default">
+                  {% for name, value in  questions.get_fields %}
+
                     {%  if value != '1' and value != '2' %}
                         <div class="panel-heading"> {{ value }}</div>
                        <div class="panel-body">
-                        <span style="margin-left:1em"></span>
+                       <div class="row" style="text-align: left; width: 100%">
                         {% for choice in choices %}
-                            <input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}<span style="margin-left:5em"></span>
+                            <div class="col-sm-1" style="text-align: right" ><input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
 
                         {% endfor %}
-                           <br>
 
+
+                           </div>
                         </div>
                         {% endif %}
-                    </p>
-                  </div>
+
+
             {% endfor %}
 
+ </div>
 
 
-
-            <button type="submit" class="save btn btn-default">Save</button>
+            <button type="submit" class="save btn btn-default">Submit</button>
+        <br><br><br><br>
         </form>
     </body>
 </html>

@@ -11,40 +11,61 @@
         </div>
         {% if version == 1 %}
             <p>
-              R. Please rate how you felt over the past month. <br>
-                0=Not True At All   1=Rarely True   2=Sometimes True   3=Often True     4=True Nearly All of the Time <br>
+              R. Please rate how you felt over the past month.
+
 
         </p>
+            <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-sm-2" style="text-align: center"><h5>0.Not True At All</h5></div>
+                    <div class="col-sm-2" ><h5>1.Rarely True</h5></div>
+                    <div class="col-sm-2"><h5>2.Sometimes True </h5></div>
+                    <div class="col-sm-2"><h5>3.Often True  </h5></div>
+                    <div class="col-sm-2" style="text-align: center"><h5>4.True Nearly All of the Time</h5></div>
+
+                </div>
+            </div>
+            </div>
         {% else %}
             <p>
-                R. 지난 달에 어떻게 느꼈는지 표시 하여 주십시오. <br>
-                (0=전혀 그렇지 않다 1=거의 그렇지 않다 2=가끔 그렇다 3=거의 그렇다 4= 항상 그렇다)
+                R. 지난 달에 어떻게 느꼈는지 표시 하여 주십시오.
             </p>
+                        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-sm-2" style="text-align: center"><h5>0.전혀 그렇지 않다</h5></div>
+                    <div class="col-sm-2" ><h5>1.거의 그렇지 않다</h5></div>
+                    <div class="col-sm-2"><h5>2.가끔 그렇다 </h5></div>
+                    <div class="col-sm-2"><h5>3.거의 그렇다  </h5></div>
+                    <div class="col-sm-2" style="text-align: center"><h5>4.항상 그렇다</h5></div>
+
+                </div>
+            </div>
+            </div>
         {% endif %}
 
         <form action="{% url 'PSS:r_scare' surveyee_caseNum survey %}" method="post" class="post-form">{% csrf_token %}
+        <div class="panel panel-default">
             {% for name, value in  questions.get_fields %}
-                  <div class="panel panel-default">
+
                     {%  if value != '1' and value != '2' %}
                         <div class="panel-heading"> {{ value }}</div>
                        <div class="panel-body">
-
-                            <span style="margin-left:1em"></span>
+                        <div class="row">
                         {% for choice in choices %}
-                            <input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}<span style="margin-left:5em"></span>
+                            <div class="col-sm-2" style="text-align: center"><input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
 
                         {% endfor %}
-
+                            </div>
                         </div>
                         {% endif %}
-                    </p>
-                  </div>
+
             {% endfor %}
+        </div>
 
 
-
-
-            <button type="submit" class="save btn btn-default">Save</button>
+            <button type="submit" class="save btn btn-default">Submit</button><br><br><br><br>
         </form>
     </body>
 </html>

@@ -11,68 +11,88 @@
         </div>
         {% if version == 1 %}
         <p>
-           SS.  Think about your personal economic situation over the past 1 month. <br>
-            For each of the following items, click the number that most clearly indicates where you rate yourself, using the scale:
-            <br>
-            <p>1.No, not at all, 2. Ocassionally, 3. Sometimes, 4. Most of the time, 5. Yes, all of the time </p><br>
+           SS.  Think about your personal economic situation over the past 1 month.
+            For each of the following items, click the number that most clearly indicates where you rate yourself, using the scale:</p>
+
+            <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-sm-2" style="text-align: center"><h5>1.No, not at all</h5></div>
+                    <div class="col-sm-2" ><h5>2.Occasionally </h5></div>
+                    <div class="col-sm-2"><h5>3.Sometimes </h5></div>
+                    <div class="col-sm-2"><h5>4.Most of the time </h5></div>
+                    <div class="col-sm-2" style="text-align: center"><h5>5.Yes, all of the time</h5></div>
+                </div>
+            </div>
+            </div>
 
 
-        </p>
         {% else %}
         <p>
-            SS. 지난 한 달간 귀하의 경제적 상황에 대한 질문입니다. 해당되는 곳에 표시하여 주십시오. <br>
-            최근(지난 1개월) 재정 상황으로 나는..<br>
-            1. 전혀 그렇지 않다. 2.그렇지 않다. 3그저 그렇다. 4.그렇다 5.항상 그렇다
-        </p>
+            SS. 지난 한 달간 귀하의 경제적 상황에 대한 질문입니다. 해당되는 곳에 표시하여 주십시오.
+            최근(지난 1개월) 재정 상황으로 나는..</p>
+
+            <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-sm-2" style="text-align: center"><h5>1. 전혀 그렇지 않다.</h5></div>
+                    <div class="col-sm-2" ><h5>2.그렇지 않다 </h5></div>
+                    <div class="col-sm-2"><h5>3.그저 그렇다. </h5></div>
+                    <div class="col-sm-2"><h5>4.그렇다  </h5></div>
+                    <div class="col-sm-2" style="text-align: center"><h5>5.항상 그렇다</h5></div>
+                </div>
+            </div>
+            </div>
         {% endif %}
         <form action="{% url 'PSS:ess' surveyee_caseNum survey %}" method="post" class="post-form">{% csrf_token %}
+            <div class="panel panel-default">
+
             {% for name, value in  questions.get_fields %}
                 {% if name == 'ES15' %}
-                    <div class="panel panel-default">
                     {%  if value != '1' and value != '2' %}
                         <div class="panel-heading"> {{ value }}</div>
                        <div class="panel-body">
+                       <div class="row" style="text-align: left; width: 100%">
                        {% if version == 1 %}
-                           <input type="radio" name="{{ name }}" value=99 checked><span style="margin-left:1em"></span>Don't want to answer <span style="margin-left:6em"></span>
+                           <div class="col-sm-2" style="text-align: right" ><input type="radio" name="{{ name }}" value=99 checked><span style="margin-left:1em"></span>Don't want to answer <span style="margin-left:6em"></span></div>
                        {% else %}
-                          <input type="radio" name="{{ name }}" value=99 checked><span style="margin-left:1em"></span>자녀 없음 <span style="margin-left:6em"></span>
+                          <div class="col-sm-2" style="text-align: right" ><input type="radio" name="{{ name }}" value=99 checked><span style="margin-left:1em"></span>자녀 없음 <span style="margin-left:6em"></span></div>
                         {% endif %}
-                            <input type="radio" name="{{ name }}" value=1><span style="margin-left:1em"></span>1<span style="margin-left:6em"></span>
-                            <input type="radio" name="{{ name }}" value=2><span style="margin-left:1em"></span>2<span style="margin-left:6em"></span>
-                            <input type="radio" name="{{ name }}" value=3><span style="margin-left:1em"></span>3<span style="margin-left:6em"></span>
-                            <input type="radio" name="{{ name }}" value=4><span style="margin-left:1em"></span>4<span style="margin-left:6em"></span>
-                            <input type="radio" name="{{ name }}" value=5><span style="margin-left:1em"></span>5<span style="margin-left:6em"></span>
-
-
-
-
+                            <div class="col-sm-2" style="text-align: right" ><input type="radio" name="{{ name }}" value=1><span style="margin-left:1em"></span>1<span style="margin-left:6em"></span></div>
+                           <div class="col-sm-2" style="text-align: right" > <input type="radio" name="{{ name }}" value=2><span style="margin-left:1em"></span>2<span style="margin-left:6em"></span></div>
+                            <div class="col-sm-2" style="text-align: right" ><input type="radio" name="{{ name }}" value=3><span style="margin-left:1em"></span>3<span style="margin-left:6em"></span></div>
+                            <div class="col-sm-2" style="text-align: right" ><input type="radio" name="{{ name }}" value=4><span style="margin-left:1em"></span>4<span style="margin-left:6em"></span></div>
+                            <div class="col-sm-2" style="text-align: right" ><input type="radio" name="{{ name }}" value=5><span style="margin-left:1em"></span>5<span style="margin-left:6em"></span></div>
+                        </div>
                         </div>
                         {% endif %}
-                    </p>
-                  </div>
+
+
                 {% else %}
-                  <div class="panel panel-default">
+
                     {%  if value != '1' and value != '2' %}
                         <div class="panel-heading"> {{ value }}</div>
                        <div class="panel-body">
+                        <div class="row" style="text-align: left; width: 100%">
+
                         {% for choice in choices %}
-                            <input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}<span style="margin-left:6em"></span>
+                            <div class="col-sm-2" style="text-align: right" ><input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}<span style="margin-left:6em"></span></div>
 
                         {% endfor %}
-                           <br>
 
                         </div>
+                        </div>
                         {% endif %}
-                    </p>
-                  </div>
+
+
                 {% endif %}
             {% endfor %}
+        </div>
 
 
 
-
-            <button type="submit" class="save btn btn-default">Next</button>
-            <br><br>
+            <button type="submit" style="color: #1c94c4" class="save btn btn-default">Submit</button>
+            <br><br><br><br>
         </form>
     </body>
 </html>

@@ -11,41 +11,64 @@
         </div>
         {% if version == 1 %}
             <p>
-                EB. After reading some statements about employment, please rank the following by clicking a number on a scale of 1 to 5 according to how each item affects you securing a job.
-                <br>1=Not a barrier and 5=Strong barrier.
-            </p>
+                EB. After reading some statements about employment, please rank the following by clicking a number on a scale of 1 to 5 according to how each item affects you securing a job.</p>
+            <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-sm-2" style="text-align: center"><h5>1. Not a barrier</h5></div>
+                    <div class="col-sm-2" ><h5> </h5></div>
+                    <div class="col-sm-2"><h5> </h5></div>
+                    <div class="col-sm-2"><h5> </h5></div>
+                    <div class="col-sm-2" style="text-align: center"><h5>5.Strong barrier.</h5></div>
+                </div>
+            </div>
+            </div>
+
+
         {% else %}
             <p>
-                EB. 고용 및 개인 목표 장벽에 관한 질문입니다. 다음 문항을 읽고 안정된 직업 및 개인 목표를 유지하는데 얼마나 영향을 미치는지 1점에서 5점까지 표시해 주십시오. <br>
-                1. 전혀 영향을 미치지 않는다 - 5. 매우 영향을 미친다
-            </p>
+                EB. 고용 및 개인 목표 장벽에 관한 질문입니다. 다음 문항을 읽고 안정된 직업 및 개인 목표를 유지하는데 얼마나 영향을 미치는지 1점에서 5점까지 표시해 주십시오.</p>
+            <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-sm-2" style="text-align: center"><h5>1.전혀 영향을 미치지 않는다</h5></div>
+                    <div class="col-sm-2" ><h5> </h5></div>
+                    <div class="col-sm-2"><h5> </h5></div>
+                    <div class="col-sm-2"><h5> </h5></div>
+                    <div class="col-sm-2" style="text-align: center"><h5>5.매우 영향을 미친다</h5></div>
+                </div>
+            </div>
+            </div>
+
         {% endif %}
 
 
 
 
         <form action="{% url 'PSS:peb' surveyee_caseNum survey %}" method="post" class="post-form">{% csrf_token %}
-
+            <div class="panel panel-default">
               {% for name, value in  questions.get_fields %}
-                  <div class="panel panel-default">
+
+
                     {%  if value != '1' and value != '2' %}
-                        <div class="panel-heading"> {{ value }}</div>
-                       <div class="panel-body">
-                       <span style="margin-left:1em"></span>
+                        <div class="panel-heading" style="text-align: left"> {{ value }}</div>
+                        <div class="panel-body">
+                       <div class="row" style="text-align: left; width: 100%">
+
                         {% for choice in choices %}
-                            <input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}<span style="margin-left:5em"></span>
+                            <div class="col-sm-2" style="text-align: right" > <input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}<span style="margin-left:5em"></span></div>
 
                         {% endfor %}
-                           <br>
-                        </div>
-                        {% endif %}
-                    </p>
-                  </div>
+                       </div>
+                       </div>
+                    {% endif %}
+
+
             {% endfor %}
+            </div>
 
-
-            <button type="submit" class="save btn btn-default">Next</button>
-            <br><br>
+            <button type="submit" class="save btn btn-default">Submit</button>
+            <br><br><br><br>
         </form>
     </body>
 </html>

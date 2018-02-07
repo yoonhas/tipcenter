@@ -12,40 +12,67 @@
         {% if version == 1 %}
         <p>
            GD.  Using the scale below as a guide, click a number beside each statement to indicate how much you agree with it.
-            <br>
-            1.Strongly Disagree. - 7.Strongly Agree
 
-            <br>
         </p>
+                                    <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-sm-1" style="text-align: right"><h5>1.Strongly Disagree.</h5></div>
+                    <div class="col-sm-1" ><h5> </h5></div>
+                    <div class="col-sm-1"><h5> </h5></div>
+                    <div class="col-sm-1"><h5>  </h5></div>
+                    <div class="col-sm-1" ><h5></h5></div>
+                    <div class="col-sm-1"><h5> </h5></div>
+                    <div class="col-sm-1"><h5>7.Strongly Agree</h5></div>
+                </div>
+            </div>
+            </div>
         {% else %}
             <p>
-            GD. 아래의 질문을 읽고 귀하가 동의하는 정도에 표시하여 주십시오. <br>
-            1. 전혀 동의하지 않음 - 7.매우 동의함
+            GD. 아래의 질문을 읽고 귀하가 동의하는 정도에 표시하여 주십시오.
+
             </p>
+                                    <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-sm-1" style="text-align: right"><h5>1. 전혀 동의하지 않음</h5></div>
+                    <div class="col-sm-1" ><h5> </h5></div>
+                    <div class="col-sm-1"><h5> </h5></div>
+                    <div class="col-sm-1"><h5>  </h5></div>
+                    <div class="col-sm-1" ><h5></h5></div>
+                    <div class="col-sm-1"><h5> </h5></div>
+                    <div class="col-sm-1"><h5>7.매우 동의함</h5></div>
+                </div>
+            </div>
+            </div>
         {% endif %}
         <form action="{% url 'PSS:gd' surveyee_caseNum survey%}" method="post" class="post-form">{% csrf_token %}
+                          <div class="panel panel-default">
+
             {% for name, value in  questions.get_fields %}
-                  <div class="panel panel-default">
                     {%  if value != '1' and value != '2' %}
                         <div class="panel-heading"> {{ value }}</div>
                        <div class="panel-body">
-                       <span style="margin-left:1em"></span>
+                                       <div class="row">
+
                         {% for choice in choices %}
-                            <input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}<span style="margin-left:5em"></span>
+                            <div class="col-sm-1" style="text-align: center" ><input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
 
                         {% endfor %}
 
+                  </div>
 
                         </div>
                         {% endif %}
-                    </p>
-                  </div>
+
             {% endfor %}
 
+                  </div>
 
 
 
-            <button type="submit" class="save btn btn-default">Save</button>
+            <button type="submit" class="save btn btn-default">Submit</button>
+        <br><br><br><br>
         </form>
     </body>
 </html>

@@ -11,42 +11,65 @@
         </div>
         {% if version == 1 %}
         <p>
-           SEF.  Below is a list of statements dealing with your general feelings about yourself. <br>
-            If you strongly agree, clikc 5.If you agree with the statement, circle 4.  If you disagree, circle 2.  If you strongly disagree, circle 1.
-            <br>
-            If you neither agree or disagree, circle neutral. <br>
-             1.Strongly disagree 2.Disagree 3.Neutral 4.Agree 5.Strongly agree
+           SEF.  Below is a list of statements dealing with your general feelings about yourself.
+            If you strongly agree, click 5.If you agree with the statement, circle 4.  If you disagree, circle 2.  If you strongly disagree, circle 1.
+
+            If you neither agree or disagree, click neutral.
         </p>
+                        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-sm-2" style="text-align: center"><h5>1.Strongly disagree</h5></div>
+                    <div class="col-sm-2" ><h5>2.Disagree </h5></div>
+                    <div class="col-sm-2"><h5>3.Neutral </h5></div>
+                    <div class="col-sm-2"><h5>4.Agree </h5></div>
+                    <div class="col-sm-2" style="text-align: center"><h5>5.Strongly agree</h5></div>
+                </div>
+            </div>
+            </div>
             {% else %}
             <p>
                SEF. 귀하의 평소 감정에 대한 문항입니다. 해당되는 숫자에 표시하여 주십시오. <br>
-            1. 매우 동의하지 않음. 2.동의하지 않음. 3.보통이다 4.동의함. 5.매우 동의함.
             </p>
+                                    <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-sm-2" style="text-align: center"><h5>1.매우 동의하지 않음.</h5></div>
+                    <div class="col-sm-2" ><h5> 2.동의하지 않음.</h5></div>
+                    <div class="col-sm-2"><h5>3.보통이다 </h5></div>
+                    <div class="col-sm-2"><h5>4.동의함.</h5></div>
+                    <div class="col-sm-2" style="text-align: center"><h5>5.매우 동의함.</h5></div>
+                </div>
+            </div>
+            </div>
         {% endif %}
 
         <form action="{% url 'PSS:sef' surveyee_caseNum survey %}" method="post" class="post-form">{% csrf_token %}
+             <div class="panel panel-default">
             {% for name, value in  questions.get_fields %}
-                  <div class="panel panel-default">
+
                     {%  if value != '1' and value != '2' %}
                         <div class="panel-heading"> {{ value }}</div>
                        <div class="panel-body">
-                       <span style="margin-left:1em"></span>
+                        <div class="row" style="text-align: left; width: 100%">
+
                         {% for choice in choices %}
-                            <input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}<span style="margin-left:5em"></span>
+                            <div class="col-sm-2" style="text-align: center" ><input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
 
                         {% endfor %}
-                           <br>
+
+                  </div>
 
                         </div>
                         {% endif %}
-                    </p>
-                  </div>
+
             {% endfor %}
+                  </div>
 
 
 
 
-            <button type="submit" class="save btn btn-default">Save</button>
+            <button type="submit" class="save btn btn-default">Submit</button><br><br><br><br>
         </form>
     </body>
 </html>

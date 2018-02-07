@@ -59,7 +59,7 @@ def EH_view1(request, surveyee_caseNum, survey):
         return redirect('PSS:panic')
     else:
         eh.save()
-        return redirect('PSS:ess_start', surveyee_caseNum, survey)
+        return redirect('PSS:tip_start', surveyee_caseNum, survey)
 
 
 
@@ -88,7 +88,7 @@ def ES_view1(request, surveyee_caseNum, survey):
     else:
 
         es.save()
-        return redirect('PSS:tip_start', surveyee_caseNum, survey)
+        return redirect('PSS:exf_start', surveyee_caseNum, survey)
 
 
 def Tip_view1(request, surveyee_caseNum, survey):
@@ -115,7 +115,7 @@ def Tip_view1(request, surveyee_caseNum, survey):
     else:
 
         tip.save()
-        return redirect('PSS:exf_start', surveyee_caseNum, survey)
+        return redirect('PSS:ess_start', surveyee_caseNum, survey)
 
 
 

@@ -11,41 +11,63 @@
         </div>
         {% if version == 1 %}
         <p>
-           GR. Please respond to the following 8 items. Be honest – there are no right or wrong answers!<br>
+           GR. Please respond to the following 8 items. Be honest – there are no right or wrong answers!
 
-            <p>1. Not like me at all, 2. Not much like me, 3. Somewhat like me 4. Mostly like me, 5. Very much like me </p><br>
-
-
-        </p>
+            </p>
+                                    <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-sm-2" style="text-align: center"><h5>1. Not like me at all</h5></div>
+                    <div class="col-sm-2" ><h5>2. Not much like me </h5></div>
+                    <div class="col-sm-2"><h5>3. Somewhat like me  </h5></div>
+                    <div class="col-sm-2"><h5>4. Mostly like me</h5></div>
+                    <div class="col-sm-2" style="text-align: center"><h5>5. Very much like me</h5></div>
+                </div>
+            </div>
+            </div>
         {% else %}
         <p>
             GR. 다음 문항은 정해진 답이 없습니다. 떠오르는 대로 솔직하게 자신과 가장 가까운 숫자에 표시하여 주십시오. <br>
             1. 전혀 그렇지 않다. 2.거의 그렇지 않다. 3.약간 그렇다. 4.대체로 그렇다. 5.매우 그렇다
         </p>
+            <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-sm-2" style="text-align: center"><h5>1.전혀 그렇지 않다.</h5></div>
+                    <div class="col-sm-2" ><h5> 2.거의 그렇지 않다.</h5></div>
+                    <div class="col-sm-2"><h5>3.약간 그렇다. </h5></div>
+                    <div class="col-sm-2"><h5>4.대체로 그렇다.</h5></div>
+                    <div class="col-sm-2" style="text-align: center"><h5>5.매우 그렇다.</h5></div>
+                </div>
+            </div>
+            </div>
         {% endif %}
         <form action="{% url 'PSS:gr' surveyee_caseNum survey %}" method="post" class="post-form">{% csrf_token %}
+        <div class="panel panel-default">
             {% for name, value in  questions.get_fields %}
-                  <div class="panel panel-default">
+
                     {%  if value != '1' and value != '2' %}
                         <div class="panel-heading"> {{ value }}</div>
                        <div class="panel-body">
-                       <span style="margin-left:1em"></span>
+                       <div class="row" style="text-align: left; width: 100%">
                         {% for choice in choices %}
-                            <input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}<span style="margin-left:5em"></span>
+                            <div class="col-sm-2" style="text-align: center" ><input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
 
                         {% endfor %}
-                           <br>
+
 
                         </div>
+                        </div>
                         {% endif %}
-                    </p>
-                  </div>
+
+
             {% endfor %}
 
+</div>
 
 
-
-            <button type="submit" class="save btn btn-default">Save</button>
+            <button type="submit" class="save btn btn-default">Submit</button>
+        <br><br><br><br>
         </form>
     </body>
 </html>
