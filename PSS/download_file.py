@@ -101,7 +101,7 @@ def get_online_data(date):
         participant = Surveyee.objects.get(caseNum=caseNumber)
         tem=call_from_model(participant, time)
         tem['cDate'] =date
-        tem['Site'] =agent_map[participant.agent_name]
+        tem['Site'] =agent_map[participant.agent_name.username]
         tem['time'] =time
 
         temp_dataframe=temp_dataframe.append(tem)
