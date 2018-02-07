@@ -84,6 +84,11 @@ def call_from_model(participant, time):
     return eb_tem
 
 def get_online_data(date):
+    agent_map = {'CARA':1, 'HPOG-Gateway':2, 'HPOG-SouthLand':3, 'CHA':4, 'Inspiration':5, 'instituto-IDPL':6,
+
+                 'MBC':7, 'Cara-CWF':9,  'GrowingHome':10,'CJC-CNH':11,  'CJC-Safer':12, 'CJC-SER':13,
+                 14: 'HPOG2.0', 'GreaterWestTown':15,
+                 'DuPagePads':16, 'HeartlandAlli':17,  'CTA':18,  'CentroRomero':19, 'St.Patricks-Mc':20, 'YeonSungUniv':23}
 
 
     online_survey = SurveyTimes.objects.filter(online=True,pub_Date=date, doneSurvey=True)
@@ -96,16 +101,11 @@ def get_online_data(date):
         participant = Surveyee.objects.get(caseNum=caseNumber)
         tem=call_from_model(participant, time)
         tem['cDate'] =date
-        tem['Site'] =participant.agent_name
+        tem['Site'] =agent_map[participant.agent_name]
         tem['time'] =time
 
         temp_dataframe=temp_dataframe.append(tem)
 
-
-        print("===0====")
-        print("date:{} participant.agent_name: {}, temp_dataframe['Site']: {}".format(date, participant.agent_name, temp_dataframe[['Site']]))
-    print("======1========")
-    print(temp_dataframe[['caseNum', 'cDate', 'Site', ]])
     temp = adjust_column(temp_dataframe)
     return temp
 
