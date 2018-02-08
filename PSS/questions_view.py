@@ -139,6 +139,8 @@ def DM_view(request, surveyee_caseNum,survey):
 
 def GENB_view(request, surveyee_caseNum, survey):
     casenum = Surveyee.objects.get(caseNum=surveyee_caseNum)
+    print(casenum.survey_kind)
+
     questions = GENB_Question.objects.get(pk=casenum.survey_kind)
     choices = [ 1, 2, 3, 4, 5]
     return render(request, 'PSS/Survey/GENB_tem.html',
@@ -154,6 +156,6 @@ def Tipi_view(request, surveyee_caseNum, survey):
 def K6_view(request, surveyee_caseNum, survey):
     casenum = Surveyee.objects.get(caseNum=surveyee_caseNum)
     questions = K6_Question.objects.get(pk=casenum.survey_kind)
-    choices = [ 1, 2, 3, 4, 5, 6, 7]
-    return render(request, 'PSS/Survey/Tipi_tem.html', {'surveyee_caseNum':surveyee_caseNum, 'choices':choices,
+    choices = [ 1, 2, 3, 4, 5]
+    return render(request, 'PSS/Survey/K6_tem.html', {'surveyee_caseNum':surveyee_caseNum, 'choices':choices,
                                                        'questions':questions, 'survey':survey, "version":casenum.survey_kind})

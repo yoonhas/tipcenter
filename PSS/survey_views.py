@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponse
 from .models import Surveyee, SurveyTimes, EB, EH, ES, Tip
-from .models import EXF, R, SEF,  GR,  SPR
+from .models import EXF, R, SEF,  GR,  SPR, GENB
 from .models import SSP, F,  GD,  HM,  HEALTH, DM,GENB,TIPI,K6
 from django.core.urlresolvers import NoReverseMatch
 import matplotlib
@@ -365,7 +365,7 @@ def GENB_view1(request, surveyee_caseNum,survey):
         if (GENB.objects.filter(caseNum=surveyee, surveytime=survey).exists()):
             GENB.objects.get(caseNum=surveyee, surveytime=survey).delete()
 
-        genb = HM(caseNum=surveyee, time=time.time,surveytime=survey,
+        genb = GENB(caseNum=surveyee, time=time.time,surveytime=survey,
                     GENB1=request.POST['GENB1'], GENB2=request.POST['GENB2'], GENB3=request.POST['GENB3'], GENB4=request.POST['GENB4'],
 
                   )
@@ -374,7 +374,7 @@ def GENB_view1(request, surveyee_caseNum,survey):
     else:
 
         genb.save()
-        return redirect('PSS:eh_start', surveyee_caseNum,survey)
+        return redirect('PSS:ehs_start', surveyee_caseNum,survey)
 
 
 def TIPI_view1(request, surveyee_caseNum,survey):
@@ -387,11 +387,11 @@ def TIPI_view1(request, surveyee_caseNum,survey):
 
         tipi = TIPI(caseNum=surveyee, time=time.time,surveytime=survey,
                   TIPI1=request.POST['TIPI1'], TIPI2=request.POST['TIPI2'], TIPI3=request.POST['TIPI3'], TIPI4=request.POST['TIPI4'],
-                  TIPI5=request.POST['TIPI'],
+                  TIPI5=request.POST['TIPI5'],
                   TIPI6=request.POST['TIPI6'], TIPI7=request.POST['TIPI7'], TIPI8=request.POST['TIPI8'], TIPI9=request.POST['TIPI9'],
                   TIPI10=request.POST['TIPI10']
                   )
-    except(KeyError, HM.DoesNotExist):
+    except(KeyError, TIPI.DoesNotExist):
         return redirect('PSS:panic')
     else:
 

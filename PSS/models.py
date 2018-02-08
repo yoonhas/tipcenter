@@ -815,7 +815,7 @@ class Total_for_Admin(models.Model):
 
 
     def __str__(self):
-        return "TOTAL_{}_{}".format(str(self.caseNum),str(self.time))
+        return "TOTAL_{}_{}".format(str(self.caseNum),str(self.Time))
 
 class GENB(models.Model):
 
@@ -943,7 +943,7 @@ class EH_Short_Question(models.Model):
     EH14 = models.CharField(max_length=200)
 
     def get_fields(self):
-        return [(field.name, field.value_to_string(self)) for field in EB_Short_Question._meta.fields]
+        return [(field.name, field.value_to_string(self)) for field in EH_Short_Question._meta.fields]
 
     def __str__(self):
         return str(self.pk)

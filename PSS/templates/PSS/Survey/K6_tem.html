@@ -115,6 +115,8 @@
                    </div>
                 </div>
             </div>
+            <div class="panel panel-default">
+
             <p>
                 The next few questions are about how these feelings may have affected you in the past 30 days.
                 You need not answer these questions if you answered “None of the time” to all of the six questions about your feelings.
@@ -137,6 +139,7 @@
                         <input type="number" name="Q5" value=0> (Number of days)
                 </span>
             </div>
+            <div class="panel-heading"> {{ questions.Q6 }}</div>
             <div class="panel-heading">
                     <div class="row">
                         <div class="col-sm-2" style="text-align: right"><h5> 1.All of the time.</h5></div>
@@ -147,17 +150,17 @@
 
                     </div>
             </div>
-            <div class="panel-heading"> {{ questions.Q6 }}</div>
+
             <div class="row" style="text-align: left; width: 100%">
                 {% for choice in choices %}
-                    <div class="col-sm-2" style="text-align: right" ><input type="radio" name="Q6" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
+                    <div class="col-sm-2" style="text-align: center" ><input type="radio" name="Q6" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
 
                 {% endfor %}
 
             </div>
 
 
- </div>
+     </div>
 
 
             <button type="submit" class="save btn btn-default">Submit</button>
