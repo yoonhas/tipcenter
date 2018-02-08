@@ -817,5 +817,133 @@ class Total_for_Admin(models.Model):
     def __str__(self):
         return "TOTAL_{}_{}".format(str(self.caseNum),str(self.time))
 
+class GENB(models.Model):
+
+    caseNum = models.ForeignKey('Surveyee', on_delete=models.CASCADE)
+    time = models.IntegerField()
+    surveytime = models.IntegerField()
+    GENB1 = models.IntegerField(null=False, default=None)
+    GENB2 = models.IntegerField(null=False, default=None)
+    GENB3 = models.IntegerField(null=False, default=None)
+    GENB4 = models.IntegerField(null=False, default=None)
 
 
+    def __str__(self):
+        return "GENB_{}_{}".format(str(self.caseNum),str(self.time))
+
+class GENB_Question(models.Model):
+    GENB1 = models.CharField(max_length=200)
+    GENB2 = models.CharField(max_length=200)
+    GENB3 = models.CharField(max_length=200)
+    GENB4 = models.CharField(max_length=200)
+
+
+    def get_fields(self):
+        return [(field.name, field.value_to_string(self)) for field in GENB_Question._meta.fields]
+
+    def __str__(self):
+        return str(self.pk)
+
+
+class TIPI(models.Model):
+
+    caseNum = models.ForeignKey('Surveyee', on_delete=models.CASCADE)
+    time = models.IntegerField()
+    surveytime = models.IntegerField()
+    TIPI1 = models.IntegerField(null=False, default=None)
+    TIPI2 = models.IntegerField(null=False, default=None)
+    TIPI3 = models.IntegerField(null=False, default=None)
+    TIPI4 = models.IntegerField(null=False, default=None)
+    TIPI5 = models.IntegerField(null=False, default=None)
+    TIPI6 = models.IntegerField(null=False, default=None)
+    TIPI7 = models.IntegerField(null=False, default=None)
+    TIPI8 = models.IntegerField(null=False, default=None)
+    TIPI9 = models.IntegerField(null=False, default=None)
+    TIPI10 = models.IntegerField(null=False, default=None)
+
+    def __str__(self):
+        return "TIPI_{}_{}".format(str(self.caseNum),str(self.time))
+
+class TIPI_Question(models.Model):
+    TIPI1 = models.CharField(max_length=200)
+    TIPI2 = models.CharField(max_length=200)
+    TIPI3 = models.CharField(max_length=200)
+    TIPI4 = models.CharField(max_length=200)
+    TIPI5 = models.CharField(max_length=200)
+    TIPI6 = models.CharField(max_length=200)
+    TIPI7 = models.CharField(max_length=200)
+    TIPI8 = models.CharField(max_length=200)
+    TIPI9 = models.CharField(max_length=200)
+    TIPI10 = models.CharField(max_length=200)
+
+
+    def get_fields(self):
+        return [(field.name, field.value_to_string(self)) for field in TIPI_Question._meta.fields]
+
+    def __str__(self):
+        return str(self.pk)
+
+class K6(models.Model):
+
+    caseNum = models.ForeignKey('Surveyee', on_delete=models.CASCADE)
+    time = models.IntegerField()
+    surveytime = models.IntegerField()
+    Q1_a = models.IntegerField(null=False, default=None)
+    Q1_b = models.IntegerField(null=False, default=None)
+    Q1_c = models.IntegerField(null=False, default=None)
+    Q1_d = models.IntegerField(null=False, default=None)
+    Q1_e = models.IntegerField(null=False, default=None)
+    Q1_f = models.IntegerField(null=False, default=None)
+    Q2 = models.IntegerField(null=False, default=None)
+    Q3 = models.IntegerField(null=False, default=None)
+    Q4 = models.IntegerField(null=False, default=None)
+    Q5 = models.IntegerField(null=False, default=None)
+    Q6 = models.IntegerField(null=False, default=None)
+
+
+    def __str__(self):
+        return "K6_{}_{}".format(str(self.caseNum),str(self.time))
+
+class K6_Question(models.Model):
+    Q1_a = models.CharField(max_length=200)
+    Q1_b = models.CharField(max_length=200)
+    Q1_c = models.CharField(max_length=200)
+    Q1_d = models.CharField(max_length=200)
+    Q1_e = models.CharField(max_length=200)
+    Q1_f = models.CharField(max_length=200)
+    Q2 = models.CharField(max_length=400)
+    Q3 = models.CharField(max_length=200)
+    Q4 = models.CharField(max_length=200)
+    Q5 = models.CharField(max_length=200)
+    Q6 = models.CharField(max_length=200)
+
+
+
+    def get_fields(self):
+        return [(field.name, field.value_to_string(self)) for field in K6_Question._meta.fields]
+
+    def __str__(self):
+        return str(self.pk)
+
+
+class EH_Short_Question(models.Model):
+    EH1 = models.CharField(max_length=200)
+    EH2 = models.CharField(max_length=200)
+    EH3 = models.CharField(max_length=200)
+    EH4 = models.CharField(max_length=200)
+    EH5 = models.CharField(max_length=200)
+    EH6 = models.CharField(max_length=200)
+    EH7 = models.CharField(max_length=200)
+    EH8 = models.CharField(max_length=200)
+    EH9 = models.CharField(max_length=200)
+    EH10 = models.CharField(max_length=200)
+    EH11 = models.CharField(max_length=200)
+    EH12 = models.CharField(max_length=200)
+    EH13 = models.CharField(max_length=200)
+    EH14 = models.CharField(max_length=200)
+
+    def get_fields(self):
+        return [(field.name, field.value_to_string(self)) for field in EB_Short_Question._meta.fields]
+
+    def __str__(self):
+        return str(self.pk)

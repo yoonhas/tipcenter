@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404, reverse
 from .models import Surveyee, SurveyTimes,EB, EH, EH_Question, ES_Question, ES, Tip_Question, Tip, EB_Question
 from .models import EXF_Question,EXF, R, R_Question, SEF, SEF_Question, GR, GR_Question, SPR, SPR_Question,Total_for_Admin
 from .models import SSP_Question, SSP, F, F_Question, GD, GD_Question, HM_Question, HM, HEALTH_Question, HEALTH, DM, DM_Question
+from .models import EH_Short_Question, GENB_Question, TIPI_Question, K6_Question
 
 
 def EB_view(request, surveyee_caseNum, survey):
@@ -21,7 +22,10 @@ def EB_view(request, surveyee_caseNum, survey):
                                                        'choices':choices, "survey":survey, "version":casenum.survey_kind })
 def EH_view(request, surveyee_caseNum, survey):
     casenum = Surveyee.objects.get(caseNum=surveyee_caseNum)
-    questions = EH_Question.objects.get(pk=casenum.survey_kind)
+    if casenum.agent_name.username == 'HPOG2.0' or casenum.agent_name.username == 'HPOG-Gateway':
+        questions = EH_Short_Question.objects.get(pk=casenum.survey_kind)
+    else:
+        questions = EH_Question.objects.get(pk=casenum.survey_kind)
     choices =[0,1,2,3,4,5,6,7,8,9,10]
 
     return render(request, 'PSS/Survey/EH_tem.html', {'surveyee_caseNum':surveyee_caseNum, 'questions':questions,
@@ -36,8 +40,6 @@ def Tip_view(request, surveyee_caseNum, survey):
     casenum = Surveyee.objects.get(caseNum=surveyee_caseNum)
     questions = Tip_Question.objects.get(pk=casenum.survey_kind)
     choices = [ 1, 2, 3, 4, 5, 6, 7]
-    print("_______")
-    print(questions)
     return render(request, 'PSS/Survey/Tip_tem.html', {'surveyee_caseNum':surveyee_caseNum, 'choices':choices,
                                                        'questions':questions, 'survey':survey, "version":casenum.survey_kind})
 def EXF_view(request, surveyee_caseNum, survey):
@@ -66,6 +68,7 @@ def R_view(request, surveyee_caseNum, survey):
     choices = [0, 1, 2, 3, 4]
     return render(request, 'PSS/Survey/R_tem.html',
                   {'surveyee_caseNum': surveyee_caseNum, 'choices': choices, 'questions': questions, 'survey':survey, "version":casenum.survey_kind})
+
 def SEF_view(request, surveyee_caseNum, survey):
     casenum = Surveyee.objects.get(caseNum=surveyee_caseNum)
     questions = SEF_Question.objects.get(pk=casenum.survey_kind)
@@ -132,3 +135,25 @@ def DM_view(request, surveyee_caseNum,survey):
 
     return render(request, 'PSS/Survey/Dm_tem.html',
                   {'surveyee_caseNum': surveyee_caseNum, 'questions': questions, 'choices': choices,'survey':survey, "version":casenum.survey_kind})
+
+
+def GENB_view(request, surveyee_caseNum, survey):
+    casenum = Surveyee.objects.get(caseNum=surveyee_caseNum)
+    questions = GENB_Question.objects.get(pk=casenum.survey_kind)
+    choices = [ 1, 2, 3, 4, 5]
+    return render(request, 'PSS/Survey/GENB_tem.html',
+                  {'surveyee_caseNum': surveyee_caseNum, 'choices': choices, 'questions': questions, 'survey':survey, "version":casenum.survey_kind})
+
+def Tipi_view(request, surveyee_caseNum, survey):
+    casenum = Surveyee.objects.get(caseNum=surveyee_caseNum)
+    questions = TIPI_Question.objects.get(pk=casenum.survey_kind)
+    choices = [ 1, 2, 3, 4, 5, 6, 7]
+    return render(request, 'PSS/Survey/Tipi_tem.html', {'surveyee_caseNum':surveyee_caseNum, 'choices':choices,
+                                                       'questions':questions, 'survey':survey, "version":casenum.survey_kind})
+
+def K6_view(request, surveyee_caseNum, survey):
+    casenum = Surveyee.objects.get(caseNum=surveyee_caseNum)
+    questions = K6_Question.objects.get(pk=casenum.survey_kind)
+    choices = [ 1, 2, 3, 4, 5, 6, 7]
+    return render(request, 'PSS/Survey/Tipi_tem.html', {'surveyee_caseNum':surveyee_caseNum, 'choices':choices,
+                                                       'questions':questions, 'survey':survey, "version":casenum.survey_kind})

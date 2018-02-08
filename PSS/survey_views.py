@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from .models import Surveyee, SurveyTimes, EB, EH, ES, Tip
 from .models import EXF, R, SEF,  GR,  SPR
-from .models import SSP, F,  GD,  HM,  HEALTH, DM
+from .models import SSP, F,  GD,  HM,  HEALTH, DM,GENB,TIPI,K6
 from django.core.urlresolvers import NoReverseMatch
 import matplotlib
 matplotlib.use("Agg")
@@ -34,6 +34,9 @@ def EB_view1(request,surveyee_caseNum, survey):
         return redirect('PSS:panic')
     else:
         eb.save()
+        if surveyee.agent_name.username == 'HPOG2.0' or surveyee.agent_name.username == 'HPOG-Gateway':
+            return redirect('PSS:genb_start', surveyee_caseNum, survey)
+
         return redirect('PSS:ehs_start', surveyee_caseNum, survey)
 
 
@@ -44,9 +47,19 @@ def EH_view1(request, surveyee_caseNum, survey):
         time = SurveyTimes.objects.get(caseNum=surveyee_caseNum, time=survey, readyToStart=True)
         if (EH.objects.filter(caseNum=surveyee, surveytime=survey).exists()):
             EH.objects.get(caseNum=surveyee, surveytime=survey).delete()
-
-
-        eh = EH(caseNum=surveyee, time=time.time, surveytime= survey,
+        if surveyee.agent_name.username == 'HPOG2.0' or surveyee.agent_name.username == 'HPOG-Gateway':
+            eh = EH(caseNum=surveyee, time=time.time, surveytime=survey,
+                    EH1=request.POST['EH1'], EH2=request.POST['EH2'], EH3=request.POST['EH3'], EH4=request.POST['EH4'],
+                    EH5=request.POST['EH5'],
+                    EH6=request.POST['EH6'], EH7=request.POST['EH7'], EH8=request.POST['EH8'], EH9=request.POST['EH9'],
+                    EH10=request.POST['EH10'],
+                    EH11=request.POST['EH11'], EH12=request.POST['EH12'], EH13=request.POST['EH13'],
+                    EH14=request.POST['EH14'],
+                    EH15=99,EH16=99, EH17=99, EH18=99,EH19=99, EH20=99,
+                    EH21=99, EH22=99, EH23=99,EH24=99
+                    )
+        else:
+            eh = EH(caseNum=surveyee, time=time.time, surveytime= survey,
                 EH1=request.POST['EH1'],EH2=request.POST['EH2'],EH3=request.POST['EH3'],EH4=request.POST['EH4'],EH5=request.POST['EH5'],
                 EH6=request.POST['EH6'], EH7=request.POST['EH7'], EH8=request.POST['EH8'], EH9=request.POST['EH9'],EH10=request.POST['EH10'],
                 EH11=request.POST['EH11'], EH12=request.POST['EH12'], EH13=request.POST['EH13'], EH14=request.POST['EH14'],
@@ -216,6 +229,8 @@ def GR_view1(request, surveyee_caseNum, survey):
     else:
 
         gr.save()
+        if surveyee.agent_name.username == 'HPOG2.0' or surveyee.agent_name.username == 'HPOG-Gateway':
+            return redirect('PSS:tipi_start', surveyee_caseNum,survey)
         return redirect('PSS:spr_start', surveyee_caseNum,survey)
 
 
@@ -342,6 +357,67 @@ def HM_view1(request, surveyee_caseNum,survey):
         hm.save()
         return redirect('PSS:health_start', surveyee_caseNum,survey)
 
+def GENB_view1(request, surveyee_caseNum,survey):
+
+    try:
+        surveyee = Surveyee.objects.get(caseNum=surveyee_caseNum)
+        time = SurveyTimes.objects.get(caseNum=surveyee_caseNum, time=survey, readyToStart=True)
+        if (GENB.objects.filter(caseNum=surveyee, surveytime=survey).exists()):
+            GENB.objects.get(caseNum=surveyee, surveytime=survey).delete()
+
+        genb = HM(caseNum=surveyee, time=time.time,surveytime=survey,
+                    GENB1=request.POST['GENB1'], GENB2=request.POST['GENB2'], GENB3=request.POST['GENB3'], GENB4=request.POST['GENB4'],
+
+                  )
+    except(KeyError, GENB.DoesNotExist):
+        return redirect('PSS:panic')
+    else:
+
+        genb.save()
+        return redirect('PSS:eh_start', surveyee_caseNum,survey)
+
+
+def TIPI_view1(request, surveyee_caseNum,survey):
+
+    try:
+        surveyee = Surveyee.objects.get(caseNum=surveyee_caseNum)
+        time = SurveyTimes.objects.get(caseNum=surveyee_caseNum, time=survey, readyToStart=True)
+        if (TIPI.objects.filter(caseNum=surveyee, surveytime=survey).exists()):
+            TIPI.objects.get(caseNum=surveyee, surveytime=survey).delete()
+
+        tipi = TIPI(caseNum=surveyee, time=time.time,surveytime=survey,
+                  TIPI1=request.POST['TIPI1'], TIPI2=request.POST['TIPI2'], TIPI3=request.POST['TIPI3'], TIPI4=request.POST['TIPI4'],
+                  TIPI5=request.POST['TIPI'],
+                  TIPI6=request.POST['TIPI6'], TIPI7=request.POST['TIPI7'], TIPI8=request.POST['TIPI8'], TIPI9=request.POST['TIPI9'],
+                  TIPI10=request.POST['TIPI10']
+                  )
+    except(KeyError, HM.DoesNotExist):
+        return redirect('PSS:panic')
+    else:
+
+        tipi.save()
+        return redirect('PSS:health_start', surveyee_caseNum,survey)
+
+def K6_view1(request, surveyee_caseNum,survey):
+
+    try:
+        surveyee = Surveyee.objects.get(caseNum=surveyee_caseNum)
+        time = SurveyTimes.objects.get(caseNum=surveyee_caseNum, time=survey, readyToStart=True)
+        if (K6.objects.filter(caseNum=surveyee, surveytime=survey).exists()):
+            K6.objects.get(caseNum=surveyee, surveytime=survey).delete()
+
+        k6 = K6(caseNum=surveyee, time=time.time,surveytime=survey,
+                  Q1_a=request.POST['Q1_a'], Q1_b=request.POST['Q1_b'], Q1_c=request.POST['Q1_c'], Q1_d=request.POST['Q1_d'],
+                Q1_e=request.POST['Q1_e'],
+                Q1_f=request.POST['Q1_f'], Q2=request.POST['Q2'], Q3=request.POST['Q3'], Q4=request.POST['Q4'],
+                Q5=request.POST['Q5'],Q6=request.POST['Q6']
+                  )
+    except(KeyError, K6.DoesNotExist):
+        return redirect('PSS:panic')
+    else:
+
+        k6.save()
+        return redirect('PSS:dm_start', surveyee_caseNum,survey)
 
 
 def HEALTH_view1(request, surveyee_caseNum,survey):
@@ -361,6 +437,8 @@ def HEALTH_view1(request, surveyee_caseNum,survey):
     else:
 
         health.save()
+        if surveyee.agent_name.username == 'HPOG2.0' or surveyee.agent_name.username == 'HPOG-Gateway':
+            return redirect('PSS:k6_start',surveyee_caseNum,survey)
         return redirect('PSS:dm_start',surveyee_caseNum,survey)
 
 

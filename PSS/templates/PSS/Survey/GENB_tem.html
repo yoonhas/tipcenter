@@ -1,0 +1,62 @@
+{% extends 'PSS/survey_base.html' %}
+{% block content %}
+
+<html>
+    <head>
+        <title> GD </title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="">GD </a></h1>
+        </div>
+        {% if version %}
+        <p>
+           GENB. Following general statement are about employment barriers. Please read each item carefully and respond using the scale provided.
+            Please do not read into each item too much but answer them as you see fit.
+
+        </p>
+                                    <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-sm-2" style="text-align: right"><h5>1.Strongly Disagree.</h5></div>
+                    <div class="col-sm-2" ><h5> </h5></div>
+                    <div class="col-sm-2"><h5>3.Neutral </h5></div>
+                    <div class="col-sm-2"><h5>  </h5></div>
+                    <div class="col-sm-2" ><h5>5.Strongly Agree.</h5></div>
+
+                </div>
+            </div>
+            </div>
+        {% endif %}
+        <form action="{% url 'PSS:genb' surveyee_caseNum survey%}" method="post" class="post-form">{% csrf_token %}
+                          <div class="panel panel-default">
+
+            {% for name, value in  questions.get_fields %}
+                    {%  if value != '1' and value != '2' %}
+                        <div class="panel-heading"> {{ value }}</div>
+                       <div class="panel-body">
+                                       <div class="row">
+
+                        {% for choice in choices %}
+                            <div class="col-sm-2" style="text-align: center" ><input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
+
+                        {% endfor %}
+
+                  </div>
+
+                        </div>
+                        {% endif %}
+
+            {% endfor %}
+
+                  </div>
+
+
+
+            <button type="submit" class="save btn btn-default">Submit</button>
+        <br><br><br><br>
+        </form>
+    </body>
+</html>
+
+{% endblock %}

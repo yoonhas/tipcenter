@@ -1,0 +1,66 @@
+{% extends 'PSS/survey_base.html' %}
+{% block content %}
+
+<html>
+    <head>
+        <title> TIPI </title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="">TIPI </a></h1>
+        </div>
+        {% if version %}
+            <p>
+            TIPI. Here are a number of personality traits that may or may not apply to you. Please write a
+                number next to each statement to indicate the extent to which you agree or disagree with that statement.
+                You should rate the extent to which the pair of traits applies to you, even if one
+                characteristic applies more strongly than the other. <br>
+                I see myself as:
+            </p>
+            <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-sm-1" style="text-align: right"><h5> 1.Disagree strongly.</h5></div>
+                    <div class="col-sm-1" ><h5>2.Disagree moderately. </h5></div>
+                    <div class="col-sm-1"><h5>3.Disagree a little. </h5></div>
+                    <div class="col-sm-1"><h5> 4.Neither agree nor disagree. </h5></div>
+                    <div class="col-sm-1" ><h5>5.Agree a little. </h5></div>
+                    <div class="col-sm-1"><h5>6.Agree moderately. </h5></div>
+                    <div class="col-sm-1"><h5>7.Agree strongly </h5></div>
+                </div>
+            </div>
+            </div>
+
+        {% endif %}
+
+        <form action="{% url 'PSS:tipi' surveyee_caseNum survey %}" method="post" class="post-form">{% csrf_token %}
+              <div class="panel panel-default">
+                  {% for name, value in  questions.get_fields %}
+
+                    {%  if value != '1' and value != '2' %}
+                        <div class="panel-heading"> {{ value }}</div>
+                       <div class="panel-body">
+                       <div class="row" style="text-align: left; width: 100%">
+                        {% for choice in choices %}
+                            <div class="col-sm-1" style="text-align: right" ><input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
+
+                        {% endfor %}
+
+
+                           </div>
+                        </div>
+                        {% endif %}
+
+
+            {% endfor %}
+
+ </div>
+
+
+            <button type="submit" class="save btn btn-default">Submit</button>
+        <br><br><br><br>
+        </form>
+    </body>
+</html>
+
+{% endblock %}

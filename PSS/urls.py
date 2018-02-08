@@ -66,6 +66,12 @@ urlpatterns = [
     url(r'^(?P<surveyee_caseNum>[0-9]+)/health/(?P<survey>[0-9]+)/$', survey_views.HEALTH_view1, name="health"),
     url(r'^(?P<surveyee_caseNum>[0-9]+)/(?P<survey>[0-9]+)/dm/start$', questions_view.DM_view, name="dm_start"),
     url(r'^(?P<surveyee_caseNum>[0-9]+)/dm/(?P<survey>[0-9]+)/$', survey_views.DM_view1, name="dm"),
+    url(r'^(?P<surveyee_caseNum>[0-9]+)/(?P<survey>[0-9]+)/genb/start$', questions_view.GENB_view, name="genb_start"),
+    url(r'^(?P<surveyee_caseNum>[0-9]+)/genb/(?P<survey>[0-9]+)/$', survey_views.GENB_view1, name="genb"),
+    url(r'^(?P<surveyee_caseNum>[0-9]+)/(?P<survey>[0-9]+)/tipi/start$', questions_view.Tipi_view, name="tipi_start"),
+    url(r'^(?P<surveyee_caseNum>[0-9]+)/tipi/(?P<survey>[0-9]+)/$', survey_views.TIPI_view1, name="tipi"),
+    url(r'^(?P<surveyee_caseNum>[0-9]+)/(?P<survey>[0-9]+)/k6/start$', questions_view.K6_view, name="k6_start"),
+    url(r'^(?P<surveyee_caseNum>[0-9]+)/k6/(?P<survey>[0-9]+)/$', survey_views.K6_view1, name="k6"),
 
     url(r'^upload/csv/$', upload_file.upload_csv, name= 'upload_csv'),
     url(r'^upload/csv/start/$', upload_file.upload_view, name= 'upload_csv_start'),

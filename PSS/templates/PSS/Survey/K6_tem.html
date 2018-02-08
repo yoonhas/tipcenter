@@ -1,0 +1,169 @@
+{% extends 'PSS/survey_base.html' %}
+{% block content %}
+
+<html>
+    <head>
+        <title> K6 </title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="">K6 </a></h1>
+        </div>
+        {% if version %}
+            <p>
+                K6. The following questions ask about how you have been feeling during the past 30 days. For each
+                question, please circle the number that best describes how often you had this feeling.
+            </p>
+        {% endif %}
+        <form action="{% url 'PSS:k6' surveyee_caseNum survey %}" method="post" class="post-form">{% csrf_token %}
+            <p>
+                During the past 30 days, about how often did you feel ...
+            </p>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-sm-2" style="text-align: right"><h5> 1.All of the time.</h5></div>
+                        <div class="col-sm-2" ><h5>2.Most of the time. </h5></div>
+                        <div class="col-sm-2"><h5>3.Some of the time. </h5></div>
+                        <div class="col-sm-2"><h5> 4.A little of the time. </h5></div>
+                        <div class="col-sm-2" ><h5>5.None of the time. </h5></div>
+
+                    </div>
+                </div>
+                <div class="panel-heading"> {{ questions.Q1_a }}</div>
+                <div class="row" style="text-align: left; width: 100%">
+                {% for choice in choices %}
+                    <div class="col-sm-2" style="text-align: right" ><input type="radio" name="Q1_a" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
+
+                {% endfor %}
+
+
+                   </div>
+                <div class="panel-heading"> {{ questions.Q1_b }}</div>
+                <div class="row" style="text-align: left; width: 100%">
+                {% for choice in choices %}
+                    <div class="col-sm-2" style="text-align: right" ><input type="radio" name="Q1_b" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
+
+                {% endfor %}
+
+
+                   </div>
+                                <div class="panel-heading"> {{ questions.Q1_c }}</div>
+                <div class="row" style="text-align: left; width: 100%">
+                {% for choice in choices %}
+                    <div class="col-sm-2" style="text-align: right" ><input type="radio" name="Q1_c" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
+
+                {% endfor %}
+
+
+                   </div>
+                            <div class="panel-heading"> {{ questions.Q1_d }}</div>
+                <div class="row" style="text-align: left; width: 100%">
+                {% for choice in choices %}
+                    <div class="col-sm-2" style="text-align: right" ><input type="radio" name="Q1_d" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
+
+                {% endfor %}
+
+
+                   </div>
+                            <div class="panel-heading"> {{ questions.Q1_e }}</div>
+                <div class="row" style="text-align: left; width: 100%">
+                {% for choice in choices %}
+                    <div class="col-sm-2" style="text-align: right" ><input type="radio" name="Q1_e" value="{{ choice }}"><span style="margin-left:1em"></span>{{ choice }}</div>
+
+                {% endfor %}
+
+
+                   </div>
+                            <div class="panel-heading"> {{ questions.Q1_f }}</div>
+                <div class="row" style="text-align: left; width: 100%">
+                {% for choice in choices %}
+                    <div class="col-sm-2" style="text-align: right" ><input type="radio" name="Q1_f" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
+
+                {% endfor %}
+
+
+                   </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading"> {{ questions.Q2 }}</div>
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-sm-1" style="text-align: right"><h5> 1.More often than usual a lot</h5></div>
+                        <div class="col-sm-1" ><h5>2.More often than usual some. </h5></div>
+                        <div class="col-sm-1"><h5>3.More often than usual little. </h5></div>
+                        <div class="col-sm-1"><h5> 4.About the same as usual. </h5></div>
+                        <div class="col-sm-1" ><h5>5.Less often than usual little. </h5></div>
+                        <div class="col-sm-1"><h5> 6.Less often than usual some </h5></div>
+                        <div class="col-sm-1" ><h5>7.Less often than usual a lot </h5></div>
+
+                    </div>
+                </div>
+               <div class="panel-body">
+               <div class="row" style="text-align: left; width: 100%">
+
+                    <div class="col-sm-1" style="text-align: right" ><input type="radio" name="Q2" value=1><span style="margin-left:1em"></span>1</div>
+                    <div class="col-sm-1" style="text-align: right" ><input type="radio" name="Q2" value=2><span style="margin-left:1em"></span>2</div>
+                    <div class="col-sm-1" style="text-align: right" ><input type="radio" name="Q2" value=3><span style="margin-left:1em"></span>3</div>
+                    <div class="col-sm-1" style="text-align: right" ><input type="radio" name="Q2" value=4><span style="margin-left:1em"></span>4</div>
+                    <div class="col-sm-1" style="text-align: right" ><input type="radio" name="Q2" value=5><span style="margin-left:1em">5</span></div>
+                    <div class="col-sm-1" style="text-align: right" ><input type="radio" name="Q2" value=6><span style="margin-left:1em"></span>6</div>
+                    <div class="col-sm-1" style="text-align: right" ><input type="radio" name="Q2" value=7><span style="margin-left:1em"></span>7</div>
+
+
+
+                   </div>
+                </div>
+            </div>
+            <p>
+                The next few questions are about how these feelings may have affected you in the past 30 days.
+                You need not answer these questions if you answered “None of the time” to all of the six questions about your feelings.
+            </p>
+            <div class="panel-heading"> {{ questions.Q3 }}</div>
+            <div class="panel-body">
+                <span style="margin-left:1em">
+                        <input type="number" name="Q3" value=0> (Number of days)
+                </span>
+            </div>
+                    <div class="panel-heading"> {{ questions.Q4 }}</div>
+            <div class="panel-body">
+                <span style="margin-left:1em">
+                        <input type="number" name="Q4" value=0> (Number of days)
+                </span>
+            </div>
+                    <div class="panel-heading"> {{ questions.Q5 }}</div>
+            <div class="panel-body">
+                <span style="margin-left:1em">
+                        <input type="number" name="Q5" value=0> (Number of days)
+                </span>
+            </div>
+            <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-sm-2" style="text-align: right"><h5> 1.All of the time.</h5></div>
+                        <div class="col-sm-2" ><h5>2.Most of the time. </h5></div>
+                        <div class="col-sm-2"><h5>3.Some of the time. </h5></div>
+                        <div class="col-sm-2"><h5> 4.A little of the time. </h5></div>
+                        <div class="col-sm-2" ><h5>5.None of the time. </h5></div>
+
+                    </div>
+            </div>
+            <div class="panel-heading"> {{ questions.Q6 }}</div>
+            <div class="row" style="text-align: left; width: 100%">
+                {% for choice in choices %}
+                    <div class="col-sm-2" style="text-align: right" ><input type="radio" name="Q6" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
+
+                {% endfor %}
+
+            </div>
+
+
+ </div>
+
+
+            <button type="submit" class="save btn btn-default">Submit</button>
+        <br><br><br><br>
+        </form>
+    </body>
+</html>
+
+{% endblock %}
