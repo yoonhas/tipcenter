@@ -4,6 +4,7 @@ from .models import EXF, R, SEF,  GR,  SPR, GENB
 from .models import SSP, F,  GD,  HM,  HEALTH, DM,GENB,TIPI,K6
 from django.core.urlresolvers import NoReverseMatch
 import matplotlib
+from django.utils import timezone
 matplotlib.use("Agg")
 
 
@@ -448,6 +449,7 @@ def DM_view1(request, surveyee_caseNum,survey):
     try:
         surveyee = Surveyee.objects.get(caseNum=surveyee_caseNum)
         time = SurveyTimes.objects.get(caseNum=surveyee_caseNum, time=survey, readyToStart=True)
+
         if (DM.objects.filter(caseNum=surveyee, surveytime=survey).exists()):
             DM.objects.get(caseNum=surveyee, surveytime=survey).delete()
 
@@ -471,6 +473,7 @@ def DM_view1(request, surveyee_caseNum,survey):
         time.online = True
         time.readyToStart = False
         time.doneSurvey = True
+        time.pub_Date = timezone.localdate(timezone.now())
         time.save()
         dm.save()
 

@@ -200,9 +200,7 @@ def export_csv_date(request, date):
     response['Content-Disposition'] = 'attachment; filename="{}.csv"'.format(date)
 
     writer = csv.writer(response)
-    print(data_list_new[['caseNum']])
-    print("===")
-    print(data_list_old[['caseNum']])
+
 
     if len(data_list_new) !=0:
 
