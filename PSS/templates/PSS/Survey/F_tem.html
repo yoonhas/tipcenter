@@ -21,6 +21,8 @@
                         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="row">
+                    <div class="col-sm-1"><h5> </h5></div>
+                    <div class="col-sm-1"><h5> </h5></div>
                     <div class="col-sm-1" style="text-align: right"><h5>1.Almost always false of me.</h5></div>
                     <div class="col-sm-1" ><h5> </h5></div>
                     <div class="col-sm-1"><h5>3.More often false of me </h5></div>
@@ -42,6 +44,8 @@
             <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="row">
+                    <div class="col-sm-1"><h5> </h5></div>
+                    <div class="col-sm-1"><h5> </h5></div>
                     <div class="col-sm-1" style="text-align: right"><h5>1.항상 그렇지 않다.</h5></div>
                     <div class="col-sm-1" ><h5> </h5></div>
                     <div class="col-sm-1"><h5>3.그렇지 않을때가 더 많다. </h5></div>
@@ -60,8 +64,9 @@
                     {%  if value != '1' and value != '2' %}
                         <div class="panel-heading"> {{ value }}</div>
                        <div class="panel-body">
-                        <div class="row" style="text-align: left; width: 100%">
-
+                        <div class="row" style="text-align: center; width: 100%">
+                            <div class="col-sm-1" style="text-align: center" > </div>
+                            <div class="col-sm-1" style="text-align: center" > </div>
                         {% for choice in choices %}
                             <div class="col-sm-1" style="text-align: center" > <input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}<span style="margin-left:5em"></span></div>
 
