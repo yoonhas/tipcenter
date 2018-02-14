@@ -6,11 +6,12 @@ import mpld3
 from mpld3 import plugins
 import matplotlib.pyplot as plt
 import numpy as np
-
+from django.contrib.auth.models import User
 
 
 def draw_graph(box,userId):
-    if userId == '1':
+    agent = User.objects.get(pk=userId)
+    if agent.username == 'yoonhas' or agent.username == 'Cross' or agent.username == 'admin':
         PSS =pd.DataFrame(columns=['Health', 'Community','Childcare', 'Jobskills', 'SoftSkill', 'Peb_all',
                                    'Empowerment', 'Selfmotivation', 'SkilResources', 'GaolOrientation','Ehs_all',
                                    'Ess1', 'Ess2', 'Ess3', 'Ess4', 'Ess_all', 'PSS'])

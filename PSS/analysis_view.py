@@ -90,8 +90,7 @@ def selection_index(request):
     return render(request, "PSS/Analysis/selection_index.html")
 
 def score_detail_agent(request, agent_id):
-
-    agent = User.objects.get(username=agent_id)
+    agent = User.objects.get(pk=agent_id)
     i=1
     list1=[]
     list2=[]
@@ -114,6 +113,7 @@ def score_detail_agent(request, agent_id):
 
 
 def score_detail(request, agent_id):
+
     pd.set_option('precision', 6)
     agent = User.objects.get(id=agent_id)
 
