@@ -21,19 +21,19 @@
                         <input type="radio" name="DM1" value="{{ choices.1 }}">Yes
                         <br>
                   </div>
-                   <div class="panel-heading">  <span style="margin-left:2em">{{ questions.DM1_1_year }}</span><br>
-                   <p> Year</p>
-                   </div>
+                   <div class="panel-heading">{{ questions.DM1_1_year }}</div>
+                       <div class="panel-heading"><span style="margin-left:2em">Year: </span></div>
+
                    <div class="panel-body">
                      <input type="number" name="DM1_1_year" value=0>
                         <br>
                    </div>
-                    <div class="panel-heading">  <span style="margin-left:2em">{{ questions.DM1_1_month }}</span></div>
+                    <div class="panel-heading">  <span style="margin-left:2em">{{ questions.DM1_1_month }}:</span></div>
                    <div class="panel-body">
                      <input type="number" name="DM1_1_month" value=0>
                         <br>
                    </div>
-                   <div class="panel-heading">  <span style="margin-left:2em">{{ questions.DM1_1_days }}</span></div>
+                   <div class="panel-heading">  <span style="margin-left:2em">{{ questions.DM1_1_days }}:</span></div>
                    <div class="panel-body">
                      <input type="number" name="DM1_1_days" value=0>
                         <br>
@@ -228,7 +228,8 @@
                         <input type="radio" name="DM14" value=4>Non-White Hispanic
                         <input type="radio" name="DM14" value=5>Bi- / multi-racial
                         <input type="radio" name="DM14" value=6>Other
-                        <br>
+                        <br>                            <div class="col-xs-1" style="text-align: center" > </div>
+                            <div class="col-xs-1" style="text-align: center" > </div>
                          <span style="margin-left:1em"> {{ questions.DM14_1 }}
                         <input type="text" name="DM14_1" value=" ">
                     </span>
