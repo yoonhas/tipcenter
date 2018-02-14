@@ -18,11 +18,11 @@
                                     <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="row">
-                    <div class="col-sm-2" style="text-align: right"><h5>1.Strongly Disagree.</h5></div>
-                    <div class="col-sm-2" ><h5> </h5></div>
-                    <div class="col-sm-2"><h5>3.Neutral </h5></div>
-                    <div class="col-sm-2"><h5>  </h5></div>
-                    <div class="col-sm-2" ><h5>5.Strongly Agree.</h5></div>
+                    <div class="col-xs-2" style="text-align: right"><h5>1.Strongly Disagree.</h5></div>
+                    <div class="col-xs-2" ><h5> </h5></div>
+                    <div class="col-xs-2"><h5>3.Neutral </h5></div>
+                    <div class="col-xs-2"><h5>  </h5></div>
+                    <div class="col-xs-2" ><h5>5.Strongly Agree.</h5></div>
 
                 </div>
             </div>
@@ -38,7 +38,7 @@
                                        <div class="row">
 
                         {% for choice in choices %}
-                            <div class="col-sm-2" style="text-align: center" ><input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
+                            <div class="col-xs-2" style="text-align: center" ><input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
 
                         {% endfor %}
 

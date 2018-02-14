@@ -22,18 +22,18 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="row">
-                        <div class="col-sm-2" style="text-align: right"><h5> 1.All of the time.</h5></div>
-                        <div class="col-sm-2" ><h5>2.Most of the time. </h5></div>
-                        <div class="col-sm-2"><h5>3.Some of the time. </h5></div>
-                        <div class="col-sm-2"><h5> 4.A little of the time. </h5></div>
-                        <div class="col-sm-2" ><h5>5.None of the time. </h5></div>
+                        <div class="col-xs-2" style="text-align: right"><h5> 1.All of the time.</h5></div>
+                        <div class="col-xs-2" ><h5>2.Most of the time. </h5></div>
+                        <div class="col-xs-2"><h5>3.Some of the time. </h5></div>
+                        <div class="col-xs-2"><h5> 4.A little of the time. </h5></div>
+                        <div class="col-xs-2" ><h5>5.None of the time. </h5></div>
 
                     </div>
                 </div>
                 <div class="panel-heading"> {{ questions.Q1_a }}</div>
                 <div class="row" style="text-align: left; width: 100%">
                 {% for choice in choices %}
-                    <div class="col-sm-2" style="text-align: right" ><input type="radio" name="Q1_a" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
+                    <div class="col-xs-2" style="text-align: right" ><input type="radio" name="Q1_a" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
 
                 {% endfor %}
 
@@ -42,7 +42,7 @@
                 <div class="panel-heading"> {{ questions.Q1_b }}</div>
                 <div class="row" style="text-align: left; width: 100%">
                 {% for choice in choices %}
-                    <div class="col-sm-2" style="text-align: right" ><input type="radio" name="Q1_b" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
+                    <div class="col-xs-2" style="text-align: right" ><input type="radio" name="Q1_b" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
 
                 {% endfor %}
 
@@ -51,7 +51,7 @@
                                 <div class="panel-heading"> {{ questions.Q1_c }}</div>
                 <div class="row" style="text-align: left; width: 100%">
                 {% for choice in choices %}
-                    <div class="col-sm-2" style="text-align: right" ><input type="radio" name="Q1_c" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
+                    <div class="col-xs-2" style="text-align: right" ><input type="radio" name="Q1_c" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
 
                 {% endfor %}
 
@@ -60,7 +60,7 @@
                             <div class="panel-heading"> {{ questions.Q1_d }}</div>
                 <div class="row" style="text-align: left; width: 100%">
                 {% for choice in choices %}
-                    <div class="col-sm-2" style="text-align: right" ><input type="radio" name="Q1_d" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
+                    <div class="col-xs-2" style="text-align: right" ><input type="radio" name="Q1_d" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
 
                 {% endfor %}
 
@@ -69,7 +69,7 @@
                             <div class="panel-heading"> {{ questions.Q1_e }}</div>
                 <div class="row" style="text-align: left; width: 100%">
                 {% for choice in choices %}
-                    <div class="col-sm-2" style="text-align: right" ><input type="radio" name="Q1_e" value="{{ choice }}"><span style="margin-left:1em"></span>{{ choice }}</div>
+                    <div class="col-xs-2" style="text-align: right" ><input type="radio" name="Q1_e" value="{{ choice }}"><span style="margin-left:1em"></span>{{ choice }}</div>
 
                 {% endfor %}
 
@@ -78,7 +78,7 @@
                             <div class="panel-heading"> {{ questions.Q1_f }}</div>
                 <div class="row" style="text-align: left; width: 100%">
                 {% for choice in choices %}
-                    <div class="col-sm-2" style="text-align: right" ><input type="radio" name="Q1_f" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
+                    <div class="col-xs-2" style="text-align: right" ><input type="radio" name="Q1_f" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
 
                 {% endfor %}
 
@@ -89,26 +89,26 @@
                 <div class="panel-heading"> {{ questions.Q2 }}</div>
                 <div class="panel-heading">
                     <div class="row">
-                        <div class="col-sm-1" style="text-align: right"><h5> 1.More often than usual a lot</h5></div>
-                        <div class="col-sm-1" ><h5>2.More often than usual some. </h5></div>
-                        <div class="col-sm-1"><h5>3.More often than usual little. </h5></div>
-                        <div class="col-sm-1"><h5> 4.About the same as usual. </h5></div>
-                        <div class="col-sm-1" ><h5>5.Less often than usual little. </h5></div>
-                        <div class="col-sm-1"><h5> 6.Less often than usual some </h5></div>
-                        <div class="col-sm-1" ><h5>7.Less often than usual a lot </h5></div>
+                        <div class="col-xs-1" style="text-align: right"><h5> 1.More often than usual a lot</h5></div>
+                        <div class="col-xs-1" ><h5>2.More often than usual some. </h5></div>
+                        <div class="col-xs-1"><h5>3.More often than usual little. </h5></div>
+                        <div class="col-xs-1"><h5> 4.About the same as usual. </h5></div>
+                        <div class="col-xs-1" ><h5>5.Less often than usual little. </h5></div>
+                        <div class="col-xs-1"><h5> 6.Less often than usual some </h5></div>
+                        <div class="col-xs-1" ><h5>7.Less often than usual a lot </h5></div>
 
                     </div>
                 </div>
                <div class="panel-body">
                <div class="row" style="text-align: left; width: 100%">
 
-                    <div class="col-sm-1" style="text-align: right" ><input type="radio" name="Q2" value=1><span style="margin-left:1em"></span>1</div>
-                    <div class="col-sm-1" style="text-align: right" ><input type="radio" name="Q2" value=2><span style="margin-left:1em"></span>2</div>
-                    <div class="col-sm-1" style="text-align: right" ><input type="radio" name="Q2" value=3><span style="margin-left:1em"></span>3</div>
-                    <div class="col-sm-1" style="text-align: right" ><input type="radio" name="Q2" value=4><span style="margin-left:1em"></span>4</div>
-                    <div class="col-sm-1" style="text-align: right" ><input type="radio" name="Q2" value=5><span style="margin-left:1em">5</span></div>
-                    <div class="col-sm-1" style="text-align: right" ><input type="radio" name="Q2" value=6><span style="margin-left:1em"></span>6</div>
-                    <div class="col-sm-1" style="text-align: right" ><input type="radio" name="Q2" value=7><span style="margin-left:1em"></span>7</div>
+                    <div class="col-xs-1" style="text-align: right" ><input type="radio" name="Q2" value=1><span style="margin-left:1em"></span>1</div>
+                    <div class="col-xs-1" style="text-align: right" ><input type="radio" name="Q2" value=2><span style="margin-left:1em"></span>2</div>
+                    <div class="col-xs-1" style="text-align: right" ><input type="radio" name="Q2" value=3><span style="margin-left:1em"></span>3</div>
+                    <div class="col-xs-1" style="text-align: right" ><input type="radio" name="Q2" value=4><span style="margin-left:1em"></span>4</div>
+                    <div class="col-xs-1" style="text-align: right" ><input type="radio" name="Q2" value=5><span style="margin-left:1em">5</span></div>
+                    <div class="col-xs-1" style="text-align: right" ><input type="radio" name="Q2" value=6><span style="margin-left:1em"></span>6</div>
+                    <div class="col-xs-1" style="text-align: right" ><input type="radio" name="Q2" value=7><span style="margin-left:1em"></span>7</div>
 
 
 
@@ -142,18 +142,18 @@
             <div class="panel-heading"> {{ questions.Q6 }}</div>
             <div class="panel-heading">
                     <div class="row">
-                        <div class="col-sm-2" style="text-align: right"><h5> 1.All of the time.</h5></div>
-                        <div class="col-sm-2" ><h5>2.Most of the time. </h5></div>
-                        <div class="col-sm-2"><h5>3.Some of the time. </h5></div>
-                        <div class="col-sm-2"><h5> 4.A little of the time. </h5></div>
-                        <div class="col-sm-2" ><h5>5.None of the time. </h5></div>
+                        <div class="col-xs-2" style="text-align: right"><h5> 1.All of the time.</h5></div>
+                        <div class="col-xs-2" ><h5>2.Most of the time. </h5></div>
+                        <div class="col-xs-2"><h5>3.Some of the time. </h5></div>
+                        <div class="col-xs-2"><h5> 4.A little of the time. </h5></div>
+                        <div class="col-xs-2" ><h5>5.None of the time. </h5></div>
 
                     </div>
             </div>
 
             <div class="row" style="text-align: left; width: 100%">
                 {% for choice in choices %}
-                    <div class="col-sm-2" style="text-align: center" ><input type="radio" name="Q6" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
+                    <div class="col-xs-2" style="text-align: center" ><input type="radio" name="Q6" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}</div>
 
                 {% endfor %}
 

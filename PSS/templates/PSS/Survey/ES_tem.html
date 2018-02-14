@@ -17,11 +17,11 @@
             <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="row">
-                    <div class="col-sm-2" style="text-align: center"><h5>1.No, not at all</h5></div>
-                    <div class="col-sm-2" ><h5>2.Occasionally </h5></div>
-                    <div class="col-sm-2"><h5>3.Sometimes </h5></div>
-                    <div class="col-sm-2"><h5>4.Most of the time </h5></div>
-                    <div class="col-sm-2" style="text-align: center"><h5>5.Yes, all of the time</h5></div>
+                    <div class="col-xs-2" style="text-align: center"><h5>1.No, not at all</h5></div>
+                    <div class="col-xs-2" ><h5>2.Occasionally </h5></div>
+                    <div class="col-xs-2"><h5>3.Sometimes </h5></div>
+                    <div class="col-xs-2"><h5>4.Most of the time </h5></div>
+                    <div class="col-xs-2" style="text-align: center"><h5>5.Yes, all of the time</h5></div>
                 </div>
             </div>
             </div>
@@ -35,11 +35,11 @@
             <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="row">
-                    <div class="col-sm-2" style="text-align: center"><h5>1. 전혀 그렇지 않다.</h5></div>
-                    <div class="col-sm-2" ><h5>2.그렇지 않다 </h5></div>
-                    <div class="col-sm-2"><h5>3.그저 그렇다. </h5></div>
-                    <div class="col-sm-2"><h5>4.그렇다  </h5></div>
-                    <div class="col-sm-2" style="text-align: center"><h5>5.항상 그렇다</h5></div>
+                    <div class="col-xs-2" style="text-align: center"><h5>1. 전혀 그렇지 않다.</h5></div>
+                    <div class="col-xs-2" ><h5>2.그렇지 않다 </h5></div>
+                    <div class="col-xs-2"><h5>3.그저 그렇다. </h5></div>
+                    <div class="col-xs-2"><h5>4.그렇다  </h5></div>
+                    <div class="col-xs-2" style="text-align: center"><h5>5.항상 그렇다</h5></div>
                 </div>
             </div>
             </div>
@@ -54,15 +54,15 @@
                        <div class="panel-body">
                        <div class="row" style="text-align: left; width: 100%">
                        {% if version == 1 %}
-                           <div class="col-sm-2" style="text-align: right" ><input type="radio" name="{{ name }}" value=99 checked><span style="margin-left:1em"></span>Don't want to answer <span style="margin-left:6em"></span></div>
+                           <div class="col-xs-2" style="text-align: right" ><input type="radio" name="{{ name }}" value=99 checked><span style="margin-left:1em"></span>Don't want to answer <span style="margin-left:6em"></span></div>
                        {% else %}
-                          <div class="col-sm-2" style="text-align: right" ><input type="radio" name="{{ name }}" value=99 checked><span style="margin-left:1em"></span>자녀 없음 <span style="margin-left:6em"></span></div>
+                          <div class="col-xs-2" style="text-align: right" ><input type="radio" name="{{ name }}" value=99 checked><span style="margin-left:1em"></span>자녀 없음 <span style="margin-left:6em"></span></div>
                         {% endif %}
-                            <div class="col-sm-2" style="text-align: right" ><input type="radio" name="{{ name }}" value=1><span style="margin-left:1em"></span>1<span style="margin-left:6em"></span></div>
-                           <div class="col-sm-2" style="text-align: right" > <input type="radio" name="{{ name }}" value=2><span style="margin-left:1em"></span>2<span style="margin-left:6em"></span></div>
-                            <div class="col-sm-2" style="text-align: right" ><input type="radio" name="{{ name }}" value=3><span style="margin-left:1em"></span>3<span style="margin-left:6em"></span></div>
-                            <div class="col-sm-2" style="text-align: right" ><input type="radio" name="{{ name }}" value=4><span style="margin-left:1em"></span>4<span style="margin-left:6em"></span></div>
-                            <div class="col-sm-2" style="text-align: right" ><input type="radio" name="{{ name }}" value=5><span style="margin-left:1em"></span>5<span style="margin-left:6em"></span></div>
+                            <div class="col-xs-2" style="text-align: right" ><input type="radio" name="{{ name }}" value=1><span style="margin-left:1em"></span>1<span style="margin-left:6em"></span></div>
+                           <div class="col-xs-2" style="text-align: right" > <input type="radio" name="{{ name }}" value=2><span style="margin-left:1em"></span>2<span style="margin-left:6em"></span></div>
+                            <div class="col-xs-2" style="text-align: right" ><input type="radio" name="{{ name }}" value=3><span style="margin-left:1em"></span>3<span style="margin-left:6em"></span></div>
+                            <div class="col-xs-2" style="text-align: right" ><input type="radio" name="{{ name }}" value=4><span style="margin-left:1em"></span>4<span style="margin-left:6em"></span></div>
+                            <div class="col-xs-2" style="text-align: right" ><input type="radio" name="{{ name }}" value=5><span style="margin-left:1em"></span>5<span style="margin-left:6em"></span></div>
                         </div>
                         </div>
                         {% endif %}
@@ -76,7 +76,7 @@
                         <div class="row" style="text-align: left; width: 100%">
 
                         {% for choice in choices %}
-                            <div class="col-sm-2" style="text-align: right" ><input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}<span style="margin-left:6em"></span></div>
+                            <div class="col-xs-2" style="text-align: right" ><input type="radio" name="{{ name }}" value="{{ choice}}"><span style="margin-left:1em"></span>{{ choice }}<span style="margin-left:6em"></span></div>
 
                         {% endfor %}
 
