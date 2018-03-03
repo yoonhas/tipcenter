@@ -48,7 +48,7 @@ def update_total_csv(request):
 
 
 def updating_summary(df):
-    agent_map = {1: 'CARA', 2: 'HPOG-Gateway', 3: 'HPOG-SouthLand', 4: 'CHA', 5: 'Inspiration', 6: 'instituto-IDPL',
+    agent_map = {0:'CUL', 1: 'CARA', 2: 'HPOG-Gateway', 3: 'HPOG-SouthLand', 4: 'CHA', 5: 'Inspiration', 6: 'instituto-IDPL',
                  8: 'CARA',
                  7: 'MBC', 9: 'Cara-CWF', 10: 'GrowingHome', 11: 'CJC-CNH', 12: 'CJC-Safer', 13: 'CJC-SER',
                  14: 'HPOG2.0', 15: 'GreaterWestTown',

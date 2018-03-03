@@ -135,7 +135,7 @@ def call_old_from_model(participant, time):
     return eb_tem
 
 def get_online_data(date):
-    agent_map = {'CARA':1, 'HPOG-Gateway':2, 'HPOG-SouthLand':3, 'CHA':4, 'Inspiration':5, 'instituto-IDPL':6,
+    agent_map = {'CUL':0, 'CARA':1, 'HPOG-Gateway':2, 'HPOG-SouthLand':3, 'CHA':4, 'Inspiration':5, 'instituto-IDPL':6,
 
                  'MBC':7, 'Cara-CWF':9,  'GrowingHome':10,'CJC-CNH':11,  'CJC-Safer':12, 'CJC-SER':13,
                  14: 'HPOG2.0', 'GreaterWestTown':15,
