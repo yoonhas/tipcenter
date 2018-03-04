@@ -48,7 +48,7 @@ def update_total_csv(request):
 
 
 def updating_summary(df):
-    agent_map = {0:'CUL', 1: 'CARA', 2: 'HPOG-Gateway', 3: 'HPOG-SouthLand', 4: 'CHA', 5: 'Inspiration', 6: 'instituto-IDPL',
+    agent_map = {0:'CUL', 1: 'CARA', 2: 'HPOG-Gateway', 3: 'HPOG-Southland', 4: 'CHA', 5: 'Inspiration', 6: 'instituto-IDPL',
                  8: 'CARA',
                  7: 'MBC', 9: 'Cara-CWF', 10: 'GrowingHome', 11: 'CJC-CNH', 12: 'CJC-Safer', 13: 'CJC-SER',
                  14: 'HPOG2.0', 15: 'GreaterWestTown',
@@ -62,6 +62,7 @@ def updating_summary(df):
         if df.ix[i]['Time'] > 4: #check it is over 4 times
             continue
         #call agent
+
         agent = users.objects.get(username=agent_map[df.ix[i]['Site']])
         time = df.ix[i]['Time']
         #create Surveyee object if it is not existed or call Survey obejct

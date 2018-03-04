@@ -9,9 +9,11 @@ from .models import SSP_Question, SSP, F, F_Question, GD, GD_Question, HM_Questi
 
 
 def check_element(val):
+    val = pd.to_numeric(val)
     val.fillna(99, inplace=True)
     val[val == 77] = np.NaN
     val[val == 99] = np.NaN
+
     # all values are NaN
 
     if val.isnull().sum() == len(val):
@@ -24,9 +26,12 @@ def check_element(val):
 
 
 def checkR(val):
+    val = pd.to_numeric(val)
     val.fillna(99, inplace=True)
     val[val == 77] = np.NaN
     val[val == 99] = np.NaN
+
+
     if 77 in val.unique():
         if (val.sum() == 77 * (len(val))):
             return (val.sum(), len(val))
@@ -59,18 +64,20 @@ def checkR(val):
         return (val.sum(), len(val))
 
 def checkGR(val):
+    val = pd.to_numeric(val)
     val.fillna(99, inplace=True)
     val.fillna(77, inplace=True)
-    dmap={1:5, 2:4, 3:3, 4:2, 5:1, 99:np.NaN}
+    dmap={1:5, 2:4, 3:3, 4:2, 5:1, 99:np.NaN, 77:np.NaN, '#NULL!': np.NaN}
     new_list=[ dmap[x] for x in val]
 
     return check_element(pd.Series(new_list))
 
 
 def checkSPR(val):
+    val = pd.to_numeric(val)
     val.fillna(99, inplace=True)
     val.fillna(77, inplace=True)
-    dmap = {0:10, 1: 9, 2: 8, 3: 7, 4: 6, 5: 5, 6: 4, 7: 3, 8: 2, 9: 1, 10: 0}
+    dmap = {0:10, 1: 9, 2: 8, 3: 7, 4: 6, 5: 5, 6: 4, 7: 3, 8: 2, 9: 1, 10: 0, 99:np.NaN, 77:np.NaN, '#NULL!': np.NaN}
     if 77 in val.unique():
         sum = 0
         col = 0
@@ -121,9 +128,10 @@ def checkSPR(val):
         return (sum, len(val))
 
 def checkF(val):
+    val = pd.to_numeric(val)
     val.fillna(99, inplace=True)
     val.fillna(77, inplace=True)
-    dmap = { 1: 7, 2: 6, 3: 5, 4: 4, 5: 3, 6: 2, 7: 1}
+    dmap = { 1: 7, 2: 6, 3: 5, 4: 4, 5: 3, 6: 2, 7: 1, 99:np.NaN, 77:np.NaN, '#NULL!': np.NaN}
     if 77 in val.unique():
         sum = 0
         col = 0
@@ -174,6 +182,7 @@ def checkF(val):
 def parsing(row):
 
     if 'EH15' in row:
+
         Empowerment_sum, Empowerment =check_element(row[['EH3','EH4','EH5','EH6']])
         SelfMotivation_sum, SelfMotivation = check_element(row[['EH11', 'EH15']])
         SkillResources_sum,SkillResources = check_element(row[['EH17', 'EH18', 'EH19', 'EH20']])
@@ -181,6 +190,7 @@ def parsing(row):
         EHS_all_sum, EHS_all = check_element(row[['EH3','EH4','EH5','EH6','EH11', 'EH15','EH17', 'EH18', 'EH19', 'EH20','EH21', 'EH22', 'EH23', 'EH24']])
 
     else:
+
         Empowerment_sum,Empowerment =check_element(row[['EH1','EH2','EH3','EH4']])
         SelfMotivation_sum, SelfMotivation = check_element(row[['EH6', 'EH5']])
         SkillResources_sum,SkillResources = check_element(row[['EH7', 'EH8', 'EH9', 'EH10']])
@@ -199,8 +209,7 @@ def parsing(row):
     k=0
     if PEBS_all < 1:
         k+=1
-        print(k)
-        print(row[['CaseNum']])
+
 
 
     ESS1_sum,ESS1 = check_element(row[['SS2', 'SS8', 'SS9', 'SS10', 'SS12']])
@@ -212,8 +221,12 @@ def parsing(row):
 
     Resilience_sum,Resilience = check_element(row[['R1', 'R2']])
     self_effi_sum, self_effi = check_element(row[['SEF1','SEF2','SEF3', 'SEF4','SEF5','SEF6','SEF7', 'SEF8']])
-    gr_per_sum, gr_per = check_element(row[['GR2','GR4', 'GR7', 'GR8']])
-    gr_con_sum, gr_con = checkGR(row[['GR1', 'GR3', 'GR5', 'GR6']])
+    if 'GR1' in row:
+        gr_per_sum, gr_per = check_element(row[['GR2','GR4', 'GR7', 'GR8']])
+        gr_con_sum, gr_con = checkGR(row[['GR1', 'GR3', 'GR5', 'GR6']])
+    else:
+        gr_per_sum, gr_per = 99*4, 99
+        gr_con_sum, gr_con = 99*5, 99
     if 'SPR1' in row:
         spr_all_sum, spr_all_col = checkSPR(row[['SPR1', 'SPR2', 'SPR3','SPR4', 'SPR5', 'SPR6']])
     else:
@@ -271,6 +284,7 @@ def readFile(file):
     dateparse = lambda x: '11/22/1984' if x== '#NULL!' else pd.datetime.strptime(x, '%m/%d/%Y')
     rawData = pd.read_csv(file, parse_dates=['cDATE'], date_parser=dateparse)
     df = pd.DataFrame(rawData)
+    df= df.replace('#NULL!', 99)
     df.fillna(99, inplace=True)
     df['Empowerment'] = ""
     df['SelfMotivation'] = ""
