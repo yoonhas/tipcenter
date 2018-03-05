@@ -59,7 +59,7 @@ def updating_summary(df):
 
     users = get_user_model()
     for i in range(len(df)):
-        if df.ix[i]['Time'] > 4: #check it is over 4 times
+        if df.ix[i]['Time'] > 5: #check it is over 4 times
             continue
         #call agent
 
@@ -133,4 +133,5 @@ def updating_summary(df):
                                     DM19=1)
             total.save()
         except Exception as e:
+            print("hi")
             print(e)

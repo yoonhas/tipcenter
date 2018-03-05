@@ -80,7 +80,7 @@ def draw_graph_Agent(box,box1):
                       diction1['Ehs_all']['mean'],
                       diction1['Ess_all']['mean'], diction1['PSS']['mean']]
 
-    print(PSS)
+
     fig, ax = plt.subplots()
     line_collection= []
     x =['1st', '2nd', '3rd', '4th']
@@ -134,7 +134,7 @@ def draw_graph_Agent_compare(box,box1, box2, casenum):
         PSS.at[i, casenum + "_ESS"] = box2.iloc[i]['Ess_all']
         PSS.at[i, casenum + "_PSS"] = box2.iloc[i]['PSS']
     PSS =  PSS.replace("", np.nan, regex=True)
-    print(PSS)
+
     fig, ax = plt.subplots()
     line_collection= []
     x =['1st', '2nd', '3rd', '4th']
