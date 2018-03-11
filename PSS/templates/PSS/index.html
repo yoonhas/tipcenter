@@ -50,63 +50,41 @@
     {% else %}
         <head>
         <style>
-           .container-fluid {
+            h4 {
+              text-align: left;
+            }
 
-        }
-          .bg-1 {
-              padding-top: 70px;
-              padding-bottom: 70px;
-              background-color: #1abc9c; /* Green */
-              color: #ffffff;
-          }
-          .bg-2 {
-              padding-top: 70px;
-              padding-bottom: 70px;
-              background-color: #474e5d; /* Dark Blue */
-              color: #ffffff;
-          }
-          .bg-3 {
-              padding-top: 70px;
-              padding-bottom: 70px;
-              background-color: aqua; /* White */
-              color: #555555;
-          }
           </style>
         </head>
 
         <body>
 
-        <div class="container-fluid bg-1 text-center">
+        <div class="container text-center">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br><br>
+
 
             {% load static %}
-            <img src="{{ Images.0 }}" alt="cross_center"/>
-
-
+            <img src="{{ Images.image.url }}" alt="cross_center"/>
+            <br><br><br>
             <h4>
-
-            PSS Data Solution is an interactive data management platform to provide data solution services to participating member organizations.
+                PSS Data Solution is an interactive data management platform to provide data solution services to participating member organizations.
             Members who use the PSS survey to follow their clients and staff on multiple time points are given access to the system for inputting,
             viewing, case managing, and producing summary reports on individual client-level and organizational aggregate-level PSS data.
-            PSS scores can be disaggregated or aggregated depending on the need of member organizations.
-            </h4>
-            </div>
-
-            <div class="container-fluid bg-2 text-center">
-            <h4>
-            There are 2 different sub-metrics of PSS--employment hope and barriers--for which the core scores are reported. Each sub-metric will have component metrics by which data can be viewed. <br>
+            PSS scores can be disaggregated or aggregated depending on the need of member organizations. <br><br>
+            There are 2 different sub-metrics of PSS--employment hope and barriers--for which the core scores are reported. Each sub-metric will have component metrics by which data can be viewed.
             Employment hope has the four component metrics of psychological empowerment, futuristic self-motivation, utilization of skills and resources, and goal-orientation.
             Perceived employment barriers has the five component metrics of health and mental health barriers, labor market exclusion barriers, child care barriers, human capital barriers, and soft skills / personal balance barriers.
-
-            </h4>
-            </div>
-
-            <div class="container-fluid bg-3 text-center">
-              <h4>
+                <br><br>
             Members are given user-friendly access to disaggregated individual data for case management. Also they are provided access to view the aggregate PSS score by various demographic categories.
-                 Also, some members will be given the status to view their own scores in comparison to the overall average scores of all participating member organizations.
-
+            Also, some members will be given the status to view their own scores in comparison to the overall average scores of all participating member organizations.
             </h4>
-            </div>
+        </div>
+
+
 
         </body>
 

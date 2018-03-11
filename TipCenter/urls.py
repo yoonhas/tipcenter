@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from PSS import views as PSS_views
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^PSS/', include('PSS.urls')),
@@ -23,4 +25,4 @@ urlpatterns = [
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^accounts/signup$',PSS_views.CreateUserView.as_view(), name='signup'),
     url(r'^accounts/signup/done$',PSS_views.RegisteredView.as_view(), name='create_user_done'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

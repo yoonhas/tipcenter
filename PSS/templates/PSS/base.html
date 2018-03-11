@@ -31,6 +31,10 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
+        {% if logo %}
+            {% load static %}
+            <img src="{{ logo.image.url }}" class="img-rounded" alt="crosscenter"/>
+        {% endif %}
       <a class="navbar-brand" href="{% url 'PSS:index' %}"> PSS </a>
     </div>
 

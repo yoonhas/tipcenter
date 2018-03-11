@@ -135,11 +135,13 @@ def call_old_from_model(participant, time):
     return eb_tem
 
 def get_online_data(date):
-    agent_map = {'CUL':0, 'CARA':1, 'HPOG-Gateway':2, 'HPOG-Southland':3, 'CHA':4, 'Inspiration':5, 'instituto-IDPL':6,
-
-                 'MBC':7, 'Cara-CWF':9,  'GrowingHome':10,'CJC-CNH':11,  'CJC-Safer':12, 'CJC-SER':13,
-                 14: 'HPOG2.0', 'GreaterWestTown':15,
-                 'DuPagePads':16, 'HeartlandAlli':17,  'CTA':18,  'CentroRomero':19, 'St.Patricks-Mc':20, 'YeonSungUniv':23}
+    agent_map = {0: 'CUL', 1: 'CARA', 2: 'HPOG-Gateway', 3: 'HPOG-Southland', 4: 'CHA', 5: 'Inspiration',
+                 6: 'instituto-IDPL',
+                 8: 'Cara-CWF',
+                 7: 'MBC', 9: 'CWF-CARA', 10: 'GrowingHome', 11: 'CJC-CNH', 12: 'CJC-Safer', 13: 'CJC-SER',
+                 14: 'HPOG2.0', 15: 'GreaterWestTown',
+                 16: 'DuPagePads', 17: 'HeartlandAlli', 18: 'CTA', 19: 'CentroRomero', 20: 'St.Patricks-Mc',
+                 23: 'YeonSungUniv'}
 
 
     online_survey = SurveyTimes.objects.filter(online=True,pub_Date=date, doneSurvey=True)

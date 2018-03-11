@@ -4,7 +4,8 @@ from django.utils import timezone
 
 # Create your models here.
 class Image(models.Model):
-    image = models.ImageField()
+    image_name = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='logos', blank=True)
 
     def __str__(self):
         return str(self.pk)
