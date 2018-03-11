@@ -34,8 +34,8 @@ class IndexView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
-        context['Images'] = Image.objects.get(image_name='tipcenter')
-        context['logo'] = Image.objects.get(image_name='crosscenter')
+        context['Images'] = Image.objects.get(image_name='crosscenter')
+        context['logo'] = Image.objects.get(image_name='tipcenter')
         return context
 
 class CreateUserView(CreateView):
