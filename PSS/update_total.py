@@ -68,6 +68,9 @@ def updating_summary(df):
         #create Surveyee object if it is not existed or call Survey obejct
         if Surveyee.objects.filter(caseNum=df.ix[i]['CaseNum']).exists():
             surveyee = Surveyee.objects.get(caseNum=df.ix[i]['CaseNum'])
+            if surveyee.agent_name.username != agent.username:
+                surveyee.agent_name = agent
+                surveyee.save()
             if Total_for_Admin.objects.filter(caseNum=surveyee, Time=time).exists():
                 surveyTime = SurveyTimes.objects.get(caseNum=surveyee, time=time)
                 total_obj = Total_for_Admin.objects.get(caseNum=surveyee, Time=time)
